@@ -1,0 +1,59 @@
+%%% Fiktivní kapitola s ukázkami citací
+
+\chapter{Práce s literaturou}
+
+Tato šablona předpokládá použití bibliografické databáze ve formátu \BibTeX\ z důvodu větší flexibility. Použití bibliografické databáze není nutnou podmínkou, lze si vystačit i se standardním prostředím \texttt{thebibliography}. V takovém případě je však zapotřebí provést zásahy do některých souborů, jak je uvedeno dále.
+
+\section{Použití bibliografické databáze}
+
+\begin{enumerate}
+\item \textbf{Balíček \verb'biblatex', APA-7}\\
+Šablona využivá pro zpracování bibliografické databáze nastavení přes balíček \verb|biblatex| a rovněž garantuje použití citačního standardu \textbf{APA-7}. Veškerá nastavení jsou uvedena v souboru \texttt{biblatex-setup.tex}.
+\item\textbf{Změna názvu databáze}\\
+V šabloně se předpokládá databáze uložená v souboru \texttt{literatura.bib}. Pokud se databáze jmenuje jinak, pak je nutné v souboru \texttt{biblatex-setup.tex} změnit hodnotu parametru příkazu \verb'\bibliography'.
+\item\textbf{Změna citačního stylu}\\
+Standardně se citace v textu uvádějí v kombinaci příjmení a roku (harvardský styl). Lze přepnout i na odkazy číslem změnou v souboru \texttt{biblatex-setup.tex}, kde se zruší komentářový znak v řádcích:
+\begin{verbatim}
+%  ,citestyle=numeric-comp
+...
+%\makeatletter
+%\RequireBibliographyStyle{numeric}
+%\makeatother
+\end{verbatim}
+\item \textbf{Využití populárního citačního manažeru Zotero}:
+\begin{enumerate}
+\item více informací -- \href{https://www.zotero.org/}{homepage}, \href{https://knihovna.vse.cz/citace/nastroje/zotero/}{informace z Knihovny VŠE}
+\item Instalace -- \url{https://www.zotero.org/download/}
+\item Instalace konektoru do prohlížeče -- Firefox, Chrome, Edge, Safari
+\item Rozšíření Better BibTeX for Zotero -- \url{https://retorque.re/zotero-better-bibtex/}:
+     \begin{enumerate}
+     \item Stáhnout .xpi soubor
+     \item A pak \texttt{Nástroje--Doplňky--Instal Add-on From File}
+     \end{enumerate}
+\item \href{https://formadoct.doctorat-bretagneloire.fr/zotero_workshop/latex}{Zotero workshop aneb Zotero\&{}\LaTeX\ krok po kroku}
+\end{enumerate}
+\end{enumerate}
+
+
+\section{Použití prostředí \texttt{thebibliography}}
+\begin{enumerate}
+\item V souboru \texttt{makra.tex} vymazat na počátku tyto řádky:
+\begin{verbatim}
+%%% Nastavení pro použití samostatné bibliografické databáze.
+%%% Settings for using a separate bibliographic database.
+\input biblatex-setup
+\end{verbatim}
+\item V souboru \texttt{literatura.tex} odstranit řádek s příkazem \verb'\printbibliography' a odstranit příznak komentáře v další části obsahující prostředí \texttt{thebibliography.}
+\item Jednotlivé položky \verb\bibitem\ musí být sestaveny dle standardu APA-7. Návodné příklady jsou k dispozici třeba zde: \url{https://knihovna.vse.cz/citace/priklady/?norm=apa}.
+\end{enumerate}
+
+
+\section{Jak citovat v textu}
+\begin{center}
+\begin{tabularx}{\textwidth}{l@{~~$\longrightarrow$~~}X}
+\verb|\parencite{Cermak2018}|&\parencite{Cermak2018}\\
+\verb|\parencite{Hladik2018,Jasek2018}|&\parencite{Hladik2018,Jasek2018}\\
+\verb|\parencite[kap. 3]{Pecakova2018}|&\parencite[kap. 3]{Pecakova2018}\\
+\verb|\parencite{Furtuna2023}|&\parencite{Furtuna2023}\\
+\end{tabularx}
+\end{center}
