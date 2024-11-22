@@ -1,0 +1,27 @@
+# Ignore LaTeX build files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xmpi
+*.txss2
+*.bcf
+*.bcf-SAVE-ERROR
+*.xmpdata
+*.run.xml
+*.lol
+
+# Ignore PDF files generated from LaTeX
+*.pdf
+
+# Ignore any editor-specific files (optional)
+.vscode/
+.idea/
+*.swp
