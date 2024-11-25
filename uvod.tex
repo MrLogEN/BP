@@ -1,9 +1,7 @@
 \chapter*{Úvod}
 \addcontentsline{toc}{chapter}{Úvod}
-
-%V úvodu závěrečné práce autor vysvětlí, proč si vybral zvolené téma, tedy \textbf{motivaci} celé závěrečné práce. V úvodu nesmí chybět přesně formulovaný \textbf{hlavní cíl} závěrečné práce (popř. dílčí cíle), měla by zde být nastíněna \textbf{metodika} celé závěrečné práce (popř. výzkumné otázky či hypotézy). Zvykem bývá rovněž nastínit \textbf{hlavní výsledky/výstupy} závěrečné práce. 
-
-%Po úvodu následují jednotlivé \textbf{číslované kapitoly} členěné do podkapitol.
+\section*{Seznámení s tématem}
+\addcontentsline{toc}{section}{Seznámení s tématem}
 Zdraví člověka je jedním z nejdůležitějších témat dnešní doby. Tuto skutečnost lze pozorovat například na rozpočtu vlády ČR na rok 2025, kde Ministerstvu zdravotnictví byl zvýšen rozpočet, o proti roku 2024 o zhruba 53,9 \% \parencite{prcRozpocet2025}. Jeden z důvodů předčasného úmrtí člověka je, mimo kouření a nezdravé stravování, znečištění ovzduší. Znečištění ovzduší stojí za miliony předčasných úmrtí ročně a je podle WHO největší enviromentální hrozbou pro zdraví člověka \parencite{worldhealthorganizationWHOGlobalAir2021}. WHO z tohoto důvodu vytovřila směrnici (Air Quality Guidelines, \textbf{AQG}), kde doporučuje úrovně jednotlivých znečišťujících látek. Mezi tyto látky patří PM\textsubscript{2.5}, PM\textsubscript{10}, O\textsubscript{3}, NO\textsubscript{2}, SO\textsubscript{2} a CO. Znečišťující látky  PM\textsubscript{2.5} a PM\textsubscript{10} jsou částicemi složených z různých látek, které mají stejné aerodynamické vlastnosti jako jednotlitá koule o průměrech 2,5 ${\mu}m$ a 10 ${\mu}m$  \parencite{worldhealthorganizationWHOGlobalAir2021}.
 
 Existují ještě další látky, které ovlivňují člověka a jeho zdraví, které však WHO ve své směrnici neuvádí. Jde například o CO\textsubscript{2} neboVOC. Pokud zadáme umělé inteligenci dotaz: \textit{"Co je VOC?"}, dostaneme tuto odpověď: \textit{"VOC (Volatile Organic Compounds) jsou těkavé organické sloučeniny. Jsou to chemické látky, které se snadno odpařují do vzduchu při pokojové teplotě. Často pochází z barev, laků, čisticích prostředků nebo průmyslových procesů. Mohou být škodlivé pro zdraví i životní prostředí."} \parencite{openaiChatGPT2024}.
@@ -11,4 +9,30 @@ Existují ještě další látky, které ovlivňují člověka a jeho zdraví, k
 
 Pokud bychom se zaměřili na vnitřní prostředí, tedy prostředí jako jsou domovy, kanceláře a jiné uzavřené objekty, kde se pohubují lidé, mohli bychom výše ovedené látky shrnout pod pojem \textit{kvalita vnitřního ovzduší} (Indoor Air Quality, \textbf{IAQ}). Látky, které tento pojem zastřešuje, bychom mohli rozšířit o dalši veličiny, které by tento pojem rozšířili na \textit{kvalitu vnitřního prostředí} (Indoor Envirotnment Quality, \textbf{IEQ}). Takovýmy veličinami jsou: templota, vlhkost, úroveň a templota osvětlení, úroveň hluku \parencite{dengImpactIndoorAir2024}.
 
-%
+Ve studii, která se zabývá vlivem IEQ na produktivitu a fyziologickými reakcemi člověka, bylo zjištěno, že hluk má veliký vliv na produktivitu člověka v tzv. open-office prostorech a ve školách měla pro změnu největši vliv templota \parencite{dengImpactIndoorAir2024}. Autoři sutdie, zabývající se dopadem CO\textsubscript{2} na kognitivní funkce zjistili, že při koncentraci CO\textsubscript{2} okolo 1400 ppm byly výsledky testování kognitivních funkcí testovaných skupin o 50 \% nižší oproti referenčním dním \parencite{osephg.allenAssociationsCognitiveFunction2016}.
+
+Z výsledků těchto studií lze usoudit, že je důležité se zabývat kvalitou prostředí, ve kterém se lidé nacházejí. Zejména pokud se jedná o prostředí, kde lidé tráví hodně času jako je dům, byt či kancelář nebo škola.
+
+\section*{Cíle}
+\addcontentsline{toc}{section}{Cíle}
+
+Cílem této práce je v první řadě zjistit, jaká řešení pro měření, analýzu a reakci na změny v IEQ se na trhu nacházejí. 
+V druhé řadě navrhnout a vytvořit Open Source (tj. kód opatřený takovou licencí, která umožňuje volné nahlížení a úpravu a šíření zdrojového kódu \parencite{OpenSource2024} ) aplikační rozhraní (Aplication Programmable Interface, \textbf{API}), které se bude zabývat sběrem dat do databázového systému (Database Management System, \textbf{DBMS}), který bude navržen a vytvořen zároveň s API, pokud nebude jiná alternativa.
+V třetí řadě, data posbíraná ze senzorů budou otevřena veřejnosti pro volné používání (tzv. Open Data) a budou uvedena v takové databází otevřených dat, která to umožňuje. 
+
+Otevřená data se řídí Zákonenem č. 106/1999 Sb. Zákon o svobodném přístupu k informacím. Otevřená data by podle portálu opendata.gov.cz měla splňovat tyto podmínky \parencite{CoJsouOtevrena2022}:
+\begin{enumerate}[]
+	\item{Přístupná jako datové soubory ve strojově čitelném a otevřeném formátu s úplným a aktuálním obsahem databáze nebo agregovanou statistikou} 
+	\item{Opatřená neomezujícími podmínkami užití}
+	\item{Evidovaná v Národním katalogu otevřených dat (NKOD) jako přímé odkazy na datové soubory}
+	\item{Opatřená dokumentací}
+	\item{Dostupná ke stažení bez technických překážek (registrace, omezení počtu přístupů, CAPTCHA, apod.)}
+	\item{Připravena s cílem co nejsnazšího strojového zpracování programátory apod.}
+	\item{Opatřená kontaktem na kurátora pro zpětnou vazbu (chyby, žádost o rozšíření, apod.)}
+\end{enumerate}
+
+V poslední řadě, je cílem vytvořit portál, který by umožňoval data vizualizovat a analyzovat za pomoci statistických nástrojů.
+
+Takovéto aplikační řešení může uživateli získávat informace o kvalitě prostředí, ve kterém se pohybuje a pokud je prostředí nevyhovující, může díky takové vědomosti podnikat kroky směřující k nápravě. Díky otevřenosti dat o IEQ bude možné pro výrobce topných, ventilačních a klimatizačních systémů, tzv. HVAC (Heating, Ventilation and Air Conditioning), vylepšovat své produkty pro potřeby zákazníků. To může vést zejména ke zlepšení pracovního prostředí a k vyšší výkonosti zaměstnanců, studentů apod. V domácím prostředí jde především o zlepšení komfortu
+
+

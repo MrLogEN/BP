@@ -3064,6 +3064,10 @@
     <bcf:citekey order="3" intorder="1">worldhealthorganizationWHOGlobalAir2021</bcf:citekey>
     <bcf:citekey order="4" intorder="1">openaiChatGPT2024</bcf:citekey>
     <bcf:citekey order="5" intorder="1">dengImpactIndoorAir2024</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">dengImpactIndoorAir2024</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">osephg.allenAssociationsCognitiveFunction2016</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">OpenSource2024</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">CoJsouOtevrena2022</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="apa">
