@@ -1,12 +1,12 @@
 %%% Verze pro jednostranný tisk:
-%\documentclass[11pt,a4paper]{report}
-%\usepackage[top=25mm,bottom=25mm,right=25mm,left=30mm,head=12.5mm,foot=12.5mm]{geometry}
-%\let\openright=\clearpage
+\documentclass[11pt,a4paper]{report}
+\usepackage[top=25mm,bottom=25mm,right=25mm,left=30mm,head=12.5mm,foot=12.5mm]{geometry}
+\let\openright=\clearpage
 
 %%% Pokud tiskneme oboustranně:
-\documentclass[11pt,a4paper,twoside,openright]{report}
-\usepackage[top=25mm,bottom=25mm,right=25mm,left=30mm,head=12.5mm,foot=12.5mm]{geometry}
-\let\openright=\cleardoublepage
+%\documentclass[11pt,a4paper,twoside,openright]{report}
+%\usepackage[top=25mm,bottom=25mm,right=25mm,left=30mm,head=12.5mm,foot=12.5mm]{geome%try}
+%\let\openright=\cleardoublepage
 \usepackage[]{subdepth}
 %%% DEFINICE ZÁKLADNÍCH PROMĚNNÝCH
 \def\TypPrace{BP}                % bakalářská práce/bachelor thesis
@@ -36,7 +36,7 @@
 
 %%% Konzultant práce: Jméno a příjmení s~tituly
 %%% Consultant: First name and surname with titles
-\def\Konzultant{[jméno a příjmení vedoucího vč. titulů]}
+\def\Konzultant{}
 
 %%% Studijní program
 %%% Study program
@@ -44,7 +44,7 @@
 
 %%% Studijní program - specializace
 %%% Study program - specialization
-\def\Specializace{[Název specializace, pokud je do nich studijní program členěn]}
+\def\Specializace{}
 
 %%% Nepovinné poděkování (vedoucímu práce, konzultantovi, tomu, kdo zapůjčil software, literaturu apod.)
 %%% Optional thanks (the supervisor, the consultant, the borrower of software, literature, etc.)
@@ -92,41 +92,48 @@ Poznámka: Seznam tabulek je vhodný použít, pokud počet tabulek v textu prá
 \lstlistoflistings
 Poznámka: Seznam výpisů programového kódu je vhodné použít, pokud počet vložených objektů tohoto typu je větší než 20. 
 
-%%% Seznam zkratek v práci (volitelně)
-%%% List of abbreviations in the thesis (optionally)
 \include{zkratky}
 
 \pagestyle{fancyx}
-%%% Jednotlivé kapitoly práce jsou pro přehlednost uloženy v samostatných souborech
-%%% The individual chapters of the thesis are stored in separate files for clarity
+
 {%
 \pagestyle{plain}
 %\include{doporuceni}
 \include{uvod}
 }
-%\include{tabulky-obrazky}
-%\include{prace-s-prameny}
-%\include{pdf-a}
+
+
 
 {
-\pagestyle{plain}
-\include{metodika}
+	\pagestyle{plain}
+	\include{reserse}
 }
 
 {
 	\pagestyle{plain}
-	\include{existujici_reseni}
+	\include{pozadavky}
 }
 
 {
 	\pagestyle{plain}
-	\include{predpisy}
+	\include{open_data}
 }
 
 {
 	\pagestyle{plain}
-	\include{formaty_a_standardy}
+	\include{archimate}
 }
+
+{
+	\pagestyle{plain}
+	\include{navrh_architektury}
+}
+
+{
+	\pagestyle{plain}
+	\include{evaluace_reseni}
+}
+
 
 {%
 \pagestyle{plain}
@@ -141,8 +148,8 @@ Poznámka: Seznam výpisů programového kódu je vhodné použít, pokud počet
 %%% odkazována z vlastního textu práce. Přílohy se číslují.
 %%% Attachments to thesis, if any. Each attachment must be referenced at 
 %%% least once in your own text. The appendices are numbered.
-\part*{\Prilohy\thispagestyle{empty}}
-\appendix
+%\part*{\Prilohy\thispagestyle{empty}}
+%\appendix
 
 
 \end{document}
