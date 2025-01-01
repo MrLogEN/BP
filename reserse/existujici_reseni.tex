@@ -1,6 +1,6 @@
 \section{Rešerše a analýza existujícíh OpenSource aplikací}
 
-Při hledání existujících aplikací jsem hledal za pomocí umělé inteligence. Použil jsem tento dotaz: \textit{"Is there any open source app that gathers open data about IAQ or IEQ"}. Jako odpověď jsem dostal: 
+Při hledání existujících aplikací jsem hledal za pomocí umělé inteligence. Kritériem je, že aplikace musí být open source a poskytovat data otevřeně. Použil jsem tento dotaz: \textit{"Is there any open source app that gathers open data about IAQ or IEQ"}. Jako odpověď jsem dostal: 
 
 \textit{"Yes, here are a few open-source apps/tools for IAQ (Indoor Air Quality) or IEQ (Indoor Environmental Quality):}
 \begin{enumerate}
@@ -27,11 +27,34 @@ Při hledání existujících aplikací jsem hledal za pomocí umělé inteligen
 \textit{These tools combine IAQ data collection, visualization, and community involvement}"\newline \parencite{openaiChatGPT2024}.
 
 
-Při výběru aplikace, která by měla podobné vlastnosti, které jsou zmíněny v cílech byla vybrány 2 aplikace.
+Ve výstupu umělé inteligence se ukázalo, že poslední 2 aplikace jsou ve skutečnosti jedna a ta samá aplikace.
+Proto byl zadán podobný dotaz:
+\textit{!are there any open data apps with IAQ or IEQ?"}. Vústupem umělé inteligence ChatGPT bylo:
+
+\textit{Yes, there are several open data applications that provide information on Indoor Air Quality (IAQ) and Indoor Environmental Quality (IEQ). Here are some notable ones:}
+
+\textit{Indoor-CO2-Map Data Collector
+An open-source Android and iOS application designed to collect and display CO2 levels in non-residential buildings such as shops, restaurants, hospitals, and other public spaces. The goal is to provide a comprehensive map of indoor CO2 levels, contributing to public awareness and better air quality management. }
+
+\textit{IQAir AirVisual App
+Provides real-time air quality data for six key pollutants from over 80,000 sensors worldwide. It offers both outdoor and indoor air quality monitoring, synchronizing with IQAir's AirVisual Pro monitor to provide indoor readings and recommendations. }
+
+\textit{Airthings App
+Allows users to monitor indoor air quality by connecting with Airthings devices. It provides insights into various air quality parameters and offers recommendations to improve indoor environments. 
+}
+\textit{OpenAQ
+A nonprofit organization that provides universal access to air quality data, empowering a global community to address air inequality. While it primarily focuses on outdoor air quality, the platform's open data approach can be instrumental for comparative studies and broader environmental assessments. 
+}
+
+\textit{EPA's AirData Air Quality Monitors App
+A web-based mapping application that displays monitor locations and specific information. It allows users to query and download daily and annual summary data, aiding in understanding air quality trends. }
+
+\textit{These applications utilize open data to provide insights into IAQ and IEQ, helping users monitor and improve their indoor environments.} \parencite{openaiChatGPT2025}
 
 \subsection{Aplikace 1 - sensor.community}
 
- První je na portále \textit{sensor.community}, který byl dříve znám jako Luftdaten. Jedná se o projekt ze Štuttgartu v Německu. Aplikace umožňuje lidem se registrovat a připojit své nízkonákladové senzory k této síti. Aplikace podporuje širokou škálu senzorů a vývojových desek. Na webovém portále si lze zobrazit mapu světa (viz obrázek \ref{obr01:sens-com-map}) , kde lze sledovat hladiny různých veličin na základě umístění (viz obrázek \ref{obr02:sens-com-veliciny-a-data}). Co však nelze, je zobrazení grafů vývoje. A to ani v portálu uživatele, kde uživatel může spravovat svá zařízení. Data jsou zde spíše obecná, to dává v kontextu otevřených dat smysl, ale jistá personalizace pro uživatele by mohla existovat.
+ První je na portále \textit{sensor.community}, který byl dříve znám jako Luftdaten. Jedná se o projekt ze Štuttgartu v Německu. Aplikace umožňuje lidem se registrovat a připojit své nízkonákladové senzory k této síti. Aplikace podporuje širokou škálu senzorů a vývojových desek. Na webovém portále si lze zobrazit mapu světa (viz obrázek \ref{obr01:sens-com-map}) , kde lze sledovat hladiny různých veličin na základě umístění (viz obrázek \ref{obr02:sens-com-veliciny-a-data}).
+ Na stránce se nachází možnost přistupovat k archivům dat. Ty jsou děleny podle typu senzoru
 
 \begin{figure}[h!]
 	\centering
@@ -48,11 +71,85 @@ Při výběru aplikace, která by měla podobné vlastnosti, které jsou zmíně
 	\label{obr02:sens-com-veliciny-a-data}
 \end{figure}
 
+Veličiny měřené aplikací jsou uvedeny v seznamu níže.
+
+\begin{enumerate}[]
+	\item teplota
+	\item reálná vlhkost
+	\item hluk
+	\item tlak
+	\item PM\textsubscript{10}
+	\item  PM\textsubscript{2.5}
+	\item NO\textsubscript{2}
+\end{enumerate}
+
 \subsection{Aplikace 2 - opensensemap.org}
 
-Druhou aplikací je portál opensensemap.org. Tato aplikace nabízí velmi podobné funkce jako ta předchozí. Má však nějaké funkce navíc. Již se dá zobrazit grafy pro jednotlivé veličiny senzoru. Stále zde není možnost nahlížen na své senzory přímo z dashboardu. Pouze z globální mapy. I přes pěkné vizuální zpracování aplikace a více funkcemi oproti předchozí aplikaci, jsou zde jisté neduhy. Aplikace postrádá standardizaci pro data vznikají tak často duplicity. Filtrování podlé \textit{fenoménu}, jak aplikace různé veličiny nazývá, je prakticky nemožné něco efektivně filtrovat. Jen pro teplotu se zde nachází desítky \textit{fenoménů}. Tento problém přisuzuji přílišné volnosti poskytnuté uživateli v případě poskytování dat.
+Druhou aplikací je portál opensensemap.org. Tato aplikace nabízí velmi podobné funkce jako ta předchozí. V aplikaci je možné přidávata vlastní senzory, zobrazovat si grafy vývoje hodnot, stahovat data z různých senzorů ve formátech CSV nebo JSON.
 
+Výběr z měřených veličin je vidět v seznamu níže.
 
-\subsection{Shrnutí}
-Obě aplikace jsou shodou okolností německého původu, jsou tedy primárně v německém jazyce a překlad do angličtiny či češtiny pokulhává.
+\begin{enumerate}[]
+	\item teplota
+	\item reálná vlhkost
+	\item hluk
+	\item tlak
+	\item PM\textsubscript{10}
+	\item  PM\textsubscript{2.5}
+	\item NO\textsubscript{2}
+	\item radon
+	\item VOC
+	\item CO\textsubscript{2}
+\end{enumerate}
+Aplikace je udělaná tak, aby uživatelé mohli přidávat senzory bez čekání napřidání podpory veličinámm které chtějí publikovat. Webová stránka bohužel není schopná sloučit stejná data k sobě. Je tedy obtížné vytvořit seznam všech publikovaných veličin.
 
+\subsection{Aplikace 3 - Indoor-CO2-Map: CO2 Monitoring and Data Collection}
+Jedná se o open source aplikaci pro Android zařízení, která shromažďuje data o CO\textsubscript{2} ve vnitřích prostorách primárně z nerezidenčních budov.
+
+Aplikace funguje pouze s podporovanými monitorovacími zařízeními (Aranet4, Airvalent or Inkbird), které se připojí k android zařízení pomocí Bluetooth. 
+
+Kromě dat CO\textsubscript{2} se také odesílají data polohová, což umožňuje dále senzory umisťovat na mapu na webové stránce \textit{indoorco2map.com} jak je vidět na obrázku \ref{obr03:co2sensor}.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=.70\textwidth]{img/co2sensormap.png}
+	\caption{Ukázka mapy na indoorco2map.com}
+	\label{obr03:co2sensor}
+\end{figure}
+
+\subsection{Aplikace 4 - openaq}
+Openaq je open-source aplikace, která publikuje otevřená data ohledně kvality ovzduší. Senzory nejsou nutně součástí vnitřních prostor. 
+
+Aplikace primárně shromažďuje data o těchto veličinách:
+\begin{enumerate}[]
+	\item PM\textsubscript{10}
+	\item  PM\textsubscript{2.5}
+	\item NO\textsubscript{2}
+	\item O\textsubscript{3}
+	\item CO
+	\item SO\textsubscript{2}
+	\item relativní vlhkost
+	\item teplota
+\end{enumerate}
+
+Aplikace nabízí REST API pro dotazování. Výsledky dotazů vrací ve formátu JSON. Na API je nastavený rate limit 60 dotazů za minutu. Dále nabízí webové rozhraní s klikatelnout mapou (obr. \ref{obr03:openaq_mapa}), kde lze vybírat jednotlivé senzory a zobrazovat si jejich metriky a detaily (obr.  \ref{obr03:openaq_detail}). Pro stažení dat je nutné být přihlášený (viz obr. \ref{obr03:prihlaseni_download}). 
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=.70\textwidth]{img/openaq_map.png}
+	\caption{Klikatelná mapa}
+	\label{obr03:openaq_mapa}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=.70\textwidth]{img/openaq_detail.png}
+	\includegraphics[width=.70\textwidth]{img/openaq_chart.png}
+		\includegraphics[width=.70\textwidth]{img/openaq_pattern.png}
+	\caption{Detail senzoru}
+	\label{obr03:openaq_detail}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=.70\textwidth]{img/openaq_download.png}
+	\caption{Nutnost přihlášení}
+	\label{obr03:prihlaseni_download}
+\end{figure}
