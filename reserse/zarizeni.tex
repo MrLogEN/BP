@@ -1,0 +1,74 @@
+\section{Zařízení pro sběr dat}
+Na trhu se nachází celá řada výrobců a senzorů, od nízkonákladových DIY až po průmyslové.
+
+Pro hledání senzorů na trhu bylo použito vyhledávače DuckDuckGo, ChatGPT a zkušenosti autora práce z předešlého vzdělávání a zaměstnání.
+
+Autor identifikoval 2 nízkonákladové senzory pro sběr dat o teplotě a vlhkosti. Těmito senzoru jsou DHT11 a DHT22, které jsou dobře známé komunitě mikrokontrolerů Arduino a Raspberry Pi. Ty mají buď analogový výstup nebo I2C.
+
+Dále autor zařazuje výrobce senzorů Elvaco a Protronix. Protronix poskytuje senzory na sběr dat o hladinách CO\textsubscript{2}, VOC, vlhkosti, teplotu, PM\textsubscript{2.5} a PM\textsubscript{10}, cigaretového kouře, čidla úniku chladiv, čidla pro měření radonu a dále kombinace zmíněných do jednoho zařízení. Výstupy dat jsou analogové, relé, MODBUS, IQRF. Elvaco nabízí kombinovaná čidla pro měření CO\textsubscript{2}, vlhkosti a teploty. Pro komunikaci používá M-Bus.
+
+Umělé inteligenci ChatGPT byl zadán dotaz: \textit{"Jaké senzory a výrobci se pohybují na trhu IEQ"}, ta odpověděla takto: \textit{Trh s produkty pro měření vnitřní kvality prostředí (Indoor Environmental Quality, IEQ) zahrnuje širokou škálu senzorů a zařízení, které monitorují různé faktory, jako je kvalita vzduchu, teplota, vlhkost, CO2, volatile organické sloučeniny (VOC), světlo, hluk a další faktory ovlivňující komfort a zdraví v interiéru. Níže jsou uvedeny hlavní senzory, které se obvykle používají pro monitorování IEQ, a několik významných výrobců v tomto segmentu.}
+\textit{	Hlavní typy senzorů na trhu IEQ:}
+	
+\textit{Senzory pro CO2 (Oxid uhličitý):
+Měří koncentraci CO2 v ovzduší, což je indikátor kvality vzduchu a ventilace. Vysoké koncentrace CO2 mohou naznačovat nedostatečnou ventilaci.}
+	
+\textit{Senzory pro PM (Particulate Matter):
+Senzory pro detekci částic PM2.5 a PM10, které ukazují na úroveň jemného prachu ve vzduchu. Vysoké koncentrace částic mohou být škodlivé pro zdraví.}
+	
+\textit{Senzory pro VOC (Volatile Organic Compounds):
+Měří koncentraci těkavých organických sloučenin ve vzduchu. VOC mohou pocházet z různých zdrojů, jako jsou barvy, čisticí prostředky nebo stavební materiály.}
+	
+\textit{Senzory pro teplotu a vlhkost:
+Měří teplotu a vlhkost vzduchu, což jsou klíčové faktory pro komfortní prostředí. Vysoká vlhkost může podporovat růst plísní, zatímco příliš nízká vlhkost může způsobovat nepohodlí a suchou pokožku.}
+	
+\textit{Senzory pro osvětlení:
+Měří úroveň osvětlení v místnosti, což je důležité pro produktivitu a pohodu uživatelů.}
+	
+\textit{Senzory pro hladinu hluku:
+Měří intenzitu hluku v prostředí. Vysoký hluk může ovlivnit zdraví, produktivitu a koncentraci.}
+	
+\textit{Senzory pro formaldehyd:
+Formaldehyd je toxická látka, která se často vyskytuje ve vnitřním prostředí. Senzory detekující jeho koncentraci jsou klíčové pro zdraví.}
+	
+\textit{Významní výrobci na trhu IEQ:}
+	
+\textit{Honeywell:
+Honeywell je jedním z největších výrobců senzorů pro kvalitu vnitřního prostředí. Nabízí širokou škálu produktů pro měření CO2, VOC, teploty, vlhkosti a dalších parametrů.}
+	
+\textit{Siemens:
+Siemens se specializuje na produkty pro inteligentní budovy a nabízí senzory pro kvalitu vzduchu, CO2, teplotu, vlhkost a další faktory, které ovlivňují IEQ.
+}
+\textit{Bosch:
+Bosch vyrábí senzory pro měření kvality vzduchu, hluku, CO2, teploty a vlhkosti. Je známý pro vysoce kvalitní a přesné produkty.}
+	
+\textit{Aeroqual:
+Specializuje se na profesionální přístroje pro měření kvality vzduchu, včetně detekce PM2.5, PM10, VOC a dalších znečišťujících látek.}
+	
+\textit{Senseair:
+Senseair vyrábí senzory pro CO2 a další environmentální faktory. Je známý pro přesnost a kompaktní design svých zařízení.}
+	
+\textit{3M:
+3M poskytuje širokou škálu senzorů pro monitorování kvality vzduchu, včetně detekce VOC, formaldehydu, CO2 a dalších znečišťujících látek.}
+	
+\textit{TROTEC:
+Trotec vyrábí zařízení pro monitorování vlhkosti, teploty, CO2, VOC a dalších parametrů vnitřního prostředí.}
+	
+\textit{Temtop:
+Temtop nabízí cenově dostupné přístroje pro měření kvality vzduchu, včetně detekce PM2.5, CO2 a VOC.}
+	
+\textit{Awair:
+Awair se specializuje na chytré senzory pro měření kvality vzduchu v interiérech, zaměřuje se na CO2, VOC, teplotu, vlhkost a další parametry.}
+	
+\textit{Netatmo:
+Netatmo nabízí chytré zařízení pro měření kvality vzduchu, teploty a vlhkosti, zaměřuje se na domácnosti a malé komerční prostory.}
+	
+\textit{Trendy a budoucnost trhu IEQ:}
+	
+\textit{Integrace s IoT: Roste trend propojení senzorů pro kvalitu vzduchu a další zařízení do chytrých domácností a budov.
+Pokročilé analytiky: Senzory IEQ budou čím dál více využívat pokročilé algoritmy pro analýzu dat a predikci znečištění.
+Zaměření na zdraví a pohodu: Výrobci senzorů stále více zaměřují své produkty na zlepšení zdraví a pohody uživatelů, nejen na měření dat.}
+	
+\textit{Trh s produkty pro IEQ se stále vyvíjí a očekává se růst poptávky o technologie zaměřené na zdraví, produktivitu a pohodlí ve vnitřním prostředí.} \parencite{openaiChatGPT2025a}.
+	
+Siemens nabízí senzory pro teplotu, vlhkost, CO\textsubscript{2}, VOC,  PM\textsubscript{2.5}, PM\textsubscript{10}, tlak, tlak zvuku, a osvětlené. Siemens používí pro výstup standady jako KNX IoT/Thread, LoRaWAN / Bacnet, Modbus a také analogový přístup a relé. \parencite{siemensSensorOverviewBrochure2024}.
