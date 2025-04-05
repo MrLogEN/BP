@@ -2,6 +2,7 @@
 \documentclass[11pt,a4paper]{report}
 \usepackage[top=25mm,bottom=25mm,right=25mm,left=30mm,head=12.5mm,foot=12.5mm]{geometry}
 \usepackage{tikz}
+\usepackage{url}
 \let\openright=\clearpage
 
 %%% Pokud tiskneme oboustranně:
@@ -113,6 +114,16 @@ Poznámka: Seznam výpisů programového kódu je vhodné použít, pokud počet
 {
 	\pagestyle{plain}
 	\include{vymezeni}
+}
+
+{
+	\pagestyle{plain}
+	\include{zarizeni_analyza}
+}
+
+{
+	\pagestyle{plain}
+	\include{aplikace_analyza}
 }
 
 
