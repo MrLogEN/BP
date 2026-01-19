@@ -9,6 +9,10 @@
   ,maxbibnames=99
   %,block=ragged
 ]{biblatex}
+
+% Fix for undefined \urldatecomma command in newer biblatex versions
+\providecommand{\urldatecomma}{\addcomma\space}
+
 \let\cite\parencite
 %\renewcommand*{\multinamedelim}{, \addspace}             % ISO-690
 %\renewcommand*{\finalnamedelim}{\addspace a \addspace}   % ISO-690
