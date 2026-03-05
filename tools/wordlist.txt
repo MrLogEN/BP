@@ -1,0 +1,20 @@
+# Custom wordlist for the IEQ thesis
+# Add one word per line (case-insensitive). Lines starting with # are ignored.
+# Use this file for domain-specific terms, abbreviations, and loanwords
+# that are not in the Czech or English aspell dictionaries.
+
+# --- Abbreviations (already skipped automatically if all-caps,
+#     but listed here for mixed-case variants) ---
+ppb
+ppm
+CO2
+PM25
+PM10
+
+# --- Medical / scientific Czech terms ---
+peroxynitritu
+neurodegenerativním
+neurodegenerativní
+endoteliální
+endoteliálním
+CHOPN
