@@ -1,13 +1,13 @@
 %%% Verze pro jednostranný tisk:
-\documentclass[11pt,a4paper]{report}
-\usepackage[top=25mm,bottom=25mm,right=25mm,left=30mm,head=12.5mm,foot=12.5mm]{geometry}
-\let\openright=\clearpage
+%\documentclass[11pt,a4paper]{report}
+%\usepackage[top=25mm,bottom=25mm,right=25mm,left=30mm,head=12.5mm,foot=12.5mm]{geometry}
+%\let\openright=\clearpage
 
 %%% Pokud tiskneme oboustranně:
-%\documentclass[11pt,a4paper,twoside,openright]{report}
-%\usepackage[top=25mm,bottom=25mm,right=25mm,left=30mm,head=12.5mm,foot=12.5mm]{geometry}
-%\let\openright=\cleardoublepage
-
+\documentclass[11pt,a4paper,twoside,openright]{report}
+\usepackage[top=25mm,bottom=25mm,right=25mm,left=30mm,head=12.5mm,foot=12.5mm]{geometry}
+\let\openright=\cleardoublepage
+\usepackage[]{subdepth}
 %%% DEFINICE ZÁKLADNÍCH PROMĚNNÝCH
 \def\TypPrace{BP}                % bakalářská práce/bachelor thesis
 %\def\TypPrace{DP}               % diplomová práce/master thesis
@@ -20,11 +20,11 @@
 
 %%% Název práce v jazyce práce (přesně podle zadání)
 %%% Title of the thesis in the language used in the text (exact according to assignment)
-\def\NazevPrace{Název práce}
+\def\NazevPrace{Aplikace pro monitorování kvality vnitřního prostředí}
 
 %%% Jméno autora
 %%% Author's name - First name Surname
-\def\AutorPrace{[jméno a příjmení autora vč. již dosažených titulů}
+\def\AutorPrace{Vilém Charwot}
 
 %%% Rok odevzdání a měsíc (slovně)
 %%% Year of submission and month (verbally) - month YYYY
@@ -32,7 +32,7 @@
 
 %%% Vedoucí práce: Jméno a příjmení s~tituly
 %%% Supervisor: First name and surname with titles
-\def\Vedouci{[jméno a příjmení vedoucího vč. titulů]}
+\def\Vedouci{Ing. Dušan Chlapek, Ph.D.}
 
 %%% Konzultant práce: Jméno a příjmení s~tituly
 %%% Consultant: First name and surname with titles
@@ -40,7 +40,7 @@
 
 %%% Studijní program
 %%% Study program
-\def\StudijniProgram{[Název studijního programu]}
+\def\StudijniProgram{Aplikovaná informatika}
 
 %%% Studijní program - specializace
 %%% Study program - specialization
@@ -101,12 +101,12 @@ Poznámka: Seznam výpisů programového kódu je vhodné použít, pokud počet
 %%% The individual chapters of the thesis are stored in separate files for clarity
 {%
 \pagestyle{plain}
-\include{doporuceni}
+%\include{doporuceni}
 \include{uvod}
 }
-\include{tabulky-obrazky}
-\include{prace-s-prameny}
-\include{pdf-a}
+%\include{tabulky-obrazky}
+%\include{prace-s-prameny}
+%\include{pdf-a}
 % \include{...}
 % \include{...}
 {%
@@ -124,9 +124,6 @@ Poznámka: Seznam výpisů programového kódu je vhodné použít, pokud počet
 %%% least once in your own text. The appendices are numbered.
 \part*{\Prilohy\thispagestyle{empty}}
 \appendix
-\include{app01}
-\include{app02}
-% \include{...}
-% \include{...}
+
 
 \end{document}
