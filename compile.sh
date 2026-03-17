@@ -1,16 +1,12 @@
 #!/bin/bash
+set -euo pipefail
 
 # Název souboru bez přípony
 filename="prace"
 
-# První kompilace pomocí pdflatex
-pdflatex "$filename.tex"
-
-# Spuštění biber
+pdflatex -interaction=nonstopmode -halt-on-error -file-line-error "$filename.tex"
 biber "$filename"
-
-# Druhá a třetí kompilace pomocí pdflatex
-pdflatex "$filename.tex"
-pdflatex "$filename.tex"
+pdflatex -interaction=nonstopmode -halt-on-error -file-line-error "$filename.tex"
+pdflatex -interaction=nonstopmode -halt-on-error -file-line-error "$filename.tex"
 
 echo "Kompilace dokončena."
