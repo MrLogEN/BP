@@ -108,10 +108,79 @@ Změna hluku o 3,9 dB odpovídá změně teploty o 1 \textdegree C. \parencite{d
 \subsection{Standardy}
 
 \subsubsection{Jednotky}
-Ve vztahu k měření veličin IAQ se používají jednotky ppm (particles per milion), ppb (particles per billion), $\mu\text{g}/m^3$ a $\text{mg}/m^3$
+% úvod, proč jednotky řešit. Každá má své jendotyky
+IEQ a IAQ zahrnjí mnoho různých veličin, které se měří v různých jednotkácj. Proto je důležíé se s těmito jednotkami seznámit a pochopit, jaké jsou mezi nimi rozdíly a jak je správně používat.
+V textu se objevují jednotky \textit{ppm}, \textit{ppb}, \textit{$\mu\text{g}*m^{-3}$}, \textit{°C}, \textit{K}, \textit{\%}, \textit{dB} a další. Každá z těchto jednotek má své specifické použití a význam v kontextu IAQ a IEQ.
+% Základní typy jednotek
+Jednotky můžeme rozdělit do tří kategorií. První kategorié jsou jednotky pro poměrové koncentrace. Těmi jsou většinou \textit{ppm} (parts per million) a \textit{ppb} (parts per billion). Tyto jendotky vyjadřují pomět množství měřené látky k celkovému množství směsi (vzduchu). Druhou kategorií jsou jednotky pro hmotnostní koncentrace, jako je \textit{$\mu\text{g}*m^{-3}$} (mikrogramy na metr krychlový). Tyto jednotky vyjadřují hmotnost měřené látky v určitém objemu vzduchu. Třetí kategorií jsou jednotky pro fyzikální veličiny prostředí, jako jsou \textit{°C} (stupně Celsia) a \textit{K} (Kelvin) pro teplotu, \textit{\%} pro relativní vlhkost a \textit{dB} (decibel) pro hluk. 
 
-Teplota se měří v K (Kelvin), \textdegree C a  \textdegree F. Vlhkost se měří v procentech (0-100 \%) RH (Relative Humidity).
+V IAQ se pro CO\textsubscript{2} nebo eCO\textsubscript{2}\footnote{odhadovaná koncentrace CO\textsubscript{2} senzorem} se často používá jednotka \textit{ppm}. Pro plyny jako NO\textsubscript{2}, SO\textsubscript{2} a CO se v předpisech běžně používají jednotky \textit{$\mu\text{g}*m^{-3}$}. Ale je možné použít i jednotku \textit{ppm} nebo \textit{ppb}. Pro VOC/TVOC je standadní uvádět měřené hodnoty pomocí \textit{ppb}, pro laboratorní měření ja nejčastěji používanou jednotkou \textit{$\mu\text{g}*m^{-3}$}. Pro PM\textsubscript{2.5} a PM\textsubscript{10} se běžně používají jednotky \textit{$\mu\text{g}*m^{-3}$}.
 
+V rámci tepelného komfortu se pro měření teploty běžně používají jednotky \textit{°C}, ale pro vědecké účely je vhodnější používat jednotku \textit{K}. Pro relativní vlhkost se používá bezezrozměrná jednotka \textit{\%}, která udává, do jaké míry je vzduch nasycen vodou. Pro rychlost proudění vzduchu jsou běžně používanou jednotkou \textit{m/s} (metry za sekundu). 
+
+Vizuální komfort se měří pomocí jednotky \textit{lx} (lux), která udává intenzitu osvětlení. Pro barevnou teplotu se používá jednotka \textit{K} (Kelvin). Oslňování se často měří pomocí jednotky \textit{cd/m\textsuperscript{2}} (kandela na metr čtvereční).
+
+Akustický komfort se měří pomocí jednotky \textit{dB} (decibel) nebo \textit{dB(A)} (A-vážený decibel), která zohledňuje citlivost lidského ucha na různé frekvence zvuku.
+
+Jednotky ppm, ppb se dají převádět na $\mu\text{g}*m^{-3}$, kde je nutné znát podmínky měření (T, p) a molární hmotnost látky. Zda tento převod dává smysl, závistí na konkrétní látce.
+% Krátce vysvětlit rozdíl mezi jednotkami.
+  % Poměrové koncetrace (ppm, ppb).
+  % Hmotnostní koncentrace (qg/m3)
+  % Fyzikální veličiny prostředí (teplota, vlhkost, ...)
+
+% Vyjmenovat běžné veličiny a jejich jednotky, které se v IAQ a IEQ používají. Rozdělit podle kategorií.
+  % Uvést, že někdy je možné použít více jendnotek, jako třeba °C a K pro teplotu, ale některé jednotky jsou vhodnější například z důvodu běžného používání, například °C pro teplotu, kdy se °C běžně používají pro měření v budovách a K pro vědecké účely.
+
+% Rozdělit dle jednotlivých kategorií a popsat jendotky pro každou z nich. Popsat plyny a VOC, PM, tepelný komfort, vizuální komfort a akustický komfort. Uvést, že pro některé veličiny existují i jiné jednotky, například pro hluk existují i jiné jednotky než dB, ale dB jsou nejběžnější a nejpoužívanější.
+
+% Uvést možnost převodu mezi jednotkami, například mezi ppm a $\mu\text{g}*m^{-3}$. Vysvětlit, že smysluplnost převodu závisí na konkrétní látce, protože ppm je poměrová koncentrace, zatímco $\mu\text{g}*m^{-3}$ je hmotnostní koncentrace.
+
+% přehledová tabulka s běžnými jednotkami pro IAQ a IEQ.
+\begin{table}[htbp]
+   \centering
+   \footnotesize
+   \renewcommand{\arraystretch}{1.15}
+   \caption{Shrnutí jednotek pro vybrané veličiny IEQ (včetně alternativ používaných ve zdrojích a
+  senzorech).}
+   \label{tab:ieq-jednotky}
+   \begin{tabular}{p{2.6cm} p{3.2cm} p{2.0cm} p{2.4cm} p{5.2cm}}
+   \hline
+   \textbf{Kategorie IEQ} & \textbf{Veličina} & \textbf{Značka} & \textbf{Jednotka} & \textbf{Poznámka /
+  alternativa} \\
+   \hline
+   Tepelná & Teplota vzduchu & $T$ & $^\circ$C & Alternativně K (např. v některých zdrojích/technických
+   listech). \\
+   Tepelná & Relativní vlhkost & RH & \% & --- \\
+   Tepelná & Rychlost proudění vzduchu & $v$ & m/s & Volitelné (pokud uvádíte v části tepelný komfort).
+   \\
+   \hline
+   IAQ (plyny) & Oxid uhličitý / ekv. CO$_2$ & CO$_2$, eCO$_2$ & ppm & eCO$_2$ je často odhad senzoru;
+  pro převod ppm$\leftrightarrow$mg/m$^3$ je nutné znát podmínky (T, p). \\
+   IAQ (plyny) & Oxid uhelnatý & CO & mg/m$^3$ & Často i ppm; některé guideline uvádějí konverzní
+  faktory pro dané T/p. \\
+   IAQ (plyny) & Oxid dusičitý & NO$_2$ & $\mu$g/m$^3$ & Často i ppb; převody závisí na T/p. \\
+   IAQ (plyny) & Ozon & O$_3$ & $\mu$g/m$^3$ & Často i ppb; převody závisí na T/p. \\
+   IAQ (plyny) & Oxid siřičitý & SO$_2$ & $\mu$g/m$^3$ & Často i ppb; převody závisí na T/p. \\
+   IAQ (VOC) & Celkové VOC & TVOC & ppb & U senzorů typicky ppb; význam TVOC závisí na
+  metodě/kalibraci. \\
+   IAQ (VOC) & Celkové VOC & TVOC & $\mu$g/m$^3$ & V laboratorních studiích/limitech se často uvádí i
+  $\mu$g/m$^3$; nepřevádět „naslepo“ bez definice směsi. \\
+   IAQ (částice) & PM$_{2.5}$ & PM$_{2.5}$ & $\mu$g/m$^3$ & Hmotnostní koncentrace; ppm se pro PM běžně
+   nepoužívá. \\
+   IAQ (částice) & PM$_{10}$ & PM$_{10}$ & $\mu$g/m$^3$ & Hmotnostní koncentrace; ppm se pro PM běžně
+  nepoužívá. \\
+   \hline
+   Vizuální & Osvětlenost & $E$ & lx & --- \\
+   Vizuální & Korelovaná teplota chromatičnosti & CCT & K & Volitelné (pokud řešíte i spektrum/barvu
+  světla). \\
+   \hline
+   Akustická & Hladina akustického tlaku (A-vážená) & $L_A$ & dB(A) & A-vážení (frekvenční vážení) pro
+  lepší vazbu na vnímání člověka; uvést, pokud možno, i metodu (např. LAeq). \\
+   Akustická & Hladina akustického tlaku (nevážená) & $L$ & dB & Méně běžné pro posuzování komfortu;
+  bez frekvenčního vážení. \\
+   \hline
+   \end{tabular}
+   \end{table}
 
 \subsubsection{Legislativa}
 V ČR se úrovně znečištění ovzduší řídí podle\textit{zákona 201/2012 Sb. o ochraně ovzduší úplné a aktualní znění}. Ten ve své první příloze stanovuje imisní limity pro ochranu zdraví a maximální počet překročení těchto limitů \parencite{wolterskluwerZakon20120122012}. Limity převzaté z tabulky v zákoně lze vidět v tabulce \ref{tab:imisni_limity_zdravi_cr}.
