@@ -136,102 +136,300 @@ Jednotky ppm, ppb se dají převádět na $\mu\text{g}*m^{-3}$, kde je nutné zn
 % Uvést možnost převodu mezi jednotkami, například mezi ppm a $\mu\text{g}*m^{-3}$. Vysvětlit, že smysluplnost převodu závisí na konkrétní látce, protože ppm je poměrová koncentrace, zatímco $\mu\text{g}*m^{-3}$ je hmotnostní koncentrace.
 
 % přehledová tabulka s běžnými jednotkami pro IAQ a IEQ.
-\begin{table}[htbp]
-   \centering
-   \footnotesize
-   \renewcommand{\arraystretch}{1.15}
-   \caption{Shrnutí jednotek pro vybrané veličiny IEQ (včetně alternativ používaných ve zdrojích a
-  senzorech).\parencite{worldhealthorganizationWHOGlobalAir2021,osephg.allenAssociationsCognitiveFunction2016,calvoScalableIoTArchitecture2022,dengImpactIndoorAir2024,mcminnAWeightingMetric2013,marshIEC61672NewInternational2001}}
-   \label{tab:ieq-jednotky}
-   \begin{tabularx}{\textwidth}{p{2.2cm} p{3.0cm} p{1.8cm} p{1.8cm} >{\raggedright\arraybackslash}X}
-   \hline
-   \textbf{Kategorie IEQ} & \textbf{Veličina} & \textbf{Značka} & \textbf{Jednotka} & \textbf{Poznámka /
+\noindent\begin{minipage}{\textwidth}
+\centering
+\footnotesize
+\renewcommand{\arraystretch}{1.15}
+\captionof{table}{Shrnutí jednotek pro vybrané veličiny IEQ (včetně alternativ používaných ve zdrojích a
+senzorech).\parencite{worldhealthorganizationWHOGlobalAir2021,osephg.allenAssociationsCognitiveFunction2016,calvoScalableIoTArchitecture2022,dengImpactIndoorAir2024,mcminnAWeightingMetric2013,marshIEC61672NewInternational2001}}
+\label{tab:ieq-jednotky}
+\begin{tabularx}{\textwidth}{p{2.2cm} p{3.0cm} p{1.8cm} p{1.8cm} >{\raggedright\arraybackslash}X}
+\hline
+\textbf{Kategorie IEQ} & \textbf{Veličina} & \textbf{Značka} & \textbf{Jednotka} & \textbf{Poznámka /
   alternativa} \\
-   \hline
-   Tepelná & Teplota vzduchu & $T$ & $^\circ$C & Alternativně K (např. v některých zdrojích/technických
-   listech). \\
-   Tepelná & Relativní vlhkost & RH & \% & --- \\
-   Tepelná & Rychlost proudění vzduchu & $v$ & m/s & Volitelné (pokud uvádíte v části tepelný komfort).
-   \\
-   \hline
-   IAQ (plyny) & Oxid uhličitý / ekv. CO$_2$ & CO$_2$, eCO$_2$ & ppm & eCO$_2$ je často odhad senzoru;
-  pro převod ppm$\leftrightarrow$mg/m$^3$ je nutné znát podmínky (T, p). \\
-   IAQ (plyny) & Oxid uhelnatý & CO & mg/m$^3$ & Často i ppm; některé guideline uvádějí konverzní
-  faktory pro dané T/p. \\
-   IAQ (plyny) & Oxid dusičitý & NO$_2$ & $\mu$g/m$^3$ & Často i ppb; převody závisí na T/p. \\
-   IAQ (plyny) & Ozon & O$_3$ & $\mu$g/m$^3$ & Často i ppb; převody závisí na T/p. \\
-   IAQ (plyny) & Oxid siřičitý & SO$_2$ & $\mu$g/m$^3$ & Často i ppb; převody závisí na T/p. \\
-   IAQ (VOC) & Celkové VOC & TVOC & ppb & U senzorů typicky ppb; význam TVOC závisí na
-  metodě/kalibraci. \\
-   IAQ (VOC) & Celkové VOC & TVOC & $\mu$g/m$^3$ & V laboratorních studiích/limitech se často uvádí i
-  $\mu$g/m$^3$; nepřevádět „naslepo“ bez definice směsi. \\
-   IAQ (částice) & PM$_{2.5}$ & PM$_{2.5}$ & $\mu$g/m$^3$ & Hmotnostní koncentrace; ppm se pro PM běžně
-   nepoužívá. \\
-   IAQ (částice) & PM$_{10}$ & PM$_{10}$ & $\mu$g/m$^3$ & Hmotnostní koncentrace; ppm se pro PM běžně
-  nepoužívá. \\
-   \hline
-   Vizuální & Osvětlenost & $E$ & lx & --- \\
-   Vizuální & Korelovaná teplota chromatičnosti & CCT & K & Volitelné (pokud řešíte i spektrum/barvu
-  světla). \\
-   \hline
-   Akustická & Hladina akustického tlaku (A-vážená) & $L_A$ & dB(A) & A-vážení (frekvenční vážení) pro
-  lepší vazbu na vnímání člověka; uvést, pokud možno, i metodu (např. LAeq). \\
-   Akustická & Hladina akustického tlaku (nevážená) & $L$ & dB & Méně běžné pro posuzování komfortu;
-  bez frekvenčního vážení. \\
-   \hline
-   \end{tabularx}
-   \end{table}
+\hline
+Tepelná & Teplota vzduchu & $T$ & $^\circ$C & Alternativně K (např. v některých zdrojích/technických
+listech). \\
+Tepelná & Relativní vlhkost & RH & \% & --- \\
+Tepelná & Rychlost proudění vzduchu & $v$ & m/s & Volitelné (pokud uvádíte v části tepelný komfort).
+\\
+\hline
+IAQ (plyny) & Oxid uhličitý / ekv. CO$_2$ & CO$_2$, eCO$_2$ & ppm & eCO$_2$ je často odhad senzoru;
+pro převod ppm$\leftrightarrow$mg/m$^3$ je nutné znát podmínky (T, p). \\
+IAQ (plyny) & Oxid uhelnatý & CO & mg/m$^3$ & Často i ppm; některé guideline uvádějí konverzní
+faktory pro dané T/p. \\
+IAQ (plyny) & Oxid dusičitý & NO$_2$ & $\mu$g/m$^3$ & Často i ppb; převody závisí na T/p. \\
+IAQ (plyny) & Ozon & O$_3$ & $\mu$g/m$^3$ & Často i ppb; převody závisí na T/p. \\
+IAQ (plyny) & Oxid siřičitý & SO$_2$ & $\mu$g/m$^3$ & Často i ppb; převody závisí na T/p. \\
+IAQ (VOC) & Celkové VOC & TVOC & ppb & U senzorů typicky ppb; význam TVOC závisí na
+metodě/kalibraci. \\
+IAQ (VOC) & Celkové VOC & TVOC & $\mu$g/m$^3$ & V laboratorních studiích/limitech se často uvádí i
+$\mu$g/m$^3$; nepřevádět „naslepo“ bez definice směsi. \\
+IAQ (částice) & PM$_{2.5}$ & PM$_{2.5}$ & $\mu$g/m$^3$ & Hmotnostní koncentrace; ppm se pro PM běžně
+nepoužívá. \\
+IAQ (částice) & PM$_{10}$ & PM$_{10}$ & $\mu$g/m$^3$ & Hmotnostní koncentrace; ppm se pro PM běžně
+nepoužívá. \\
+\hline
+Vizuální & Osvětlenost & $E$ & lx & --- \\
+Vizuální & Korelovaná teplota chromatičnosti & CCT & K & Volitelné (pokud řešíte i spektrum/barvu
+světla). \\
+\hline
+Akustická & Hladina akustického tlaku (A-vážená) & $L_A$ & dB(A) & A-vážení (frekvenční vážení) pro
+lepší vazbu na vnímání člověka; uvést, pokud možno, i metodu (např. LAeq). \\
+Akustická & Hladina akustického tlaku (nevážená) & $L$ & dB & Méně běžné pro posuzování komfortu;
+bez frekvenčního vážení. \\
+\hline
+\end{tabularx}
+\end{minipage}
 
 \subsubsection{Legislativa}
-V ČR se úrovně znečištění ovzduší řídí podle\textit{zákona 201/2012 Sb. o ochraně ovzduší úplné a aktualní znění}. Ten ve své první příloze stanovuje imisní limity pro ochranu zdraví a maximální počet překročení těchto limitů \parencite{wolterskluwerZakon20120122012}. Limity převzaté z tabulky v zákoně lze vidět v tabulce \ref{tab:imisni_limity_zdravi_cr}.
+Tato sekce uvádí přehled dokumentů (ČR, EU a WHO), které se vztahují k jednotlivým složkám IEQ, a shrnuje nejčastěji sledované veličiny a jejich referenční hodnoty. Práce se nebude omezovat pouze na legislativně či doporučeními vymezené ukazatele; pokud některá doména IEQ není pokryta, budou zahrnuty i další prakticky měřitelné parametry. Vše, co je vymezeno závazně či doporučeno, bude při návrhu a interpretaci dat zohledněno.
+
+V tabulce \ref{tab:legislativa_ieq_dokumenty} jsou uvedeny dokumenty, které se vztahují k jednotlivým doménám IEQ (IAQ, mikroklima, vizuální a akustický komfort). Je důležité poznamenat, že některé dokumenty se vztahují pouze k vnějšímu prostředí (např. vnější ovzduší nebo hluk), ale mohou být relevantní i pro IEQ v budovách (např. vliv vnějších podmínek na vnitřní prostředí).
+
+\noindent\begin{minipage}{\textwidth}
+\centering
+\captionof{table}{Dokumenty relevantní pro IEQ a jejich pokrytí (řádek = dokument)}
+\label{tab:legislativa_ieq_dokumenty}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\scriptsize
+\begin{tabularx}{\textwidth}{@{}
+  >{\raggedright\arraybackslash}p{0.33\textwidth}|
+  >{\raggedright\arraybackslash}p{0.24\textwidth}|
+  X@{}}
+\toprule
+\textbf{Dokument (úroveň, typ)} & \textbf{Prostředí / domény} & \textbf{Vymezené oblasti a typicky sledované veličiny} \\
+\midrule
+
+Zákon č.~258/2000~Sb. \parencite{wolterskluwerZakon2582000} &
+Veřejné zdraví; IAQ, akustika &
+Rámcový zákon k ochraně veřejného zdraví (kompetence, postupy); zmocňuje prováděcí předpisy pro hluk a vibrace. \\
+\hline
+
+Vyhláška č.~6/2003~Sb. \parencite{wolterskluwerVyhlaska620032003} &
+Indoor (pobytové); IAQ, mikroklima &
+T, RH; požadavky na větrání/výměnu vzduchu dle typu prostoru (CO$_2$ jako indikátor). \\
+
+\hline
+Zákon č.~283/2021~Sb. \parencite{info@wolterskluwer.czZakon2832021} &
+Stavby; vizuální komfort &
+Technické požadavky na stavby (mj. požadavky na denní/umělé osvětlení v kontextu návrhu a užívání staveb; detaily často odkazují na ČSN). \\
+
+\hline
+Nařízení vlády č.~361/2007~Sb. \parencite{wolterskluwerNarizeni36120072007} &
+Pracoviště; IAQ, mikroklima &
+CO$_2$ (expoziční limit), mikroklima (T, RH, rychlost proudění) aj. dle zátěže. \\
+
+\hline
+Nařízení vlády č.~272/2011~Sb. \parencite{info@wolterskluwer.czNarizeni2722011} &
+Indoor/Outdoor; akustika &
+Hygienické limity hluku (pracoviště, chráněné vnitřní/venkovní prostory) a vibrací; způsob měření a hodnocení. \\
+
+\hline
+Metodický návod ZD~25/2013 \parencite{wolterskluwerMetodickyNavodZD252013} &
+Metodika měření &
+Postupy měření a hodnocení (umístění čidel, doba měření, vyhodnocení). \\
+
+\hline
+Zákon č.~201/2012~Sb. \parencite{wolterskluwerZakon20120122012} &
+Vnější ovzduší; IAQ &
+Imisní/cílové/prahové hodnoty (SO$_2$, NO$_2$, CO, benzen, Pb, PM$_{10}$, PM$_{2.5}$, O$_3$). \\
+
+\midrule
+Směrnice 2008/50/ES \parencite{SmerniceEvropskehoParlamentu2008} &
+Vnější ovzduší; IAQ &
+Harmonizace limitů/cílů a pravidel hodnocení/reportingu (PM, NO$_2$, SO$_2$, CO, benzen, Pb, O$_3$). \\
+
+\hline
+Směrnice 2002/49/ES \parencite{SmerniceEvropskehoParlamentu2002} &
+Venkovní prostředí; akustika &
+Hodnocení a řízení hluku ve venkovním prostředí (strategické hlukové mapy, akční plány). \\
+
+\hline
+Směrnice 2010/31/EU \parencite{SmerniceEvropskehoParlamentu2010} &
+Budovy; IEQ, vizuální komfort &
+Požaduje zohlednění kvality vnitřního prostředí při opatřeních na energetickou náročnost; pracuje s technickými systémy budovy vč. zabudovaného osvětlení. \\
+
+\hline
+Směrnice (EU) 2024/1275 \parencite{SmerniceEvropskehoParlamentu2024a} &
+Budovy; IEQ, vizuální komfort &
+Aktualizovaná EPBD; zohledňuje technické systémy a automatizaci budov včetně osvětlení. \\
+
+\midrule
+WHO Air Quality Guidelines \parencite{worldhealthorganizationWHOGlobalAir2021} &
+Zdravotní doporučení (benchmark) &
+Doporučené úrovně expozice pro PM$_{2.5}$/PM$_{10}$, O$_3$, NO$_2$, SO$_2$, CO (různé doby průměrování). \\
+
+\hline
+WHO indoor: selected pollutants \parencite{adamkiewiczWHOGuidelinesIndoor2010} &
+Indoor; IAQ &
+Referenční hodnoty pro vybrané látky v interiéru (např. formaldehyd, CO, NO$_2$ aj.). \\
+
+\hline
+WHO indoor: dampness and mould \parencite{heseltine2009guidelines} &
+Indoor; vlhkost/plísně &
+Prevence a hodnocení rizik (důraz na zdroje vlhkosti a kontext budovy). \\
+
+\hline
+WHO indoor: household fuel combustion \parencite{world2014guidelines} &
+Indoor; spalování &
+Doporučení ke snížení expozice (typicky PM a CO) dle paliva/technologie. \\
+
+\bottomrule
+\end{tabularx}
+\end{minipage}
+
+V tabulce \ref{tab:iaqlimity_cr_eu_who} jsou uvedeny limitní a doporučené hodnoty pro vybrané látky vnějšího ovzduší, které jsou relevantní pro IAQ. Tyto hodnoty jsou stanoveny v různých dokumentech (ČR, EU, WHO) a mohou se lišit v závislosti na době průměrování a dalších faktorech. 
+
+\begin{samepage}
+\noindent
+\centering
+\captionof{table}{Srovnání limitních a doporučených hodnot pro vybrané látky vnějšího ovzduší (ČR/EU/WHO)}
+\label{tab:iaqlimity_cr_eu_who}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\scriptsize
+\begin{tabularx}{\textwidth}{@{}
+  >{\raggedright\arraybackslash}p{0.10\textwidth}
+  >{\raggedright\arraybackslash}p{0.16\textwidth}
+  >{\raggedright\arraybackslash}p{0.09\textwidth}
+  >{\raggedright\arraybackslash}p{0.09\textwidth}
+  >{\raggedright\arraybackslash}p{0.10\textwidth}
+  X@{}}
+\toprule
+\textbf{Látka} & \textbf{Doba (jedn.)} & \textbf{ČR} & \textbf{EU} & \textbf{WHO} & \textbf{Pozn.} \\
+\midrule
+
+SO\textsubscript{2} & 1 h ($\mu\text{g}\,m^{-3}$) & 350 & 350 & — & $\leq$24\,\texttimes{}/rok (ČR/EU) \\
+SO\textsubscript{2} & 24 h ($\mu\text{g}\,m^{-3}$) & 125 & 125 & 40 & $\leq$3\,\texttimes{}/rok (ČR/EU) \\
+\hline
+NO\textsubscript{2} & 1 h ($\mu\text{g}\,m^{-3}$) & 200 & 200 & 200 & ČR/EU: $\leq$18\,\texttimes{}/rok; WHO: Tab. 0.2 \\
+NO\textsubscript{2} & 24 h ($\mu\text{g}\,m^{-3}$) & — & — & 25 & WHO: Tab. 0.1 \\
+NO\textsubscript{2} & 1 rok ($\mu\text{g}\,m^{-3}$) & 40 & 40 & 10 & — \\
+
+CO & max. denní 8 h ($\text{mg}\,m^{-3}$) & 10 & 10 & 10 & ČR/EU: klouzavý 8h; WHO: Tab. 0.2 \\
+CO & 24 h ($\text{mg}\,m^{-3}$) & — & — & 4 & WHO: Tab. 0.1 \\
+
+Benzen & 1 rok ($\mu\text{g}\,m^{-3}$) & 5 & 5 & — & — \\
+Pb & 1 rok ($\mu\text{g}\,m^{-3}$) & 0{.}5 & 0{.}5 & — & — \\
+
+PM\textsubscript{10} & 24 h ($\mu\text{g}\,m^{-3}$) & 50 & 50 & 45 & ČR/EU: $\leq$35\,\texttimes{}/rok \\
+PM\textsubscript{10} & 1 rok ($\mu\text{g}\,m^{-3}$) & 40 & 40 & 15 & — \\
+
+PM\textsubscript{2.5} & 24 h ($\mu\text{g}\,m^{-3}$) & — & — & 15 & WHO: Tab. 0.1 \\
+PM\textsubscript{2.5} & 1 rok ($\mu\text{g}\,m^{-3}$) & 20 & 25 & 5 & EU: 25 (2015); ind.: 20 (2020) \\
+
+O\textsubscript{3} & max. denní 8 h ($\mu\text{g}\,m^{-3}$) & 120 & 120 & 100 & ČR/EU: $\leq$25 dní/rok, 3letý průměr; WHO: Tab. 0.1 \\
+O\textsubscript{3} & peak season ($\mu\text{g}\,m^{-3}$) & — & — & 60 & WHO: Tab. 0.1 (peak season) \\
+O\textsubscript{3} & AOT40\footnotemark\allowbreak{} ($\mu\text{g}\,m^{-3}\cdot$h) & 18000 & 18000 & — & Ochrana vegetace; 5letý průměr \\
+
+\bottomrule
+\end{tabularx}
+\footnotetext{\textit{Pro účely tohoto zákona AOT40 znamená součet rozdílů mezi hodinovou koncentrací větší než 80 µg.m\textsuperscript{-3} (= 40 ppb) a hodnotou 80 µg.m\textsuperscript{-3} v dané periodě užitím pouze hodinových hodnot změřených každý den mezi 08:00 a 20:00 SEČ, vypočtený z hodinových hodnot v letním období (1. května - 31. července).} \parencite[příl.~1, pozn.~5]{wolterskluwerZakon20120122012}}
+\par\vspace{2pt}
+\scriptsize\textit{Zdroj:} \parencite{wolterskluwerZakon20120122012,SmerniceEvropskehoParlamentu2008,worldhealthorganizationWHOGlobalAir2021}.
+\end{samepage}
+
+\begin{samepage}
+\noindent
+\centering
+\captionof{table}{Srovnání limitních hodnot pro vybrané parametry akustického komfortu (ČR/EU/WHO)}
+\label{tab:komfort_akust}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\scriptsize
+\begin{tabularx}{\textwidth}{@{}
+  >{\raggedright\arraybackslash}p{0.23\textwidth}
+  >{\raggedright\arraybackslash}p{0.15\textwidth}
+  >{\raggedright\arraybackslash}p{0.10\textwidth}
+  >{\raggedright\arraybackslash}p{0.10\textwidth}
+  >{\raggedright\arraybackslash}p{0.10\textwidth}
+  X@{}}
+\toprule
+\textbf{Parametr} & \textbf{Doba (jedn.)} & \textbf{ČR} & \textbf{EU} & \textbf{WHO} & \textbf{Pozn.} \\
+\midrule
+
+$LA_{eq,8h}$\footnotemark{} (pracoviště, expoziční limit) & 8 h (dB) & 85 & — & — &
+Přípustný expoziční limit \parencite{info@wolterskluwer.czNarizeni2722011}. \\
+
+$LA_{eq,8h}$ (pozornost / soustředění / tvůrčí práce) & 8 h (dB) & 50 & — & — &
+Hygienický limit \parencite{info@wolterskluwer.czNarizeni2722011}. \\
+
+$LC_{\mathrm{peak}}$ (impulsní hluk, expoziční limit) & peak (dB) & 140 & — & — &
+Přípustný expoziční limit \parencite{info@wolterskluwer.czNarizeni2722011}. \\
+
+\hline
+$LA_{eq,T}$ (chráněný vnitřní prostor, obytné místnosti) & 6--22 / 22--6 (dB) & 40 / 30 & — & — &
+Základ 40 dB + korekce Příloha 2 (den 0 dB; noc -10 dB; u části dopravních zdrojů navíc +5 dB) \parencite{info@wolterskluwer.czNarizeni2722011}. \\
+
+$LA_{eq,T}$ (chráněný vnitřní prostor, nemocniční pokoje) & 22--6 (dB) & 25 & — & — &
+Základ 40 dB + korekce Příloha 2 (noc -15 dB) \parencite{info@wolterskluwer.czNarizeni2722011}. \\
+
+$LA_{eq,T}$ (chráněný vnitřní prostor, ordinace) & doba používání (dB) & 35 & — & — &
+Základ 40 dB + korekce Příloha 2 (-5 dB) \parencite{info@wolterskluwer.czNarizeni2722011}. \\
+
+$LA_{eq,T}$ (chráněný vnitřní prostor, učebny/přednáškové síně) & doba používání (dB) & 45 & — & — &
+Základ 40 dB + korekce Příloha 2 (+5 dB) \parencite{info@wolterskluwer.czNarizeni2722011}. \\
+
+\hline
+$LA_{eq,T}$ (chráněný venkovní prostor, obecně) & den/noc (dB) & 50 & — & — &
+Základ 50 dB + korekce Příloha 3 (podle zdroje/typu prostoru); pro noc u „chráněného venkovního prostoru staveb“ další -10 dB (výjimky železnice/tram -5 dB) \parencite{info@wolterskluwer.czNarizeni2722011}. \\
+
+$LA_{eq,T}$ (letecký provoz, venkovní) & 16 h / 8 h (dB) & 60 / 50 & — & — &
+„Charakteristický letový den“ \parencite{info@wolterskluwer.czNarizeni2722011}. \\
+
+\bottomrule
+\end{tabularx}
+\footnotetext{Index „A“ v označení $L_A$ znamená, že jde o hladinu akustického tlaku měřenou s frekvenční váhovou charakteristikou A (A-vážená hladina); např. $LA_{eq,T}$ je A-vážená ekvivalentní hladina akustického tlaku za dobu $T$. \parencite{info@wolterskluwer.czNarizeni2722011}}
+
+\footnotetext{\textit{Poznámka k EU (proč tu nejsou hodnoty):} Směrnice \parencite{SmerniceEvropskehoParlamentu2002} nestanovuje jednotné číselné hygienické limity (ty si určují členské státy). Zavádí ale společné ukazatele hluku: $L_{den}$ (\textit{day-evening-night level}) je vážená průměrná hladina za 24 h, kde se večerní část penalizuje +5 dB a noční část +10 dB; $L_{night}$ (\textit{night level}) je průměrná hladina za noční období používaná hlavně pro hodnocení rušení spánku.
+Zdroj: \parencite{info@wolterskluwer.czNarizeni2722011}.}
+
+\end{samepage}
+
+\par\vspace{4pt}
 
 
-\begin{table}[h]
-	\centering
-	\caption{Imisní limity}
-	\label{tab:imisni_limity_zdravi_cr}
-	\begingroup
-	\setlength{\tabcolsep}{5pt}
-	\begin{tabular}{|c|c|c|c|}
-			\toprule 
-			\textbf{Znečisťující látka} & \textbf{Doba průměrování}  & \textbf{Imisní limit}  & \textbf{Max. počet překročení} \\
-			\midrule
-			 SO\textsubscript{2} & 1 h & $350\, \mu\text{g}*m^{-3}$ & 24\\
-			 SO\textsubscript{2} & 24 h &  $125\, \mu\text{g}*m^{-3}$ & 3\\
-			 NO\textsubscript{2}&1 h &  $200\, \mu\text{g}*m^{-3} $ &  18\\
-			 NO\textsubscript{2}&1 rok &  $40\, \mu\text{g}*m^{-3} $ &  0\\
-			 CO& max. denní 8 h průměr &  $10\, \mu\text{g}*m^{-3} $ &  0\\
-			 PM\textsubscript{10}&24 h &  $50\, \mu\text{g}*m^{-3} $ &  35\\
-			 PM\textsubscript{10}&1 rok &  $40\, \mu\text{g}*m^{-3} $ &  0\\
-			 PM\textsubscript{2.5}&1 rok &  $20\, \mu\text{g}*m^{-3} $ &  0\\
-			 \bottomrule
-		\end{tabular}
-	\endgroup
-\end{table}
+\begin{samepage}
+\noindent
+\centering
+\captionof{table}{Srovnání požadavkových hodnot pro vybrané parametry vizuálního komfortu (ČR/EU/WHO)}
+\label{tab:komfort_vizual}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\scriptsize
+\begin{tabularx}{\textwidth}{@{}
+  >{\raggedright\arraybackslash}p{0.23\textwidth}
+  >{\raggedright\arraybackslash}p{0.15\textwidth}
+  >{\raggedright\arraybackslash}p{0.10\textwidth}
+  >{\raggedright\arraybackslash}p{0.10\textwidth}
+  >{\raggedright\arraybackslash}p{0.10\textwidth}
+  X@{}}
+\toprule
+\textbf{Parametr} & \textbf{Doba (jedn.)} & \textbf{ČR} & \textbf{EU} & \textbf{WHO} & \textbf{Pozn.} \\
+\midrule
 
-Také existuje směrnice WHO, která udává doporučení pro tyto látky. Tato směrnice se nazývá AQG (Air Quality Guidelines). Doporučení plynoucí z této směrnice naleznete v tabulce \ref{tab:doporucene_vystaveni_who} \parencite{worldhealthorganizationWHOGlobalAir2021}.
+$DTM$ (min. denní osvětlenost) & — (\%) & 0{,}7 & — & — &
+$DTM=0{,}7\,\%$ na 95\,\% posuzovaného prostoru (varianta s $DT=2\,\%$ na 50\,\%) \parencite{wolterskluwerNarizeni36120072007}. \\
 
-\begin{table}[h]
-	\centering
-	\caption{Doporučené úrovně vystavení dle WHO}
-	\label{tab:doporucene_vystaveni_who}
-	\begin{tabular}{|c|c|c|}
-		\toprule 
-		\textbf{Znečisťující látka} & \textbf{Doba průměrování}  & \textbf{úroveň AQG}  \\
-		\midrule
-		SO\textsubscript{2} & 24 h &  $40\, \mu\text{g}*m^{-3}$ \\
-		NO\textsubscript{2}&24 h &  $25\, \mu\text{g}*m^{-3} $  \\
-		NO\textsubscript{2}&1 rok &  $10\, \mu\text{g}*m^{-3} $  \\
-		CO & 24 h &  $4\, \text{mg}*m^{-3} $ \\ 
-		PM\textsubscript{10}&24 h &  $45\, \mu\text{g}*m^{-3} $ \\
-		PM\textsubscript{10}&1 rok &  $15\, \mu\text{g}*m^{-3} $ \\
-		PM\textsubscript{2.5}&24 h &  $15\, \mu\text{g}*m^{-3} $ \\
-		PM\textsubscript{2.5}&1 rok &  $5\, \mu\text{g}*m^{-3} $ \\
-		\bottomrule
-	\end{tabular}
-\end{table}
+$DTM$ (min. denní osvětlenost) & — (\%) & 0{,}5 & — & — &
+V textu se objevuje i varianta $DTM=0{,}5\,\%$ (dle typu osvětlovacích otvorů) \parencite{wolterskluwerNarizeni36120072007}. \\
 
-Pro CO\textsubscript{2} jsou limity stanoveny na $9000\,mg*m^{-3}$ (4921 ppm) během pracovní doby osmi hodin. Pro dobu kratší cca 15 min je tato koncentrace pak $45000\,mg*m^{-3}$ (24603 ppm) \parencite{wolterskluwerNarizeni36120072007}.
+$\bar{E}_m$ (celkové elektrické osvětlení) & — (lx) & 200 & — & — &
+$\bar{E}_m=200$ lx a rovnoměrnost $U_0 \ge 0{,}4$ \parencite{wolterskluwerNarizeni36120072007}. \\
+
+$\bar{E}_m$ (pracoviště, elektrické osvětlení) & — (lx) & 300 & — & — &
+$\bar{E}_m=300$ lx a $U_0 \ge 0{,}4$ (navýšení normových hodnot o 1 stupeň řady) \parencite{wolterskluwerNarizeni36120072007}. \\
+
+Jas obrazovky & — (cd/m$^2$) & 35 & — & — &
+Min. jas obrazovky; regulace jasu/kontrastu a omezení reflexí \parencite{wolterskluwerNarizeni36120072007}. \\
+
+\bottomrule
+\end{tabularx}
+\par\vspace{2pt}
+\scriptsize\textit{Zdroj:} \parencite{wolterskluwerNarizeni36120072007}.
+\end{samepage}
 
 \section{Open data}
 
