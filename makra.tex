@@ -57,6 +57,44 @@
 \usepackage{multicol}       % práce s více sloupci na stránce / work with multiple columns on a page
 \usepackage{multirow}
 \usepackage{caption}
+\usepackage{sepfootnotes}
+\newfootnotes*{tabfn}
+\input{notes/footnotes}
+\input{notes/tablenotes}
+\newcommand{\fn}[1]{\sepfootnote{#1}}
+
+% Table footnote marks/texts that can be placed apart while preserving numbering.
+\makeatletter
+\newcommand{\tfnmark}[1]{%
+  % tabularx typesets its contents in a "trial" box to measure column widths.
+  % In that pass it disables \@footnotetext but still executes \footnotemark,
+  % which would step counters / create anchors twice and break numbering/links.
+  \ifx\@footnotetext\TX@trial@ftn
+    \textsuperscript{0}% dummy mark (trial pass only; not printed in the final table)
+  \else
+    \@ifundefined{tfn@#1}{%
+      \footnotemark%
+      \expandafter\xdef\csname tfn@#1\endcsname{\number\value{footnote}}%
+    }{%
+      \footnotemark[\csname tfn@#1\endcsname]%
+    }%
+  \fi
+}
+\newcommand{\tfntext}[1]{%
+  \begingroup
+    \@ifundefined{tfn@#1}{%
+      \PackageWarning{sepfootnotes}{Missing table footnote mark for key `#1'}%
+    }{%
+      % Create the *destination* for hyperlinks using the same identifier that
+      % hyperref expects (Hfootnote.<n>), then typeset the footnote text with the
+      % stored printed number (<n>).
+      \leavevmode\Hy@raisedlink{\hyper@anchorstart{Hfootnote.\csname tfn@#1\endcsname}\hyper@anchorend}%
+      \footnotetext[\csname tfn@#1\endcsname]{\printtabfnnote{#1}}%
+    }%
+  \endgroup
+}
+\makeatother
+
 \usepackage{enumitem}
 \setlist[itemize]{noitemsep, topsep=0pt, partopsep=0pt}
 \setlist[enumerate]{noitemsep, topsep=0pt, partopsep=0pt}
