@@ -136,14 +136,14 @@ Jednotky ppm, ppb se dají převádět na $\mu\text{g}*m^{-3}$, kde je nutné zn
 % Uvést možnost převodu mezi jednotkami, například mezi ppm a $\mu\text{g}*m^{-3}$. Vysvětlit, že smysluplnost převodu závisí na konkrétní látce, protože ppm je poměrová koncentrace, zatímco $\mu\text{g}*m^{-3}$ je hmotnostní koncentrace.
 
 % přehledová tabulka s běžnými jednotkami pro IAQ a IEQ.
-\noindent\begin{minipage}{\textwidth}
+\noindent
+\begingroup
 \centering
 \footnotesize
 \renewcommand{\arraystretch}{1.15}
-\captionof{table}{Shrnutí jednotek pro vybrané veličiny IEQ (včetně alternativ používaných ve zdrojích a
-senzorech).\parencite{worldhealthorganizationWHOGlobalAir2021,osephg.allenAssociationsCognitiveFunction2016,calvoScalableIoTArchitecture2022,dengImpactIndoorAir2024,mcminnAWeightingMetric2013,marshIEC61672NewInternational2001}}
-\label{tab:ieq-jednotky}
 \begin{tabularx}{\textwidth}{p{2.2cm} p{3.0cm} p{1.8cm} p{1.8cm} >{\raggedright\arraybackslash}X}
+\caption{Shrnutí jednotek pro vybrané veličiny IEQ (včetně alternativ používaných ve zdrojích a
+senzorech).\parencite{worldhealthorganizationWHOGlobalAir2021,osephg.allenAssociationsCognitiveFunction2016,calvoScalableIoTArchitecture2022,dengImpactIndoorAir2024,mcminnAWeightingMetric2013,marshIEC61672NewInternational2001}}\label{tab:ieq-jednotky}\\ 
 \hline
 \textbf{Kategorie IEQ} & \textbf{Veličina} & \textbf{Značka} & \textbf{Jednotka} & \textbf{Poznámka /
   alternativa} \\
@@ -180,24 +180,24 @@ Akustická & Hladina akustického tlaku (nevážená) & $L$ & dB & Méně běžn
 bez frekvenčního vážení. \\
 \hline
 \end{tabularx}
-\end{minipage}
+\par\endgroup
 
 \subsubsection{Legislativa}
 Tato sekce uvádí přehled dokumentů (ČR, EU a WHO), které se vztahují k jednotlivým složkám IEQ, a shrnuje nejčastěji sledované veličiny a jejich referenční hodnoty. Práce se nebude omezovat pouze na legislativně či doporučeními vymezené ukazatele; pokud některá doména IEQ není pokryta, budou zahrnuty i další prakticky měřitelné parametry. Vše, co je vymezeno závazně či doporučeno, bude při návrhu a interpretaci dat zohledněno.
 
 V tabulce \ref{tab:legislativa_ieq_dokumenty} jsou uvedeny dokumenty, které se vztahují k jednotlivým doménám IEQ (IAQ, mikroklima, vizuální a akustický komfort). Je důležité poznamenat, že některé dokumenty se vztahují pouze k vnějšímu prostředí (např. vnější ovzduší nebo hluk), ale mohou být relevantní i pro IEQ v budovách (např. vliv vnějších podmínek na vnitřní prostředí).
 
-\noindent\begin{minipage}{\textwidth}
+\noindent
+\begingroup
 \centering
-\captionof{table}{Dokumenty relevantní pro IEQ a jejich pokrytí (řádek = dokument)}
-\label{tab:legislativa_ieq_dokumenty}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
 \begin{tabularx}{\textwidth}{@{}
-  >{\raggedright\arraybackslash}p{0.33\textwidth}|
-  >{\raggedright\arraybackslash}p{0.24\textwidth}|
+  >{\raggedright\arraybackslash}p{0.33\textwidth}
+  >{\raggedright\arraybackslash}p{0.24\textwidth}
   X@{}}
+\caption{Dokumenty relevantní pro IEQ a jejich pokrytí (řádek = dokument)}\label{tab:legislativa_ieq_dokumenty}\\
 \toprule
 \textbf{Dokument (úroveň, typ)} & \textbf{Prostředí / domény} & \textbf{Vymezené oblasti a typicky sledované veličiny} \\
 \midrule
@@ -278,15 +278,13 @@ Doporučení ke snížení expozice (typicky PM a CO) dle paliva/technologie. \\
 
 \bottomrule
 \end{tabularx}
-\end{minipage}
+\par\endgroup
 
 V tabulce \ref{tab:iaqlimity_cr_eu_who} jsou uvedeny limitní a doporučené hodnoty pro vybrané látky vnějšího ovzduší, které jsou relevantní pro IAQ. Tyto hodnoty jsou stanoveny v různých dokumentech (ČR, EU, WHO) a mohou se lišit v závislosti na době průměrování a dalších faktorech. 
 
-\begin{samepage}
 \noindent
+\begingroup
 \centering
-\captionof{table}{Srovnání limitních a doporučených hodnot pro vybrané látky vnějšího ovzduší (ČR/EU/WHO)}
-\label{tab:iaqlimity_cr_eu_who}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
@@ -297,6 +295,7 @@ V tabulce \ref{tab:iaqlimity_cr_eu_who} jsou uvedeny limitní a doporučené hod
   >{\raggedright\arraybackslash}p{0.09\textwidth}
   >{\raggedright\arraybackslash}p{0.10\textwidth}
   X@{}}
+\caption{Srovnání limitních a doporučených hodnot pro vybrané látky vnějšího ovzduší (ČR/EU/WHO)}\label{tab:iaqlimity_cr_eu_who}\\
 \toprule
 \textbf{Látka} & \textbf{Doba (jedn.)} & \textbf{ČR} & \textbf{EU} & \textbf{WHO} & \textbf{Pozn.} \\
 \midrule
@@ -329,13 +328,11 @@ O\textsubscript{3} & AOT40\tfnmark{vymezeni-aot40}\allowbreak{} ($\mu\text{g}\,m
 \tfntext{vymezeni-aot40}
 \par\vspace{2pt}
 \scriptsize\textit{Zdroj:} \parencite{wolterskluwerZakon20120122012,SmerniceEvropskehoParlamentu2008,worldhealthorganizationWHOGlobalAir2021}.
-\end{samepage}
+\par\endgroup
 
-\begin{samepage}
 \noindent
+\begingroup
 \centering
-\captionof{table}{Srovnání limitních hodnot pro vybrané parametry akustického komfortu (ČR/EU/WHO)}
-\label{tab:komfort_akust}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
@@ -346,6 +343,7 @@ O\textsubscript{3} & AOT40\tfnmark{vymezeni-aot40}\allowbreak{} ($\mu\text{g}\,m
   >{\raggedright\arraybackslash}p{0.10\textwidth}
   >{\raggedright\arraybackslash}p{0.10\textwidth}
   X@{}}
+\caption{Srovnání limitních hodnot pro vybrané parametry akustického komfortu (ČR/EU/WHO)}\label{tab:komfort_akust}\\
 \toprule
 \textbf{Parametr} & \textbf{Doba (jedn.)} & \textbf{ČR} & \textbf{EU}\tfnmark{vymezeni-la-eu-note} & \textbf{WHO} & \textbf{Pozn.} \\
 \midrule
@@ -384,51 +382,49 @@ $LA_{eq,T}$ (letecký provoz, venkovní) & 16 h / 8 h (dB) & 60 / 50 & — & —
 \tfntext{vymezeni-la-eu-note}
 
 \tfntext{vymezeni-la-a-index}
-
-\end{samepage}
+\par\endgroup
 
 \par\vspace{4pt}
 
 
-\begin{samepage}
 \noindent
+\begingroup
 \centering
-\captionof{table}{Srovnání požadavkových hodnot pro vybrané parametry vizuálního komfortu (ČR/EU/WHO)}
-\label{tab:komfort_vizual}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
 \begin{tabularx}{\textwidth}{@{}
-  >{\raggedright\arraybackslash}p{0.23\textwidth}
-  >{\raggedright\arraybackslash}p{0.15\textwidth}
-  >{\raggedright\arraybackslash}p{0.10\textwidth}
-  >{\raggedright\arraybackslash}p{0.10\textwidth}
-  >{\raggedright\arraybackslash}p{0.10\textwidth}
-  X@{}}
-\toprule
-\textbf{Parametr} & \textbf{Doba (jedn.)} & \textbf{ČR} & \textbf{EU} & \textbf{WHO} & \textbf{Pozn.} \\
-\midrule
+      >{\raggedright\arraybackslash}p{0.23\textwidth}
+      >{\raggedright\arraybackslash}p{0.15\textwidth}
+      >{\raggedright\arraybackslash}p{0.10\textwidth}
+      >{\raggedright\arraybackslash}p{0.10\textwidth}
+      >{\raggedright\arraybackslash}p{0.10\textwidth}
+    X@{}}
+\caption{Srovnání požadavkových hodnot pro vybrané parametry vizuálního komfortu (ČR/EU/WHO)}\label{tab:komfort_vizual}\\
+    \toprule
+    \textbf{Parametr} & \textbf{Doba (jedn.)} & \textbf{ČR} & \textbf{EU} & \textbf{WHO} & \textbf{Pozn.} \\
+    \midrule
 
-$DTM$ (min. denní osvětlenost) & — (\%) & 0{,}7 & — & — &
-$DTM=0{,}7\,\%$ na 95\,\% posuzovaného prostoru (varianta s $DT=2\,\%$ na 50\,\%) \parencite{wolterskluwerNarizeni36120072007}. \\
+    $DTM$ (min. denní osvětlenost) & — (\%) & 0{,}7 & — & — &
+    $DTM=0{,}7\,\%$ na 95\,\% posuzovaného prostoru (varianta s $DT=2\,\%$ na 50\,\%) \parencite{wolterskluwerNarizeni36120072007}. \\
 
-$DTM$ (min. denní osvětlenost) & — (\%) & 0{,}5 & — & — &
-V textu se objevuje i varianta $DTM=0{,}5\,\%$ (dle typu osvětlovacích otvorů) \parencite{wolterskluwerNarizeni36120072007}. \\
+    $DTM$ (min. denní osvětlenost) & — (\%) & 0{,}5 & — & — &
+    V textu se objevuje i varianta $DTM=0{,}5\,\%$ (dle typu osvětlovacích otvorů) \parencite{wolterskluwerNarizeni36120072007}. \\
 
-$\bar{E}_m$ (celkové elektrické osvětlení) & — (lx) & 200 & — & — &
-$\bar{E}_m=200$ lx a rovnoměrnost $U_0 \ge 0{,}4$ \parencite{wolterskluwerNarizeni36120072007}. \\
+    $\bar{E}_m$ (celkové elektrické osvětlení) & — (lx) & 200 & — & — &
+    $\bar{E}_m=200$ lx a rovnoměrnost $U_0 \ge 0{,}4$ \parencite{wolterskluwerNarizeni36120072007}. \\
 
-$\bar{E}_m$ (pracoviště, elektrické osvětlení) & — (lx) & 300 & — & — &
-$\bar{E}_m=300$ lx a $U_0 \ge 0{,}4$ (navýšení normových hodnot o 1 stupeň řady) \parencite{wolterskluwerNarizeni36120072007}. \\
+    $\bar{E}_m$ (pracoviště, elektrické osvětlení) & — (lx) & 300 & — & — &
+    $\bar{E}_m=300$ lx a $U_0 \ge 0{,}4$ (navýšení normových hodnot o 1 stupeň řady) \parencite{wolterskluwerNarizeni36120072007}. \\
 
-Jas obrazovky & — (cd/m$^2$) & 35 & — & — &
-Min. jas obrazovky; regulace jasu/kontrastu a omezení reflexí \parencite{wolterskluwerNarizeni36120072007}. \\
+    Jas obrazovky & — (cd/m$^2$) & 35 & — & — &
+    Min. jas obrazovky; regulace jasu/kontrastu a omezení reflexí \parencite{wolterskluwerNarizeni36120072007}. \\
 
-\bottomrule
-\end{tabularx}
-\par\vspace{2pt}
-\scriptsize\textit{Zdroj:} \parencite{wolterskluwerNarizeni36120072007}.
-\end{samepage}
+    \bottomrule
+  \end{tabularx}
+  \par\vspace{2pt}
+  \scriptsize\textit{Zdroj:} \parencite{wolterskluwerNarizeni36120072007}.
+\par\endgroup
 
 \section{Open data}
 
