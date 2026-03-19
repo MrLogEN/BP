@@ -66,15 +66,24 @@ curl -s "http://localhost:23119/better-bibtex/json-rpc" \
   -d '{"jsonrpc":"2.0","method":"item.search","params":["<query>"],"id":1}'
 ```
 
-**Step 2 — full-text PDF search (always run after metadata search):**
+**Step 2 — full-text attachment search (always run after metadata search):**
 ```bash
-python3 tools/search_zotero_pdf.py "<query>" --context 3
+python3 tools/search_zotero_attachments.py "<query>" --context 3
 ```
-This searches all PDFs stored in `~/Zotero/storage/` and returns excerpts with context.
-Note: Zotero JSON-RPC only searches metadata — always also search PDFs to avoid missing content.
+This searches attachments stored in `~/Zotero/storage/` across common formats (best-effort), e.g. **PDF**, **DOCX**, **HTML snapshots**, and selected plain-text files, returning excerpts with context.
+
+Notes:
+- Better BibTeX JSON-RPC searches metadata only — full-text search is a separate step.
+- The attachment search covers **local files** in `~/Zotero/storage/` (it does not automatically fetch remote URLs). For link-only items, use the URL/DOI from metadata and ask the user before fetching the page content.
+- PDF extraction requires `pdftotext` (poppler-utils). Some binary/uncommon attachment types may not be searchable and will be skipped.
+- For speed, you can restrict formats, e.g. `--extensions pdf,docx,html,txt`.
+- If you only want PDFs, you can still use the legacy script:
+  ```bash
+  python3 tools/search_zotero_pdf.py "<query>" --context 3
+  ```
 
 **Response format when source found:**
-- Explain the answer based on the source content (metadata or PDF excerpt)
+- Explain the answer based on the source content (metadata or attachment excerpt)
 - Cite as: *Název (Autoři, Rok)* — the user generates the BibLaTeX key themselves
 - Provide the URL/DOI if available
 
