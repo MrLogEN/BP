@@ -325,10 +325,11 @@ O\textsubscript{3} & AOT40\tfnmark{vymezeni-aot40}\allowbreak{} ($\mu\text{g}\,m
 
 \bottomrule
 \end{tabularx}
-\tfntext{vymezeni-aot40}
-\par\vspace{2pt}
+%\par\vspace{2pt}
 \scriptsize\textit{Zdroj:} \parencite{wolterskluwerZakon20120122012,SmerniceEvropskehoParlamentu2008,worldhealthorganizationWHOGlobalAir2021}.
 \par\endgroup
+
+\tfntext{vymezeni-aot40}
 
 V tabulce \ref{tab:komfort_akust} jsou uvedeny limitní hodnoty akustického komfortu převzané převším z české legislativy (Nařízení vlády č.~272/2011~Sb.). 
 
@@ -381,12 +382,9 @@ $LA_{eq,T}$ (letecký provoz, venkovní) & 16 h / 8 h (dB) & 60 / 50 & — & —
 
 \bottomrule
 \end{tabularx}
-\tfntext{vymezeni-la-eu-note}
-
-\tfntext{vymezeni-la-a-index}
 \par\endgroup
-
-\par\vspace{4pt}
+\tfntext{vymezeni-la-eu-note}
+\tfntext{vymezeni-la-a-index}
 
 V tabulce \ref{tab:komfort_vizual} jsou uvedeny limitní hodnoty vizuálního komfortu převzané převším z české legislativy (Zákon č.~283/2021~Sb. a Nařízení vlády č.~361/2007~Sb.). Ty jsou rozděleny podle typu prostoru a doby používání, přičemž jsou uvedeny i korekce pro různé situace (den/noc, typ činnosti).
 
@@ -400,8 +398,7 @@ V tabulce \ref{tab:komfort_vizual} jsou uvedeny limitní hodnoty vizuálního ko
       >{\raggedright\arraybackslash}p{0.23\textwidth}
       >{\raggedright\arraybackslash}p{0.15\textwidth}
       >{\raggedright\arraybackslash}p{0.10\textwidth}
-      >{\raggedright\arraybackslash}p{0.10\textwidth}
-      >{\raggedright\arraybackslash}p{0.10\textwidth}
+      >{\raggedright\arraybackslash}p{0.10\textwidth} >{\raggedright\arraybackslash}p{0.10\textwidth}
     X@{}}
 \caption{Srovnání požadavkových hodnot pro vybrané parametry vizuálního komfortu (ČR/EU/WHO)}\label{tab:komfort_vizual}\\
     \toprule
@@ -430,13 +427,65 @@ V tabulce \ref{tab:komfort_vizual} jsou uvedeny limitní hodnoty vizuálního ko
 
 \section{Open data}
 
-%TODO dej chat gpt zastupny text
+Otevřená data (Open Data) jsou data, která jsou volně dostupná pro použití, opětovné použití a redistribuci kýmkoli a bez omezení autorskými právy. Ve směrnici Evropského parlamentu a Rady (EU) 2019/1024 ze dne 20. června 2019 o otevřených datech a opakovaném použití informací veřejného sektoru (přepracované znění) jsou otevřená data popsána jako: \textit{Otevřená data jako koncept jsou obecně chápána jako označení dat v otevřených formátech, jež může kdokoli volně používat, opakovaně používat a sdílet pro jakékoli účely.} \parencite[důvod č.~16]{SmerniceEvropskehoParlamentu2019}
 
-Open data (otevřená data) jsou data, která jsou volně dostupná k použití, sdílení a dalšímu zpracování bez omezení autorskými právy, patenty nebo jinými restrikcemi. Musí být poskytována ve strojově čitelném formátu a s licencí, která umožňuje jejich volné využití a šíření. Cílem open data je podpora transparentnosti, inovací a efektivity ve veřejné správě, vědě, podnikání i občanské společnosti. Příkladem jsou vládní statistiky, geografické informace nebo vědecké databáze.
+% licence
+Ze směrnice vyplývá, že otevřená data musí být poskytována pod standadní licencí, tedy licencí, která umožňuje volné a opětovné používání dat. Příkladem takové licence je například rodina licencí Creative Commons (CC). 
+Nejpermisivnější licencí z CC rodiny je licence Creative Commons Zero (CCO), která umožňuje uživatelům volně používat data bez jekýchkoli omezení. 
+Další takovou licencí je Creative Commons Attribution (CC-BY 4.0), která má velmi podobné podmínky jako CCO, ale vyžaduje označení původního autora dat. 
+Poslední z běžných licencí rodiny CC licencí je Crative Commons Attribution-ShareAlike (CC-BY-SA 4.0), která přidává povinnost sdílet díla odvozená z původních dat pod stejnou licencí. Existují další druhy licencí, které jsou velmi podobné CC licencí, ale jsou přizpůsobené pro databáze (DB). Databázové otevřené licence jsou například licence od Open Data Commons.  \parencite{ReusersGuideOpen2013}
 
+% BEGIN latex-table: prehled-licenci
+\noindent
+\begingroup
+\centering
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\scriptsize
+\begin{tabularx}{\textwidth}{@{}
+  >{\raggedright\arraybackslash}p{0.20\textwidth}
+  >{\raggedright\arraybackslash}p{0.22\textwidth}
+  >{\raggedright\arraybackslash}p{0.22\textwidth}
+  X@{}}
+\caption{Orientační srovnání vybraných licencí Creative Commons a Open Data Commons}\label{tab:prehled-licenci}\\
+\toprule
+\textbf{Typ} & \textbf{CC} & \textbf{ODC} & \textbf{Poznámky} \\
+\midrule
+Public Domain & CC0 1.0 & PDDL 1.0 & Nejpermisivnější varianta licencí. \\
+Attribution & CC BY 4.0 & ODC-By 1.0 & Požadavek na uvedení autora/zdroje. \\
+Attribution Share-alike & CC BY-SA 4.0 & ODbL 1.0 & Attribution s Copyleft\tfnmark{vymezeni-licence-copyleft} přístupem.  \\
+\bottomrule
+\end{tabularx}
+\par\vspace{2pt}
+\scriptsize\textit{Pozn.:} Srovnání je pouze orientační; licence nejsou právně totožné, ale párují se podle hlavní myšlenky.
+\par\endgroup
+
+Je nutné poznamenta, že výš uvedené příklady jsou jen zlomkem z mnoha licencí, která dělají otevřená data opravdu otevřenými. Existují i další upravené licence, které mohou stavět na CC nebo ODC licencích, ale mohou exitovat i zcela jiné.
+
+\tfntext{vymezeni-licence-copyleft}
+% END latex-table: prehled-licenci
+
+% co se rozumí dokumentem 
+% co se rozumí dynamickými daty
+% co se rozumí opakovaném použitím
+% co se rozumí strojově čitelným formátem
+% co se rozumá otevřeným formátem
+% co se rozumí otevřenou formální normou
 \section{Open source}
-
-%TODO dej chat gpt zastupny text
-Open source znamená, že je software vyvíjen s veřejně dostupným zdrojovým kódem, který může kdokoliv studovat, upravovat a distribuovat. Tento model podporuje spolupráci mezi vývojáři a komunitou, což vede k transparentnosti, inovacím a rychlejšímu vývoji. Open source software je obvykle licencován pod podmínkami, které zajišťují volný přístup k jeho zdrojovému kódu, například GNU GPL, MIT nebo Apache License.
-
-
+ 
+% Definici „open source“ (v OSS smyslu) dává Open Source Definition (OSD): software je „open source“, pokud jeho licence splní všechna kritéria OSD (The Open Source Definition (Perens, n.d.); canonical:
+  % https://opensource.org/osd (https://opensource.org/osd), také http://perens.com/OSD.html (
+  % http://perens.com/OSD.html)).
+  %
+  % OSD (stručně) vyžaduje zejména:
+  %
+  %  1. free redistribution
+  %  2. dostupný zdrojový kód
+  %  3. povolené odvozené práce
+  %  4. integrita autorova zdrojového kódu (povoleny patch soubory apod.)
+  %  5. bez diskriminace osob/skupin
+  %  6. bez diskriminace oborů použití
+  %  7. licence se přenáší při distribuci
+  %  8. licence není vázaná na produkt
+  %  9. licence neomezuje jiný software
+  %  10. technologická neutralita licence
