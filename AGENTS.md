@@ -5,26 +5,7 @@ The goal of this thesis is to describe Indoor Environment Quality (IEQ), analyze
 - Never modify the content of any files with .tex and .bib suffix (i.e. file.tex) unless specifically asked to do so. Other files are editable.
 
 ## Suggestions
-- When providining text improvements suggestions, base them on the czech language stylistics and facts from existing text in this repo or in the refenreces.
-- When providing text improvement or stylistic suggestions, always format them clearly and with extra spacing between items. For each recommendation, include: file path, line number, start and end character position of the problematic span on that line, the problematic snippet, the suggested replacement, and a brief rationale in Czech.
-
-Example output:
-
-12. `vymezeni.tex`, ř. 86, poz. 101–127
-    **Úsek:** `dochází většímu ochlazování`
-    **Doporučení:** `dochází k většímu ochlazování`
-    **Důvod:** chybí předložka.
-
-13. `vymezeni.tex`, ř. 90, poz. 241–285
-    **Úsek:** `Při provedené studii mezi žáky bylo zjištěno,`
-    **Doporučení:** `Ve studii mezi žáky bylo zjištěno,`
-    **Důvod:** přirozenější odborný styl.
-
-14. `vymezeni.tex`, ř. 92, poz. 37–61
-    **Úsek:** `učení, paměť, kreativitu.`
-    **Doporučení:** `učení, paměť i kreativitu.`
-    **Důvod:** plynulejší výčet.
-
+a skill
 ## Spell and style checking
 
 Run only when explicitly requested by the user. Never run proactively.

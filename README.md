@@ -53,6 +53,8 @@ pacman -S poppler   # poskytuje příkaz pdftotext
 ```
 Vyžaduje nainstalované a spuštěné [Zotero](https://www.zotero.org/) s doplňkem [Better BibTeX](https://retorque.re/zotero-better-bibtex/) — aplikace musí běžet a naslouchat na portu `23119`.
 
+Pokud používáte GitHub Copilot CLI, můžete místo lokálního skriptu připojit i [Zotero MCP](https://github.com/54yyyu/zotero-mcp) přes příkaz `/mcp add`; skill `search_zotero_attachments` pak může využít MCP nástroje pro přímý přístup k Zotero knihovně.
+
 **`tools/search_scholar.py`** — vyhledávání na Google Scholar:
 ```bash
 pip install scholarly
@@ -75,6 +77,8 @@ Volitelně přidejte vlastní výjimky do `tools/wordlist.txt` (jeden výraz na 
 pacman -S poppler   # provides the pdftotext command
 ```
 Requires [Zotero](https://www.zotero.org/) with the [Better BibTeX](https://retorque.re/zotero-better-bibtex/) plugin installed and running — the application must be open and listening on port `23119`.
+
+If you use GitHub Copilot CLI, you can also connect [Zotero MCP](https://github.com/54yyyu/zotero-mcp) with `/mcp add`; the `search_zotero_attachments` skill can then use MCP tools for direct access to your Zotero library.
 
 **`tools/search_scholar.py`** — Google Scholar search:
 ```bash
