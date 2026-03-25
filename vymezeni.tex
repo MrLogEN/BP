@@ -1,11 +1,14 @@
-\chapter{Vymezení pojmů - 5 stran}
+\chapter{Vymezení pojmů}
 
 V této kapitole se budeme zabývat zejména dvěma pojmy. Těmito pojmy jsou IEQ (Indoor Environment Quality) a IAQ (Indoor Air Quality).
 \section{IAQ a IEQ}
 \subsection{IAQ}
 Začneme pojmem IAQ, který je podmnožinou pojmu IEQ (obr. \ref{obr01:vztah_ieq_a_iaq}).
 
-\begin{figure}[h]
+\begin{figure}[htbp!]
+  \caption{Vztah mezi IEQ a IAQ}
+	\label{obr01:vztah_ieq_a_iaq}
+
 	\centerfirst
 	\begin{tikzpicture}
 		% Množina IEQ
@@ -14,8 +17,8 @@ Začneme pojmem IAQ, který je podmnožinou pojmu IEQ (obr. \ref{obr01:vztah_ieq
   % Množina IAQ
 		\draw[thick, fill=red!30] (0.5,0.5) circle (1.5cm) node[below] at (0.5,-1.2) {IAQ};
 	\end{tikzpicture}
-	\caption{Vztah mezi IEQ a IAQ}
-	\label{obr01:vztah_ieq_a_iaq}
+
+\footnotesize Zdroj: vlastni zpracování
 \end{figure}
 
 Pojem IAQ je zkratkou pro vnitřní kvalitu ovzduší. IAQ představuje soubor veličin vztahujících se ke kvalitě vnitřního ovzduší. Řada obsažených veličin se uplatňuje i pro hodnocení kvality vnějšího ovzduší.
@@ -487,21 +490,16 @@ Dle směrnice EU data mohou být opakovaně použita pro i pro účely jiné, ne
 
 % co se rozumí strojově čitelným formátem
 Pro znovupoužitelnost dat je klíčové uchovávat a publikovat metadata, tj.~standardizovaný popis datasetu a jeho distribucí (např.~licence, poskytovatel, umístění, formát a způsob přístupu). V českém prostředí se struktura a publikace těchto metadat opírá o otevřené formální normy (OFN) a specifikaci DCAT-AP-CZ pro rozhraní katalogů otevřených dat. \parencite{OtevreneFormalniNormy,DCATAPCZRozhraniKatalogu}
+
 \section{Open source}
- 
-% Definici „open source“ (v OSS smyslu) dává Open Source Definition (OSD): software je „open source“, pokud jeho licence splní všechna kritéria OSD (The Open Source Definition (Perens, n.d.); canonical:
-  % https://opensource.org/osd (https://opensource.org/osd), také http://perens.com/OSD.html (
-  % http://perens.com/OSD.html)).
-  %
-  % OSD (stručně) vyžaduje zejména:
-  %
-  %  1. free redistribution
-  %  2. dostupný zdrojový kód
-  %  3. povolené odvozené práce
-  %  4. integrita autorova zdrojového kódu (povoleny patch soubory apod.)
-  %  5. bez diskriminace osob/skupin
-  %  6. bez diskriminace oborů použití
-  %  7. licence se přenáší při distribuci
-  %  8. licence není vázaná na produkt
-  %  9. licence neomezuje jiný software
-  %  10. technologická neutralita licence
+
+Open source označuje software, jehož zdrojový kód je dostupný a jehož distribuce je upravena licencí splňující kritéria Open Source Definition (OSD). Důležité je, že open source neznamená pouze „přístup ke kódu“, ale zejména vymezení práv a povinností při používání, úpravách a šíření softwaru. \parencite{OpenSourceDefinition,OpenSource2024}
+
+\subsection{Open source licence}
+Podmínky použití a šíření open source softwaru jsou dány licencí. Open Source Initiative (OSI) udržuje definici OSD a zároveň zveřejňuje seznam licencí, které jsou s OSD v souladu (tzv.~OSI Approved). \parencite{OpenSourceDefinition,OSILicenses}
+
+\subsection{Copyleft a permisivní licence}
+Významnou skupinou open-source licencí jsou copyleft licence, které při šíření odvozených děl typicky vyžadují zachování stejných (či kompatibilních) licenčních podmínek. Oproti tomu permisivní licence ponechávají příjemci větší volnost v dalším šíření a v licencování odvozených děl. \parencite{Copyleft2026}
+
+\subsection{Relevance k této práci}
+V kontextu této práce je open source relevantní zejména z pohledu transparentnosti a znovupoužitelnosti implementovaného řešení. Zvolená licence ovlivňuje, za jakých podmínek může být aplikace dále používána, upravována a případně rozvíjena dalšími uživateli.

@@ -229,6 +229,19 @@
 %%% programs. (Requires package listings - fancy verbatim.)
 \lstnewenvironment{code}[3]{\lstset{language=#1, caption=#2, label=#3, basicstyle=\small\ttfamily, numbers=left, xleftmargin=2em, frame=single, framexleftmargin=2em}}{}
 
+%%% Úprava formátování popisků obrázků, tabulek a výpisů dle APA7
+%%% Change format of captions for figures, tables and extracts according to APA7
+\AtBeginEnvironment{figure}{\addvspace{2ex}}
+\AtBeginEnvironment{table}{\addvspace{2ex}}
+\AtBeginEnvironment{lstlisting}{\addvspace{2ex}}
+\AfterEndEnvironment{figure}{\addvspace{1ex}}
+\AfterEndEnvironment{table}{\addvspace{1ex}}
+\AfterEndEnvironment{lstlisting}{\addvspace{1ex}}
+\DeclareCaptionLabelSeparator*{spaced}{\\}
+\captionsetup[table]{labelfont=bf,textfont=it,justification=justified,singlelinecheck=false,labelsep=spaced,skip=2ex}
+\captionsetup[figure]{labelfont=bf,textfont=it,justification=justified,singlelinecheck=false,labelsep=spaced,skip=1ex}
+\captionsetup[lstlisting]{labelfont=bf,textfont=it,justification=justified,singlelinecheck=false,labelsep=spaced,skip=2ex}
+
 %%% Tato část obsahuje texty závislé na typu práce, jazyku a pohlaví %%%
 %%% This part contains texts depending on the type of work, language and gender %%%
 
