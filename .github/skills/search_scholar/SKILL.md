@@ -40,6 +40,13 @@ Always add:
 
 Ověřte dostupnost plného textu přes SFX@VSE a přidejte relevantní zdroje do Zotera.
 
+## Logging to reserse.md
+
+After presenting results and if the user decides to add sources to Zotero:
+- Use the `log_research` skill to record the search in `reserse.md`
+- Include the actual search query/keywords used
+- Record which sources were selected for further review
+
 ## Limitations
 Google Scholar scraping may fail due to CAPTCHA
 If blocked, inform the user and suggest manual search

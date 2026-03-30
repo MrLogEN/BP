@@ -14,6 +14,10 @@ When asked to review, correct, or improve text:
 When asked to find information, facts, or sources for the thesis:
 - **`research_router`:** Use this skill exclusively. It acts as an orchestrator that will automatically query the local Zotero library (`search_zotero`) and, if necessary and permitted by the user, expand the search to Google Scholar (`search_scholar`).
 
+## Research Logging
+When sources are added during research or when asked to document the research process:
+- **`log_research`:** Use this skill to record search steps and sources in `reserse.md`. This skill can also synchronize with the Zotero collection "Bakalářská práce" to document existing sources.
+
 # General Rules
 - Always communicate your reasoning and findings in Czech unless explicitly asked otherwise.
 - Strictly adhere to the output formats defined by the individual skills you invoke.
