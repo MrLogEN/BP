@@ -4,6 +4,9 @@ The goal of this thesis is to describe Indoor Environment Quality (IEQ), analyze
 ## File edits
 - Never modify the content of any files with .tex and .bib suffix (i.e. file.tex) unless specifically asked to do so. Other files are editable.
 
+## AI Usage Logging
+Viz sekce "AI Usage Logging" v `.github/copilot-instructions.md` pro pravidla dokumentace použití AI nástrojů.
+
 ## Suggestions
 a skill
 ## Spell and style checking

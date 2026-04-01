@@ -1,0 +1,56 @@
+% =============================================================================
+% AI Usage Log - Příloha bakalářské práce
+% Dokumentace použití nástrojů umělé inteligence
+% =============================================================================
+
+\chapter{Dokumentace použití AI}
+\label{app:ai-log}
+
+Tato příloha obsahuje podrobnou dokumentaci všech použití nástrojů umělé inteligence 
+při tvorbě této bakalářské práce, v souladu s požadavky Vysoké školy ekonomické v Praze.
+
+% -----------------------------------------------------------------------------
+% Makro pro jednotlivé záznamy
+% -----------------------------------------------------------------------------
+% Použití: \logentry{datum}{model}{soubory}{účel}{vstup}{výstup}{přínos}
+\newcommand{\logentry}[7]{%
+  \noindent\rule{\textwidth}{0.4pt}
+  \begin{description}[leftmargin=!, labelwidth=3.5cm, font=\normalfont\bfseries]
+    \item[Datum a čas:] #1
+    \item[AI nástroj:] #2
+    \item[Soubor(y):] \texttt{#3}
+    \item[Účel použití:] #4
+    \item[Vstupní data:] #5
+    \item[Výstup AI:] #6
+    \item[Vlastní přínos:] #7
+  \end{description}
+  \vspace{0.5em}
+}
+
+% -----------------------------------------------------------------------------
+% Sekce podle kategorií z prohlášení o použití AI
+% -----------------------------------------------------------------------------
+
+\section{Zlepšení gramatiky a jazykového stylu}
+\label{sec:ai-gramatika}
+\input{ai-usage-log/gramatika}
+
+\section{Vyhledávání a shrnutí literatury}
+\label{sec:ai-literatura}
+\input{ai-usage-log/literatura}
+
+\section{Úprava a rozšíření textových částí}
+\label{sec:ai-text}
+\input{ai-usage-log/text}
+
+\section{Generování části zdrojových kódů}
+\label{sec:ai-kod}
+\input{ai-usage-log/kod}
+
+\section{Generování dat}
+\label{sec:ai-data}
+\input{ai-usage-log/data}
+
+\section{Jiné použití}
+\label{sec:ai-ostatni}
+\input{ai-usage-log/ostatni}
