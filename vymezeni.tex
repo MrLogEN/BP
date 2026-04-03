@@ -139,24 +139,23 @@ Jednotky ppm, ppb se dají převádět na $\mu\text{g}*m^{-3}$, kde je nutné zn
 % Uvést možnost převodu mezi jednotkami, například mezi ppm a $\mu\text{g}*m^{-3}$. Vysvětlit, že smysluplnost převodu závisí na konkrétní látce, protože ppm je poměrová koncentrace, zatímco $\mu\text{g}*m^{-3}$ je hmotnostní koncentrace.
 
 % přehledová tabulka s běžnými jednotkami pro IAQ a IEQ.
-\noindent
-\begingroup
-\centering
+\begin{table}[htbp!]
+
+\begin{center}
 \footnotesize
 \renewcommand{\arraystretch}{1.15}
+\caption{Shrnutí jednotek pro vybrané veličiny IEQ (včetně alternativ používaných ve zdrojích a senzorech)}\label{tab:ieq-jednotky}
 \begin{tabularx}{\textwidth}{p{2.2cm} p{3.0cm} p{1.8cm} p{1.8cm} >{\raggedright\arraybackslash}X}
-\caption{Shrnutí jednotek pro vybrané veličiny IEQ (včetně alternativ používaných ve zdrojích a
-senzorech).\parencite{worldhealthorganizationWHOGlobalAir2021,osephg.allenAssociationsCognitiveFunction2016,calvoScalableIoTArchitecture2022,dengImpactIndoorAir2024,mcminnAWeightingMetric2013,marshIEC61672NewInternational2001}}\label{tab:ieq-jednotky}\\ 
-\hline
+\toprule
 \textbf{Kategorie IEQ} & \textbf{Veličina} & \textbf{Značka} & \textbf{Jednotka} & \textbf{Poznámka /
   alternativa} \\
-\hline
+\midrule
 Tepelná & Teplota vzduchu & $T$ & $^\circ$C & Alternativně K (např. v některých zdrojích/technických
 listech). \\
 Tepelná & Relativní vlhkost & RH & \% & --- \\
 Tepelná & Rychlost proudění vzduchu & $v$ & m/s & Volitelné (pokud uvádíte v části tepelný komfort).
 \\
-\hline
+\midrule
 IAQ (plyny) & Oxid uhličitý / ekv. CO$_2$ & CO$_2$, eCO$_2$ & ppm & eCO$_2$ je často odhad senzoru;
 pro převod ppm$\leftrightarrow$mg/m$^3$ je nutné znát podmínky (T, p). \\
 IAQ (plyny) & Oxid uhelnatý & CO & mg/m$^3$ & Často i ppm; některé guideline uvádějí konverzní
@@ -167,40 +166,43 @@ IAQ (plyny) & Oxid siřičitý & SO$_2$ & $\mu$g/m$^3$ & Často i ppb; převody 
 IAQ (VOC) & Celkové VOC & TVOC & ppb & U senzorů typicky ppb; význam TVOC závisí na
 metodě/kalibraci. \\
 IAQ (VOC) & Celkové VOC & TVOC & $\mu$g/m$^3$ & V laboratorních studiích/limitech se často uvádí i
-$\mu$g/m$^3$; nepřevádět „naslepo“ bez definice směsi. \\
+$\mu$g/m$^3$; nepřevádět „naslepo" bez definice směsi. \\
 IAQ (částice) & PM$_{2.5}$ & PM$_{2.5}$ & $\mu$g/m$^3$ & Hmotnostní koncentrace; ppm se pro PM běžně
 nepoužívá. \\
 IAQ (částice) & PM$_{10}$ & PM$_{10}$ & $\mu$g/m$^3$ & Hmotnostní koncentrace; ppm se pro PM běžně
 nepoužívá. \\
-\hline
+\midrule
 Vizuální & Osvětlenost & $E$ & lx & --- \\
 Vizuální & Korelovaná teplota chromatičnosti & CCT & K & Volitelné (pokud řešíte i spektrum/barvu
 světla). \\
-\hline
+\midrule
 Akustická & Hladina akustického tlaku (A-vážená) & $L_A$ & dB(A) & A-vážení (frekvenční vážení) pro
 lepší vazbu na vnímání člověka; uvést, pokud možno, i metodu (např. LAeq). \\
 Akustická & Hladina akustického tlaku (nevážená) & $L$ & dB & Méně běžné pro posuzování komfortu;
 bez frekvenčního vážení. \\
-\hline
+\bottomrule
 \end{tabularx}
-\par\endgroup
+\end{center}
+
+\footnotesize Zdroj: \parencite{worldhealthorganizationWHOGlobalAir2021,osephg.allenAssociationsCognitiveFunction2016,calvoScalableIoTArchitecture2022,dengImpactIndoorAir2024,mcminnAWeightingMetric2013,marshIEC61672NewInternational2001}.
+\end{table}
 
 \subsubsection{Legislativa}
 Tato sekce uvádí přehled dokumentů (ČR, EU a WHO), které se vztahují k jednotlivým složkám IEQ, a shrnuje nejčastěji sledované veličiny a jejich referenční hodnoty. Práce se nebude omezovat pouze na legislativně či doporučeními vymezené ukazatele; pokud některá doména IEQ není pokryta, budou zahrnuty i další prakticky měřitelné parametry. Vše, co je vymezeno závazně či doporučeno, bude při návrhu a interpretaci dat zohledněno.
 
 V tabulce \ref{tab:legislativa_ieq_dokumenty} jsou uvedeny dokumenty, které se vztahují k jednotlivým doménám IEQ (IAQ, mikroklima, vizuální a akustický komfort). Je důležité poznamenat, že některé dokumenty se vztahují pouze k vnějšímu prostředí (např. vnější ovzduší nebo hluk), ale mohou být relevantní i pro IEQ v budovách (např. vliv vnějších podmínek na vnitřní prostředí).
 
-\noindent
-\begingroup
-\centering
+\begin{table}[htbp!]
+
+\begin{center}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
+\caption{Dokumenty relevantní pro IEQ a jejich pokrytí (řádek = dokument)}\label{tab:legislativa_ieq_dokumenty}
 \begin{tabularx}{\textwidth}{@{}
-  >{\raggedright\arraybackslash}p{0.33\textwidth}
+>{\raggedright\arraybackslash}p{0.33\textwidth}
   >{\raggedright\arraybackslash}p{0.24\textwidth}
   X@{}}
-\caption{Dokumenty relevantní pro IEQ a jejich pokrytí (řádek = dokument)}\label{tab:legislativa_ieq_dokumenty}\\
 \toprule
 \textbf{Dokument (úroveň, typ)} & \textbf{Prostředí / domény} & \textbf{Vymezené oblasti a typicky sledované veličiny} \\
 \midrule
@@ -208,33 +210,26 @@ V tabulce \ref{tab:legislativa_ieq_dokumenty} jsou uvedeny dokumenty, které se 
 Zákon č.~258/2000~Sb. \parencite{wolterskluwerZakon2582000} &
 Veřejné zdraví; IAQ, akustika &
 Rámcový zákon k ochraně veřejného zdraví (kompetence, postupy); zmocňuje prováděcí předpisy pro hluk a vibrace. \\
-\hline
-
 Vyhláška č.~43/2025~Sb. \parencite{info@wolterskluwer.czVyhlaska432025} &
 Indoor (pobytové); IAQ, mikroklima &
 T, RH, CO$_2$ (explicitní limity 1\,200/2\,500 ppm), PM$_{2.5}$, chemické ukazatele; nahrazuje zrušenou vyhl.~6/2003~Sb. \\
 
-\hline
 Zákon č.~283/2021~Sb. \parencite{info@wolterskluwer.czZakon2832021} &
 Stavby; vizuální komfort &
 Technické požadavky na stavby (mj. požadavky na denní/umělé osvětlení v kontextu návrhu a užívání staveb; detaily často odkazují na ČSN). \\
 
-\hline
 Nařízení vlády č.~361/2007~Sb. \parencite{wolterskluwerNarizeni36120072007} &
 Pracoviště; IAQ, mikroklima &
 CO$_2$ (expoziční limit), mikroklima (T, RH, rychlost proudění) aj. dle zátěže. \\
 
-\hline
 Nařízení vlády č.~272/2011~Sb. \parencite{info@wolterskluwer.czNarizeni2722011} &
 Indoor/Outdoor; akustika &
 Hygienické limity hluku (pracoviště, chráněné vnitřní/venkovní prostory) a vibrací; způsob měření a hodnocení. \\
 
-\hline
 Metodický návod ZD~25/2013 \parencite{MetodickyNavodZD252013} &
 Metodika měření &
 Postupy měření a hodnocení (umístění čidel, doba měření, vyhodnocení). \\
 
-\hline
 Zákon č.~201/2012~Sb. \parencite{wolterskluwerZakon20120122012} &
 Vnější ovzduší; IAQ &
 Imisní/cílové/prahové hodnoty (SO$_2$, NO$_2$, CO, benzen, Pb, PM$_{10}$, PM$_{2.5}$, O$_3$). \\
@@ -244,17 +239,14 @@ Směrnice 2008/50/ES \parencite{SmerniceEvropskehoParlamentu2008} &
 Vnější ovzduší; IAQ &
 Harmonizace limitů/cílů a pravidel hodnocení/reportingu (PM, NO$_2$, SO$_2$, CO, benzen, Pb, O$_3$). \\
 
-\hline
 Směrnice 2002/49/ES \parencite{SmerniceEvropskehoParlamentu2002} &
 Venkovní prostředí; akustika &
 Hodnocení a řízení hluku ve venkovním prostředí (strategické hlukové mapy, akční plány). \\
 
-\hline
 Směrnice 2010/31/EU \parencite{SmerniceEvropskehoParlamentu2010} &
 Budovy; IEQ, vizuální komfort &
 Požaduje zohlednění kvality vnitřního prostředí při opatřeních na energetickou náročnost; pracuje s technickými systémy budovy vč. zabudovaného osvětlení. \\
 
-\hline
 Směrnice (EU) 2024/1275 \parencite{SmerniceEvropskehoParlamentu2024a} &
 Budovy; IEQ, vizuální komfort &
 Aktualizovaná EPBD; zohledňuje technické systémy a automatizaci budov včetně osvětlení. \\
@@ -264,48 +256,47 @@ WHO Air Quality Guidelines \parencite{worldhealthorganizationWHOGlobalAir2021} &
 Zdravotní doporučení (benchmark) &
 Doporučené úrovně expozice pro PM$_{2.5}$/PM$_{10}$, O$_3$, NO$_2$, SO$_2$, CO (různé doby průměrování). \\
 
-\hline
 WHO indoor: selected pollutants \parencite{adamkiewiczWHOGuidelinesIndoor2010} &
 Indoor; IAQ &
 Referenční hodnoty pro vybrané látky v interiéru (např. formaldehyd, CO, NO$_2$ aj.). \\
 
-\hline
 WHO indoor: dampness and mould \parencite{heseltine2009guidelines} &
 Indoor; vlhkost/plísně &
 Prevence a hodnocení rizik (důraz na zdroje vlhkosti a kontext budovy). \\
 
-\hline
 WHO indoor: household fuel combustion \parencite{world2014guidelines} &
 Indoor; spalování &
 Doporučení ke snížení expozice (typicky PM a CO) dle paliva/technologie. \\
 
 \bottomrule
 \end{tabularx}
-\par\endgroup
+\end{center}
+
+\footnotesize 
+\end{table}
 
 V tabulce \ref{tab:iaqlimity_cr_eu_who} jsou uvedeny limitní a doporučené hodnoty pro vybrané látky vnějšího ovzduší, které jsou relevantní pro IAQ. Tyto hodnoty jsou stanoveny v různých dokumentech (ČR, EU, WHO) a mohou se lišit v závislosti na době průměrování a dalších faktorech. 
 
-\noindent
-\begingroup
-\centering
+\begin{table}[htbp!]
+
+\begin{center}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
+\caption{Srovnání limitních a doporučených hodnot pro vybrané látky vnějšího ovzduší (ČR/EU/WHO)}\label{tab:iaqlimity_cr_eu_who}
 \begin{tabularx}{\textwidth}{@{}
-  >{\raggedright\arraybackslash}p{0.10\textwidth}
+>{\raggedright\arraybackslash}p{0.10\textwidth}
   >{\raggedright\arraybackslash}p{0.16\textwidth}
   >{\raggedright\arraybackslash}p{0.09\textwidth}
   >{\raggedright\arraybackslash}p{0.09\textwidth}
   >{\raggedright\arraybackslash}p{0.10\textwidth}
   X@{}}
-\caption{Srovnání limitních a doporučených hodnot pro vybrané látky vnějšího ovzduší (ČR/EU/WHO)}\label{tab:iaqlimity_cr_eu_who}\\
 \toprule
 \textbf{Látka} & \textbf{Doba (jedn.)} & \textbf{ČR} & \textbf{EU} & \textbf{WHO} & \textbf{Pozn.} \\
 \midrule
 
 SO\textsubscript{2} & 1 h ($\mu\text{g}\,m^{-3}$) & 350 & 350 & — & $\leq$24\,\texttimes{}/rok (ČR/EU) \\
 SO\textsubscript{2} & 24 h ($\mu\text{g}\,m^{-3}$) & 125 & 125 & 40 & $\leq$3\,\texttimes{}/rok (ČR/EU) \\
-\hline
 NO\textsubscript{2} & 1 h ($\mu\text{g}\,m^{-3}$) & 200 & 200 & 200 & ČR/EU: $\leq$18\,\texttimes{}/rok; WHO: Tab. 0.2 \\
 NO\textsubscript{2} & 24 h ($\mu\text{g}\,m^{-3}$) & — & — & 25 & WHO: Tab. 0.1 \\
 NO\textsubscript{2} & 1 rok ($\mu\text{g}\,m^{-3}$) & 40 & 40 & 10 & — \\
@@ -328,28 +319,83 @@ O\textsubscript{3} & AOT40\tfnmark{vymezeni-aot40}\allowbreak{} ($\mu\text{g}\,m
 
 \bottomrule
 \end{tabularx}
-%\par\vspace{2pt}
-\scriptsize\textit{Zdroj:} \parencite{wolterskluwerZakon20120122012,SmerniceEvropskehoParlamentu2008,worldhealthorganizationWHOGlobalAir2021}.
-\par\endgroup
+\end{center}
+
+\footnotesize 
+\end{table}
 
 \tfntext{vymezeni-aot40}
 
-V tabulce \ref{tab:komfort_akust} jsou uvedeny limitní hodnoty akustického komfortu převzané převším z české legislativy (Nařízení vlády č.~272/2011~Sb.). 
+V tabulce \ref{tab:indoor_limity_cr} jsou uvedeny limitní hodnoty chemických, fyzikálních a biologických ukazatelů pro vnitřní prostředí pobytových místností dle vyhlášky č.~43/2025~Sb.
 
-\noindent
-\begingroup
-\centering
+\begin{table}[htbp!]
+
+\begin{center}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
+\caption{Limitní hodnoty pro vnitřní prostředí pobytových místností dle vyhlášky č.~43/2025~Sb. (ČR)}\label{tab:indoor_limity_cr}
 \begin{tabularx}{\textwidth}{@{}
-  >{\raggedright\arraybackslash}p{0.23\textwidth}
+>{\raggedright\arraybackslash}p{0.25\textwidth}
+  >{\raggedright\arraybackslash}p{0.15\textwidth}
+  >{\raggedright\arraybackslash}p{0.12\textwidth}
+  X@{}}
+\toprule
+\textbf{Ukazatel} & \textbf{Jednotka} & \textbf{Limit} & \textbf{Poznámka} \\
+\midrule
+\multicolumn{4}{l}{\textit{Chemické ukazatele (hodinové limity)}} \\
+NO$_2$ (oxid dusičitý) & $\mu$g/m$^3$ & 100 & — \\
+CO (oxid uhelnatý) & $\mu$g/m$^3$ & 5\,000 & — \\
+O$_3$ (ozón) & $\mu$g/m$^3$ & 100 & — \\
+NH$_3$ (amoniak) & $\mu$g/m$^3$ & 70 & — \\
+Benzen & $\mu$g/m$^3$ & 5 & — \\
+Toluen & $\mu$g/m$^3$ & 300 & — \\
+Suma xylenů & $\mu$g/m$^3$ & 200 & — \\
+Styren & $\mu$g/m$^3$ & 40 & — \\
+Ethylbenzen & $\mu$g/m$^3$ & 200 & — \\
+Formaldehyd & $\mu$g/m$^3$ & 50 & — \\
+Acetaldehyd & $\mu$g/m$^3$ & 200 & — \\
+Trichlorethen & $\mu$g/m$^3$ & 25 & — \\
+Tetrachlorethen & $\mu$g/m$^3$ & 150 & — \\
+2-ethylhexanol & $\mu$g/m$^3$ & 70 & Suma C$_8$--C$_{18}$ alkoholů $\leq$70 \\
+Naftalen & $\mu$g/m$^3$ & 10 & — \\
+Limonen & $\mu$g/m$^3$ & 450 & — \\
+$\alpha$-pinen & $\mu$g/m$^3$ & 450 & — \\
+\multicolumn{4}{l}{\textit{Částice}} \\
+PM$_{2.5}$ & $\mu$g/m$^3$ & 50 & Aritmetický průměr za měřený interval \\
+\multicolumn{4}{l}{\textit{Větrání}} \\
+CO$_2$ (průměr) & ppm & 1\,200 & Aritmetický průměr v měřeném intervalu \\
+CO$_2$ (maximum) & ppm & 2\,500 & Nesmí být překročeno během měření \\
+\multicolumn{4}{l}{\textit{Biologické ukazatele}} \\
+Bakterie & KTJ/m$^3$ & 500 & Aktivní nasávání vzduchu \\
+Plísně & KTJ/m$^3$ & 500 & Aktivní nasávání vzduchu \\
+\multicolumn{4}{l}{\textit{Minerální vlákna}} \\
+Azbestová + bioperzistentní (TEM) & vláken/m$^3$ & 500 & Prostý počet \\
+Azbestová + bioperzistentní (SEM) & vláken/m$^3$ & 1\,000 & Prostý počet \\
+Ostatní minerální (TEM/SEM) & vláken/m$^3$ & 10\,000 & Prostý počet \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+\footnotesize 
+\end{table}
+
+V tabulce \ref{tab:komfort_akust} jsou uvedeny limitní hodnoty akustického komfortu převzané převším z české legislativy (Nařízení vlády č.~272/2011~Sb.). 
+
+\begin{table}[htbp!]
+
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\scriptsize
+\caption{Srovnání limitních hodnot pro vybrané parametry akustického komfortu (ČR/EU/WHO)}\label{tab:komfort_akust}
+\begin{tabularx}{\textwidth}{@{}
+>{\raggedright\arraybackslash}p{0.23\textwidth}
   >{\raggedright\arraybackslash}p{0.15\textwidth}
   >{\raggedright\arraybackslash}p{0.10\textwidth}
   >{\raggedright\arraybackslash}p{0.10\textwidth}
   >{\raggedright\arraybackslash}p{0.10\textwidth}
   X@{}}
-\caption{Srovnání limitních hodnot pro vybrané parametry akustického komfortu (ČR/EU/WHO)}\label{tab:komfort_akust}\\
 \toprule
 \textbf{Parametr} & \textbf{Doba (jedn.)} & \textbf{ČR} & \textbf{EU}\tfnmark{vymezeni-la-eu-note} & \textbf{WHO} & \textbf{Pozn.} \\
 \midrule
@@ -363,7 +409,6 @@ Hygienický limit \parencite{info@wolterskluwer.czNarizeni2722011}. \\
 $LC_{\mathrm{peak}}$ (impulsní hluk, expoziční limit) & peak (dB) & 140 & — & — &
 Přípustný expoziční limit \parencite{info@wolterskluwer.czNarizeni2722011}. \\
 
-\hline
 $LA_{eq,T}$ (chráněný vnitřní prostor, obytné místnosti) & 6--22 / 22--6 (dB) & 40 / 30 & — & — &
 Základ 40 dB + korekce Příloha 2 (den 0 dB; noc -10 dB; u části dopravních zdrojů navíc +5 dB) \parencite{info@wolterskluwer.czNarizeni2722011}. \\
 
@@ -376,7 +421,6 @@ Základ 40 dB + korekce Příloha 2 (-5 dB) \parencite{info@wolterskluwer.czNari
 $LA_{eq,T}$ (chráněný vnitřní prostor, učebny/přednáškové síně) & doba používání (dB) & 45 & — & — &
 Základ 40 dB + korekce Příloha 2 (+5 dB) \parencite{info@wolterskluwer.czNarizeni2722011}. \\
 
-\hline
 $LA_{eq,T}$ (chráněný venkovní prostor, obecně) & den/noc (dB) & 50 & — & — &
 Základ 50 dB + korekce Příloha 3 (podle zdroje/typu prostoru); pro noc u „chráněného venkovního prostoru staveb“ další -10 dB (výjimky železnice/tram -5 dB) \parencite{info@wolterskluwer.czNarizeni2722011}. \\
 
@@ -385,26 +429,29 @@ $LA_{eq,T}$ (letecký provoz, venkovní) & 16 h / 8 h (dB) & 60 / 50 & — & —
 
 \bottomrule
 \end{tabularx}
-\par\endgroup
+\end{center}
+
+\footnotesize 
+\end{table}
 \tfntext{vymezeni-la-eu-note}
 \tfntext{vymezeni-la-a-index}
 
 V tabulce \ref{tab:komfort_vizual} jsou uvedeny limitní hodnoty vizuálního komfortu převzané převším z české legislativy (Zákon č.~283/2021~Sb. a Nařízení vlády č.~361/2007~Sb.). Ty jsou rozděleny podle typu prostoru a doby používání, přičemž jsou uvedeny i korekce pro různé situace (den/noc, typ činnosti).
 
-\noindent
-\begingroup
-\centering
+\begin{table}[htbp!]
+
+\begin{center}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
+\caption{Srovnání požadavkových hodnot pro vybrané parametry vizuálního komfortu (ČR/EU/WHO)}\label{tab:komfort_vizual}
 \begin{tabularx}{\textwidth}{@{}
-      >{\raggedright\arraybackslash}p{0.23\textwidth}
+>{\raggedright\arraybackslash}p{0.23\textwidth}
       >{\raggedright\arraybackslash}p{0.15\textwidth}
       >{\raggedright\arraybackslash}p{0.10\textwidth}
       >{\raggedright\arraybackslash}p{0.10\textwidth} >{\raggedright\arraybackslash}p{0.10\textwidth}
     X@{}}
-\caption{Srovnání požadavkových hodnot pro vybrané parametry vizuálního komfortu (ČR/EU/WHO)}\label{tab:komfort_vizual}\\
-    \toprule
+\toprule
     \textbf{Parametr} & \textbf{Doba (jedn.)} & \textbf{ČR} & \textbf{EU} & \textbf{WHO} & \textbf{Pozn.} \\
     \midrule
 
@@ -424,9 +471,11 @@ V tabulce \ref{tab:komfort_vizual} jsou uvedeny limitní hodnoty vizuálního ko
     Min. jas obrazovky; regulace jasu/kontrastu a omezení reflexí \parencite{wolterskluwerNarizeni36120072007}. \\
 
     \bottomrule
-  \end{tabularx}
-  \scriptsize\textit{Zdroj:} \parencite{wolterskluwerNarizeni36120072007}.
-\par\endgroup
+\end{tabularx}
+\end{center}
+
+\footnotesize 
+\end{table}
 
 \section{Open data}
 
@@ -443,18 +492,18 @@ Další takovou licencí je Creative Commons Attribution (CC-BY 4.0), která má
 Poslední z běžných licencí rodiny CC licencí je Crative Commons Attribution-ShareAlike (CC-BY-SA 4.0), která přidává povinnost sdílet díla odvozená z původních dat pod stejnou licencí. \parencite{DeedAttributionShareAlike40} Existují další druhy licencí, které jsou velmi podobné CC licencí, ale jsou přizpůsobené pro databáze (DB). Databázové otevřené licence jsou například licence od Open Data Commons. Jednoduché srovnání licencí CC a ODC je možné vidět v tabulce \ref{tab:prehled-licenci}. \parencite{ReusersGuideOpen2013,CCLicenses}
 
 % BEGIN latex-table: prehled-licenci
-\noindent
-\begingroup
-\centering
+\begin{table}[htbp!]
+
+\begin{center}
 \setlength{\tabcolsep}{3pt}
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
+\caption{Orientační srovnání vybraných licencí Creative Commons a Open Data Commons}\label{tab:prehled-licenci}
 \begin{tabularx}{\textwidth}{@{}
-  >{\raggedright\arraybackslash}p{0.20\textwidth}
+>{\raggedright\arraybackslash}p{0.20\textwidth}
   >{\raggedright\arraybackslash}p{0.22\textwidth}
   >{\raggedright\arraybackslash}p{0.22\textwidth}
   X@{}}
-\caption{Orientační srovnání vybraných licencí Creative Commons a Open Data Commons}\label{tab:prehled-licenci}\\
 \toprule
 \textbf{Typ} & \textbf{CC} & \textbf{ODC} & \textbf{Poznámky} \\
 \midrule
@@ -463,9 +512,10 @@ Attribution & CC BY 4.0 & ODC-By 1.0 & Požadavek na uvedení autora/zdroje. \\
 Attribution Share-alike & CC BY-SA 4.0 & ODbL 1.0 & Attribution s Copyleft\tfnmark{vymezeni-licence-copyleft} přístupem.  \\
 \bottomrule
 \end{tabularx}
-\par\vspace{2pt}
-\scriptsize\textit{Pozn.:} Srovnání je pouze orientační; licence nejsou právně totožné, ale párují se podle hlavní myšlenky.
-\par\endgroup
+\end{center}
+
+\footnotesize 
+\end{table}
 \tfntext{vymezeni-licence-copyleft}
 Je nutné poznamenta, že výš uvedené příklady jsou jen zlomkem z mnoha licencí, která dělají otevřená data opravdu otevřenými. Existují i další upravené licence, které mohou stavět na CC nebo ODC licencích, ale mohou exitovat i zcela jiné.
 
