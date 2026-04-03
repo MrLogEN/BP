@@ -48,8 +48,9 @@
 \usepackage{icomma}         % inteligetní čárka v matematickém módu / intelligent comma in math mode
 \usepackage{dcolumn}        % lepší zarovnání sloupců v tabulkách / better alignment of columns in tables
 \usepackage{booktabs}       % lepší vodorovné linky v tabulkách / better horizontal lines in tables
-\usepackage{ltablex}       % tabularx + longtable (tables stay in place and may break across pages)
-\keepXColumns
+\usepackage{tabularx}       % vhodné pro tabulky s delšími texty / suitable for tables with longer texts
+\usepackage{longtable}      % vhodné pro vícestránkové tabulky / suitable for multi-page tables
+\usepackage{dirtree}        % vykreslování adresářových stromů / rendering directory trees
 \makeatletter
 \@ifpackageloaded{xcolor}{
    \@ifpackagewith{xcolor}{usenames}{}{\PassOptionsToPackage{usenames}{xcolor}}
@@ -57,7 +58,10 @@
 \makeatother
 \usepackage{multicol}       % práce s více sloupci na stránce / work with multiple columns on a page
 \usepackage{multirow}
+\usepackage{lettrine}
 \usepackage{caption}
+
+
 \usepackage{sepfootnotes}
 \newfootnotes*{tabfn}
 \input{notes/footnotes}
@@ -96,12 +100,14 @@
 }
 \makeatother
 
+
 \usepackage{enumitem}
 \setlist[itemize]{noitemsep, topsep=0pt, partopsep=0pt}
 \setlist[enumerate]{noitemsep, topsep=0pt, partopsep=0pt}
 \setlist[description]{noitemsep, topsep=0pt, partopsep=0pt}
 
 \usepackage{tocloft}
+\usepackage{xpatch}
 \setlength\cftparskip{0pt}
 \setlength\cftbeforechapskip{1.5ex}
 \setlength\cftfigindent{0pt}
@@ -214,7 +220,12 @@
 \hypersetup{unicode}
 \hypersetup{breaklinks=true}
 \hypersetup{hidelinks}
+%% odkazy barevně
+%% links in color
 \hypersetup{colorlinks=true,urlcolor=blue}
+%% odkazy černě
+%% links in black
+%% \hypersetup{colorlinks=true,allcolors=black} 
 
 \renewcommand{\UrlBreaks}{\do\/\do\=\do\+\do\-\do\_\do\ \do\a\do\b\do\c\do\d%
 \do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s%
@@ -228,6 +239,9 @@
 %%% Environment for source code typesetting, or computer input/output
 %%% programs. (Requires package listings - fancy verbatim.)
 \lstnewenvironment{code}[3]{\lstset{language=#1, caption=#2, label=#3, basicstyle=\small\ttfamily, numbers=left, xleftmargin=2em, frame=single, framexleftmargin=2em}}{}
+\makeatletter
+\xpatchcmd\l@lstlisting{1.5em}{0em}{}{}
+\makeatother
 
 %%% Úprava formátování popisků obrázků, tabulek a výpisů dle APA7
 %%% Change format of captions for figures, tables and extracts according to APA7
@@ -292,6 +306,7 @@
 				 \ifstringequal{\TypPrace}{BP}{\def\Praci{bachelor thesis }}{}
          \ifstringequal{\TypPrace}{DP}{\def\Praci{master thesis }}{}
 				 \def\PodekovaniText{Acknowledgements}
+				 \def\ProhlaseniAIText{Declaration on the Use of Artificial Intelligence}
 				 \def\bibnamex{References}
          \renewcommand*{\lstlistlistingname}{List of source codes}
          \def\lstlistingname{Source code}
@@ -310,6 +325,7 @@
 				 \ifstringequal{\TypPrace}{BP}{\def\Praci{bakalársku prácu }}{}
          \ifstringequal{\TypPrace}{DP}{\def\Praci{diplomovú prácu }}{}
 				 \def\PodekovaniText{Poďakovanie}
+				 \def\ProhlaseniAIText{Vyhlásenie o využití umelej inteligencie}
 				 \def\bibnamex{Použitá literatúra}
 				 \renewcommand*{\lstlistlistingname}{Zoznam zdrojových kódov}
 				 \def\lstlistingname{Výpis}
@@ -317,3 +333,4 @@
 
 \ifstringequal{\TypPrace}{BP}{\def\TypPraceText{\TypPraceBP}}{}
 \ifstringequal{\TypPrace}{DP}{\def\TypPraceText{\TypPraceDP}}{}
+
