@@ -1,6 +1,16 @@
 \chapter{Rešerše zdrojů}
 
-V této kapitole se budeme zabývat zejména dvěma pojmy. Těmito pojmy jsou IEQ (Indoor Environment Quality) a IAQ (Indoor Air Quality).
+Tato kapitola v první části vysvtěluje pojmy Indoor Environment Quality (IEQ) a Indoor Air Quality (IAQ). Tato část se rozděluje na vymezení těchto oblastí a jednotlivých pojmů z těchto oblastí. Dále jsou popsány standardy používaných jednotek a související legislativa. 
+
+V druhé části je vymezen pojem otevřená data tak, jak je vymezen v české legislativě, jak má vypadat licence pro otevřená data a jaké normy je třeba dodržovat.
+
+Ve třetí části je popsána problematika open source softwaru a open source licencí, které je základním stavebním kamenem pro vývoj aplikace a její transparentnosti.
+
+Čtvrtá část se věnuje zařízením pro sběr dat v oblasti IEQ, která jsou na trhu dostupná. Věnuje se jak komerčním řešením tak tzv. nízkonákladovým \textit{do-it-yourself (DIY)} řešením.
+
+V poslední části jsou popsány již existující aplikace pro sběr dat v oblasti IEQ a IAQ.
+Jsou analyzovány z hlediska funkcionality a použité technologie. Dále jsou aplikace mezi sebou porovnány, jsou indentifikovány jejich silné a slabé stránky a jejich dodrřování otevřených formálních norem vymezených českou legislativou.  
+
 \section{IAQ a IEQ}
 \subsection{IAQ}
 Začneme pojmem IAQ, který je podmnožinou pojmu IEQ (obr. \ref{obr01:vztah_ieq_a_iaq}).
@@ -126,19 +136,7 @@ Vizuální komfort se měří pomocí jednotky \textit{lx} (lux), která udává
 Akustický komfort se měří pomocí jednotky \textit{dB} (decibel) nebo \textit{dB(A)} (A-vážený decibel), která zohledňuje citlivost lidského ucha na různé frekvence zvuku (viz tabulka \ref{tab:ieq-jednotky}).\parencite{dengImpactIndoorAir2024,mcminnAWeightingMetric2013,marshIEC61672NewInternational2001}
 
 Jednotky ppm, ppb se dají převádět na $\mu\text{g}*m^{-3}$, kde je nutné znát podmínky měření (T, p) a molární hmotnost látky. Zda tento převod dává smysl, závistí na konkrétní látce.\parencite{worldhealthorganizationWHOGlobalAir2021}
-% Krátce vysvětlit rozdíl mezi jednotkami.
-  % Poměrové koncetrace (ppm, ppb).
-  % Hmotnostní koncentrace (qg/m3)
-  % Fyzikální veličiny prostředí (teplota, vlhkost, ...)
 
-% Vyjmenovat běžné veličiny a jejich jednotky, které se v IAQ a IEQ používají. Rozdělit podle kategorií.
-  % Uvést, že někdy je možné použít více jendnotek, jako třeba °C a K pro teplotu, ale některé jednotky jsou vhodnější například z důvodu běžného používání, například °C pro teplotu, kdy se °C běžně používají pro měření v budovách a K pro vědecké účely.
-
-% Rozdělit dle jednotlivých kategorií a popsat jendotky pro každou z nich. Popsat plyny a VOC, PM, tepelný komfort, vizuální komfort a akustický komfort. Uvést, že pro některé veličiny existují i jiné jednotky, například pro hluk existují i jiné jednotky než dB, ale dB jsou nejběžnější a nejpoužívanější.
-
-% Uvést možnost převodu mezi jednotkami, například mezi ppm a $\mu\text{g}*m^{-3}$. Vysvětlit, že smysluplnost převodu závisí na konkrétní látce, protože ppm je poměrová koncentrace, zatímco $\mu\text{g}*m^{-3}$ je hmotnostní koncentrace.
-
-% přehledová tabulka s běžnými jednotkami pro IAQ a IEQ.
 \begin{table}[htbp!]
 
 \begin{center}
@@ -561,6 +559,79 @@ V kontextu této práce je open source relevantní zejména z pohledu transparen
 
 \section{Zařízení pro sběr dat}
 \[TODO\]
-\section{Existující řešení}
-\[TODO\]
 
+\section{Existující řešení}
+\[DRAFT\]
+V rámci rešerše byly nalezeny čtyři aplikace. Konkrétně se jedná o aplikace \textit{sensor.community}, \textit{OpenAQ}, \textit{openSenseMap}, \textit{Indoor-CO2-Map}. Hloubkový výzkum ChatGPT našel aplikací celkem pět, ale poslední z nich, \textit{AirGradient},  se ukázala, že neměla být zahrnuta, protože se jedná pouze o prodejce hardwaru a ne o platformu pro sběr dat, která by byla relevantní pro tuto práci.
+
+V první části této sekce je uveden stručný přehled každé z těchto aplikací a jejich funkcionalit. 
+V druhé části jsou jednotlivé aplikace mezi sebou srovnány z pohledu funkcionalit webového rozhraní, licencí, sbíraných dat, sdílených dat pomicí API a pravidelných archivů (dumpů). Aplikace jsou také srovnány z pohledu otevřených formálních norem.
+
+\subsection{Přehled aplikací}
+
+\[DRAFT\]
+- seznam funkcionalit každé aplikace
+\subsubsection{Aplikace sensor.community}
+
+\[DRAFT\]
+
+První aplikací je německá aplikace \textit{sensor.community} ze Stuttgartu. Aplikace je založena na komunitě dobrovolníků, kteří instalují senzory pro měření různých veličin a sdílejí je ve veřejné databázi. 
+
+Zaměření aplikace je především na měření kvality vnějšího prostředá, ale má možnost měřit i prostředí vnější 
+
+Sledované veličiny aplikací jsou uvedeny v tabulce č. \ref{tab:sensor-community-veliciny}.
+
+\begin{table}[hp!]
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{1.1}
+  \caption{Sledované veličiny aplikací sensor.community}
+  \label{tab:sensor-community-veliciny}
+  \begin{tabular}{p{2.8cm} p{5.8cm} p{1.7cm} >{\raggedright\arraybackslash}p{4.6cm}}
+    \toprule
+    \textbf{Kategorie} & \textbf{Veličina} & \textbf{Jednotka} & \textbf{Poznámka}\\
+    \midrule
+    \multirow{11}{*}{IAQ} & PM$_{1.0}$ (hmotnostní koncentrace) & $\mu$g/m$^3$ & ---\\
+     & PM$_{2.5}$ (hmotnostní koncentrace) & $\mu$g/m$^3$ & ---\\
+     & PM$_{4.0}$ (hmotnostní koncentrace) & $\mu$g/m$^3$ & Pouze některé senzory (např. SPS30, SEN5x).\\
+     & PM$_{10}$ (hmotnostní koncentrace) & $\mu$g/m$^3$ & ---\\
+     & Početní koncentrace částic $\geq$ 0.5\,$\mu$m & cm$^{-3}$ & \multirow{5}{4.6cm}{Nestandardní pro IEQ; početní (nikoli hmotnostní) metrika.}\\
+     & Početní koncentrace částic $\geq$ 1.0\,$\mu$m & cm$^{-3}$ & \\
+     & Početní koncentrace částic $\geq$ 2.5\,$\mu$m & cm$^{-3}$ & \\
+     & Početní koncentrace částic $\geq$ 4.0\,$\mu$m & cm$^{-3}$ & \\
+     & Početní koncentrace částic $\geq$ 10\,$\mu$m & cm$^{-3}$ & \\
+     & Typická velikost částic & $\mu$m & Nestandardní pro IEQ.\\
+     & CO$_2$ (koncentrace) & ppm & ---\\
+    \midrule
+    \multirow{5}{*}{Akustický komfort} & LAeq (A-vážená ekvivalentní hladina) & dB(A) & ---\\
+     & Minimální hladina (A) & dB(A) & ---\\
+     & Maximální hladina (A) & dB(A) & ---\\
+     & LA01 (1\,\% percentil) & dB(A) & Nestandardní pro IEQ (percentil).\\
+     & LA95 (95\,\% percentil) & dB(A) & Nestandardní pro IEQ (percentil).\\
+    \midrule
+    \multirow{4}{*}{Tepelný komfort} & Teplota vzduchu & $^\circ$C & ---\\
+     & Relativní vlhkost & \% & ---\\
+     & Atmosférický tlak & Pa & Doplňkové (meteo).\\
+     & Tlak přepočtený na hladinu moře & Pa & Doplňkové (meteo).\\
+    \midrule
+    \multirow{1}{*}{Světelný komfort} & --- & --- & V API/CSV exportech se nevyskytují veličiny vizuálního komfortu (např. osvětlenost).\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+- srovnání funkcionalit a přístupů jendotlivých aplikací (tabulka)
+
+- srovnávací tabulka formátů API jednotlivých aplikací a OFN (tabulka)
+  v archivu dat je json, txt, csv, zip 
+
+- srovnávací tabulka sdílených dat pomocí API jednotlivých aplikací (tabulka)
+
+- srovávací tabulka dat sdílených pomocí dumpů jednotlivých aplikací (tabulka)
+
+- srovnávací tabulka funkcionalit webových rozhraní jednotlivých aplikací (tabulka)
+
+- porovnání podporovných zařízení (Siemenes, atd.) a protokolů (MQTT, LoRaWAN, HTTP, atd.) jednotlivých aplikací (tabulka)
+
+- influx db
+%tag-zarizeni
