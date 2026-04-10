@@ -574,14 +574,15 @@ V druhé části jsou jednotlivé aplikace mezi sebou srovnány z pohledu funkci
 \subsubsection{Aplikace sensor.community}
 
 \[DRAFT\]
+\[DODELAT CITACE\]
 
-První aplikací je německá aplikace \textit{sensor.community} ze Stuttgartu. Aplikace je založena na komunitě dobrovolníků, kteří instalují senzory pro měření různých veličin a sdílejí je ve veřejné databázi. 
+První aplikací je německá aplikace \textit{sensor.community} ze Stuttgartu. Aplikace je založena na komunitě dobrovolníků, kteří instalují senzory pro měření různých veličin a sdílejí je ve veřejné databázi. \parencite{SensorCommunityBuildYour}
 
-Zaměření aplikace je především na měření kvality vnějšího prostředá, ale má možnost měřit i prostředí vnější 
+Zaměření aplikace je především na měření kvality vnějšího prostředá, ale má možnost měřit i prostředí vnitřní.  
 
-Sledované veličiny aplikací jsou uvedeny v tabulce č. \ref{tab:sensor-community-veliciny}.
+Ze zledovaných veličin uvedených v tabulce č. \ref{tab:sensor-community-veliciny} je zřejmé, že aplikace se zaměřuje především na sledování kvality vzduchu a to zejména z pohledu mikročástic PM a CO\textsubscript{2}, akustického komfortu a tepelného komfortu. Světelný komfort není v API/CSV exportech zastoupen.
 
-\begin{table}[hp!]
+\begin{table}[htbp!]
   \centering
   \footnotesize
   \setlength{\tabcolsep}{2pt}
@@ -592,7 +593,7 @@ Sledované veličiny aplikací jsou uvedeny v tabulce č. \ref{tab:sensor-commun
     \toprule
     \textbf{Kategorie} & \textbf{Veličina} & \textbf{Jednotka} & \textbf{Poznámka}\\
     \midrule
-    \multirow{11}{*}{IAQ} & PM$_{1.0}$ (hmotnostní koncentrace) & $\mu$g/m$^3$ & ---\\
+    \multirow{12}{*}{IAQ} & PM$_{1.0}$ (hmotnostní koncentrace) & $\mu$g/m$^3$ & ---\\
      & PM$_{2.5}$ (hmotnostní koncentrace) & $\mu$g/m$^3$ & ---\\
      & PM$_{4.0}$ (hmotnostní koncentrace) & $\mu$g/m$^3$ & Pouze některé senzory (např. SPS30, SEN5x).\\
      & PM$_{10}$ (hmotnostní koncentrace) & $\mu$g/m$^3$ & ---\\
@@ -603,6 +604,7 @@ Sledované veličiny aplikací jsou uvedeny v tabulce č. \ref{tab:sensor-commun
      & Početní koncentrace částic $\geq$ 10\,$\mu$m & cm$^{-3}$ & \\
      & Typická velikost částic & $\mu$m & Nestandardní pro IEQ.\\
      & CO$_2$ (koncentrace) & ppm & ---\\
+     & NO$_2$ (měsíční průměr) & $\mu$g/m$^3$ & Z webového rozhraní\\
     \midrule
     \multirow{5}{*}{Akustický komfort} & LAeq (A-vážená ekvivalentní hladina) & dB(A) & ---\\
      & Minimální hladina (A) & dB(A) & ---\\
@@ -618,16 +620,120 @@ Sledované veličiny aplikací jsou uvedeny v tabulce č. \ref{tab:sensor-commun
     \multirow{1}{*}{Světelný komfort} & --- & --- & V API/CSV exportech se nevyskytují veličiny vizuálního komfortu (např. osvětlenost).\\
     \bottomrule
   \end{tabular}
+  \footnotesize \textit{Zdroj:} \parencite{Index, APIs}
+\end{table}
+
+V rámci funkcionalit webového rozhraní aplikace nabízí zobrazení dat na světové mapě. Uživatelé mohou zobrazení výsledků filtrovat podle (viz č. 2 na obrázku č. \ref{obr02:sensor-community-filter}):
+\begin{itemize}
+  \item sledované veličiny; a to:
+    \begin{itemize}
+      \item NO$_{2}$,
+      \item sensory na referenčních stanicích,
+      \item rel. vlhokost,
+      \item teplota,
+      \item tlak,
+      \item hluk,
+      \item AQI US\footnote{\textit{Přeloženo z angličtiny pomocí DeepL: Index kvality ovzduší (AQI) se používá k informování o denní kvalitě ovzduší. Uvádí, jak čistý nebo znečištěný je vzduch ve vašem okolí a jaké související zdravotní dopady by pro vás mohly být důvodem k obavám. AQI se zaměřuje na zdravotní dopady, které se u vás mohou projevit během několika hodin nebo dnů po vdechnutí znečištěného vzduchu. EPA vypočítává AQI pro pět hlavních látek znečišťujících ovzduší, které jsou regulovány zákonem o čistém ovzduší: přízemní ozon, znečištění částicemi (známé také jako částicová hmota), oxid uhelnatý, oxid siřičitý a oxid dusičitý. Pro každou z těchto látek stanovila EPA národní normy kvality ovzduší s cílem chránit veřejné zdraví. Přízemní ozon a částice v ovzduší jsou dvě látky, které představují největší hrozbu pro lidské zdraví v této zemi.} \parencite{usdepartmentofcommerceAirQualityIndex}},
+      \item PM$_{2.5}$,
+      \item PM$_{10}$,
+    \end{itemize}
+  \item místní laboratoře,
+  \item větrné vrstvy,
+  \item Sensor2School,
+  \item vnitřních senzorů.
+\end{itemize}
+
+Na rozhraní můžeme také vidět barevnou škálu pro právě vybranou veličinu (viz č. 1 na obrázeku č. \ref{obr02:sensor-community-filter}). Po vybrání veličiny je možné vybrat jeden či více zobrazovaných senzorů a získat tak konkrétní naměřenou hodnotu (viz obrázke č. \ref{obr03:sensor-community-sensor-reading}). 
+
+\begin{figure}[htbp!]\centering
+\caption{Filtry a barevná škála pro zobrazení dat na mapě v aplikaci \textit{sensor.community}}
+\label{obr02:sensor-community-filter}
+\includegraphics[width=.90\textwidth]{img/sensor-community-filtry}
+
+\footnotesize \textit{Poznámka: 1 - barevná škála, 2 - filtry pro zobrazení dat na mapě.}
+
+\footnotesize \textit{Zdroj:} Pořízeno autorem z webového rozhraní aplikace. 
+\end{figure}
+
+\begin{figure}[htbp!]\centering
+\caption{Konkrétní senzor na mapě a jeho hodnota na webu \textit{sensor.community}}
+\label{obr03:sensor-community-sensor-reading}
+\includegraphics[width=.90\textwidth]{img/sensor-community-mapa-body}
+
+\footnotesize \textit{Poznámka: 1 - konkrétní hodnota změřená vybraným senzorem, 2 - Klikatelný senzor na mapě. }
+
+\footnotesize \textit{Zdroj:} Pořízeno autorem z webového rozhraní aplikace. 
+\end{figure}
+
+
+
+\subsection{Srovnání aplikací}
+\[DRAFT\]
+
+\begin{table}[htbp!]
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{1.1}
+  \caption{Srovnání vybraných aplikací dle technických parametrů}
+  \label{tab04:aplikace-srovnani-technicke}
+  \begin{tabular}{p{2.7cm}p{2.1cm}p{2.48cm}p{2.2cm}p{2.48cm}p{2.48cm}}
+    \toprule
+    \textbf{Aplikace} & \textbf{Komunikač-ní model} & \textbf{Formát archivu} & \textbf{Formát API}  & \textbf{Protokol API} & \textbf{Úložiště (kategorie)}\\
+    \midrule
+    \multirow{1}{*}{Sensor.Community} & Push &  CSV, ZIP & JSON & HTTP/HTTPS & InfluxDB (časové řady)\\
+    \midrule
+    \multirow{1}{*}{OpenAQ} & --- & --- & --- & ---\\
+    \midrule
+    \multirow{1}{*}{OpenSense} & --- & --- & --- & ---\\
+    \midrule
+    \multirow{1}{*}{IndoorCO2Map} & --- & --- & --- & ---\\
+    \bottomrule
+  \end{tabular}
+
+  \footnotesize \textit{Zdroj:} \parencite{Index, APIs}
+\end{table}
+
+\begin{table}[htbp!]
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{1.1}
+  \caption{Srovnání vybraných aplikací dle sbíraných dat}
+  \label{tab05:aplikace-srovnani-data}
+  \begin{tabular}{lm{1.3cm}|cccc}
+    \toprule
+    \multirow{2}{*}{\textbf{Kategorie IEQ}} & \multirow{2}{*}{\textbf{Veličina}} & \multicolumn{4}{c}{\textbf{Aplikace}}  \\
+                               &                     & Sensor.Community & OpenAQ & OpenSense & IndoorCO2Map                 \\
+    \hline
+    \multirow{7}{*}{IAQ}               & PM\textsubscript{2.5}               & \cmark & x & x & x \\
+                                       & PM\textsubscript{10}                & \cmark & x & x & x \\
+                                       & O\textsubscript{3}  & \xmark & x & x & x \\
+                                       & NO\textsubscript{2} & \cmark & x & x & x \\
+                                       & SO\textsubscript{2} & \xmark & x & x & x \\
+                                       & CO                  & \xmark & x & x & x \\
+                                       & CO\textsubscript{2} & \cmark & x & x & x \\
+                                       & TVOC                & \xmark & x & x & x \\
+    \hline
+    \multirow{3}{*}{Tepelný komfort}   & $T$ & \cmark & x & x & x \\
+                                       & RH & \cmark & x & x & x \\
+                                       & $v$ & \xmark & x & x & x \\
+    \hline
+    \multirow{2}{*}{Vizuální komfort}  & $E$ & \xmark & x & x & x \\
+                                       & CCT & \xmark & x & x & x \\
+    \hline
+    \multirow{2}{*}{Akustický komfort} & $L_A$ & \cmark & x & x & x \\
+                                       & $L$ & \xmark & x & x & x \\
+  \bottomrule
+  \end{tabular}
+
+  \footnotesize \textit{Zdroj:} \parencite{Index, APIs}
 \end{table}
 
 - srovnání funkcionalit a přístupů jendotlivých aplikací (tabulka)
 
 - srovnávací tabulka formátů API jednotlivých aplikací a OFN (tabulka)
   v archivu dat je json, txt, csv, zip 
-
-- srovnávací tabulka sdílených dat pomocí API jednotlivých aplikací (tabulka)
-
-- srovávací tabulka dat sdílených pomocí dumpů jednotlivých aplikací (tabulka)
 
 - srovnávací tabulka funkcionalit webových rozhraní jednotlivých aplikací (tabulka)
 
