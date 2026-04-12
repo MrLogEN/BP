@@ -665,7 +665,94 @@ Na rozhraní můžeme také vidět barevnou škálu pro právě vybranou veliči
 \footnotesize \textit{Zdroj:} Pořízeno autorem z webového rozhraní aplikace. 
 \end{figure}
 
+%tag-sensor-community-supported-sensors
+\begin{table}[htbp!]
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{1.1}
+  \caption{Podporovné senzory sensor.community a jejich měřené veličiny}
+  \label{tab04:sensor-community-supported-sensors}
+  \begin{tabular}{*{1}{l}@{\hspace{12pt}}*{8}{c}@{\hspace{12pt}}*{3}{c}@{\hspace{12pt}}*{2}{c}@{\hspace{12pt}}*{2}{c}}
+    \toprule
+    \multirow{3}{*}{\textbf{Senzor}} & \multicolumn{15}{c}{\textbf{Kategorie IEQ}} \\
+                                     & \multicolumn{8}{c}{\textbf{IAQ}} & \multicolumn{3}{c}{\textbf{TK}} & \multicolumn{2}{c}{\textbf{SK}} & \multicolumn{2}{c}{\textbf{AK}} \\
+                                     & PM\textsubscript{2.5} & PM\textsubscript{10} & O\textsubscript{3} & NO\textsubscript{2} & SO\textsubscript{2} & CO & CO\textsubscript{2} & TVOC & $T$ & RH & $v$ & $E$ & CCT & $L_A$ & $L$ \\
+                                     \hline
+BME280 &  &  &  &  &  &  &  &  & \cmark & \cmark &  &  &  &  &  \\ % T, RH, P
+\hline
+BMP180 &  &  &  &  &  &  &  &  & \cmark &  &  &  &  &  &  \\ % T, P
+\hline
+BMP280 &  &  &  &  &  &  &  &  & \cmark &  &  &  &  &  &  \\ % T, P
+\hline
+DHT22 &  &  &  &  &  &  &  &  & \cmark & \cmark &  &  &  &  &  \\ % T, RH
+\hline
+DS18B20 & & & & & & & & & \cmark & & & & & &  \\ % T
+\hline
+DS18S20 & & & & & & & & & \cmark & & & & & & \\ % T
+\hline
+GPS-NEO-6M & & & & & & & & & & & & & & & \\ % GPS
+\hline
+HM3301 & \cmark & \cmark & & & & & & & & & & & & & \\ % PM1.0, PM2.5, PM10
+\hline
+HPM & \cmark & \cmark & & & & & & & & & & & & & \\ % PM2.5, PM10 output (standard); PM1.0, PM2.5, PM4.0
+\hline
+HTU21D & & & & & & & & & \cmark & \cmark & & & & & \\ % T, RH
+\hline
+IPS-7100 & \cmark & \cmark & & & & & & & & & & & & & \\ %PM (all)
+\hline
+DNMS (Laerm) & & & & & & & & & & & & & & \cmark & \\ % Noise
+\hline
+NextPM & \cmark & \cmark & & & & & & & & & & & & & \\ % PM2.5, PM10
+\hline
+NO2-A43F & & & & \cmark & & & & & & & & & & & \\ %NO2
+\hline
+PMS1003 & \cmark & & & & & & & & & & & & & & \\ %PM2.5, mozna PM10
+\hline
+PMS3003 & \cmark & & & & & & & & & & & & & & \\ %PM2.5
+\hline
+PMS5003 & \cmark & \cmark & & & & & & & & & & & & & \\ % PM1.0 PM2.5, PM10
+\hline
+PMS6003 & \cmark & & & & & & & & & & & & & & \\ %PM2.5
+\hline
+PMS7003 & \cmark & & & & & & & & & & & & & & \\ %PM2.5
+\hline
+PPD42NS & \cmark & & & & & & & & & & & & & & \\ %PM2.5, dust
+\hline
+Radiation SBM-19 & & & & & & & & & & & & & & & \\ %radiation
+\hline
+Radiation SBM-20 & & & & & & & & & & & & & & & \\ %radiation
+\hline
+Radiation Si22G & & & & & & & & & & & & & & & \\ %radiation
+\hline
+SCD30 & & & & & & & \cmark & & \cmark & \cmark & & & & & \\
+\hline
+SDS011 & \cmark & \cmark & & & & & & & & & & & & & \\
+\hline
+SDS021 & \cmark & \cmark & & & & & & & & & & & & & \\
+\hline
+SEN5x & \cmark & \cmark & & \cmark & & & & \cmark & \cmark & \cmark & & & & & \\
+\hline
+SHT10 & & & & & & & & & \cmark & \cmark & & & & & \\
+\hline
+SHT11 & & & & & & & & & \cmark & \cmark & & & & & \\
+\hline
+SHT15 & & & & & & & & & \cmark & \cmark & & & & & \\
+\hline
+SHT30 & & & & & & & & & \cmark & \cmark & & & & & \\
+\hline
+SHT31 & & & & & & & & & \cmark & \cmark & & & & & \\
+\hline
+SHT35 & & & & & & & & & \cmark & \cmark & & & & & \\
+\hline
+SHT85 & & & & & & & & & \cmark & \cmark & & & & & \\
+\hline
+SPS30 & \cmark & \cmark & & & & & & & & & & & & & \\
+    \bottomrule
+  \end{tabular}
 
+  \footnotesize \textit{Zdroj:} \parencite{APISensorCommunity, SensorCommunityDevices}
+\end{table}
 
 \subsection{Srovnání aplikací}
 \[DRAFT\]
@@ -676,7 +763,7 @@ Na rozhraní můžeme také vidět barevnou škálu pro právě vybranou veliči
   \setlength{\tabcolsep}{2pt}
   \renewcommand{\arraystretch}{1.1}
   \caption{Srovnání vybraných aplikací dle technických parametrů}
-  \label{tab04:aplikace-srovnani-technicke}
+  \label{tab05:aplikace-srovnani-technicke}
   \begin{tabular}{p{2.7cm}p{2.1cm}p{2.48cm}p{2.2cm}p{2.48cm}p{2.48cm}}
     \toprule
     \textbf{Aplikace} & \textbf{Komunikač-ní model} & \textbf{Formát archivu} & \textbf{Formát API}  & \textbf{Protokol API} & \textbf{Úložiště (kategorie)}\\
@@ -700,7 +787,7 @@ Na rozhraní můžeme také vidět barevnou škálu pro právě vybranou veliči
   \setlength{\tabcolsep}{2pt}
   \renewcommand{\arraystretch}{1.1}
   \caption{Srovnání vybraných aplikací dle sbíraných dat}
-  \label{tab05:aplikace-srovnani-data}
+  \label{tab06:aplikace-srovnani-data}
   \begin{tabular}{lm{1.3cm}|cccc}
     \toprule
     \multirow{2}{*}{\textbf{Kategorie IEQ}} & \multirow{2}{*}{\textbf{Veličina}} & \multicolumn{4}{c}{\textbf{Aplikace}}  \\
@@ -739,5 +826,4 @@ Na rozhraní můžeme také vidět barevnou škálu pro právě vybranou veliči
 
 - porovnání podporovných zařízení (Siemenes, atd.) a protokolů (MQTT, LoRaWAN, HTTP, atd.) jednotlivých aplikací (tabulka)
 
-- influx db
 %tag-zarizeni
