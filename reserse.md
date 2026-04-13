@@ -1,1 +1,0 @@
-# Postup hledani zdroju
