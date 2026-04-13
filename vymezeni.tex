@@ -282,6 +282,7 @@ V tabulce \ref{tab:iaqlimity_cr_eu_who} jsou uvedeny limitní a doporučené hod
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
 \caption{Srovnání limitních a doporučených hodnot pro vybrané látky vnějšího ovzduší (ČR/EU/WHO)}\label{tab:iaqlimity_cr_eu_who}
+\begin{threeparttable}
 \begin{tabularx}{\textwidth}{@{}
 >{\raggedright\arraybackslash}p{0.10\textwidth}
   >{\raggedright\arraybackslash}p{0.16\textwidth}
@@ -313,16 +314,19 @@ PM\textsubscript{2.5} & 1 rok ($\mu\text{g}\,m^{-3}$) & 20 & 25 & 5 & EU: 25 (20
 
 O\textsubscript{3} & max. denní 8 h ($\mu\text{g}\,m^{-3}$) & 120 & 120 & 100 & ČR/EU: $\leq$25 dní/rok, 3letý průměr; WHO: Tab. 0.1 \\
 O\textsubscript{3} & peak season ($\mu\text{g}\,m^{-3}$) & — & — & 60 & WHO: Tab. 0.1 (peak season) \\
-O\textsubscript{3} & AOT40\footnotemark\allowbreak{} ($\mu\text{g}\,m^{-3}\cdot$h) & 18000 & 18000 & — & Ochrana vegetace; 5letý průměr \\
+O\textsubscript{3} & AOT40\hypertarget{tm:iaqlimity-a}{\hyperlink{tn:iaqlimity-a}{\tnote{a}}}\allowbreak{} ($\mu\text{g}\,m^{-3}\cdot$h) & 18000 & 18000 & — & Ochrana vegetace; 5letý průměr \\
 
 \bottomrule
 \end{tabularx}
+\begin{tablenotes}[flushleft]
+  \footnotesize
+  \item[a] \hypertarget{tn:iaqlimity-a}{} \textit{Pro účely tohoto zákona AOT40 znamená součet rozdílů mezi hodinovou koncentrací větší než 80 µg.m\textsuperscript{-3} (= 40 ppb) a hodnotou 80 µg.m\textsuperscript{-3} v dané periodě užitím pouze hodinových hodnot změřených každý den mezi 08:00 a 20:00 SEČ, vypočtený z hodinových hodnot v letním období (1. května - 31. července).} \parencite[příl.~1, pozn.~5]{wolterskluwerZakon20120122012}
+\end{tablenotes}
+\end{threeparttable}
 \end{center}
 
 \footnotesize 
 \end{table}
-
-\footnotetext{\textit{Pro účely tohoto zákona AOT40 znamená součet rozdílů mezi hodinovou koncentrací větší než 80 µg.m\textsuperscript{-3} (= 40 ppb) a hodnotou 80 µg.m\textsuperscript{-3} v dané periodě užitím pouze hodinových hodnot změřených každý den mezi 08:00 a 20:00 SEČ, vypočtený z hodinových hodnot v letním období (1. května - 31. července).} \parencite[příl.~1, pozn.~5]{wolterskluwerZakon20120122012}}
 
 V tabulce \ref{tab:indoor_limity_cr} jsou uvedeny limitní hodnoty chemických, fyzikálních a biologických ukazatelů pro vnitřní prostředí pobytových místností dle vyhlášky č.~43/2025~Sb.
 
@@ -387,6 +391,7 @@ V tabulce \ref{tab:komfort_akust} jsou uvedeny limitní hodnoty akustického kom
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
 \caption{Srovnání limitních hodnot pro vybrané parametry akustického komfortu (ČR/EU/WHO)}\label{tab:komfort_akust}
+\begin{threeparttable}
 \begin{tabularx}{\textwidth}{@{}
 >{\raggedright\arraybackslash}p{0.23\textwidth}
   >{\raggedright\arraybackslash}p{0.15\textwidth}
@@ -395,10 +400,10 @@ V tabulce \ref{tab:komfort_akust} jsou uvedeny limitní hodnoty akustického kom
   >{\raggedright\arraybackslash}p{0.10\textwidth}
   X@{}}
 \toprule
-\textbf{Parametr} & \textbf{Doba (jedn.)} & \textbf{ČR} & \textbf{EU}\footnotemark & \textbf{WHO} & \textbf{Pozn.} \\
+\textbf{Parametr} & \textbf{Doba (jedn.)} & \textbf{ČR} & \textbf{EU}\hypertarget{tm:komfort-a}{\hyperlink{tn:komfort-a}{\tnote{a}}} & \textbf{WHO} & \textbf{Pozn.} \\
 \midrule
 
-$LA_{eq,8h}$\footnotemark (pracoviště, expoziční limit) & 8 h (dB) & 85 & — & — &
+$LA_{eq,8h}$\hypertarget{tm:komfort-b}{\hyperlink{tn:komfort-b}{\tnote{b}}} (pracoviště, expoziční limit) & 8 h (dB) & 85 & — & — &
 Přípustný expoziční limit \parencite{info@wolterskluwer.czNarizeni2722011}. \\
 
 $LA_{eq,8h}$ (pozornost / soustředění / tvůrčí práce) & 8 h (dB) & 50 & — & — &
@@ -427,12 +432,16 @@ $LA_{eq,T}$ (letecký provoz, venkovní) & 16 h / 8 h (dB) & 60 / 50 & — & —
 
 \bottomrule
 \end{tabularx}
+\begin{tablenotes}[flushleft]
+  \footnotesize
+  \item[a] \hypertarget{tn:komfort-a}{} \textit{Poznámka k EU (proč tu nejsou hodnoty):} Směrnice \parencite{SmerniceEvropskehoParlamentu2002} nestanovuje jednotné číselné hygienické limity (ty si určují členské státy). Zavádí ale společné ukazatele hluku: $L_{den}$ (\textit{day-evening-night level}) je vážená průměrná hladina za 24 h, kde se večerní část penalizuje +5 dB a noční část +10 dB; $L_{night}$ (\textit{night level}) je průměrná hladina za noční období používaná hlavně pro hodnocení rušení spánku. Zdroj: \parencite{info@wolterskluwer.czNarizeni2722011}.
+  \item[b] \hypertarget{tn:komfort-b}{} Index „A“ v označení $L_A$ znamená, že jde o hladinu akustického tlaku měřenou s frekvenční váhovou charakteristikou A (A-vážená hladina); např. $LA_{eq,T}$ je A-vážená ekvivalentní hladina akustického tlaku za dobu $T$. \parencite{info@wolterskluwer.czNarizeni2722011}
+\end{tablenotes}
+\end{threeparttable}
 \end{center}
 
 \footnotesize 
 \end{table}
-\footnotetext{\textit{Poznámka k EU (proč tu nejsou hodnoty):} Směrnice \parencite{SmerniceEvropskehoParlamentu2002} nestanovuje jednotné číselné hygienické limity (ty si určují členské státy). Zavádí ale společné ukazatele hluku: $L_{den}$ (\textit{day-evening-night level}) je vážená průměrná hladina za 24 h, kde se večerní část penalizuje +5 dB a noční část +10 dB; $L_{night}$ (\textit{night level}) je průměrná hladina za noční období používaná hlavně pro hodnocení rušení spánku. Zdroj: \parencite{info@wolterskluwer.czNarizeni2722011}.}
-\footnotetext{Index „A“ v označení $L_A$ znamená, že jde o hladinu akustického tlaku měřenou s frekvenční váhovou charakteristikou A (A-vážená hladina); např. $LA_{eq,T}$ je A-vážená ekvivalentní hladina akustického tlaku za dobu $T$. \parencite{info@wolterskluwer.czNarizeni2722011}}
 
 V tabulce \ref{tab:komfort_vizual} jsou uvedeny limitní hodnoty vizuálního komfortu převzané převším z české legislativy (Zákon č.~283/2021~Sb. a Nařízení vlády č.~361/2007~Sb.). Ty jsou rozděleny podle typu prostoru a doby používání, přičemž jsou uvedeny i korekce pro různé situace (den/noc, typ činnosti).
 
@@ -497,6 +506,7 @@ Poslední z běžných licencí rodiny CC licencí je Crative Commons Attributio
 \renewcommand{\arraystretch}{1.05}
 \scriptsize
 \caption{Orientační srovnání vybraných licencí Creative Commons a Open Data Commons}\label{tab:prehled-licenci}
+\begin{threeparttable}
 \begin{tabularx}{\textwidth}{@{}
 >{\raggedright\arraybackslash}p{0.20\textwidth}
   >{\raggedright\arraybackslash}p{0.22\textwidth}
@@ -507,14 +517,18 @@ Poslední z běžných licencí rodiny CC licencí je Crative Commons Attributio
 \midrule
 Public Domain & CC0 1.0 & PDDL 1.0 & Nejpermisivnější varianta licencí. \\
 Attribution & CC BY 4.0 & ODC-By 1.0 & Požadavek na uvedení autora/zdroje. \\
-Attribution Share-alike & CC BY-SA 4.0 & ODbL 1.0 & Attribution s Copyleft\footnotemark přístupem.  \\
+Attribution Share-alike & CC BY-SA 4.0 & ODbL 1.0 & Attribution s Copyleft\hypertarget{tm:licence-a}{\hyperlink{tn:licence-a}{\tnote{a}}} přístupem.  \\
 \bottomrule
 \end{tabularx}
+\begin{tablenotes}[flushleft]
+  \footnotesize
+  \item[a] \hypertarget{tn:licence-a}{} Copyleft je druh licence, která umožňuje uživatelům svobodně používat, upravovat, kopírovat, sdílet a redistribuovat dílo, ale s podmínkou, že všechny odvozené práce musí být také licencovány pod stejnout licencí. \parencite{Copyleft2026}
+\end{tablenotes}
+\end{threeparttable}
 \end{center}
 
 \footnotesize 
 \end{table}
-\footnotetext{Copyleft je druh licence, která umožňuje uživatelům svobodně používat, upravovat, kopírovat, sdílet a redistribuovat dílo, ale s podmínkou, že všechny odvozené práce musí být také licencovány pod stejnout licencí. \parencite{Copyleft2026}}
 Je nutné poznamenta, že výš uvedené příklady jsou jen zlomkem z mnoha licencí, která dělají otevřená data opravdu otevřenými. Existují i další upravené licence, které mohou stavět na CC nebo ODC licencích, ale mohou exitovat i zcela jiné.
 
 \subsection{Dokumenty a dynamická data}
@@ -673,7 +687,7 @@ Na rozhraní můžeme také vidět barevnou škálu pro právě vybranou veliči
   \renewcommand{\arraystretch}{1.1}
   \caption{Podporovné senzory sensor.community a jejich měřené veličiny}
   \label{tab04:sensor-community-supported-sensors}
-  \begin{tabular}{*{1}{l}@{\hspace{12pt}}*{8}{c}@{\hspace{12pt}}*{3}{c}@{\hspace{12pt}}*{2}{c}@{\hspace{12pt}}*{2}{c}}
+  \begin{longtable}{*{1}{l}@{\hspace{12pt}}*{8}{c}@{\hspace{12pt}}*{3}{c}@{\hspace{12pt}}*{2}{c}@{\hspace{12pt}}*{2}{c}}
     \toprule
     \multirow{3}{*}{\textbf{Senzor}} & \multicolumn{15}{c}{\textbf{Kategorie IEQ}} \\
                                      & \multicolumn{8}{c}{\textbf{IAQ}} & \multicolumn{3}{c}{\textbf{TK}} & \multicolumn{2}{c}{\textbf{SK}} & \multicolumn{2}{c}{\textbf{AK}} \\
@@ -749,7 +763,7 @@ SHT85 & & & & & & & & & \cmark & \cmark & & & & & \\
 \hline
 SPS30 & \cmark & \cmark & & & & & & & & & & & & & \\
     \bottomrule
-  \end{tabular}
+  \end{longtable}
 
   \footnotesize \textit{Zdroj:} \parencite{APISensorCommunity, SensorCommunityDevices}
 \end{table}
