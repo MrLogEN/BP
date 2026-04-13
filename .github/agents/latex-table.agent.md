@@ -25,6 +25,7 @@ Komunikuj česky.
 
 - **Vždy** používej plovoucí prostředí `\begin{table}[htbp!]...\end{table}`.
 - Pro jednoduché tabulky používej `tabular`, pro širší tabulky s automatickým zalamováním `tabularx` (balíčky jsou načteny v `makra.tex`).
+- Pro tabulky s poznámkami pod tabulkou používej `threeparttable` + `tablenotes` + `\tnote{...}` (balíček je načten v `makra.tex`).
 - Preferuj `booktabs` linky: `\toprule`, `\midrule`, `\bottomrule`.
 - **Nepoužívej** `\hline` — vždy používej `booktabs` linky.
 - Vyhýbej se svislým čarám a „mřížkám".
@@ -89,13 +90,56 @@ Zdroj: \parencite{...}.
 \end{table}
 ```
 
-## 4) Popisek/label
+## 4) Varianta pro tabulku s poznámkami (threeparttable + tablenotes)
+
+Toto je preferovaný způsob pro poznámky, které se mají přesouvat spolu s tabulkou:
+
+```latex
+\begin{table}[htbp!]
+
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\scriptsize
+\caption{Ukázková tabulka s poznámkami}\label{tab:ukazka-poznamky}
+\begin{threeparttable}
+\begin{tabularx}{\textwidth}{@{}
+  >{\raggedright\arraybackslash}p{0.30\textwidth}
+  >{\raggedright\arraybackslash}p{0.20\textwidth}
+  X@{}}
+\toprule
+\textbf{Parametr} & \textbf{Hodnota} & \textbf{Pozn.}\\
+\midrule
+AOT40\hypertarget{tm:ukazka-a}{\hyperlink{tn:ukazka-a}{\tnote{a}}}
+  & 18\,000 & Ochrana vegetace\\
+Limit EU\hypertarget{tm:ukazka-b}{\hyperlink{tn:ukazka-b}{\tnote{b}}}
+  & 40 & Ilustrační hodnota\\
+\bottomrule
+\end{tabularx}
+\begin{tablenotes}[flushleft]
+  \footnotesize
+  \item[a] \hypertarget{tn:ukazka-a}{} Text poznámky k AOT40.
+  \item[b] \hypertarget{tn:ukazka-b}{} Text poznámky k limitu EU.
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+
+\footnotesize \textit{Zdroj:} \parencite{...}.
+\end{table}
+```
+
+Poznámky k tomuto vzoru:
+- `\tnote` dává písmenové značky (`a`, `b`, ...), oddělené od číslování běžných `\footnote`.
+- `\hypertarget`/`\hyperlink` jsou volitelné, ale doporučené pro klikací přechod ze značky v tabulce na text poznámky.
+- V `\item[a]` už znovu **nevypisuj** `\tnote{a}` (jinak se značka zobrazí duplicitně).
+
+## 5) Popisek/label
 
 - `\label` vždy ve tvaru `tab:<smysluplny-nazev>`.
 - `\caption` piš věcně a konzistentně (v češtině).
 - `\caption` je **vždy nad** tabulkou (před `\begin{tabular}` nebo `\begin{tabularx}`).
 
-## 5) Jednotky, matematika a typografie (konzistence s `vymezeni.tex`)
+## 6) Jednotky, matematika a typografie (konzistence s `vymezeni.tex`)
 
 - Jednotky sázej podobně jako ve `vymezeni.tex` (bez `siunitx`, pokud není explicitně požadováno):
   - např. `($\mu\text{g}\,m^{-3}$)`, `($\text{mg}\,m^{-3}$)`
@@ -104,19 +148,11 @@ Zdroj: \parencite{...}.
 
 ---
 
-# Tabulkové poznámky (\tfnmark / \tfntext) — volitelné
+# Tabulkové poznámky (aktuální pravidlo projektu)
 
-V projektu existují makra v `makra.tex` + obsah poznámek v `notes/tablenotes.tex`:
-
-- Mark v tabulce: `...\tfnmark{<klic>}...`
-- Text poznámky pod tabulkou: `\tfntext{<klic>}` (umísti hned za `\end{center}`)
-- Obsah poznámky musí existovat jako `\tabfnnotecontent{<klic>}{...}` v `notes/tablenotes.tex`.
-
-Pokud uživatel chce novou tabulkovou poznámku, ale klíč/obsah neexistuje, musíš si vyžádat:
-- nový klíč
-- přesný text poznámky
-
-**Alternativa (preferovaná pro nové tabulky):** Použij přímo `\footnotesize \textit{Poznámka:}` pod tabulkou dle vzoru školy.
+- Nepoužívej historický aparát `\tfnmark/\tfntext`.
+- Pro nové i upravované tabulky s poznámkami používej `threeparttable` + `tablenotes`.
+- U tabulek bez potřeby písmenových poznámek použij prosté `\footnotesize \textit{Poznámka:}` pod tabulkou.
 
 ---
 
