@@ -51,6 +51,17 @@
 \usepackage{tabularx}       % vhodné pro tabulky s delšími texty / suitable for tables with longer texts
 \usepackage{longtable}      % vhodné pro vícestránkové tabulky / suitable for multi-page tables
 \usepackage{threeparttable} % tabulky s poznámkami přímo pod tabulkou / table notes below table
+
+
+% Source - https://tex.stackexchange.com/a/2442
+% Posted by frabjous, modified by community. See post 'Timeline' for change history
+% Retrieved 2026-04-14, License - CC BY-SA 3.0
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
 \usepackage{dirtree}        % vykreslování adresářových stromů / rendering directory trees
 \makeatletter
 \@ifpackageloaded{xcolor}{
