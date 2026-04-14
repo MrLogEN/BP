@@ -782,11 +782,59 @@ SPS30 & \cmark & \cmark & & & & & & & & & & & & & \\
 
 \[DRAFT\]
 
-\subsubsection{OpenSense}
+Druhou aplikací je americká aplikace \textit{OpenAQ} z New Yorku. Tato aplikace se, jak je uvedeno v dokumentaci API, zaměřuje především na měření kvality vnějšiho ovzduší. Podporovné veličiny jsou uvedeny v tabulce č. \ref{tab:open-aq-veliciny} \parencite{API}. Z té je zřejmé, že aplikace vůbec nemyslí na měření veličin akustického či světelného komfortu. 
+
+Data v aplikaci OpenAQ jsou poskytována dvěma způsoby. 
+Prvním z nich je přístup přes REST API, který umožňuje získat data ve formátu JSON. Tento přistup je vhodné pro programatické zpracování dat. Pro používání API jsou dostupné sady vývojových nástrojů (SDK) pro skriptovací jazyky Python a R. \parencite{API}  
+
+Druhým způsobem je pravidelný archiv dat, který je dostupný na platformě AWS v S3 bucketu. Data jsou zde sdílena měsíčně ve formátu komprimovaných CSV souborů pomocí gzip. \parencite{zotero-item-552}
+
+\begin{table}[!tbp]
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{1.1}
+  \caption{Sledované veličiny aplikací OpenAQ}
+  \label{tab:open-aq-veliciny}
+  \begin{tabular}{lllL{4cm}}
+    \toprule
+    \textbf{Kategorie} & \textbf{Veličina} & \textbf{Jednotka} & \textbf{Poznámka}\\
+    \midrule
+    \multirow{14}{*}{IAQ} 
+                       & PM$_{1.0}$ & $\mu$g/m$^3$, cm$^{-3}$ & ---\\
+                       & PM$_{2.5}$ & $\mu$g/m$^3$, ppm, cm$^{-3}$ & ---\\
+     & PM$_{4.0}$ & $\mu$g/m$^3$ & ---\\
+     & PM$_{10}$ & $\mu$g/m$^3$, cm$^{-3}$ & ---\\
+     & CO & $\mu$g/m$^3$, ppm, ppb & ---\\
+     & CO$_2$ & ppm & ---\\
+     & NO & $\mu$g/m$^3$, ppm, ppb & ---\\
+     & NO$_2$ & $\mu$g/m$^3$, ppm, ppb & ---\\
+     & NO$_x$ & $\mu$g/m$^3$, ppm, ppb & ---\\
+     & SO$_2$ & $\mu$g/m$^3$, ppm, ppb & ---\\
+     & O$_3$ & $\mu$g/m$^3$, ppm, ppb & ---\\
+     & BC & $\mu$g/m$^3$, ng/m$^3$ & Black Carbon (BC) - částice uhlíku menší než PM$_{2.5}$.\\ 
+     & CH$_4$ & ppm & Metan. \\ 
+     & UFP & cm$^{-3}$ & Ultra Fine Particles (UFP), někdy označována jako PM$_{0.1}$ jsou částice o velikostech v řádu desítek nanometrů.\\ 
+     & P & hPa, mb & ---\\
+    \midrule
+    \multirow{1}{*}{Akustický komfort} & --- & --- & ---\\
+    \midrule
+    \multirow{2}{*}{Tepelný komfort} & $T$ & $^\circ$C, $^\circ$F & ---\\
+     & RH & \% & ---\\
+     & $v$ & m/s & ---\\
+    \midrule
+    \multirow{1}{*}{Světelný komfort} & --- & --- & --- \\
+    \bottomrule
+  \end{tabular}
+
+  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{API, zotero-item-549, UltrajemneCastice2025, CernyUhlik2025}. 
+\end{table}
+
+\subsubsection{Aplikace OpenSense}
 
 \[DRAFT\]
 
-\subsubsection{IndoorCO2Map}
+\subsubsection{Aplikace IndoorCO2Map}
 
 \[DRAFT\]
 
@@ -803,21 +851,23 @@ V této části jsou jednotlivé aplikace srovnány z pohledu sbíraných dat a 
   \renewcommand{\arraystretch}{1.1}
   \caption{Srovnání vybraných aplikací dle technických parametrů}
   \label{tab05:aplikace-srovnani-technicke}
-  \begin{tabular}{p{2.7cm}p{2.1cm}p{2.48cm}p{2.2cm}p{2.48cm}p{2.48cm}}
+    \begin{tabular}{p{2.6cm}p{3.3cm}p{2.5cm}p{2.25cm}p{2.6cm}}
     \toprule
-    \textbf{Aplikace} & \textbf{Komunikač-ní model} & \textbf{Formát archivu} & \textbf{Formát API}  & \textbf{Protokol API} & \textbf{Úložiště (kategorie)}\\
+     & \textbf{Sensor.Community} & \textbf{OpenAQ} & \textbf{OpenSense} & \textbf{IndoorCO2Map}\\
     \midrule
-    \multirow{1}{*}{Sensor.Community} & Push &  CSV, ZIP & JSON & HTTP/HTTPS & InfluxDB (časové řady)\\
+      \textbf{Komunikační model} & Push & TODO & --- & ---\\
     \midrule
-    \multirow{1}{*}{OpenAQ} & --- & --- & --- & ---\\
+      \textbf{Formát archivu} & CSV, ZIP & CSV, GZIP & --- & ---\\
     \midrule
-    \multirow{1}{*}{OpenSense} & --- & --- & --- & ---\\
+      \textbf{Formát API} & application/json & application/json& --- & ---\\
     \midrule
-    \multirow{1}{*}{IndoorCO2Map} & --- & --- & --- & ---\\
+      \textbf{Protokol API} & HTTP/HTTPS & HTTP/HTTPS & --- & ---\\
+    \midrule
+      \textbf{Úložiště} & InfluxDB & PostgreSQL, Amazon S3 & --- & ---\\
     \bottomrule
   \end{tabular}
 
-  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{Index, APIs}
+  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{Index, APIs, API, zotero-item-552, OpenaqOpenaqapiv22026}
 \end{table}
 
 \begin{table}[!tbp]
@@ -832,24 +882,24 @@ V této části jsou jednotlivé aplikace srovnány z pohledu sbíraných dat a 
     \multirow{2}{*}{\textbf{Kategorie IEQ}} & \multirow{2}{*}{\textbf{Veličina}} & \multicolumn{4}{c}{\textbf{Aplikace}}  \\
                                &                     & Sensor.Community & OpenAQ & OpenSense & IndoorCO2Map                 \\
     \hline
-    \multirow{7}{*}{IAQ}               & PM\textsubscript{2.5}               & \cmark & x & x & x \\
-                                       & PM\textsubscript{10}                & \cmark & x & x & x \\
-                                         & O\textsubscript{3}  & & x & x & x \\
-                                       & NO\textsubscript{2} & \cmark & x & x & x \\
-                                       & SO\textsubscript{2} & & x & x & x \\
-                                       & CO                  & & x & x & x \\
-                                       & CO\textsubscript{2} & \cmark & x & x & x \\
-                                       & TVOC                & & x & x & x \\
+    \multirow{7}{*}{IAQ}               & PM\textsubscript{2.5}               & \cmark & \cmark & x & x \\
+                                       & PM\textsubscript{10}                & \cmark & \cmark & x & x \\
+                                         & O\textsubscript{3}  & & \cmark & x & x \\
+                                       & NO\textsubscript{2} & \cmark & \cmark & x & x \\
+                                       & SO\textsubscript{2} & & \cmark & x & x \\
+                                       & CO                  & & \cmark & x & x \\
+                                       & CO\textsubscript{2} & \cmark & \cmark & x & x \\
+                                       & TVOC                & & & x & x \\
     \hline
-    \multirow{3}{*}{Tepelný komfort}   & $T$ & \cmark & x & x & x \\
-                                       & RH & \cmark & x & x & x \\
-                                       & $v$ &  & x & x & x \\
+    \multirow{3}{*}{Tepelný komfort}   & $T$ & \cmark & \cmark & x & x \\
+                                       & RH & \cmark & \cmark & x & x \\
+                                       & $v$ & & & x & x \\
     \hline
-    \multirow{2}{*}{Vizuální komfort}  & $E$ & & x & x & x \\
-                                       & CCT & & x & x & x \\
+    \multirow{2}{*}{Vizuální komfort}  & $E$ & & & x & x \\
+                                       & CCT & & & x & x \\
     \hline
-    \multirow{2}{*}{Akustický komfort} & $L_A$ & \cmark & x & x & x \\
-                                       & $L$ & & x & x & x \\
+    \multirow{2}{*}{Akustický komfort} & $L_A$ & \cmark & & x & x \\
+                                       & $L$ & & & x & x \\
   \bottomrule
   \end{tabular}
 
