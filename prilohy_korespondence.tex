@@ -1,0 +1,76 @@
+\chapter{E-mailová korespondence s DIA k publikaci otevřených dat}
+\label{app:korespondence-dia}
+
+Tato příloha obsahuje přepis e-mailové korespondence mezi autorem práce a týmem Otevřených dat Digitální a informační agentury (DIA), na kterou je odkazováno v kapitole \textit{Metody}.
+
+{
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\textwidth}{@{}L{3.3cm}X@{}}
+\toprule
+\textbf{Položka} & \textbf{Hodnota} \\
+\midrule
+Odesílatel odpovědi & Otevřená data DIA (\texttt{otevrenadata@dia.gov.cz}), odpověď podepsána Jiřím Kaňou \\
+Příjemce odpovědi & Vilém Charwot (\texttt{chav07@vse.cz}) \\
+Datum odpovědi & 2. 4. 2026, 08:52 UTC \\
+Předmět & Re: Dotaz -- publikace otevřených dat soukromým subjektem (bakalářská práce) \\
+Účel & Ověření možností registrace soukromého subjektu do NKOD a doporučení pro využití OFN \\
+\bottomrule
+\end{tabularx}
+}
+
+\section*{Redakční poznámka}
+Přepis je připraven z originálního souboru \texttt{.eml}. Pro čitelnost byly vynechány technické transportní hlavičky (SMTP/ARC), CID odkazy na obrázky v podpisu a standardní právní disclaimer. Věcný obsah dotazu i odpovědi zůstal zachován.
+
+\section*{Přepis odpovědi DIA}
+\begin{quote}
+Vážený pane Charwote,
+
+zdravím Vás za tým otevřených dat a s dovolením odpovídám místo kolegy, abychom Vás nenechali dlouho čekat.
+
+Národní katalog otevřených dat je v současné době primárně legislativně i technicky nastaven pro povinné subjekty z řad veřejné správy dle zákona č. 106/1999 Sb. Registrace do NKOD vyžaduje identifikaci subjektu v Registru práv a povinností. Pro soukromou osobu nebo neziskový projekt je tedy přímá registrace do NKOD momentálně administrativně i technicky nerealizovatelná.
+
+Pokud by Vaše aplikace využívala konkrétní datové sady publikované v NKOD, budeme velmi rádi, když ji pak zaregistrujete jako příklad dobré praxe: \url{https://data.gov.cz/aplikace}. Ostatně, že studentské projekty mají velký potenciál, potvrzuje i aplikace Sankcio, která se stala vítěznou aplikací letošního ročníku studentské soutěže HackujStát. Možná to pro Vás bude zajímavá inspirace: \url{https://data.gov.cz/detail-aplikace?iri=https%3A%2F%2Fdata.gov.cz%2Fzdroj%2Fregistrovan%C3%A9-aplikace%2F56}.
+
+Ohledně využití OFN je zde odpověď jednoznačná. Třebaže pro Vás není dodržování povinné, jejich využívání má určitě smysl. OFN nejsou jen „dobrou radou“, ale nástrojem k zajištění interoperability. Pokud Vaše data budou odpovídat OFN, bude pro kohokoliv (včetně AI modelů a analytických nástrojů) velmi snadné je propojit s daty z jiných zdrojů (např. s daty o venkovním ovzduší od ČHMÚ).
+
+Co se týče senzorických dat, na portálech některých velkých měst najdete dashboardy, které se kvalitě vnitřního prostředí věnují. Inspirovat se můžete např. z portálu hl. m. Prahy \url{https://data.praha.eu/dashboardy/energetika-budovy-praha} (byť zrovna data o spotřebě energie otevřená nejsou). Zkuste se případně obrátit na Operátora ICT, který portál provozuje a pro Prahu sběr a zpracování dat zajišťuje.
+
+A na závěr pár doporučení, aby Vaše data byla skutečně „otevřená“:
+\begin{enumerate}
+\item Vyhýbejte se proprietárním formátům (XLSX). Data publikujte v JSON-LD (preferováno pro propojená data) nebo v klasickém CSV, vždy s řádným schématem.
+\item Explicitně uvádějte licenci užití, např. Creative Commons BY 4.0 dle návodu na \url{https://data.gov.cz/pro-poskytovatele/otev%C5%99en%C3%A1-data/stanoven%C3%AD-podm%C3%ADnek-u%C5%BEit%C3%AD/}.
+\item Více se dozvíte na Portálu o datech v rychlém přehledu \url{https://data.gov.cz/otev%C5%99en%C3%A1-data-snadno-a-rychle} nebo v detailnějších návodech \url{https://data.gov.cz/pro-poskytovatele/otev%C5%99en%C3%A1-data/}.
+\end{enumerate}
+
+Přeji Vám mnoho úspěchů při psaní bakalářské práce a vývoji aplikace. Pokud budete mít další dotazy, neváhejte se na nás obrátit.
+
+S pozdravem
+
+Jiří Kaňa\\
+Oddělení evidence a sdílení dat\\
+Sekce hlavního architekta eGovernmentu\\
+Digitální a informační agentura
+\end{quote}
+
+\section*{Přepis původního dotazu autora}
+\begin{quote}
+Dobrý den pane Kubáni,
+
+jsem studentem Fakulty informatiky a statistiky na Vysoké škole ekonomické v Praze a píši bakalářskou práci na téma \textit{Aplikace pro monitorování kvality vnitřního prostředí} se zaměřením na otevřená data.
+
+Cílem práce je navrhnout aplikaci, která by umožňovala dobrovolníkům pomocí senzorů sbírat a veřejně sdílet data o kvalitě vnitřního prostředí budov (kvalita ovzduší, tepelný komfort, vizuální a akustický komfort). Věřím, že taková data mohou být přínosná jak pro širokou veřejnost, tak pro soukromé subjekty.
+
+Při studiu zákona č. 106/1999 Sb. o svobodném přístupu k informacím jsem zjistil, že se vztahuje pouze na povinné subjekty (veřejný sektor). Jako soukromý subjekt tedy nemám povinnost data publikovat, ale rád bych se řídil osvědčenými postupy. V této souvislosti mám dva dotazy:
+\begin{enumerate}
+\item Je možné, aby se soukromý subjekt dobrovolně registroval do Národního katalogu otevřených dat (NKOD)? Pokud ano, má to v praxi smysl, nebo je NKOD určen výhradně pro veřejný sektor?
+\item Do jaké míry byste doporučil řídit se otevřenými formálními normami (OFN) při publikaci dat soukromým subjektem? Existuje nějaký doporučený minimální rozsah, nebo je vhodné OFN brát spíše jako inspiraci pro dobrou praxi?
+\end{enumerate}
+
+Předem děkuji za Váš čas a odpověď. Pokud nejste správnou kontaktní osobou, budu vděčný za případné přesměrování.
+
+S pozdravem\\
+Vilém Charwot\\
+FIS VŠE v Praze
+\end{quote}
