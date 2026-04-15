@@ -123,7 +123,7 @@ Miri Air (Miri Africa) & \cmark & \cmark & & & & & \cmark & & \cmark & \cmark & 
   \footnotesize \textit{Poznámka:} Seznam instrumentů OpenAQ obsahuje 27 položek. V tabulce jsou uvedeny jednotlivé instrumenty (bez slučování do rodin). Položky \textit{N/A} a \textit{Unknown AirGradient Sensor} nejsou uvedeny, protože nejde o konkrétní dohledatelná zařízení. Veličiny Black Carbon (např. \textit{MA350}, \textit{ABCD}) nejsou vyznačeny, protože nejsou samostatným sloupcem v použité IEQ matici.
 }
 
-Webové rozhraní aplikace je pro zobrazování dat na světové mapě podobné jako u aplikace Sensor.Community. Uživatelské rozrhraní je pro zobrazování dat přístupné bez předchozí regitrace. Uživatelé mohou zobrazení výsledků filtrovat podle: 
+Webové rozhraní aplikace je pro zobrazování dat na světové mapě podobné jako u aplikace Sensor.Community (viz obrázek č. \ref{obr4:openaq-map}). Uživatelské rozrhraní je pro zobrazování dat přístupné bez předchozí regitrace. Uživatelé mohou zobrazení výsledků filtrovat podle: 
 \begin{itemize}
   \item sledované znečisťující látky; a to:
     \begin{itemize}
@@ -145,5 +145,74 @@ Webové rozhraní aplikace je pro zobrazování dat na světové mapě podobné 
   \item a dle poskytovatele dat (171 poskytovatelů v době zpracování této části).
 \end{itemize}
 
-Tyto filtry jsou zobrazeny na obrázku č. 
+Tyto filtry jsou zobrazeny na obrázku č. \ref{obr05:openaq-map-filters}. Po kliknutí na konkrétní senzor se zobrazí stručné informace o daném senzoru (viz obrázek č. \ref{obr06:openaq-map-sensor}). Po kliknutí na odkaz pro zobrazení detailů senzoru se zobrazí detailní charakteristika senzoru (viz obrázek č. \ref{obr07:openaq-sensor-detail-characteristics}), naměřené hodnoty konkrétního senzoru (viz obrázek č. \ref{obr08:openaq-sensor-detail-reading}), vzory v naměřených hodnotách konkrétního senzoru (viz obrázek č. \ref{obr09:openaq-sensor-detail-pattern}) a možnost stáhnout CSV export dat za vybrané období pro konkrétní senzor (viz obrázek č. \ref{obr10:openaq-sensor-detail-download}).
+
+\begin{figure}[htbp!]\centering
+\caption{Mapa s daty o kvalitě ovzduší na webovém rozhraní aplikace OpenAQ}
+\label{obr04:openaq-map}
+\includegraphics[width=.90\textwidth]{img/openaq-map}
+
+\footnotesize \textit{ }
+
+\footnotesize \textit{Zdroj:} Snímek obrazovky pořízen autorem z webového rozhraní aplikace\parencite{OpenAQExplorer}.
+\end{figure}
+
+
+\begin{figure}[htbp!]\centering
+\caption{Filtry pro zobrazení dat na mapě v aplikaci OpenAQ}
+\label{obr05:openaq-map-filters}
+\includegraphics[width=.90\textwidth]{img/openaq-map-filters}
+
+\footnotesize \textit{Zdroj: Vlastní zpracování na základě snímků obrazovky z webového rozhraní aplikace \parencite{OpenAQExplorer}.}  
+
+\footnotesize \textit{Poznámka: 1 - filtr pro zobrazení dat dle partnerských projektů, 2 - filtr pro zobrazení dat dle poskytovatele dat. }
+\end{figure}
+
+\begin{figure}[htbp!]\centering
+\caption{Senzor zobrazený na mapě v aplikaci OpenAQ}
+\label{obr06:openaq-map-sensor}
+\includegraphics[width=.90\textwidth]{img/openaq-map-sensor}
+
+\footnotesize \textit{Zdroj: Vlastní zpracování na základě snímků obrazovky z webového rozhraní aplikace \parencite{OpenAQExplorer}.}  
+
+\footnotesize \textit{Poznámka:} 1 - konkrétní senzor zobrazený na mapě, 2 - stručné informace o daném senzoru (senzor z poznámky 1).
+\end{figure}
+
+\begin{figure}[htbp!]\centering
+\caption{Detailní charakteristika senzoru v aplikaci OpenAQ}
+\label{obr07:openaq-sensor-detail-characteristics}
+\includegraphics[width=.90\textwidth]{img/openaq-sensor-detail-characteristics}
+
+\footnotesize \textit{Zdroj: Vlastní zpracování na základě snímků obrazovky z webového rozhraní aplikace \parencite{OpenAQExplorer}.}  
+
+\end{figure}
+
+\begin{figure}[htbp!]\centering
+\caption{Naměřené hodnoty konkrétního senzory v aplikaci OpenAQ}
+\label{obr08:openaq-sensor-detail-reading}
+\includegraphics[width=.90\textwidth]{img/openaq-sensor-detail-reading}
+
+\footnotesize \textit{Zdroj: Vlastní zpracování na základě snímků obrazovky z webového rozhraní aplikace \parencite{OpenAQExplorer}.}  
+
+\end{figure}
+
+\begin{figure}[htbp!]\centering
+\caption{Graf zobrazující vzory v naměřených hodnotách konkrétního senzoru aplikace OpenAQ}
+\label{obr09:openaq-sensor-detail-pattern}
+\includegraphics[width=.90\textwidth]{img/openaq-sensor-detail-pattern}
+
+\footnotesize \textit{Zdroj: Vlastní zpracování na základě snímků obrazovky z webového rozhraní aplikace \parencite{OpenAQExplorer}.}  
+\footnotesize \textit{Poznámka: Graf zobrazuje vzory v naměřených hodnotách senzorem za vybrané období (roky).}
+
+\end{figure}
+
+\begin{figure}[htbp!]\centering
+\caption{Stahování CSV exportu konkrétního senzoru v aplikaci OpenAQ}
+\label{obr10:openaq-sensor-detail-download}
+\includegraphics[width=.90\textwidth]{img/openaq-sensor-detail-download}
+
+\footnotesize \textit{Zdroj: Vlastní zpracování na základě snímků obrazovky z webového rozhraní aplikace \parencite{OpenAQExplorer}.}  
+
+\footnotesize \textit{Poznámka:} Je možné stáhnout CSV export dat za vybrané období (max 30 dní/1000 záznamů) pro konkrétní senzor. Export je možné omezit pouze na některé veličiny. Pro export je nutné být přihlášen po předchozí registraci.
+\end{figure}
 
