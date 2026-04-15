@@ -1,0 +1,77 @@
+\subsection{Srovnání aplikací}
+
+\[DRAFT\]
+V této části jsou jednotlivé aplikace srovnány z pohledu sbíraných dat a z pohledu technického řešení.
+
+\begin{table}[!tbp]
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{1.1}
+  \caption{Srovnání vybraných aplikací dle technických parametrů}
+  \label{tab05:aplikace-srovnani-technicke}
+    \begin{tabular}{p{2.6cm}p{3.3cm}p{2.5cm}p{2.25cm}p{2.6cm}}
+    \toprule
+     & \textbf{Sensor.Community} & \textbf{OpenAQ} & \textbf{OpenSense} & \textbf{IndoorCO2Map}\\
+    \midrule
+      \textbf{Komunikační model} & Push & TODO & --- & ---\\
+    \midrule
+      \textbf{Formát archivu} & CSV, ZIP & CSV, GZIP & --- & ---\\
+    \midrule
+      \textbf{Formát API} & application/json & application/json& --- & ---\\
+    \midrule
+      \textbf{Protokol API} & HTTP/HTTPS & HTTP/HTTPS & --- & ---\\
+    \midrule
+      \textbf{Úložiště} & InfluxDB & PostgreSQL, Amazon S3 & --- & ---\\
+    \bottomrule
+  \end{tabular}
+
+  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{Index, APIs, API, zotero-item-552, OpenaqOpenaqapiv22026}
+\end{table}
+
+\begin{table}[!tbp]
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{1.1}
+  \caption{Srovnání vybraných aplikací dle sbíraných dat}
+  \label{tab06:aplikace-srovnani-data}
+  \begin{tabular}{{l}@{\hspace{12pt}}{l}@{\hspace{14pt}}cccc}
+    \toprule
+    \multirow{2}{*}{\textbf{Kategorie IEQ}} & \multirow{2}{*}{\textbf{Veličina}} & \multicolumn{4}{c}{\textbf{Aplikace}}  \\
+                               &                     & Sensor.Community & OpenAQ & OpenSense & IndoorCO2Map                 \\
+    \hline
+    \multirow{7}{*}{IAQ}               & PM\textsubscript{2.5}               & \cmark & \cmark & x & x \\
+                                       & PM\textsubscript{10}                & \cmark & \cmark & x & x \\
+                                         & O\textsubscript{3}  & & \cmark & x & x \\
+                                       & NO\textsubscript{2} & \cmark & \cmark & x & x \\
+                                       & SO\textsubscript{2} & & \cmark & x & x \\
+                                       & CO                  & & \cmark & x & x \\
+                                       & CO\textsubscript{2} & \cmark & \cmark & x & x \\
+                                       & TVOC                & & & x & x \\
+    \hline
+    \multirow{3}{*}{Tepelný komfort}   & $T$ & \cmark & \cmark & x & x \\
+                                       & RH & \cmark & \cmark & x & x \\
+                                       & $v$ & & & x & x \\
+    \hline
+    \multirow{2}{*}{Vizuální komfort}  & $E$ & & & x & x \\
+                                       & CCT & & & x & x \\
+    \hline
+    \multirow{2}{*}{Akustický komfort} & $L_A$ & \cmark & & x & x \\
+                                       & $L$ & & & x & x \\
+  \bottomrule
+  \end{tabular}
+
+  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{Index, APIs}
+\end{table}
+
+- srovnání funkcionalit a přístupů jendotlivých aplikací (tabulka)
+
+- srovnávací tabulka formátů API jednotlivých aplikací a OFN (tabulka)
+  v archivu dat je json, txt, csv, zip 
+
+- srovnávací tabulka funkcionalit webových rozhraní jednotlivých aplikací (tabulka)
+
+- porovnání podporovných zařízení (Siemenes, atd.) a protokolů (MQTT, LoRaWAN, HTTP, atd.) jednotlivých aplikací (tabulka)
+
+

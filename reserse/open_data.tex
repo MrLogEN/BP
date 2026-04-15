@@ -1,0 +1,76 @@
+\section{Open data}
+
+Otevřená data (Open Data) jsou data, která jsou volně dostupná pro použití, opětovné použití a redistribuci kýmkoli a bez omezení autorskými právy. \parencite{CoJsouOtevrena2022} Ve směrnici Evropského parlamentu a Rady (EU) 2019/1024 ze dne 20. června 2019 o otevřených datech a opakovaném použití informací veřejného sektoru (přepracované znění) jsou otevřená data popsána jako: \textit{Otevřená data jako koncept jsou obecně chápána jako označení dat v otevřených formátech, jež může kdokoli volně používat, opakovaně používat a sdílet pro jakékoli účely.} \parencite[důvod č.~16]{SmerniceEvropskehoParlamentu2019}
+ 
+\subsection{Otevřené licence}
+% licence
+Ze směrnice vyplývá, že otevřená data musí být poskytována pod standadní licencí, tedy licencí, která umožňuje volné a opětovné používání dat. \parencite[důvod č.~44]{SmerniceEvropskehoParlamentu2019} Příkladem takové licence je například rodina licencí Creative Commons (CC).
+
+Nejpermisivnější licencí z CC rodiny je licence Creative Commons Zero (CCO), která umožňuje uživatelům volně používat data bez jekýchkoli omezení. \parencite{DeedCC010}
+
+Další takovou licencí je Creative Commons Attribution (CC-BY 4.0), která má velmi podobné podmínky jako CCO, ale vyžaduje označení původního autora dat. \parencite{DeedAttribution40}
+
+Poslední z běžných licencí rodiny CC licencí je Crative Commons Attribution-ShareAlike (CC-BY-SA 4.0), která přidává povinnost sdílet díla odvozená z původních dat pod stejnou licencí. \parencite{DeedAttributionShareAlike40} Existují další druhy licencí, které jsou velmi podobné CC licencí, ale jsou přizpůsobené pro databáze (DB). Databázové otevřené licence jsou například licence od Open Data Commons. Jednoduché srovnání licencí CC a ODC je možné vidět v tabulce \ref{tab:prehled-licenci}. \parencite{ReusersGuideOpen2013,CCLicenses}
+
+\begin{table}[!tbp]
+
+\begin{center}
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.05}
+\scriptsize
+\caption{Orientační srovnání vybraných licencí Creative Commons a Open Data Commons}\label{tab:prehled-licenci}
+\begin{threeparttable}
+\begin{tabularx}{\textwidth}{@{}
+>{\raggedright\arraybackslash}p{0.20\textwidth}
+  >{\raggedright\arraybackslash}p{0.22\textwidth}
+  >{\raggedright\arraybackslash}p{0.22\textwidth}
+  X@{}}
+\toprule
+\textbf{Typ} & \textbf{CC} & \textbf{ODC} & \textbf{Poznámky} \\
+\midrule
+Public Domain & CC0 1.0 & PDDL 1.0 & Nejpermisivnější varianta licencí. \\
+Attribution & CC BY 4.0 & ODC-By 1.0 & Požadavek na uvedení autora/zdroje. \\
+Attribution Share-alike & CC BY-SA 4.0 & ODbL 1.0 & Attribution s Copyleft\hypertarget{tm:licence-a}{\hyperlink{tn:licence-a}{\tnote{a}}} přístupem.  \\
+\bottomrule
+\end{tabularx}
+
+\footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{ReusersGuideOpen2013,CCLicenses}
+
+\begin{tablenotes}[flushleft]
+  \footnotesize
+  \item[a] \hypertarget{tn:licence-a}{} Copyleft je druh licence, která umožňuje uživatelům svobodně používat, upravovat, kopírovat, sdílet a redistribuovat dílo, ale s podmínkou, že všechny odvozené práce musí být také licencovány pod stejnout licencí. \parencite{Copyleft2026}
+\end{tablenotes}
+\end{threeparttable}
+\end{center}
+
+\end{table}
+Je nutné poznamenta, že výš uvedené příklady jsou jen zlomkem z mnoha licencí, která dělají otevřená data opravdu otevřenými. Existují i další upravené licence, které mohou stavět na CC nebo ODC licencích, ale mohou exitovat i zcela jiné.
+
+\subsection{Dokumenty a dynamická data}
+
+V kontextu otevřených dat se ve směrnici EU uvádí definice slova \textit{dokument}, kterým je myšlen jakýkoliv obsah na jakémkoliv nosiči či jeho části \parencite[čl. 2 odst. 6]{SmerniceEvropskehoParlamentu2019}. 
+
+Speciálním případem takového dokumentu jsou tzv. \textit{dynamická data}. Dynamická data jsou data v digitální formě, která jsou průběžně aktualizována a jsou tedy velmi proměnlivá. Typicky pod dynamická data spadají senzorická data, která jsou stěžejní pro tuto práci. \parencite[čl. 2 odst. 8]{SmerniceEvropskehoParlamentu2019}
+
+\subsection{Formát dat}
+Data musí být poskytována strojově čitelným formátem, tedy formátem, který softwaru umožní jednoduše s daty pracovat. \parencite[čl. 2 odst. 13]{SmerniceEvropskehoParlamentu2019}
+Jelikož formát je používán v kontextu otevřených dat, která jsou volně přístupná, i tento formát, ve kterém jsou dat poskytována, by měl být volně dostypný a otevřený. \parencite[čl. 2 odst. 14]{SmerniceEvropskehoParlamentu2019} Neexistuje přesný výčet otevřených formátů, které by se měly používat, ale obecně se doporučuje používat formáty, které jsou široco podporovány a jsou pro reprezentaci konkrétních dat vhodné.
+
+\subsection{Otevřené formální normy}
+% co se rozumí otevřenou formální normou
+Otevřená formální norma je zveřejňována na webu ofn.gov.cz a udává pravidla pro tvorbu a používání otevřených formátů. Tyto normy jsou pro povinné subjekty závazné. \parencite{OtevreneFormalniNormy}
+
+Český zákon udává podmínku zveřejnění dat v Národním katalogu otevřených dat (NKOD) \parencite[§ 4c odst. 1]{Zakon1061999}. Tato podmínka je nutná pro veřejný sektor, ale zákon na soukromé subjekty či neziskovky nemyslí.
+
+Vzhledem k tomu, že zákon nemyslí na soukromé subjekty, neziskovky apod., autor kontaktoval koordinátora NKOD Michala Kubáně (ten byl koordinátorem NKOD v době psaní této práce) a za něj odpověděl pan Jiří Káňa, z oddělení evidence a sdílení dat sekce hlavního architekta egovernmentu, který se k relevanci NKOD pro účel této práce vyjádřil následovně: \textit{Národní katalog otevřených dat je v současné době primárně legislativně i technicky nastaven pro povinné subjekty z řad veřejné správy dle zákona č. 106/1999 Sb. Registrace do NKOD vyžaduje identifikaci subjektu v Registru práv a povinností. Pro soukromou osobu nebo neziskový projekt je tedy přímá registrace do NKOD momentálně administrativně i technicky nerealizovatelná.} (osobní komunikace, 2. dubna 2026)
+
+K otázce relevance OFN se pan Káňa vyjádřil následovně: \textit{ Ohledně využití OFN je zde odpověď jednoznačná. Třebaže pro Vás není dodržování povinné, jejich využívání má určitě smysl. OFN nejsou jen "dobrou radou", ale nástrojem k zajištění interoperability. Pokud Vaše data budou odpovídat OFN, bude pro kohokoliv (včetně AI modelů a analytických nástrojů) velmi snadné je propojit s daty z jiných zdrojů (např. s daty o venkovním ovzduší od ČHMÚ).}
+
+\subsection{Opakované použití}
+% co se rozumí opakovaném použitím
+Dle směrnice EU data mohou být opakovaně použita pro i pro účely jiné, než pro které byla data původně vytvořena. \parencite[čl. 2 odst. 11]{SmerniceEvropskehoParlamentu2019}
+
+% co se rozumí strojově čitelným formátem
+Pro znovupoužitelnost dat je klíčové uchovávat a publikovat metadata, tj.~standardizovaný popis datasetu a jeho distribucí (např.~licence, poskytovatel, umístění, formát a způsob přístupu). V českém prostředí se struktura a publikace těchto metadat opírá o otevřené formální normy (OFN) a specifikaci DCAT-AP-CZ pro rozhraní katalogů otevřených dat. \parencite{OtevreneFormalniNormy,DCATAPCZRozhraniKatalogu}
+
+
