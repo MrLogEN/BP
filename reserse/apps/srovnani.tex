@@ -9,20 +9,26 @@ V této části jsou jednotlivé aplikace srovnány z pohledu sbíraných dat a 
   \setlength{\tabcolsep}{2pt}
   \renewcommand{\arraystretch}{1.1}
   \caption{Srovnání vybraných aplikací dle technických parametrů}
-  \label{tab05:aplikace-srovnani-technicke}
-    \begin{tabular}{p{2.6cm}p{3.3cm}p{2.5cm}p{2.25cm}p{2.6cm}}
+  \label{tab:aplikace-srovnani-technicke}
+  \begin{tabular}{p{2.8cm}p{3.1cm}p{3.0cm}p{3.0cm}p{2.7cm}}
     \toprule
-     & \textbf{Sensor.Community} & \textbf{OpenAQ} & \textbf{OpenSense} & \textbf{IndoorCO2Map}\\
+     & \textbf{Sensor.Community} & \textbf{OpenAQ} & \textbf{OpenSenseMap} & \textbf{IndoorCO2Map}\\
     \midrule
-      \textbf{Komunikační model} & Push & TODO & --- & ---\\
+      \textbf{Komunikační model} & HTTP Push & Ingest poskytovatelem dat & HTTP Push, TTN (LoRaWAN), MQTT & ---\\
     \midrule
-      \textbf{Formát archivu} & CSV, ZIP & CSV, GZIP & --- & ---\\
+      \textbf{Formát API} & JSON & JSON & JSON, CSV, {GeoJSON} & ---\\
     \midrule
-      \textbf{Formát API} & application/json & application/json& --- & ---\\
+      \textbf{Formát archivu} & CSV (ZIP) & CSV (GZIP) & CSV + JSON metadata & ---\\
     \midrule
-      \textbf{Protokol API} & HTTP/HTTPS & HTTP/HTTPS & --- & ---\\
+      \textbf{Autentizace (čtení)} & Ne & API klíč (registrace) & Ne & ---\\
     \midrule
-      \textbf{Úložiště} & InfluxDB & PostgreSQL, Amazon S3 & --- & ---\\
+      \textbf{Definice veličin} & Pevný výčet & Pevný výčet & Volně definovatelné uživatelem & ---\\
+    \midrule
+      \textbf{Závislost na HW} & Podporované senzory & Nezávislá na HW & Nezávislá (šablony) & ---\\
+    \midrule
+      \textbf{Rozlišení indoor/outdoor} & Ano (filtr) & Ne (primárně outdoor) & Ano (indoor, outdoor, mobile) & ---\\
+    \midrule
+      \textbf{Úložiště} & InfluxDB & PostgreSQL + Amazon S3 & MongoDB + HTTP archiv & ---\\
     \bottomrule
   \end{tabular}
 
@@ -35,11 +41,11 @@ V této části jsou jednotlivé aplikace srovnány z pohledu sbíraných dat a 
   \setlength{\tabcolsep}{2pt}
   \renewcommand{\arraystretch}{1.1}
   \caption{Srovnání vybraných aplikací dle sbíraných dat}
-  \label{tab06:aplikace-srovnani-data}
+  \label{tab:aplikace-srovnani-data}
   \begin{tabular}{{l}@{\hspace{12pt}}{l}@{\hspace{14pt}}cccc}
     \toprule
     \multirow{2}{*}{\textbf{Kategorie IEQ}} & \multirow{2}{*}{\textbf{Veličina}} & \multicolumn{4}{c}{\textbf{Aplikace}}  \\
-                               &                     & Sensor.Community & OpenAQ & OpenSense & IndoorCO2Map                 \\
+                               &                     & Sensor.Community & OpenAQ & OpenSense\textsuperscript{*} & IndoorCO2Map                 \\
     \hline
     \multirow{7}{*}{IAQ}               & PM\textsubscript{2.5}               & \cmark & \cmark & \cmark & x \\
                                        & PM\textsubscript{10}                & \cmark & \cmark & \cmark & x \\
@@ -62,6 +68,7 @@ V této části jsou jednotlivé aplikace srovnány z pohledu sbíraných dat a 
   \bottomrule
   \end{tabular}
 
+  \footnotesize \textsuperscript{*}OpenSenseMap umožňuje uživatelsky definovat senzory, veličiny i jednotky; uvedené veličiny jsou orientační výběr.\\
   \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{Index, APIs}
 \end{table}
 
@@ -73,5 +80,3 @@ V této části jsou jednotlivé aplikace srovnány z pohledu sbíraných dat a 
 - srovnávací tabulka funkcionalit webových rozhraní jednotlivých aplikací (tabulka)
 
 - porovnání podporovných zařízení (Siemenes, atd.) a protokolů (MQTT, LoRaWAN, HTTP, atd.) jednotlivých aplikací (tabulka)
-
-

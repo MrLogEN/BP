@@ -51,7 +51,7 @@ Ze zledovaných veličin uvedených v tabulce č. \ref{tab:sensor-community-veli
   \footnotesize \textit{Zdroj:} \parencite{Index, APIs}
 \end{table}
 
-V rámci funkcionalit webového rozhraní aplikace nabízí zobrazení dat na světové mapě. Uživatelé mohou zobrazení výsledků filtrovat podle (viz č. 2 na obrázku č. \ref{obr02:sensor-community-filter}):
+V rámci funkcionalit webového rozhraní aplikace nabízí zobrazení dat na světové mapě. Uživatelé mohou zobrazení výsledků filtrovat podle (viz č. 2 na obrázku č. \ref{obr:sensor-community-filter}):
 \begin{itemize}
   \item sledované veličiny; a to:
     \begin{itemize}
@@ -71,11 +71,11 @@ V rámci funkcionalit webového rozhraní aplikace nabízí zobrazení dat na sv
   \item vnitřních senzorů.
 \end{itemize}
 
-Na rozhraní můžeme také vidět barevnou škálu pro právě vybranou veličinu (viz č. 1 na obrázku č. \ref{obr02:sensor-community-filter}). Po vybrání veličiny je možné vybrat jeden či více zobrazovaných senzorů a získat tak konkrétní naměřenou hodnotu (viz obrázke č. \ref{obr03:sensor-community-sensor-reading}). 
+Na rozhraní můžeme také vidět barevnou škálu pro právě vybranou veličinu (viz č. 1 na obrázku č. \ref{obr:sensor-community-filter}). Po vybrání veličiny je možné vybrat jeden či více zobrazovaných senzorů a získat tak konkrétní naměřenou hodnotu (viz obrázke č. \ref{obr:sensor-community-sensor-reading}). 
 
 \begin{figure}[htbp!]\centering
 \caption{Filtry a barevná škála pro zobrazení dat na mapě v aplikaci \textit{sensor.community}}
-\label{obr02:sensor-community-filter}
+\label{obr:sensor-community-filter}
 \includegraphics[width=.90\textwidth]{img/sensor-community-filtry}
 
 \footnotesize \textit{Poznámka: 1 - barevná škála, 2 - filtry pro zobrazení dat na mapě.}
@@ -85,7 +85,7 @@ Na rozhraní můžeme také vidět barevnou škálu pro právě vybranou veliči
 
 \begin{figure}[htbp!]\centering
 \caption{Konkrétní senzor na mapě a jeho hodnota na webu \textit{sensor.community}}
-\label{obr03:sensor-community-sensor-reading}
+\label{obr:sensor-community-sensor-reading}
 \includegraphics[width=.90\textwidth]{img/sensor-community-mapa-body}
 
 \footnotesize \textit{Poznámka: 1 - konkrétní hodnota změřená vybraným senzorem, 2 - Klikatelný senzor na mapě. }
@@ -93,7 +93,7 @@ Na rozhraní můžeme také vidět barevnou škálu pro právě vybranou veliči
 \footnotesize \textit{Zdroj:} Pořízeno autorem z webového rozhraní aplikace. 
 \end{figure}
 
-V tabulce č. \ref{tab04:sensor-community-supported-sensors} je uveden přehled podporovaných senzorů aplikací Sensor.Community a veličin, které měří. V tabulce jsou uvedeny pouze veličiny, které jsou relevantní pro IEQ. Je nutné poznamenat, že aplikace v rámci některých senzorů nesbírá veškeré veličiny, které je daný senzor schopen měřit. Například u v rodině senzorů SEN5x existují senzory schopné měřit TVOC, ale v aplikaci, ať už v API, v CSV exportech nebo na webovém rozhraní, se veličina TVOC nevyskytuje. 
+V tabulce č. \ref{tab:sensor-community-supported-sensors} je uveden přehled podporovaných senzorů aplikací Sensor.Community a veličin, které měří. V tabulce jsou uvedeny pouze veličiny, které jsou relevantní pro IEQ. Je nutné poznamenat, že aplikace v rámci některých senzorů nesbírá veškeré veličiny, které je daný senzor schopen měřit. Například u v rodině senzorů SEN5x existují senzory schopné měřit TVOC, ale v aplikaci, ať už v API, v CSV exportech nebo na webovém rozhraní, se veličina TVOC nevyskytuje. 
 
 \clearpage
 {
@@ -102,7 +102,7 @@ V tabulce č. \ref{tab04:sensor-community-supported-sensors} je uveden přehled 
   \renewcommand{\arraystretch}{1.1}
   \begin{longtable}{*{1}{l}@{\hspace{12pt}}*{8}{c}@{\hspace{12pt}}*{3}{c}@{\hspace{12pt}}*{2}{c}@{\hspace{12pt}}*{2}{c}}
     \caption{Podporovné senzory sensor.community a jejich měřené veličiny}
-    \label{tab04:sensor-community-supported-sensors}\\
+    \label{tab:sensor-community-supported-sensors}\\
     \toprule
     \multirow{3}{*}{\textbf{Senzor}} & \multicolumn{15}{c}{\textbf{Kategorie IEQ}} \\
                                      & \multicolumn{8}{c}{\textbf{IAQ}} & \multicolumn{3}{c}{\textbf{TK}} & \multicolumn{2}{c}{\textbf{SK}} & \multicolumn{2}{c}{\textbf{AK}} \\
@@ -185,5 +185,4 @@ SPS30 & \cmark & \cmark & & & & & & & & & & & & & \\
   \footnotesize \textit{Poznámka:} Senzory \textit{Radiation SBM-19}, \textit{Radiation SBM-20} a \textit{Radiation Si22G} jsou určeny pro měření radiace, což autorem nebylo identifikováno jako měřená veličina relevantní pro IEQ. To samé se dá říci i o senzoru \textit{GPS-NEO-6M}, který je modulem GPS a má význam pouze pro lokalizaci senzoru.
 }
 \clearpage
-
 
