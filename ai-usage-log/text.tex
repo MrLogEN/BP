@@ -65,3 +65,30 @@
   {Požadavek nahradit odborný výraz "taxonomii" méně odborným pojmem a doplnit inline reference na obrázky (viz obrázek č. 11, 12, 13) na vhodná místa v textu}
   {Výraz "taxonomii" nahrazen "pevně daným výčtem"; do odstavce o webovém rozhraní doplněny tři reference (\textbackslash ref\{obr11\}, \textbackslash ref\{obr12\}, \textbackslash ref\{obr13\}); oprava duplicitního labelu \texttt{obr12:opensensemap-filters} $\rightarrow$ \texttt{obr13:opensensemap-filters}}
   {Změny přijaty v plném rozsahu}
+
+\logentry
+  {2026-04-16 16:00}
+  {Claude Opus 4.6}
+  {reserse/apps/indoor\_co2\_map.tex}
+  {Generování textu kapitoly o IndoorCO2Map}
+  {Shrnutí indoor-co2-map-summary.md (výsledek výzkumné fáze: 4 podporované BLE senzory, výhradně CO\textsubscript{2}, AWS serverless backend, archiv JSON/ZIP pod CC0), požadavek na strukturu analogickou ostatním kapitolám rešerše, 5 citation keys}
+  {Kompletní text subsekce (76 řádků) pokrývající licencování, sledovanou veličinu CO\textsubscript{2} a GO IAQS skóre, absenci veřejného API, popis archivu dat (struktura záznamu, formát JSON/ZIP), webové rozhraní s filtry, tabulku 4 podporovaných senzorů, princip NDIR a BLE závislost, srovnání přístupu s ostatními aplikacemi, technickou architekturu (Building + Transit režimy)}
+  {Text přijat s drobnou manuální úpravou: URL archivu přesunuta do poznámky pod čarou kvůli přetékání}
+
+\logentry
+  {2026-04-16 16:15}
+  {Claude Sonnet 4.6}
+  {reserse/apps/srovnani.tex}
+  {Doplnění IndoorCO2Map do srovnávacích tabulek}
+  {Požadavek doplnit sloupec IndoorCO2Map do obou tabulek (tab:aplikace-srovnani-technicke a tab:aplikace-srovnani-data) na základě výzkumných zjištění}
+  {Vyplnění 8 řádků v technické tabulce (komunikační model, formát API, formát archivu, autentizace, definice veličin, závislost na HW, rozlišení indoor/outdoor, úložiště); v datové tabulce označení CO\textsubscript{2} jako \textbackslash cmark, ostatní veličiny ponechány prázdné; doplnění citation keys do zdrojových poznámek obou tabulek}
+  {Změny přijaty v plném rozsahu}
+
+\logentry
+  {2026-04-16 19:24}
+  {Claude Opus 4.6}
+  {reserse/apps/indoor\_co2\_map.tex}
+  {Úprava kapitoly: obrázky a senzory}
+  {Požadavek (1) přepsat odstavec o webovém rozhraní tak, aby přirozeně odkazoval na 4 obrázky s využitím jejich popisků, (2) opravit duplicitní label (obr:indoorco2map-filters-histogram), (3) aktualizovat tabulku senzorů tak, aby ukazovala i ostatní veličiny, které senzory měří (ne pouze co aplikace extrahuje)}
+  {(1) Přepsaný odstavec nyní popisuje UI prvky: mapa s body (CO\textsubscript{2} a GO IAQS), detail měření s grafem, panel filtrů s histogramem distribuce CO\textsubscript{2}, navigační menu s analytickými pohledy (statistiky, regiony, export); (2) Opraveno: label u menu obrázku — vrácen chybějící \textbackslash includegraphics; (3) Tabulka senzorů nyní ukazuje, že všechny 4 senzory měří CO\textsubscript{2}, teplotu ($T$) a relativní vlhkost (RH); text pod tabulkou vysvětluje, že aplikace extrahuje a odesílá pouze CO\textsubscript{2}; citace doplněny o zdroje produktových stránek senzorů}
+  {Změny přijaty v plném rozsahu, kompilace bez chyb (69 stran)}

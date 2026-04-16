@@ -14,25 +14,25 @@ V této části jsou jednotlivé aplikace srovnány z pohledu sbíraných dat a 
     \toprule
      & \textbf{Sensor.Community} & \textbf{OpenAQ} & \textbf{OpenSenseMap} & \textbf{IndoorCO2Map}\\
     \midrule
-      \textbf{Komunikační model} & HTTP Push & Ingest poskytovatelem dat & HTTP Push, TTN (LoRaWAN), MQTT & ---\\
+      \textbf{Komunikační model} & HTTP Push & Ingest poskytovatelem dat & HTTP Push, TTN (LoRaWAN), MQTT & HTTPS POST (BLE $\rightarrow$ app $\rightarrow$ AWS)\\
     \midrule
-      \textbf{Formát API} & JSON & JSON & JSON, CSV, {GeoJSON} & ---\\
+      \textbf{Formát API} & JSON & JSON & JSON, CSV, {GeoJSON} & Neposkytuje veřejné čtecí API\\
     \midrule
-      \textbf{Formát archivu} & CSV (ZIP) & CSV (GZIP) & CSV + JSON metadata & ---\\
+      \textbf{Formát archivu} & CSV (ZIP) & CSV (GZIP) & CSV + JSON metadata & JSON (ZIP)\\
     \midrule
-      \textbf{Autentizace (čtení)} & Ne & API klíč (registrace) & Ne & ---\\
+      \textbf{Autentizace (čtení)} & Ne & API klíč (registrace) & Ne & Ne\\
     \midrule
-      \textbf{Definice veličin} & Pevný výčet & Pevný výčet & Volně definovatelné uživatelem & ---\\
+      \textbf{Definice veličin} & Pevný výčet & Pevný výčet & Volně definovatelné uživatelem & Pevný výčet (pouze CO\textsubscript{2})\\
     \midrule
-      \textbf{Závislost na HW} & Podporované senzory & Nezávislá na HW & Nezávislá (šablony) & ---\\
+      \textbf{Závislost na HW} & Podporované senzory & Nezávislá na HW & Nezávislá (šablony) & Podporované senzory (4 modely)\\
     \midrule
-      \textbf{Rozlišení indoor/outdoor} & Ano (filtr) & Ne (primárně outdoor) & Ano (indoor, outdoor, mobile) & ---\\
+      \textbf{Rozlišení indoor/outdoor} & Ano (filtr) & Ne (primárně outdoor) & Ano (indoor, outdoor, mobile) & Výhradně indoor\\
     \midrule
-      \textbf{Úložiště} & InfluxDB & PostgreSQL + Amazon S3 & MongoDB + HTTP archiv & ---\\
+      \textbf{Úložiště} & InfluxDB & PostgreSQL + Amazon S3 & MongoDB + HTTP archiv & AWS serverless\\
     \bottomrule
   \end{tabular}
 
-  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{Index, APIs, API, zotero-item-552, OpenaqOpenaqapiv22026}
+  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{Index, APIs, API, zotero-item-552, OpenaqOpenaqapiv22026, aurelwuAurelWuIndoorCO2MapApp2026, zotero-item-571, IndoorCO2Atlas}
 \end{table}
 
 \begin{table}[!tbp]
@@ -47,29 +47,29 @@ V této části jsou jednotlivé aplikace srovnány z pohledu sbíraných dat a 
     \multirow{2}{*}{\textbf{Kategorie IEQ}} & \multirow{2}{*}{\textbf{Veličina}} & \multicolumn{4}{c}{\textbf{Aplikace}}  \\
                                &                     & Sensor.Community & OpenAQ & OpenSense\textsuperscript{*} & IndoorCO2Map                 \\
     \hline
-    \multirow{7}{*}{IAQ}               & PM\textsubscript{2.5}               & \cmark & \cmark & \cmark & x \\
-                                       & PM\textsubscript{10}                & \cmark & \cmark & \cmark & x \\
-                                         & O\textsubscript{3}  & & \cmark &  & x \\
-                                       & NO\textsubscript{2} & \cmark & \cmark & \cmark & x \\
-                                       & SO\textsubscript{2} & & \cmark & & x \\
-                                       & CO                  & & \cmark & \cmark & x \\
-                                       & CO\textsubscript{2} & \cmark & \cmark & \cmark & x \\
-                                       & TVOC                & & & \cmark & x \\
+    \multirow{7}{*}{IAQ}               & PM\textsubscript{2.5}               & \cmark & \cmark & \cmark &  \\
+                                       & PM\textsubscript{10}                & \cmark & \cmark & \cmark &  \\
+                                         & O\textsubscript{3}  & & \cmark &  &  \\
+                                       & NO\textsubscript{2} & \cmark & \cmark & \cmark &  \\
+                                       & SO\textsubscript{2} & & \cmark & &  \\
+                                       & CO                  & & \cmark & \cmark &  \\
+                                       & CO\textsubscript{2} & \cmark & \cmark & \cmark & \cmark \\
+                                       & TVOC                & & & \cmark &  \\
     \hline
-    \multirow{3}{*}{Tepelný komfort}   & $T$ & \cmark & \cmark & \cmark & x \\
-                                       & RH & \cmark & \cmark & \cmark & x \\
-                                       & $v$ & & & \cmark & x \\
+    \multirow{3}{*}{Tepelný komfort}   & $T$ & \cmark & \cmark & \cmark &  \\
+                                       & RH & \cmark & \cmark & \cmark &  \\
+                                       & $v$ & & & \cmark &  \\
     \hline
-    \multirow{2}{*}{Vizuální komfort}  & $E$ & & & \cmark & x \\
-                                       & CCT & & & & x \\
+    \multirow{2}{*}{Vizuální komfort}  & $E$ & & & \cmark &  \\
+                                       & CCT & & & &  \\
     \hline
-    \multirow{2}{*}{Akustický komfort} & $L_A$ & \cmark & & \cmark & x \\
-                                       & $L$ & & & & x \\
+    \multirow{2}{*}{Akustický komfort} & $L_A$ & \cmark & & \cmark &  \\
+                                       & $L$ & & & &  \\
   \bottomrule
   \end{tabular}
 
   \footnotesize \textsuperscript{*}OpenSenseMap umožňuje uživatelsky definovat senzory, veličiny i jednotky; uvedené veličiny jsou orientační výběr.\\
-  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{Index, APIs}
+  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{Index, APIs, aurelwuAurelWuIndoorCO2MapApp2026}
 \end{table}
 
 - srovnání funkcionalit a přístupů jendotlivých aplikací (tabulka)
