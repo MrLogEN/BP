@@ -2,6 +2,9 @@
 name: suggestions
 description: Guide for providing suggestions for improving text style and clarity in a bachelor's thesis. Use when asked for feedback or suggestions on text.
 ---
+
+> **Tento skill kontroluje styl, srozumitelnost a akademičnost textu.** Pro pravopis a překlepy použij skill `spellcheck`.
+
 ## Workflow
 The steps to provide good suggestions for text style or clarity.
 1. Read the text (files, file, parts of a file) that a suggestion is requested for

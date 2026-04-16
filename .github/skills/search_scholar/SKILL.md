@@ -1,11 +1,13 @@
 ---
 name: search_scholar
-description: Search for academic sources on Google Scholar when no relevant results are found in Zotero. Use only after explicit user confirmation.
+description: "⚠️ DEPRECATED — Používej pouze jako poslední fallback, když Zotero MCP neobsahuje relevantní zdroje a uživatel explicitně souhlasí."
 ---
+
+> **⚠️ DEPRECATED:** Tento skill je fallback pro situace, kdy Zotero neobsahuje relevantní zdroje. Vždy nejdřív prohledej Zotero přes MCP.
 
 ## Purpose
 
-This skill retrieves academic sources from Google Scholar as a fallback when Zotero does not contain relevant materials.
+This skill retrieves academic sources from Google Scholar as a **last-resort fallback**.
 
 ## When to use
 

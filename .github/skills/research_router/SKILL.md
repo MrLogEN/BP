@@ -1,11 +1,13 @@
 ---
 name: research_router
-description: Router and orchestrator for academic research. Use this skill for any queries requiring literature search, academic facts, or source references.
+description: "⚠️ DEPRECATED — Primární cesta je Zotero MCP. Tento skill slouží pouze jako fallback, pokud MCP není dostupný."
 ---
+
+> **⚠️ DEPRECATED:** Pokud jsou dostupné Zotero MCP nástroje (`zotero_semantic_search`, `zotero_search_items`, `zotero_get_item_fulltext`), použij je přímo. Tento skill je fallback pro situace, kdy MCP není dostupný.
 
 ## Purpose
 
-This skill handles the complete academic research workflow:
+This skill handles the academic research workflow as a **fallback** when Zotero MCP is not available.
 - transforms user queries into search queries
 - searches Zotero as the primary source
 - optionally expands to Google Scholar (with permission)

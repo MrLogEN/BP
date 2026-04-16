@@ -8,7 +8,8 @@ The goal of this thesis is to describe Indoor Environment Quality (IEQ), analyze
 Viz sekce "AI Usage Logging" v `.github/copilot-instructions.md` pro pravidla dokumentace použití AI nástrojů.
 
 ## Suggestions
-a skill
+Use the `suggestions` skill for style and clarity improvements. Use `spellcheck` skill for spelling corrections.
+
 ## Spell and style checking
 
 Run only when explicitly requested by the user. Never run proactively.
@@ -40,49 +41,42 @@ Return a numbered list of recommendations. Each item must include:
 
 ## References and text search
 
-### Primary source: Zotero
-The only source of truth is Zotero. Always search Zotero first using the local Better BibTeX JSON-RPC API before answering any thesis-related question.
+### Primary source: Zotero MCP
+The primary and authoritative source of academic materials is Zotero, accessed via **Zotero MCP tools**:
 
-**Step 1 — metadata search (title, abstract, keywords):**
+- `zotero_semantic_search` — sémantické hledání relevantních zdrojů
+- `zotero_search_items` — metadata (titul, autor, rok)
+- `zotero_get_item_fulltext` — plný text pro ověření konkrétních faktů
+- `zotero_get_item_metadata` — detailní metadata položky
+- `zotero_search_by_citation_key` — hledání podle citation key
+- `zotero_get_annotations` — anotace a highlights
+
+**Response format when source found:**
+- Explain the answer based on the retrieved content
+- Cite as: *Název (Autoři, Rok)* — the user generates the BibLaTeX key themselves
+- Provide the URL/DOI if available
+
+**If no relevant result found in Zotero:**
+Ask the user: *"Nenašel jsem odpověď v Zoteru. Chcete hledat na Google Scholar?"*
+
+### Fallback: Local scripts (when MCP is unavailable)
+If Zotero MCP is not available, use the local scripts as fallback:
+
+**Metadata search:**
 ```bash
 curl -s "http://localhost:23119/better-bibtex/json-rpc" \
   -X POST -H "Content-Type: application/json" \
   -d '{"jsonrpc":"2.0","method":"item.search","params":["<query>"],"id":1}'
 ```
 
-**Step 2 — full-text attachment search (always run after metadata search):**
+**Full-text attachment search:**
 ```bash
 python3 tools/search_zotero_attachments.py "<query>" --context 3
 ```
-This searches attachments stored in `~/Zotero/storage/` across common formats (best-effort), e.g. **PDF**, **DOCX**, **HTML snapshots**, and selected plain-text files, returning excerpts with context.
-
-Notes:
-- Better BibTeX JSON-RPC searches metadata only — full-text search is a separate step.
-- The attachment search covers **local files** in `~/Zotero/storage/` (it does not automatically fetch remote URLs). For link-only items, use the URL/DOI from metadata and ask the user before fetching the page content.
-- PDF extraction requires `pdftotext` (poppler-utils). Some binary/uncommon attachment types may not be searchable and will be skipped.
-- For speed, you can restrict formats, e.g. `--extensions pdf,docx,html,txt`.
-- If you only want PDFs, you can still use the legacy script:
-  ```bash
-  python3 tools/search_zotero_pdf.py "<query>" --context 3
-  ```
-
-**Response format when source found:**
-- Explain the answer based on the source content (metadata or attachment excerpt)
-- Cite as: *Název (Autoři, Rok)* — the user generates the BibLaTeX key themselves
-- Provide the URL/DOI if available
-
-**If no relevant result found in Zotero (neither metadata nor PDFs):**
-Ask the user: *"Nenašel jsem odpověď v Zoteru. Chcete hledat na Google Scholar?"*
 
 ### Fallback: Google Scholar
 If the user agrees to search Google Scholar, run:
 ```bash
 python3 tools/search_scholar.py "<query>" [--limit 5]
 ```
-The script returns JSON. Present results as:
-- Název, Autoři, Rok, Venue, Abstrakt (zkrácený), URL
-- Remind the user to verify full-text access via SFX@VSE and add relevant sources to Zotero
-
-**Limitations:**
-- `scholarly` scrapes Google Scholar and may be blocked by CAPTCHA — inform the user if this happens
-- SFX@VSE institutional access cannot be filtered programmatically; user verifies manually
+Remind the user to verify full-text access via SFX@VSE and add relevant sources to Zotero.

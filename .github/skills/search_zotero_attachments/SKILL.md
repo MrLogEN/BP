@@ -1,13 +1,13 @@
 ---
 name: search_zotero
-description: Search for relevant academic sources in the local Zotero library using Better BibTeX metadata search and full-text attachment search. Use for any thesis-related question requiring sources.
+description: "⚠️ DEPRECATED — Primární cesta je Zotero MCP (zotero_semantic_search, zotero_search_items, zotero_get_item_fulltext). Tento skill slouží pouze jako fallback."
 ---
+
+> **⚠️ DEPRECATED:** Pokud jsou dostupné Zotero MCP nástroje, použij je přímo. Tento skill je fallback pro situace, kdy MCP není dostupný.
 
 ## Purpose
 
-This skill retrieves information from the local Zotero library, which is the primary and authoritative source of academic materials.
-
-When this skill is used inside GitHub Copilot CLI and a Zotero MCP server (zotero) is already configured, prefer the MCP tools for metadata and full-text access. If no Zotero MCP server is available, fall back to the local Python script in this repository.
+This skill retrieves information from the local Zotero library as a **fallback** when Zotero MCP is not available.
 
 ## Query Handling
 

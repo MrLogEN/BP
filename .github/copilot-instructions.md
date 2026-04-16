@@ -5,14 +5,31 @@ The goal of this thesis is to describe Indoor Environment Quality (IEQ), analyze
 
 You have access to specialized skills located in the `@skills/` directory. You should act as an orchestrator and use these skills to fulfill user requests instead of running manual scripts or commands yourself.
 
+## Two User Workflows
+
+### Workflow A — Hledání informací (uživatel píše sám)
+When the user wants to **find information** without automated text generation:
+- Use **Zotero MCP tools** directly (`zotero_semantic_search`, `zotero_search_items`, `zotero_get_item_fulltext`) as the **primary source**
+- If Zotero doesn't contain relevant results, ask: *„Nenašel jsem odpověď v Zoteru. Chcete hledat na Google Scholar?"*
+- Only search Scholar with explicit user permission
+- Present findings to the user; they write the text themselves
+
+### Workflow B — Automatizované psaní textu (agent)
+When the user wants AI to **write or rewrite academic text**:
+- Delegate to the **`academic-text` agent** (claude-opus-4.6)
+- The agent handles research, drafting, verification, and finalization autonomously
+- Do NOT use this for simple information lookup
+
 ## Text Improvement & Review
 When asked to review, correct, or improve text:
-- **`spellcheck`:** Use this skill first to identify and correct basic spelling and typographical errors.
-- **`suggestions`:** Use this skill for deeper grammatical, stylistic, and clarity improvements to maintain an academic tone.
+- **`spellcheck`:** Use this skill for spelling errors and typos
+- **`suggestions`:** Use this skill for style, clarity, and academic tone improvements
 
-## Academic Research & Sourcing
-When asked to find information, facts, or sources for the thesis:
-- **`research_router`:** Use this skill exclusively. It acts as an orchestrator that will automatically query the local Zotero library (`search_zotero`) and, if necessary and permitted by the user, expand the search to Google Scholar (`search_scholar`).
+## Research (deprecated skills — fallback only)
+The following skills are **deprecated** and serve as fallback when Zotero MCP is unavailable:
+- `research_router` — orchestrator for search workflow (use Zotero MCP directly instead)
+- `search_zotero` — local Zotero search (use Zotero MCP instead)
+- `search_scholar` — Google Scholar fallback (still usable as last resort with user permission)
 
 ## Research Logging
 When sources are added during research or when asked to document the research process:
