@@ -1,39 +1,6 @@
 \subsection{Srovnání aplikací}
 
-\[DRAFT\]
-V této části jsou jednotlivé aplikace srovnány z pohledu sbíraných dat a z pohledu technického řešení.
-
-\begin{table}[!tbp]
-  \centering
-  \footnotesize
-  \setlength{\tabcolsep}{2pt}
-  \renewcommand{\arraystretch}{1.1}
-  \caption{Srovnání vybraných aplikací dle technických parametrů}
-  \label{tab:aplikace-srovnani-technicke}
-  \begin{tabular}{p{2.8cm}p{3.1cm}p{3.0cm}p{3.0cm}p{2.7cm}}
-    \toprule
-     & \textbf{Sensor.Community} & \textbf{OpenAQ} & \textbf{OpenSenseMap} & \textbf{IndoorCO2Map}\\
-    \midrule
-      \textbf{Komunikační model} & HTTP Push & Ingest poskytovatelem dat & HTTP Push, TTN (LoRaWAN), MQTT & HTTPS POST (BLE $\rightarrow$ app $\rightarrow$ AWS)\\
-    \midrule
-      \textbf{Formát API} & JSON & JSON & JSON, CSV, {GeoJSON} & Neposkytuje veřejné čtecí API\\
-    \midrule
-      \textbf{Formát archivu} & CSV (ZIP) & CSV (GZIP) & CSV + JSON metadata & JSON (ZIP)\\
-    \midrule
-      \textbf{Autentizace (čtení)} & Ne & API klíč (registrace) & Ne & Ne\\
-    \midrule
-      \textbf{Definice veličin} & Pevný výčet & Pevný výčet & Volně definovatelné uživatelem & Pevný výčet (pouze CO\textsubscript{2})\\
-    \midrule
-      \textbf{Závislost na HW} & Podporované senzory & Nezávislá na HW & Nezávislá (šablony) & Podporované senzory (4 modely)\\
-    \midrule
-      \textbf{Rozlišení indoor/outdoor} & Ano (filtr) & Ne (primárně outdoor) & Ano (indoor, outdoor, mobile) & Výhradně indoor\\
-    \midrule
-      \textbf{Úložiště} & InfluxDB & PostgreSQL + Amazon S3 & MongoDB + HTTP archiv & AWS serverless\\
-    \bottomrule
-  \end{tabular}
-
-  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{Index, APIs, API, zotero-item-552, OpenaqOpenaqapiv22026, aurelwuAurelWuIndoorCO2MapApp2026, zotero-item-571, IndoorCO2Atlas}
-\end{table}
+V~předchozích sekcích byly jednotlivé aplikace představeny z~hlediska sbíraných dat, technického řešení, webového rozhraní a~podporovaných zařízení. Tato sekce je navzájem porovnává za účelem identifikace společných vzorů, odlišností a~mezer. Znalost těchto rozdílů je klíčová pro formulaci požadavků na vlastní aplikaci, která je cílem této práce. Srovnání vychází ze dvou souhrnných tabulek --- tabulky~\ref{tab:aplikace-srovnani-data}, která porovnává pokrytí veličin relevantních pro IEQ, a~tabulky~\ref{tab:aplikace-srovnani-technicke}, která shrnuje technické parametry. Kromě těchto tabulek sekce dále porovnává webová rozhraní a~přístupy k~hardwarové podpoře, které jsou popsány v~předchozích sekcích jednotlivých aplikací.
 
 \begin{table}[!tbp]
   \centering
@@ -72,11 +39,90 @@ V této části jsou jednotlivé aplikace srovnány z pohledu sbíraných dat a 
   \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{Index, APIs, aurelwuAurelWuIndoorCO2MapApp2026}
 \end{table}
 
-- srovnání funkcionalit a přístupů jendotlivých aplikací (tabulka)
+\begin{table}[!tbp]
+  \centering
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{1.1}
+  \caption{Srovnání vybraných aplikací dle technických parametrů}
+  \label{tab:aplikace-srovnani-technicke}
+  \begin{tabular}{p{2.8cm}p{3.1cm}p{3.0cm}p{3.0cm}p{2.7cm}}
+    \toprule
+     & \textbf{Sensor.Community} & \textbf{OpenAQ} & \textbf{OpenSenseMap} & \textbf{IndoorCO2Map}\\
+    \midrule
+      \textbf{Komunikační model} & HTTP Push & Ingest poskytovatelem dat & HTTP Push, TTN (LoRaWAN), MQTT & HTTPS POST (BLE $\rightarrow$ app $\rightarrow$ AWS)\\
+    \midrule
+      \textbf{Formát API} & JSON & JSON & JSON, CSV, {GeoJSON} & Neposkytuje veřejné čtecí API\\
+    \midrule
+      \textbf{Formát archivu} & CSV (ZIP) & CSV (GZIP) & CSV + JSON metadata & JSON (ZIP)\\
+    \midrule
+      \textbf{Autentizace (čtení)} & Ne & API klíč (registrace) & Ne & Ne\\
+    \midrule
+      \textbf{Definice veličin} & Pevný výčet & Pevný výčet & Volně definovatelné uživatelem & Pevný výčet (pouze CO\textsubscript{2})\\
+    \midrule
+      \textbf{Závislost na HW} & Podporované senzory & Nezávislá na HW & Nezávislá (šablony) & Podporované senzory (4 modely)\\
+    \midrule
+      \textbf{Rozlišení indoor/outdoor} & Ano (filtr) & Ne (primárně outdoor) & Ano (indoor, outdoor, mobile) & Výhradně indoor\\
+    \midrule
+      \textbf{Úložiště} & InfluxDB & PostgreSQL + Amazon S3 & MongoDB + HTTP archiv & AWS serverless\\
+    \bottomrule
+  \end{tabular}
 
-- srovnávací tabulka formátů API jednotlivých aplikací a OFN (tabulka)
-  v archivu dat je json, txt, csv, zip 
+  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{Index, APIs, API, zotero-item-552, OpenaqOpenaqapiv22026, aurelwuAurelWuIndoorCO2MapApp2026, zotero-item-571, IndoorCO2Atlas}
+\end{table}
 
-- srovnávací tabulka funkcionalit webových rozhraní jednotlivých aplikací (tabulka)
+\subsubsection{Srovnání z~pohledu sbíraných dat}
 
-- porovnání podporovných zařízení (Siemenes, atd.) a protokolů (MQTT, LoRaWAN, HTTP, atd.) jednotlivých aplikací (tabulka)
+Jak ukazuje tabulka~\ref{tab:aplikace-srovnani-data}, všechny analyzované aplikace pokrývají alespoň část kategorie kvality vnitřního ovzduší (IAQ), avšak šíře pokrytí se výrazně liší. Zatímco OpenAQ eviduje osm znečišťujících látek včetně O\textsubscript{3}, SO\textsubscript{2} a~CO, které ostatní aplikace buď nesledují, nebo sledují jen omezeně, Sensor.Community a~openSenseMap se zaměřují především na mikročástice (PM\textsubscript{2,5}, PM\textsubscript{10}) a~CO\textsubscript{2}. IndoorCO2Map představuje opačný extrém --- měří výhradně koncentraci CO\textsubscript{2}, přestože podporované senzory disponují i~měřením teploty a~relativní vlhkosti \parencite{aurelwuAurelWuIndoorCO2MapApp2026}.
+
+Veličiny tepelného komfortu (teplota a~relativní vlhkost) jsou s~výjimkou IndoorCO2Map podporovány všemi aplikacemi a~lze je považovat za de facto standard. Rychlost proudění vzduchu, která je rovněž relevantní pro hodnocení tepelného komfortu, eviduje pouze openSenseMap. Naproti tomu vizuální a~akustický komfort zůstává v~analyzovaných aplikacích výrazně podreprezentován. Osvětlenost eviduje pouze openSenseMap, hladinu akustického tlaku pak openSenseMap a~Sensor.Community. Žádná z~aplikací nesleduje korelovanou teplotu chromatičnosti (CCT) ani ekvivalentní hladinu akustického tlaku~$L$.
+
+Koncentrace CO\textsubscript{2} je jedinou veličinou, kterou podporují všechny čtyři aplikace, což odráží její roli jako základního indikátoru kvality vnitřního vzduchu a~větrání.
+
+Z~tohoto srovnání plyne, že žádná z~analyzovaných aplikací nepokrývá IEQ komplexně napříč všemi čtyřmi kategoriemi. openSenseMap se tomuto cíli přibližuje nejvíce díky volně definovatelným veličinám, avšak za cenu problémů s~konzistencí dat popsaných výše. Pro návrh vlastní aplikace to naznačuje prostor pro řešení, které by pokrylo všechny kategorie IEQ se zachováním konzistentní struktury měřených dat.
+
+\subsubsection{Srovnání technického řešení}
+
+Z~tabulky~\ref{tab:aplikace-srovnani-technicke} vyplývá, že analyzované aplikace sdílejí společný základ v~podobě formátu JSON a~archivace dat, avšak výrazně se liší v~komunikačním modelu, v~přístupu k~definici veličin a~v~míře závislosti na konkrétním hardwaru.
+
+Z~hlediska komunikačního modelu převažuje princip HTTP Push, kdy senzorová stanice aktivně odesílá data na server. Tento model využívají Sensor.Community, openSenseMap i~IndoorCO2Map. OpenAQ se odlišuje tím, že data zpravidla nezískává přímo od senzorů, ale prostřednictvím ingestu od poskytovatelů dat, což je přístup vhodný pro agregaci rozsáhlých externích datových zdrojů. openSenseMap navíc podporuje alternativní protokoly TTN (LoRaWAN) a~MQTT, čímž rozšiřuje spektrum možností připojení senzorů nad rámec běžného HTTP.
+
+Všechny aplikace s~výjimkou IndoorCO2Map poskytují veřejné čtecí API ve formátu JSON. openSenseMap nabízí navíc formáty CSV a~GeoJSON. Absence veřejného čtecího API u~IndoorCO2Map představuje z~hlediska principů otevřených dat výrazné omezení --- data jsou sice dostupná prostřednictvím archivu, avšak nikoliv v~reálném čase. Archivy dat nabízejí všechny analyzované aplikace, převážně ve formátu CSV. Autentizace pro čtení dat je vyžadována pouze u~OpenAQ, která vyžaduje registraci a~API klíč.
+
+Zásadní rozdíl mezi aplikacemi spočívá v~přístupu k~definici měřených veličin. Tři ze čtyř aplikací pracují s~pevným výčtem veličin, což zajišťuje konzistenci dat, ale omezuje flexibilitu při integraci nových typů senzorů. openSenseMap volí opačný přístup --- uživatel volně definuje názvy veličin, jednotky i~typy senzorů. Tento model je ze všech analyzovaných řešení nejflexibilnější, avšak jak bylo popsáno v~sekci věnované openSenseMap, přináší problémy s~normalizací dat, kdy stejná fyzikální veličina může být evidována pod různými názvy a~v~různých jednotkách.
+
+Obdobné rozdělení existuje i~v~míře závislosti na hardwaru. Sensor.Community a~IndoorCO2Map vyžadují použití konkrétních podporovaných senzorů, zatímco OpenAQ a~openSenseMap nejsou na hardware přímo vázány. Pro návrh vlastní aplikace představuje toto rozhodnutí klíčový kompromis mezi snadností integrace na straně jedné a~škálovatelností na straně druhé.
+
+Z~hlediska rozlišení vnitřního a~vnějšího prostředí, které je pro tuto práci zvlášť relevantní, pouze Sensor.Community a~openSenseMap umožňují filtrovat data podle typu prostředí. OpenAQ je primárně zaměřena na venkovní monitoring a~tuto kategorizaci nepodporuje. IndoorCO2Map je orientována výhradně na vnitřní prostředí. Pro vlastní aplikaci zaměřenou na IEQ je schopnost rozlišit typ prostředí nezbytným požadavkem, aby bylo možné data o~vnitřním prostředí oddělit od dat venkovních.
+
+\subsubsection{Webová rozhraní}
+
+Všechny analyzované aplikace nabízejí webové rozhraní založené na interaktivní mapě, kde jsou senzory zobrazeny jako body. Tato architektura představuje v~tomto typu aplikací osvědčený standard a~poskytuje uživatelům intuitivní způsob prohlížení dat s~geografickým kontextem.
+
+Aplikace se však liší v~rozsahu filtrů a~analytických funkcí. Sensor.Community a~OpenAQ nabízejí filtrování především podle sledované veličiny a~typu lokality, případně poskytovatele dat. openSenseMap disponuje nejkomplexnějším filtrovacím aparátem zahrnujícím omezení podle časového období, jména stanice, skupiny, modelu senzorové stanice, typu prostředí (indoor, outdoor, mobile) i~konkrétní veličiny. IndoorCO2Map přistupuje k~filtrování odlišně --- využívá typ lokality odvozený z~tagů OpenStreetMap (např. supermarket, škola, nemocnice), což odráží její zaměření na veřejně přístupné budovy a~umožňuje srovnání kvality vzduchu napříč různými typy prostor.
+
+Většina aplikací umožňuje zobrazit aktuální hodnoty senzorů přímo na mapě. OpenAQ a~IndoorCO2Map nabízejí navíc zobrazení historických průběhů měření v~grafické podobě. IndoorCO2Map se odlišuje také histogramem distribuce lokací podle průměrné koncentrace CO\textsubscript{2} a~souhrnými statistikami podle typu lokality a~regionu NUTS\,1. Tyto analytické pohledy přesahují rámec pouhého zobrazení dat a~umožňují uživatelům identifikovat vzory a~trendy.
+
+Pro návrh vlastní aplikace je z~tohoto srovnání relevantní, že mapová vizualizace je osvědčeným a~očekávaným standardem. Hodnotným rozšířením jsou filtry podle typu prostředí, které z~analyzovaných aplikací nabízí pouze openSenseMap. Analytické funkce nad rámec zobrazení aktuálních hodnot, jako je vizualizace historických dat či souhrnné statistiky, představují diferenciátor, který zvyšuje užitnou hodnotu platformy.
+
+\subsubsection{Podporovaná zařízení}
+
+Přístup k~hardwarové podpoře představuje jednu z~nejvýraznějších diferenciací mezi analyzovanými aplikacemi. Na jednom konci spektra stojí openSenseMap, která nemá žádný fixní seznam senzorů a~umožňuje uživateli zaregistrovat libovolné zařízení s~volně definovanými veličinami. Podobně OpenAQ není závislá na konkrétních senzorech, přestože v~jejích datech lze identifikovat 27 různých instrumentů. Na druhém konci spektra stojí IndoorCO2Map, která podporuje právě čtyři modely CO\textsubscript{2} monitorů komunikujících přes rozhraní Bluetooth Low Energy.
+
+Sensor.Community zaujímá střední pozici --- podporuje přes 30 typů senzorů, avšak pro každý z~nich vyžaduje explicitní implementaci ve firmwaru senzorové stanice. Tato závislost na konkrétním hardwaru zvyšuje konzistenci přijímaných dat, ale zároveň znamená, že podpora nového senzoru vyžaduje zásah do zdrojového kódu.
+
+Z~hlediska pokrytí kategorií IEQ se podporovaná zařízení jednotlivých aplikací výrazně liší. Senzory aplikací Sensor.Community a~OpenAQ pokrývají primárně IAQ a~tepelný komfort. Předdefinované šablony openSenseMap zahrnují i~osvětlenost a~hluk. IndoorCO2Map je omezena na CO\textsubscript{2} monitory, přestože některé z~nich hardwarově měří i~teplotu a~vlhkost, které aplikace neextrahuje \parencite{aurelwuAurelWuIndoorCO2MapApp2026}.
+
+Odlišný je rovněž způsob integrace senzorů. Sensor.Community a~openSenseMap předpokládají, že uživatel sestaví senzorovou stanici z~mikrokontroléru a~připojených senzorů. OpenAQ přijímá data od poskytovatelů bez nutnosti přímé integrace senzoru. IndoorCO2Map se zcela odlišuje tím, že využívá komerční CO\textsubscript{2} monitory párované přes BLE s~mobilním telefonem, který data odesílá na server \parencite{aurelwuAurelWuIndoorCO2MapApp2026}.
+
+Pro návrh vlastní aplikace toto srovnání naznačuje, že hardwarová nezávislost zvyšuje škálovatelnost platformy, avšak měla by být doplněna o~mechanismy zajišťující konzistenci dat, například prostřednictvím standardizovaného výčtu podporovaných veličin s~možností jeho budoucího rozšíření.
+
+\subsubsection{Shrnutí srovnání}
+
+Provedené srovnání ukazuje, že analyzované aplikace se soustředí primárně na kvalitu vnějšího ovzduší a~žádná z~nich nepokrývá oblast IEQ v~plné šíři všech čtyř kategorií --- kvality vnitřního ovzduší, tepelného, vizuálního a~akustického komfortu. Tepelný komfort a~základní ukazatele IAQ (zejména PM\textsubscript{2,5}, PM\textsubscript{10} a~CO\textsubscript{2}) jsou zastoupeny téměř univerzálně, zatímco vizuální a~akustický komfort představují výraznou mezeru.
+
+Z~technického hlediska lze identifikovat dva dominantní přístupy: uzavřený model s~pevným výčtem veličin a~seznamem podporovaných senzorů (Sensor.Community, IndoorCO2Map) a~otevřený model s~volně definovatelnými parametry (openSenseMap). Uzavřený model zajišťuje konzistenci dat a~usnadňuje jejich agregaci, zatímco otevřený model nabízí maximální flexibilitu za cenu problémů s~normalizací. OpenAQ představuje specifický případ, kdy je hardwarová nezávislost kombinována s~pevným výčtem veličin.
+
+Z~hlediska přístupu k~datům je pozitivním zjištěním, že všechny aplikace nabízejí archiv dat ke stažení. Většina rovněž poskytuje veřejné čtecí API, což umožňuje programatický přístup k~datům v~reálném čase. Webové rozhraní založené na interaktivní mapě je společným standardem, avšak analytické funkce nad rámec pouhého zobrazení dat nabízí pouze část aplikací.
+
+Pro návrh vlastní aplikace z~těchto zjištění vyplývá několik klíčových směrů: pokrytí všech kategorií IEQ, rozlišení vnitřního a~vnějšího prostředí, poskytnutí veřejného čtecího API a~pravidelného archivu dat a~nalezení rovnováhy mezi flexibilitou a~konzistencí při definici veličin a~podpoře hardwaru. Tato zjištění budou vstupem pro kapitolu věnovanou analýze požadavků.
