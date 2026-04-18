@@ -1,7 +1,5 @@
 \subsubsection{Aplikace openSenseMap}
 
-\[DRAFT\]
-
 Třetí analyzovanou aplikací je německá aplikace \textit{openSenseMap}, která je vyvíjena v rámci projektu \textit{senseBox} na Univerzitě v Münsteru. Aplikace slouží jako platforma pro sběr, vizualizaci a sdílení environmentálních dat pocházejících z občanských vědeckých projektů a individuálních senzorových stanic. \parencite{SenseboxOpenSenseMap2026} Primárním zaměřením je monitorování vnějšího prostředí, platforma však umožňuje rozlišovat mezi senzory umístěnými ve venkovním prostředí (\textit{outdoor}), vnitřním prostředí (\textit{indoor}) a mobilními senzory (\textit{mobile}). Tato klasifikace umožňuje uživatelům dat filtrovat a analyzovat pouze data relevantní pro konkrétní typ prostředí. \parencite{OpenSenseMapAPIDocumentation}
 
 Data z platformy openSenseMap jsou přístupná třemi způsoby. Prvním je \textit{REST API}, které poskytuje data ve formátech JSON, GeoJSON a CSV. API umožňuje dotazování na metadata senzorových stanic, jednotlivá měření i hromadný export dat z více stanic současně. Dotazy lze filtrovat podle sledované veličiny, geografické oblasti, typu prostředí nebo modelu senzorové stanice. Pro jednotlivý senzor je omezení na 10\,000 záznamů, resp. maximálně 1 měsíc dat na jeden dotaz. Pro čtení dat není vyžadována autentizace; ta je nutná pouze pro operace zápisu. \parencite{OpenSenseMapAPIDocumentation}
