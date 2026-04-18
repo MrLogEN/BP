@@ -92,3 +92,30 @@
   {Požadavek (1) přepsat odstavec o webovém rozhraní tak, aby přirozeně odkazoval na 4 obrázky s využitím jejich popisků, (2) opravit duplicitní label (obr:indoorco2map-filters-histogram), (3) aktualizovat tabulku senzorů tak, aby ukazovala i ostatní veličiny, které senzory měří (ne pouze co aplikace extrahuje)}
   {(1) Přepsaný odstavec nyní popisuje UI prvky: mapa s body (CO\textsubscript{2} a GO IAQS), detail měření s grafem, panel filtrů s histogramem distribuce CO\textsubscript{2}, navigační menu s analytickými pohledy (statistiky, regiony, export); (2) Opraveno: label u menu obrázku — vrácen chybějící \textbackslash includegraphics; (3) Tabulka senzorů nyní ukazuje, že všechny 4 senzory měří CO\textsubscript{2}, teplotu ($T$) a relativní vlhkost (RH); text pod tabulkou vysvětluje, že aplikace extrahuje a odesílá pouze CO\textsubscript{2}; citace doplněny o zdroje produktových stránek senzorů}
   {Změny přijaty v plném rozsahu, kompilace bez chyb (69 stran)}
+
+\logentry
+  {2026-04-18 09:00}
+  {Claude Sonnet 4.6}
+  {reserse/apps/srovnani.tex}
+  {Napsání analytické komparativní sekce aplikací}
+  {Texty všech čtyř podkapitol aplikací, obě srovnávací tabulky (tab:aplikace-srovnani-data, tab:aplikace-srovnani-technicke), cíle práce z~uvod.tex; detailní prompt s~požadovanou strukturou (5 podsekcí), pravidly komparativního psaní (pattern recognition, ne výčet) a~mikro-patternem pro každý odstavec (tvrzení — evidence — interpretace — dopad)}
+  {Kompletní text sekce Srovnání aplikací (5 podsekcí): srovnání pokrytí IEQ veličin, technického řešení, webových rozhraní, hardwarové podpory a~shrnutí; text identifikuje vzory a~trendy napříč aplikacemi a~vyvozuje důsledky pro návrh vlastní aplikace}
+  {Text přijat v~plném rozsahu; kompilace bez chyb (71 stran)}
+
+\logentry
+  {2026-04-18 11:00}
+  {Claude Opus 4.6}
+  {reserse/apps/srovnani.tex}
+  {Napsání podsekce: soulad s~otevřenými formálními normami}
+  {Výsledky empirické validace OFN (archiv IndoorCO2Map, Sensor.Community, OpenAQ; API testy; HTTP hlavičky); kontext DIA korespondence (OFN dobrovolné pro soukromé subjekty); struktura srovnávací sekce; detailní prompt specifikující obsah každého odstavce podsekce a~požadované citace (PrikladySpatnePraxe2022, DCATAPCZRozhraniKatalogu)}
+  {Podsekce \textit{Soulad s~otevřenými formálními normami} (6 odstavců) pokrývající: povinnost OFN, licence, HTTPS/HSTS, JSON schémata, CSV oddělovač, prostorová data (GeoJSON vs. lat/lon), doporučení DIA; aktualizované shrnutí srovnání s~odstavcem o~OFN}
+  {Text přijat v~plném rozsahu; kompilace bez chyb (74 stran)}
+
+\logentry
+  {2026-04-18 14:00}
+  {Claude Sonnet 4.6}
+  {metody.tex}
+  {Napsání metodologických sekcí komparace a~OFN validace}
+  {Průběh komparace aplikací (dimenze srovnání, tabulky), průběh OFN validace (crawl portálu, stahování archivů, nástroje příkazové řádky); požadavek na explicitní zmínku, že validaci provedl instruovaný AI asistent na základě konkrétního promptu a~poskytnutých zdrojů}
+  {Subsekce \textit{Komparace aplikací pro sběr senzorických dat} (5 dimenzí komparace, odkaz na OFN sekci); subsekce \textit{Validace souladu datových formátů s~otevřenými formálními normami} (3 fáze: crawl kritérií, validace archivů, validace API) s~explicitním uvedením, že analýzu provedl asistent Claude Sonnet 4.6 na základě detailního zadání}
+  {Text přijat v~plném rozsahu}

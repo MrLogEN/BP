@@ -11,3 +11,12 @@
   {Repozitáře sensebox/openSenseMap-API a sensebox/openSenseMap na GitHubu, dokumentace docs.opensensemap.org a archiv archive.opensensemap.org — zdroje poskytnuté uživatelem; vícefázový přístup: crawl zdrojů $\rightarrow$ extrakce $\rightarrow$ syntéza}
   {Strukturované shrnutí opensensemap-summary.md pokrývající IEQ parametry, přístupy k datům (REST API, archiv, webové rozhraní), předdefinované šablony senzorových stanic a technologický stack platformy}
   {Podklady využity jako základ pro napsání kapitoly reserse/apps/open\_sense\_map.tex}
+
+\logentry
+  {2026-04-18 08:30}
+  {Claude Sonnet 4.6}
+  {—}
+  {Rešerše kritérií OFN z~portálu data.gov.cz — crawl katalogu špatné praxe}
+  {URL portálu data.gov.cz, sekce špatná praxe; seznam deseti kategorií špatné praxe poskytnutý uživatelem; přístup přes \texttt{curl} (web\_fetch pro data.gov.cz nefunguje)}
+  {Přečten obsah hlavní stránky a~všech 10 podstránek (právní překážky, dokumentace a~metadata, technické překážky, CSV, XML, JSON, obsahové chyby, číselníky, prostorová data, změny IRI); sestavena sada konkrétních kritérií pro hodnocení souladu datových archivů a~API s~OFN}
+  {Kritéria použita jako základ pro empirickou validaci archivů a~API všech čtyř aplikací; výsledky zapracovány do podsekce \textit{Soulad s~otevřenými formálními normami} v~reserse/apps/srovnani.tex}

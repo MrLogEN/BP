@@ -56,6 +56,16 @@ Zde bude následovat sekce o tom, jak jsem dělal rešerši o tom, jak se větš
 \section{Analýza datového zdroje}
 Při identifikaci měřených veličin projektu \textit{sensor.community} byly analyzovány datové zdroje dostupné ke stažení z \href{https://archive.sensor.community/}{archivu dat} a dále rozhraní API. Pro zjištění unikátních měřených veličin byla provedena automatizovaná extrakce jejich názvů z dat za měsíc březen 2026. Tento krok byl nezbytný, protože dokumentace projektu \textit{sensor.community} neuvádí úplný a jednoznačný seznam měřených veličin.
 
+\subsection{Validace souladu datových formátů s~otevřenými formálními normami}
+
+Empirická validace souladu datových formátů s~otevřenými formálními normami (OFN) probíhala v~dubnu 2026. Cílem bylo ověřit, do jaké míry datové archivy a~API rozhraní analyzovaných aplikací odpovídají doporučením OFN publikovaným v~katalogu špatné praxe na portálu data.gov.cz \parencite{PrikladySpatnePraxe2022}. Na základě detailního zadání autora práce byl k~provedení validace instruován asistent s~umělou inteligencí Claude Opus 4.6. Zadání obsahovalo seznam deseti kategorií špatné praxe z~portálu data.gov.cz, adresy datových archivů ke stažení a~URL adres API ke kontrole, sadu nástrojů příkazové řádky pro validaci (\texttt{curl}, \texttt{jq}, \texttt{file~-i}, \texttt{python3~-c~"json.load(...)"}) a~pokyny k~postupu analýzy v~jednotlivých fázích.
+
+V~první fázi byl asistent instruován k~přečtení portálu data.gov.cz v~sekci špatná praxe a~obsahu všech deseti podstránek. Přístup k~obsahu byl realizován prostřednictvím příkazu \texttt{curl}, protože standardní prohlížení stránek nebylo v~daném prostředí dostupné. Na základě přečteného obsahu byla sestavena sada konkrétních kritérií pro hodnocení pokrývající kategorie: právní překážky (podmínky přístupu, registrace), problémy s~dokumentací a~metadaty (DCAT-AP-CZ, popis datasetu, licence), technické překážky (HTTPS, HSTS), chyby ve formátech CSV (kódování, oddělovač), JSON (validita vůči schématu, datové typy) a~prostorová data (GeoJSON vs. oddělené souřadnice).
+
+Ve druhé fázi byly staženy vzorky datových archivů všech čtyř aplikací pomocí příkazu \texttt{curl}: archiv IndoorCO2Map (formát ZIP/JSON), vzorový soubor Sensor.Community (CSV), vzorový soubor OpenAQ (CSV komprimovaný metodou gzip). Formát a~kódování každého souboru byly ověřeny nástrojem \texttt{file~-i}, struktura a~oddělovač pomocí příkazu \texttt{head}, validita JSON formátu pomocí \texttt{python3}. U~datových archivů IndoorCO2Map byla navíc provedena analýza celistvosti dat (počty chybějících hodnot, validita kódů zemí a~NUTS~3) pomocí nástroje \texttt{jq}.
+
+Ve třetí fázi byla ověřena API rozhraní všech čtyř aplikací. Pomocí příkazu \texttt{curl~-I} byly zkontrolovány HTTP hlavičky (přítomnost HTTPS, hlavička \texttt{Strict-Transport-Security} a~správnost \texttt{Content-Type}). Byl také ověřen způsob autentizace a~stažen vzorový JSON response pro posouzení reprezentace numerických hodnot, formátu časových razítek a~způsobu kódování prostorových souřadnic. Zjištění ze všech tří fází byla porovnána se sestavenými kritérii OFN a~výsledky byly zapracovány do podsekce \textit{Soulad s~otevřenými formálními normami} v~komparativní části Rešerše.
+
 \section{Pozorování}
 
 \[PLAN\]
@@ -63,7 +73,18 @@ Zde bude následovat sekce o tom, jak jsem dělal pozorování a co jsem pozorov
 
 \section{Komparace}
 
-\[PLAN\] Zde bude jak jsem dělal komparaci aplikací, zákonných limitů IEQ, zařízení
 \subsection{Komparace zákonných limitů pro IEQ}
+
+\[PLAN\]
+
 \subsection{Komparace aplikací pro sběr senzorických dat}
+
+Komparace aplikací pro sběr senzorických dat probíhala v~dubnu 2026. Jejím cílem bylo syntetizovat výsledky individuálních analýz čtyř aplikací (Sensor.Community, OpenAQ, openSenseMap a~IndoorCO2Map) a~identifikovat vzory, odlišnosti a~mezery, které by sloužily jako vstup pro analýzu požadavků vlastní aplikace.
+
+Komparace proběhla v~několika dimenzích. První dimenzí bylo pokrytí veličin relevantních pro IEQ: výsledky individuálních analýz byly systematizovány do tabulky~\ref{tab:aplikace-srovnani-data}, která umožňuje přímé porovnání podporovaných veličin napříč kategoriemi IEQ (kvalita vnitřního ovzduší, tepelný, vizuální a~akustický komfort). Druhou dimenzí bylo porovnání technických parametrů: komunikačního modelu, formátu API a~archivu, způsobu autentizace, přístupu k~definici veličin a~závislosti na hardwaru, přehledně zachycené v~tabulce~\ref{tab:aplikace-srovnani-technicke}. Třetí dimenzí bylo porovnání webových rozhraní na základě vlastního pozorování, zaměřené na způsob vizualizace dat a~dostupné filtry a~analytické funkce. Čtvrtou dimenzí byl přístup k~hardwarové podpoře, hodnocený z~hlediska škálovatelnosti a~konzistence sbíraných dat.
+
+Pátou dimenzí, přesahující rámec standardní komparace, bylo hodnocení souladu aplikací s~otevřenými formálními normami. Toto hodnocení bylo realizováno prostřednictvím empirické validace, jejíž metodologie je popsána v~sekci \textit{Validace souladu datových formátů s~otevřenými formálními normami}. Výsledky komparace ve všech pěti dimenzích jsou shrnuty v~sekci Srovnání aplikací v~rámci Rešerše.
+
 \subsection{Komparace zařízení pro sběr dat}
+
+\[PLAN\]
