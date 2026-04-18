@@ -1,4 +1,152 @@
 \section{Zařízení pro sběr dat}
-\[TODO\]
+\label{sec:zarizeni}
 
+Předchozí sekce vymezily pojem IEQ a jeho kategorie (IAQ, tepelný komfort, vizuální komfort, akustický komfort), problematiku otevřených dat a open-source licencí. Aby bylo možné tyto veličiny skutečně měřit a~získaná data zpřístupnit prostřednictvím otevřené aplikace, je nezbytné porozumět také hardwarové stránce --- tedy zařízením, která data o~kvalitě vnitřního prostředí sbírají. Tato sekce proto poskytuje přehled senzorových modulů a~hotových zařízení dostupných na trhu, které jsou relevantní pro monitorování IEQ. Přehled vychází z~analýzy platforem popsaných v~následující sekci (sensor.community, OpenAQ, openSenseMap, IndoorCO2Map) a~z~doplňujícího průzkumu technických specifikací výrobců.
 
+Sekce je rozdělena na dvě části. První se věnuje senzorovým modulům, které vyžadují integraci s~mikrokontrolérem a~tvoří stavební kameny nízkonákladových měřicích stanic. Druhá část popisuje hotová zařízení připravena k~okamžitému nasazení, a~to jak spotřebitelská, tak průmyslová.
+
+\subsection{Senzorové moduly}
+\label{subsec:senzorove-moduly}
+
+Senzorové moduly jsou elektronické součástky určené k~měření jedné či více fyzikálních veličin. Na rozdíl od hotových zařízení nemají vlastní síťovou konektivitu ani uživatelské rozhraní --- pro jejich provoz je nutná integrace s~mikrokontrolérem, například ESP32 nebo Arduino, který zajistí sběr dat, jejich zpracování a~případné odeslání do sítě. Právě tato otevřenost je klíčová pro oblast občanské vědy (\textit{citizen science}) a~nízkonákladového monitorování, kde si uživatelé sestavují vlastní měřicí stanice z~dostupných komponent. Platforma sensor.community je příkladem tohoto přístupu --- poskytuje firmware a~návody pro sestavení stanic z~podporovaných senzorů \parencite{sensor.communitySensorCommunityBuildYour2025}.
+
+Tabulka~\ref{tab:senzorove-moduly} uvádí přehled osmnácti senzorových modulů identifikovaných na základě analýzy podporovaných zařízení platformy sensor.community \parencite{SensorCommunityDevices} a~doplňujícího průzkumu technických specifikací výrobců. Pro každý modul jsou uvedeny měřené veličiny IEQ, komunikační rozhraní, deklarovaná přesnost a~orientační cena.
+
+{
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{1.1}
+  \begin{longtable}{L{2.5cm} L{1.8cm} L{3.2cm} L{1.5cm} L{3.8cm} R{1.2cm}}
+    \caption{Přehled senzorových modulů pro monitorování IEQ}
+    \label{tab:senzorove-moduly}\\
+    \toprule
+    \textbf{Senzor} & \textbf{Výrobce} & \textbf{Veličiny IEQ} & \textbf{Rozhraní} & \textbf{Přesnost} & \textbf{Cena} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{6}{l}{\textit{Pokračování tabulky \ref{tab:senzorove-moduly}}} \\
+    \toprule
+    \textbf{Senzor} & \textbf{Výrobce} & \textbf{Veličiny IEQ} & \textbf{Rozhraní} & \textbf{Přesnost} & \textbf{Cena} \\
+    \midrule
+    \endhead
+    \midrule
+    \multicolumn{6}{r}{\textit{Pokračování na další stránce}} \\
+    \endfoot
+    \bottomrule
+  \endlastfoot
+    SDS011 & Nova Fitness & PM\textsubscript{2.5}, PM\textsubscript{10} & UART & $\pm$15\,\% nebo $\pm$10\,µg/m³ & ${\sim}$€\,20 \\
+    \hline
+    PMS5003 & Plantower & PM\textsubscript{1.0}, PM\textsubscript{2.5}, PM\textsubscript{10} & UART & $\pm$10\,µg/m³ (0--100\,µg/m³) & ${\sim}$€\,15 \\
+    \hline
+    PPD42NS & Shinyei & PM\textsubscript{2.5} & PWM & indikativní & ${\sim}$€\,8 \\
+    \hline
+    HM3301 & Seeed Studio & PM\textsubscript{1.0}, PM\textsubscript{2.5}, PM\textsubscript{10} & I2C & $\pm$10\,\% (100--500\,µg/m³) & ${\sim}$€\,30 \\
+    \hline
+    HPM & Honeywell & PM\textsubscript{2.5}, PM\textsubscript{10} & UART & $\pm$15\,\% (0--1000\,µg/m³) & ${\sim}$€\,30 \\
+    \hline
+    SPS30 & Sensirion & PM\textsubscript{1.0}--PM\textsubscript{10} & I2C, UART & $\pm$10\,\% (MCERTS) & ${\sim}$€\,45 \\
+    \hline
+    NextPM & Tera Sensor & PM\textsubscript{1.0}, PM\textsubscript{2.5}, PM\textsubscript{10} & UART, Modbus & R²\,$\approx$\,0,98 (AQ-SPEC) & ${\sim}$€\,50 \\
+    \hline
+    IPS-7100 & Piera Systems & PM\textsubscript{0.1}--PM\textsubscript{10} & UART, I2C & -- & ${\sim}$€\,65 \\
+    \hline
+    BME280 & Bosch & $T$, RH, $P$ & I2C, SPI & $T$: $\pm$1\,°C; RH: $\pm$3\,\% & ${\sim}$€\,8 \\
+    \hline
+    DHT22 & Aosong & $T$, RH & 1-drát & $T$: $\pm$0,5\,°C; RH: $\pm$2--5\,\% & ${\sim}$€\,4 \\
+    \hline
+    DS18B20 & Maxim & $T$ & 1-Wire & $T$: $\pm$0,5\,°C & ${\sim}$€\,3 \\
+    \hline
+    SHT3x & Sensirion & $T$, RH & I2C & $T$: $\pm$0,2--0,3\,°C; RH: $\pm$2\,\% & ${\sim}$€\,10 \\
+    \hline
+    SHT85 & Sensirion & $T$, RH & I2C & $T$: $\pm$0,1\,°C; RH: $\pm$1,5\,\% & ${\sim}$€\,25 \\
+    \hline
+    SCD30 & Sensirion & CO\textsubscript{2}, $T$, RH & I2C, UART & CO\textsubscript{2}: $\pm$30\,ppm\,+\,3\,\% & ${\sim}$€\,50 \\
+    \hline
+    SEN54 & Sensirion & PM, VOC, $T$, RH & I2C & PM: $\pm$5\,µg/m³\,+\,5\,\% & ${\sim}$€\,38 \\
+    \hline
+    SEN55 & Sensirion & PM, VOC, NO\textsubscript{x}, $T$, RH & I2C & PM: $\pm$5\,µg/m³\,+\,5\,\% & ${\sim}$€\,48 \\
+    \hline
+    NO2-A43F & Alphasense & NO\textsubscript{2} & analog & rozlišení $<$10\,ppb & ${\sim}$€\,65 \\
+    \hline
+    DNMS & komunita & $L_A$ (hluk) & I2C & indikativní & ${\sim}$€\,40 \\
+  \end{longtable}
+
+  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě \parencite{SensorCommunityDevices} a~technických specifikací výrobců \parencite{NovaPMSensor, agSPS30PM25Sensor, LaserPM25Sensor, agSCD30CO2Accuracy, agSEN55EnvironmentalSensor, HumiditySensorBME280, DS18B20ProgrammableResolution, liuDigitaloutputRelativeHumidity, NitrogenDioxideSensor, HoneywellHPMSeries, PPD42NSParticleSensor, OpticalFineDust, IPS71001PIERASYSTEMS, agSHT31DISB20100RH, agSHT8515Digital, david@riallant.comNextPMValidatedPM2025}
+
+  \footnotesize \textit{Poznámka:} Ceny jsou orientační a mohou se lišit podle dodavatele a regionu. Označení SHT3x zahrnuje varianty SHT30, SHT31 a SHT35, které se liší přesností. Rodina Plantower PMS zahrnuje varianty PMS1003, PMS3003, PMS5003, PMS6003 a PMS7003 -- v tabulce je uveden nejrozšířenější model PMS5003. Písmena PM, VOC a~$T$ v~buňkách označují měřené kategorie, nikoliv konkrétní fyzikální veličiny.
+}
+
+Z~tabulky~\ref{tab:senzorove-moduly} vyplývá několik pozorování. Nejvíce zastoupenou kategorií jsou senzory prachových částic (PM), které tvoří osm z~osmnácti položek. Tato dominance odráží zaměření občansko-vědeckých platforem na kvalitu ovzduší, kde jsou PM\textsubscript{2.5} a~PM\textsubscript{10} klíčovými indikátory. Druhou nejčastější kategorií jsou senzory teploty a~relativní vlhkosti, které jsou součástí téměř každé měřicí stanice jakožto základní parametry tepelného komfortu.
+
+Mezi výrobci dominuje švýcarská firma Sensirion, která je zastoupena šesti senzory v~tabulce --- od jednoúčelových modulů pro teplotu a~vlhkost (SHT3x, SHT85) přes CO\textsubscript{2} senzor (SCD30) až po multi-parametrické moduly SEN54 a~SEN55. Právě rodina SEN5x představuje významný trend v~oblasti nízkonákladového monitorování: integrací měření PM, VOC, teploty a~vlhkosti (a~v~případě SEN55 i~NO\textsubscript{x}) do jediného modulu s~rozhraním I2C výrazně zjednodušuje návrh kompaktních měřicích stanic.
+
+Cenové rozpětí senzorových modulů se pohybuje přibližně od 3\,€ (DS18B20) do 65\,€ (IPS-7100, NO2-A43F). Nízkonákladové senzory teploty a~vlhkosti jsou dostupné za jednotky eur, zatímco přesnější PM senzory s~certifikacemi (SPS30 s~MCERTS, NextPM validovaný programem AQ-SPEC) se pohybují v~rozmezí 45--50\,€. Z~hlediska komunikačních rozhraní převládají sběrnice I2C a~UART, které jsou standardem v~ekosystému mikrokontrolérů Arduino a~ESP32. Tento fakt potvrzuje, že senzorové moduly jsou primárně určeny pro integraci do vlastních řešení, nikoliv pro samostatné nasazení.
+
+Za pozornost stojí, že akustický komfort je zastoupen pouze jedním senzorem --- komunitně vyvíjeným modulem DNMS (\textit{Digital Noise Measurement Sensor}), který vznikl v~rámci projektu sensor.community. Vizuální komfort (osvětlení) není zastoupen žádným identifikovaným modulem. Tato nerovnováha naznačuje, že nízkonákladové senzorové řešení pokrývají především oblast IAQ a~tepelného komfortu, zatímco akustická a~vizuální složka IEQ zůstává nedostatečně pokryta.
+
+\subsection{Hotová zařízení}
+\label{subsec:hotova-zarizeni}
+
+Hotová zařízení představují druhou kategorii hardwaru pro monitorování IEQ. Na rozdíl od senzorových modulů jsou připravena k~okamžitému nasazení --- disponují vlastní síťovou konektivitou, napájením, a~často také displejem nebo mobilní aplikací. Lze je rozdělit na dvě skupiny: spotřebitelská zařízení určená pro koncové uživatele a~průmyslová zařízení navržená pro integraci do systémů řízení budov (BMS --- \textit{Building Management System}).
+
+Spotřebitelská zařízení typicky komunikují prostřednictvím BLE (\textit{Bluetooth Low Energy}) nebo WiFi, jsou napájena z~baterie nebo USB a~cenově se pohybují v~řádu desítek až stovek eur. Průmyslová zařízení naopak využívají protokoly jako Modbus RTU, KNX nebo wM-Bus (wireless Meter-Bus), jsou navržena pro trvalou instalaci a~integraci do automatizačních systémů budov \parencite{siemensSensorOverviewBrochure2024}. Tabulka~\ref{tab:hotova-zarizeni} uvádí přehled dvanácti zařízení z~obou kategorií.
+
+{
+  \footnotesize
+  \setlength{\tabcolsep}{2pt}
+  \renewcommand{\arraystretch}{1.1}
+  \begin{longtable}{L{2.8cm} L{1.8cm} L{3cm} L{2cm} c R{1.3cm}}
+    \caption{Přehled hotových zařízení pro monitorování IEQ}
+    \label{tab:hotova-zarizeni}\\
+    \toprule
+    \textbf{Zařízení} & \textbf{Výrobce} & \textbf{Veličiny IEQ} & \textbf{Komunikace} & \textbf{API} & \textbf{Cena} \\
+    \midrule
+    \endfirsthead
+    \multicolumn{6}{l}{\textit{Pokračování tabulky \ref{tab:hotova-zarizeni}}} \\
+    \toprule
+    \textbf{Zařízení} & \textbf{Výrobce} & \textbf{Veličiny IEQ} & \textbf{Komunikace} & \textbf{API} & \textbf{Cena} \\
+    \midrule
+    \endhead
+    \midrule
+    \multicolumn{6}{r}{\textit{Pokračování na další stránce}} \\
+    \endfoot
+    \bottomrule
+  \endlastfoot
+    Aranet4 & SAF Tehnika & CO\textsubscript{2}, $T$, RH, $P$ & BLE & \cmark & ${\sim}$€\,220 \\
+    \hline
+    Airvalent & Airvalent & CO\textsubscript{2}, $T$, RH & BLE & -- & ${\sim}$€\,125 \\
+    \hline
+    Inkbird IAM-T1 & Inkbird & CO\textsubscript{2}, $T$, RH & BLE, WiFi & -- & ${\sim}$€\,70 \\
+    \hline
+    AirGradient ONE & AirGradient & PM, CO\textsubscript{2}, VOC, NO\textsubscript{x}, $T$, RH & WiFi, BLE & \cmark & ${\sim}$€\,150 \\
+    \hline
+    Clarity Node-S & Clarity & PM\textsubscript{2.5}, NO\textsubscript{2} & Cellular & \cmark & ${\sim}$€\,2000 \\
+    \hline
+    HabitatMap AirBeam & HabitatMap & PM, $T$, RH & WiFi, Cell & \cmark & ${\sim}$€\,250 \\
+    \midrule
+    Protronix NL-ECO-CO2 & Protronix & CO\textsubscript{2} & 0--10\,V analog & -- & n/a \\
+    \hline
+    Protronix NL-ECO-TVOC & Protronix & TVOC & 0--10\,V analog & -- & n/a \\
+    \hline
+    Siemens QPM2102 & Siemens & CO\textsubscript{2}, VOC & Modbus RTU & -- & ${\sim}$€\,500 \\
+    \hline
+    Siemens QPA2892 & Siemens & CO\textsubscript{2}, $T$, RH & KNX IoT & -- & ${\sim}$€\,300 \\
+    \hline
+    Elvaco Sense 100W & Elvaco & $T$ & wM-Bus & -- & ${\sim}$€\,69 \\
+    \hline
+    Elvaco Sense 300W & Elvaco & $T$, RH, CO\textsubscript{2} & wM-Bus & -- & n/a \\
+  \end{longtable}
+
+  \footnotesize \textit{Zdroj:} Vlastní zpracování na základě \parencite{Aranet4HOMEIndoor, PremiumBlackAirvalent, INKBIRDWireless4in1, protronixs.r.o.CidloNLECOCO2Cidla2020, protronixs.r.o.CidloNLECOTVOCCidla2020, siemensSensorOverviewBrochure2024, 2kshopsSiemensQPM2102MO2025, alpha-omegatechnologygmbh&co.ElvacoSense100W2025, alpha-omegatechnologygmbh&co.ElvacoSense300W2025, API}
+
+  \footnotesize \textit{Poznámka:} V~horní části tabulky jsou uvedena nízkonákladová spotřebitelská zařízení, v~dolní části průmyslová zařízení určená pro systémy řízení budov (BMS). Sloupec API označuje, zda zařízení poskytuje otevřené programové rozhraní pro přístup k~datům. Ceny průmyslových zařízení Protronix a Elvaco Sense 300W nejsou veřejně dostupné (n/a).
+}
+
+Z~tabulky~\ref{tab:hotova-zarizeni} je patrný výrazný rozdíl mezi spotřebitelským a~průmyslovým segmentem. Spotřebitelská zařízení komunikují převážně prostřednictvím WiFi a~BLE, což umožňuje snadnou integraci s~mobilními aplikacemi a~cloudovými platformami. Data jsou typicky přenášena ve formátu JSON přes REST API nebo BLE GATT profil. Naproti tomu průmyslová zařízení využívají protokoly orientované na automatizaci budov --- analogový výstup 0--10\,V (Protronix), Modbus RTU (Siemens QPM2102), KNX IoT (Siemens QPA2892) nebo wM-Bus (Elvaco) --- které jsou primárně určeny pro řízení HVAC systémů, nikoliv pro otevřené sdílení dat.
+
+Pozoruhodným příkladem v~oblasti spotřebitelských zařízení je AirGradient ONE, které kombinuje plně otevřený hardware i~software s~měřením šesti veličin IEQ (PM, CO\textsubscript{2}, VOC, NO\textsubscript{x}, $T$, RH). Zařízení poskytuje lokální HTTP API ve formátu JSON, podporuje integraci s~platformami jako ESPHome nebo Home Assistant a~jeho firmware je dostupný jako open source. Zařízení je zároveň podporováno platformou OpenAQ \parencite{API}. Tato kombinace otevřenosti, rozsahu měřených veličin a~přijatelné ceny (${\sim}$150\,€) jej odlišuje od ostatních spotřebitelských zařízení, která jsou buď uzavřená (Airvalent, Inkbird), nebo zaměřená na užší spektrum veličin (Aranet4 měří pouze CO\textsubscript{2}, $T$, RH a~$P$).
+
+Z~hlediska otevřenosti dat je zřejmé napětí mezi spotřebitelským a~průmyslovým segmentem. Čtyři ze šesti spotřebitelských zařízení poskytují otevřené API, zatímco žádné z~průmyslových zařízení tuto možnost nenabízí. Průmyslová zařízení sice využívají standardizované protokoly (Modbus, KNX), ty jsou však navrženy pro komunikaci v~rámci uzavřených automatizačních systémů, nikoliv pro sdílení dat s~externími aplikacemi nebo veřejností.
+
+Přehled obou kategorií zařízení umožňuje formulovat několik souhrnných pozorování relevantních pro tuto práci. Naprostá většina identifikovaných senzorů a~zařízení se zaměřuje na kvalitu ovzduší (PM, CO\textsubscript{2}, VOC) a~tepelný komfort ($T$, RH). Akustický komfort je zastoupen pouze komunitním senzorem DNMS a~vizuální komfort (osvětlení) není pokryt žádným z~identifikovaných zařízení. Tato nerovnováha odráží současný stav trhu, v~němž je monitorování IAQ a~tepelného komfortu výrazně rozvinutější než komplexní sledování všech kategorií IEQ.
+
+Nízkonákladové senzory a~spotřebitelská zařízení demokratizují přístup k~monitorování kvality prostředí --- ceny senzorových modulů začínají na jednotkách eur a~kompletní měřicí stanice je možné sestavit za méně než 100\,€. Zároveň se v~tomto segmentu prosazuje trend otevřeného hardwaru, jehož příkladem je AirGradient ONE. Na druhé straně průmyslová zařízení nabízejí vyšší spolehlivost, delší životnost a~integraci do profesionálních systémů řízení budov, avšak za cenu uzavřenosti a~vyšší pořizovací ceny. Pro tuto práci z~uvedeného plyne, že existuje prostor pro platformu, která umožní agregaci dat jak z~nízkonákladových otevřených zařízení, tak z~průmyslových senzorů prostřednictvím standardizovaného API. Konkrétní požadavky na takovou platformu budou specifikovány v~návrhové části práce.

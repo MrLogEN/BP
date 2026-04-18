@@ -45,8 +45,13 @@ Tímto způsobem bylo identifikováno pět aplikací. Následně byla ověřena 
 
 \subsection{Používaná zařízení pro sběr dat}
 
-\[PLAN\]
-Zde bude sekce s informacemi o tom, jak jsem dělal rešerši zařízení pro sběr dat na trhu.
+Rešerše zařízení pro sběr dat probíhala v~dubnu 2026. Jejím cílem bylo sestavit přehled senzorových modulů a~hotových zařízení relevantních pro monitorování IEQ, které se reálně vyskytují v~projektech sběru dat.
+
+Identifikace zařízení probíhala ve třech fázích. V~první, primární fázi bylo využito výsledků analýzy existujících aplikací popsaných v~sekci Rešerše. Projekt sensor.community zveřejňuje seznam podporovaných senzorů \parencite{SensorCommunityDevices}, který posloužil jako základní podklad. Analogicky byly ze zdrojů aplikací OpenAQ, openSenseMap a~IndoorCO2Map extrahovány senzory a~zařízení, pro která tyto platformy poskytují firmware, návody nebo přímou integraci. Tímto způsobem byla identifikována naprostá většina senzorových modulů a~spotřebitelských zařízení zařazených do výsledného přehledu.
+
+Ve druhé fázi byl proveden doplňující průzkum Zotero kolekcí \textit{senzory} a~\textit{Podporovane sensor.community}, které obsahovaly datasheets a~produktové stránky dalších relevantních senzorů.
+
+Pro každý identifikovaný senzor nebo zařízení byl následně vyhledán příslušný datasheet nebo produktová stránka výrobce. Na základě těchto zdrojů byly zjištěny technické parametry: měřené veličiny IEQ, komunikační rozhraní, přesnost a~orientační cena. Zdroje byly přidány do bibliografické databáze a~využity pro zpracování přehledových tabulek.
 
 \subsection{Architektura aplikací pro sběr senzorických dat}
 
@@ -68,8 +73,7 @@ Ve třetí fázi byla ověřena API rozhraní všech čtyř aplikací. Pomocí p
 
 \section{Pozorování}
 
-\[PLAN\]
-Zde bude následovat sekce o tom, jak jsem dělal pozorování a co jsem pozoroval (hlavně z těch webových stránek, z vlastní zkušenosti.
+Pozorování bylo využito jako doplňková metoda pro rozšíření portfolia identifikovaných zařízení. Průmyslová zařízení Elvaco Sense 100W a~Sense 300W byla do přehledu zařízení pro sběr dat (sekce~\ref{sec:zarizeni}) zařazena na základě přímé znalosti těchto produktů z~předchozího zaměstnání autora, který se podílel na vývoji aplikace, která tyto senzory využívala.
 
 \section{Komparace}
 
@@ -87,4 +91,8 @@ Pátou dimenzí, přesahující rámec standardní komparace, bylo hodnocení so
 
 \subsection{Komparace zařízení pro sběr dat}
 
-\[PLAN\]
+Komparace zařízení pro sběr dat probíhala v~dubnu 2026 a~navazovala na rešerši popsanou v~předchozí podsekci. Jejím cílem bylo systematicky porovnat identifikovaná zařízení a~poskytnout čtenáři přehled relevantní pro volbu hardwaru při návrhu vlastní aplikace.
+
+Zařízení byla rozdělena do dvou kategorií: senzorové moduly a~hotová zařízení. Toto rozdělení bylo zvoleno proto, že obě skupiny se zásadně liší z~hlediska způsobu nasazení, ceny i~míry otevřenosti. Hotová zařízení byla dále členěna na spotřebitelský a~průmyslový segment, neboť tyto podkategorie vykazují odlišné komunikační protokoly a~přístupy k~otevřenosti dat.
+
+Pro každou kategorii byla sestavena přehledová tabulka zahrnující následující kritéria: výrobce, měřené veličiny IEQ, komunikační rozhraní, deklarovaná přesnost a~orientační cena. U~hotových zařízení byl navíc hodnocen přístup k~otevřenému API. Výsledné tabulky jsou součástí sekce \ref{sec:zarizeni} a~slouží jako podklad pro formulaci požadavků na vlastní aplikaci v~návrhové části práce.
