@@ -1,0 +1,255 @@
+Indoor Envrionment Quality data collection applications
+
+1 of 6
+
+https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?pre...
+
+Indoor Envrionment Quality data collection applications
+Dear responder,
+my name is Vilém Charwot, student of Applied Informatics at Prague University of Economics and Business.
+This survey is targeted on research of Indoor Environment Quality (IEQ) apps, that are being used by people in the wild.
+This survey is part of my bachelor's thesis and the results are going to be published in the associated paper. Your feedback on which apps people use, what features they
+value, and what they feel is missing will serve as a baseline for my work - which will be to either contribute a new feature to an existing app or to create a new one.
+Thank you for your time. The questionnaire will take approximately 5-10 minutes to complete. Please DO NOT share any personal information here as the data is going to
+be public.
+
+* Povinné
+
+Introduction
+A quick guide to IEQ and IAQ
+Before you start, please take a moment to understand two key terms in this survey:
+
+1. IEQ (Indoor Environmental Quality) is the broad term for the overall quality of a building's environment. It covers all factors that affect a person's health and comfort indoors, including thermal comfort (temperature), lighting, and acoustics (noise), as well as air quality.
+2. IAQ (Indoor Air Quality) is a crucial component of IEQ that focuses specifically on the air you breathe. It measures pollutants like carbon dioxide (CO2), particulate matter (e.g., PM2.5), and humidity levels.
+
+In short: IAQ is about the air, while IEQ is about the total indoor experience.
+
+1. Are you familiar with these terms? *
+Both IEQ and IAQ
+Only IEQ
+Only IAQ
+Neither
+
+2. Do you use any app that collects data about IEQ or IAQ? *
+Yes
+No
+
+Non-user
+Why are you not using any app?
+
+3. Why are you not using an IEQ/IAQ app? *
+I don't have a need for such app
+I have privacy concerns
+I haven't found what I need
+
+Jiné
+
+4. If you have a need for an IEQ app, how should such app behave? What features should it have? (Write anything that comes to your
+mind)
+
+Applications
+
+5. Which application do you use? (please enter the name of the app and its url, if available. Preferably in this format: name, url ) *
+
+6. How do you access the app? *
+Website
+Mobile app from the Google Play
+Mobile app from the App Store
+Desktop app
+
+Jiné
+
+4/20/26, 6:43 PM
+
+Indoor Envrionment Quality data collection applications
+
+2 of 6
+
+https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?pre...
+
+7. To the best of your knowledge, is this application Open Source? *
+Yes
+No
+I don't know
+
+8. Is there a feature/features that you wish would exist in the app?
+
+9. What features of the app do you use the most? (Separate each option with a comma) *
+
+10. Do you prefer the data to be publicly available (Open Data) or private? *
+I think, it should be public (Open Data)
+I think, it should be private
+I think a part of it should be public and a part private.
+
+11. Which part of the data should be public? (fill in only if you selected the third option in the question no. 8)
+
+12. Which part of the data should be private? (fill in only if you selected the third option in the question no. 8)
+
+13. Are you data... *
+consumer
+producer
+both
+
+4/20/26, 6:43 PM
+
+Indoor Envrionment Quality data collection applications
+
+3 of 6
+
+https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?pre...
+
+Data consumers
+What data do you consume and how do you consume it?
+
+14. What data do you consume? (select all fitting answers) *
+Air temperature
+Surface temperature
+Relative humidity
+CO2 concentration
+PM10
+PM2.5
+Noise level
+Ligth intensity
+Ligth temperature
+O3
+NO2
+SO2
+CO
+VOC
+
+Jiné
+
+15. How do you consume the data? (select all fitting answers) *
+Download archives (zip, tar, etc.)
+API request
+I view the data straight in the app
+
+Jiné
+
+16. Why do you consume the data?
+
+4/20/26, 6:43 PM
+
+Indoor Envrionment Quality data collection applications
+
+4 of 6
+
+https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?pre...
+
+Data producers
+What data do you produce and how do you upload it?
+
+17. What data do you produce? (select all fitting answers) *
+Air temperature
+Surface temperature
+Relative humidity
+Noise level
+Ligth intensity
+Ligth temperature
+CO2 concentration
+PM10
+PM2.5
+CO
+SO2
+O3
+NO2
+VOC
+
+Jiné
+
+18. How do you upload the data to the app? *
+API endpoint (HTTP, etc.)
+Manually enter data (through GUI)
+Upload formatted data manually (CSV, XLSX, etc.)
+
+Jiné
+
+19. What device (sensor) do you use for data collection?
+(Please enter vendor name with product name or either one you know. If you use multiple, separate the devices with a comma like
+this: Siemens XX-XXXX, DHT11, Honeywell xxxxx, etc., the device can even be a DIY device) *
+
+20. Why do you collect the data?
+
+4/20/26, 6:43 PM
+
+Indoor Envrionment Quality data collection applications
+
+5 of 6
+
+https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?pre...
+
+Data Producers & Data Consumers
+What data do you produce and how do you upload it? What data do you consume and how?
+
+21. What data do you produce? (select all fitting answers) *
+Air temperature
+Surface temperature
+Relative humidity
+CO2 concentration
+PM10
+PM2.5
+Noise level
+Light intesity
+Light temperature
+O3
+NO2
+SO2
+CO
+VOC
+
+Jiné
+
+22. How do you upload the data to the app? *
+API endpoint (HTTP, etc.)
+Manually enter data (through GUI)
+Upload formatted data manually (CSV, XLSX, etc.)
+
+Jiné
+
+23. What device (sensor) do you use for data collection?
+(Please enter vendor name with product name or either one you know. If you use multiple, separate the devices with a comma like
+this: Siemens XX-XXXX, DHT11, Honeywell xxxxx, etc., the device can even be a DIY device) *
+
+24. Why do you collect the data?
+
+25. What data do you consume? (select all fitting answers) *
+Air temperature
+Surface temperature
+Relative humidity
+CO2 concentration
+PM10
+PM2.5
+Noise level
+Light intensity
+Light temperature
+O3
+NO2
+SO2
+CO
+VOC
+
+Jiné
+
+4/20/26, 6:43 PM
+
+Indoor Envrionment Quality data collection applications
+
+6 of 6
+
+https://forms.cloud.microsoft/Pages/DesignPageV2.aspx?pre...
+
+26. How do you consume the data? (select all fitting answers) *
+Download archives (zip, tar, etc.)
+API request
+I view the data straight in the app
+
+Jiné
+
+27. Why do you consume the data?
+
+Microsoft tento obsah nevytvořil ani neschválil. Data, která odešlete, se pošlou vlastníkovi formuláře.
+Microsoft Forms
+
+4/20/26, 6:43 PM
+
+
