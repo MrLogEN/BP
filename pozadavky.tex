@@ -1,12 +1,74 @@
-\chapter{Požadavky na systém - 4 strany, 16. 1. 2025}
-%TODO dotazníkové šetření na požadavky - https://www.reddit.com/r/AirQuality/ (12k uživatlů), Hlavně musí být Open Source a poskytovat OpenData
+\chapter{Požadavky na systém}
+Tato kapitola se zabývá požadavky na systém pro sběr dat o kvalitě vnitřního prostředí. Na problematiku se podíváme z několika úhlů.
+
+První část se zaměří na požadavky plynoucí ze samotné problematiky IEQ, tedy na veličiny, které je potřeba měřit.
+Druhá část se bude věnovat požadavkům plynoucím z existujících aplikací. Tato část se zaměřuje na již existující funkce těchto aplikací a na zlepšení jejich nedostatků.
+Třetí část se zaměřuje na požadavky plynoucí z české legislativy, zejména ve smyslu OFN.
+Čtvrtá část se zaměřuje na požadavky získané z dotazníkového šetření. To proběhlo neúspěšně, ale i tak je potřeba se o něm zmínit.
+Poslední část přidává některé vlastní požadavky, které autor považuje za důležité.
+
+\section{Požadavky plynocí z problematiky IEQ}
+\[PLAN\]
+
+\begin{itemize}
+  \item podpora všech identifikovaných faktorů IEQ
+\end{itemize}
 
 \section{Požadavky plynocí z existujících aplikací}
 
+\[PLAN\]
+
+\begin{itemize}
+  \item Vizualizace v podobě mapy s body
+  \item Vizualizace pomocí grafů
+  \item Archiv
+  \item Přístup k datům přes API
+  \item Open Source aplikace (web, api, ...) 
+  \item Rychlost načítání dat (cache, indexování apod.) opensensemap je neskutečně pomalá (padá záložka ve firefoxu)
+  \item OpenSource řešení pro zpracování dat (např. Grafana, InfluxDB, ...)
+  \item sdílet data o použitém senzoru (model, přesnost apod.)
+\end{itemize}
+
+\section{Požadavky plynocí z legislativy}
+
+\[PLAN\]
+
+\begin{itemize}
+  \item Archivy v otevřených formátech JSON-LD, CSV, XML (\href{https://data.gov.cz/pro-poskytovatele/otev%C5%99en%C3%A1-data/technick%C3%A9-standardy-stupe%C5%88-otev%C5%99enosti-3/}{tabulková data})
+  \item implementovat \href{https://semiceu.github.io/DCAT-AP/releases/3.0.0/}{DCAT-AP 3.0.0}, který pomůže s interoperabilitou dat a poskytne standardizovaný způsob METADATY. Implementace \href{https://ofn.gov.cz/dcat-ap-cz-rozhran%c3%ad-katalog%c5%af-otev%c5%99en%c3%bdch-dat/2024-05-28/#polo%C5%BEky-katalog-poskytovatel}{DCAT-AP-CZ} je momentálně limitována na \href{https://ofn.gov.cz/registr-pr%C3%A1v-a-povinnost%C3%AD/org%C3%A1ny-ve%C5%99ejn%C3%A9-moci/2019-04-03/#organ-verejne-moci}{orgány veřejné moci}.
+  \item schémata pro data - JSON Schema a případně schema pro CSV (\href{https://www.w3.org/TR/tabular-metadata/}{W3C Tabular Metadata}) 
+  \item přístup bez nutnosti \href{https://data.gov.cz/%c5%a1patn%c3%a1-praxe/pr%C3%A1vn%C3%AD-p%C5%99ek%C3%A1%C5%BEky/}{registrace}
+    \item GDPR (v případě sbírání osobních údajů) \href{https://gdpr.eu/}{complinace s GDPR}, \href{https://www.edpb.europa.eu/our-work-tools/general-guidance/guidelines-recommendations-best-practices_en}{GDPR guide}, \href{https://www.aspi.cz/products/lawText/1/91825/1/2}{110/2019 Sb.} 
+  \item \href{https://data.gov.cz/pro-poskytovatele/otev%C5%99en%C3%A1-data/technick%C3%A9-standardy-stupe%C5%88-otev%C5%99enosti-3/}{kodovani UTF-8}
+    \item licence pro \href{https://data.gov.cz/%c5%a1patn%c3%a1-praxe/pr%C3%A1vn%C3%AD-p%C5%99ek%C3%A1%C5%BEky/}{data a databazi}
+  \item dokumentace ve formě \href{https://data.gov.cz/%c5%a1patn%c3%a1-praxe/probl%C3%A9my-s-dokumentac%C3%AD-a-metadaty/}{HTML stránky}
+  \item umístění senzorů za pomocí \href{https://ofn.gov.cz/prostorov%C3%A1-data/2019-08-22/#sou%C5%99adnicov%C3%A9-referen%C4%8Dn%C3%AD-syst%C3%A9my}{prostorových dat}.
+\end{itemize}
+
 \section{Dotazníkové šetření}
+
+\[PLAN\]
+\begin{itemize}
+  \item je třeba přidat do metod jak šetření probíhalo
+  \item výsledky - žádní respondenti
+\end{itemize}
 
 \section{Vlastní požadavky}
 
+\[PLAN\]
+
+\begin{itemize}
+  \item umístění senzorů (místnost, výška, orientace) - napojení na metodiky měření v české legislativě a ČSN, dle proveditelnosti (\href{https://www.aspi.cz/products/lawText/1/81252/1/2/metodicky-navod-c-zd25-2013-pro-mereni-a-hodnoceni-mikroklimatickych-podminek-na-pracovisti-a-vnitrniho-prostredi-staveb?vtextu=vnit%C5%99n%C3%ADho%20prost%C5%99ed%C3%AD#lema0}{Tepelný komfort}, \href{https://www.aspi.cz/products/lawText/1/54730/1/2#c_1640}{IAQ}, \href{https://www.aspi.cz/products/lawText/1/74904/1/2#c_7533}{Akustický komfort}, \href{https://www.aspi.cz/products/lawText/19/519802/1/2}{Vizuální komfort})
+\end{itemize}
+
+
 \section{Shrnutí}
+
+\[PLAN\]
+
+\begin{itemize}
+  \item Rozdělení výše uvedených požadavků na funkční a nefunční
+\end{itemize}
+
 \subsection{Funkční požadavky}
 \subsection{Nefunkční požadavky}
