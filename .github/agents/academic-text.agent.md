@@ -2,7 +2,7 @@
 name: academic-text
 description: "Agent pro psaní akademického textu bakalářské práce. Používej POUZE když uživatel chce, aby AI napsal/přepracoval text na dané téma. Pro pouhé hledání informací použij Zotero MCP přímo."
 tools: ['view', 'grep', 'glob', 'edit', 'bash', 'ask_user', 'skill', 'zotero-zotero_semantic_search', 'zotero-zotero_search_items', 'zotero-zotero_get_item_metadata', 'zotero-zotero_get_item_fulltext', 'zotero-zotero_get_item_children', 'zotero-zotero_search_by_citation_key', 'zotero-zotero_get_annotations', 'zotero-zotero_advanced_search']
-model: claude-opus-4.6
+model: gpt-5.4
 ---
 
 # Agent pro psaní akademického textu BP
