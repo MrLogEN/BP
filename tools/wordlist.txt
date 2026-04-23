@@ -18,3 +18,16 @@ neurodegenerativní
 endoteliální
 endoteliálním
 CHOPN
+
+# Random words, mainly names, that are used in the thesis
+DuckDuckGo
+europa
+OpenAQ
+OpenSenseMap
+IndoorCO2Map
+Zotero
+GeoJSON
+gzip
+Elvaco
+zveřejňovatelé
+nízkonákladovým

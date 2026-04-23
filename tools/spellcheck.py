@@ -25,6 +25,13 @@ from pathlib import Path
 # Czech characters used for language detection
 # ---------------------------------------------------------------------------
 CS_CHARS = set("áčďéěíňóřšťúůýžÁČĎÉĚÍŇÓŘŠŤÚŮÝŽ")
+EXCLUDED_TEX_FILES = {
+    "makra.tex",
+    "biblatex-setup.tex",
+    "literatura.tex",
+    "prohlaseniAI.tex",
+    "zacatek.tex",
+}
 
 # LaTeX patterns to strip before checking
 _STRIP_PATTERNS = [
@@ -199,10 +206,15 @@ def main() -> None:
     if args.file:
         tex_files = [Path(args.file) if Path(args.file).is_absolute() else repo_root / args.file]
     else:
-        tex_files = sorted(repo_root.glob("*.tex"))
+        tex_files = sorted(
+            tex for tex in repo_root.glob("*.tex") if tex.name not in EXCLUDED_TEX_FILES
+        )
 
     all_findings: list[dict] = []
     for tex in tex_files:
+        if tex.name in EXCLUDED_TEX_FILES:
+            print(f"Skipping excluded file: {tex}", file=sys.stderr)
+            continue
         if not tex.exists():
             print(f"File not found: {tex}", file=sys.stderr)
             continue
