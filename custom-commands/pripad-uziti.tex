@@ -1,0 +1,65 @@
+% Tento soubor obsahuje definici prostředí pro popis případů užití.
+% 
+% Použití:
+% \begin{UseCaseTable}                                        %Začátek tabulky případů užití
+%   {Přihlášení uživatele}                                    %Název případu užití
+%   {UC-login}                                                %Identifikace případu užití
+%   {FR-01}                                                   %Identifikace funkčního požadavku
+%   {Uživatel se přihlásí do systému}                         %Cíl případu užití
+%   {Uživatel}                                                %Primární aktér(ři)
+%   {Autentizační služba}                                     %Pomocný aktér(ři)
+%   {Uživatel není přihlášen}                                 %Vstupní podmínky
+%   {Uživatel je přihlášen}                                   %Výstupní podmínky
+%
+% \UseCaseScenario{Základní scénář}                           %Vymezení zda li jde o základní nebo alternativní scénář (dle MMSP metodiky)
+% \UseCaseStep{uživatel}{zadá přihlašovací údaje}             %Role (Systém/aktér) a akce (co dělá)
+%
+% \UseCaseScenario{Alternativní scénář}
+% \UseCaseStepCustom{A1}{systém}{neplatné přihlašovací údaje} %Custom step pro alternativní scénář, kde krok není číslován explicitně.
+%
+% \end{UseCaseTable}                                          %Konec tabulky případů užití
+
+\newcounter{ucstep}
+
+\newenvironment{UseCaseTable}[8]
+{
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.1}
+\setcounter{ucstep}{0}
+
+\begin{longtable}{p{4cm} p{2cm} p{3cm} p{5cm}}
+\caption{Případ užití: #1}\label{tab:usecase:#2}\tabularnewline
+
+\toprule
+\textbf{Název případu užití} & \multicolumn{3}{l}{#1} \\
+\midrule
+
+\textbf{Identifikace případu užití} & \multicolumn{3}{l}{#2} \\
+\textbf{Identifikace funkčního požadavku} & \multicolumn{3}{l}{#3} \\
+\textbf{Cíl případu užití} & \multicolumn{3}{l}{#4} \\
+\textbf{Primární aktér(ři)} & \multicolumn{3}{l}{#5} \\
+\textbf{Pomocný aktér(ři)} & \multicolumn{3}{l}{#6} \\
+\textbf{Vstupní podmínky} & \multicolumn{3}{l}{#7} \\
+\textbf{Výstupní podmínky} & \multicolumn{3}{l}{#8} \\
+% \textbf{Základní scénář} & \textbf{Krok} & \textbf{Role} & \textbf{Akce} \\
+}
+{
+\bottomrule
+\end{longtable}
+}
+
+\newcommand{\UseCaseStep}[2]{%
+\stepcounter{ucstep}
+& \arabic{ucstep} & #1 & #2 \\
+}
+
+\newcommand{\UseCaseScenario}[1]{%
+\midrule
+\textbf{#1} & \textbf{Krok} & \textbf{Role} & \textbf{Akce} \\
+\setcounter{ucstep}{0}
+}
+
+\newcommand{\UseCaseStepCustom}[3]{%
+& #1 & #2 & #3 \\
+}
