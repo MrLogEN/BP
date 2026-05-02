@@ -1,0 +1,45 @@
+\newcounter{otherreq}
+\newcommand{\otherreqprefix}{REQ} % výchozí prefix (můžeš změnit)
+
+\renewcommand{\theotherreq}{%
+\otherreqprefix\ifnum\value{otherreq}<10 0\fi\arabic{otherreq}%
+}
+
+\newenvironment{OstatniPozadavkyTabulka}[2]{%
+% #1 = prefix (např. VYK, SPO, BEZ, ...)
+% #2 = caption
+
+  \renewcommand{\otherreqprefix}{#1}
+  \setcounter{otherreq}{0}
+
+  \footnotesize
+  \setlength{\tabcolsep}{3pt}
+  \renewcommand{\arraystretch}{1.1}
+
+  \begin{longtable}{p{2cm} p{4cm} p{7cm} p{2cm}}
+    \caption{#2}\label{tab:#1-pozadavky}\\
+    \toprule
+    \textbf{ID} & \textbf{Název} & \textbf{Podrobný popis} & \textbf{Priorita} \\
+    \midrule
+    \endfirsthead
+
+    \multicolumn{4}{l}{\textit{Pokračování tabulky \ref{tab:#1-pozadavky}}} \\
+    \toprule
+    \textbf{ID} & \textbf{Název} & \textbf{Podrobný popis} & \textbf{Priorita} \\
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{4}{r}{\textit{Pokračování na další stránce}} \\
+    \endfoot
+
+    \bottomrule
+    \endlastfoot
+}{%
+  \end{longtable}
+}
+
+\newcommand{\OstatniPozadavekRow}[3]{%
+\stepcounter{otherreq}
+\theotherreq & #1 & #2 & #3 \\
+}
