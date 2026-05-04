@@ -1,1 +1,8 @@
 \subsection{Spolehlivost}
+
+\begin{OstatniPozadavkyTabulka}{SPO}{Požadavky na spolehlivost}
+  \OstatniPozadavekRow{Dostupnost veřejného čtecího API}{Veřejné čtecí API a archiv ke stažení musí být dostupné minimálně 99~\% času v rámci kalendářního měsíce, počítáno mimo plánované odstávky oznámené alespoň 24 hodin předem. Odpovídá maximálně přibližně 7 hodinám neplánovaného výpadku za měsíc.}{1}
+  \OstatniPozadavekRow{Trvanlivost přijatých měření}{Po úspěšném potvrzení přijetí měření ze senzoru (HTTP odpověď 2xx) systém nesmí toto měření ztratit ani v případě následného neplánovaného výpadku. Měření musí být trvale uloženo dříve, než systém potvrdí příjem.}{1}
+  \OstatniPozadavekRow{Neměnnost publikovaných měření}{Měření, které již bylo publikováno přes čtecí API nebo zahrnuto do archivu ke stažení, nesmí být zpětně tiše modifikováno ani smazáno. Pokud je nutné pozorování označit za neplatné (např. detekovaná chyba senzoru), musí být tato skutečnost vyjádřena explicitním atributem zachovávajícím historickou hodnotu, nikoliv přepsáním záznamu.}{1}
+  \OstatniPozadavekRow{Pravidelné zálohování dat}{Systém musí pravidelně zálohovat všechna přijatá měření a registrační údaje (budovy, místnosti, senzory, uživatelské účty) tak, aby byl po závažném výpadku schopen obnovit stav nejvýše 24 hodin starý. Zálohy musí být uloženy mimo primární úložiště, které zálohuje.}{1}
+\end{OstatniPozadavkyTabulka}
