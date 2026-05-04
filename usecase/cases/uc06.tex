@@ -1,0 +1,27 @@
+
+Šestý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC06}.
+
+\begin{UseCaseTable}
+  {Evidence místnosti}
+  {UC06}
+  {F06}
+  {Zaregistrování místnosti u evidované budovy}
+  {Provozovatel monitorovaného prostoru}
+  {}
+  {Uživatel je přihlášen, evidovaná budova existuje}
+  {Místnost je v systému evidována pod konkrétní budovou}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{uživatel}{V detailu evidované budovy zvolí akci pro založení místnosti.}
+\UseCaseStep{systém}{Vrátí formulář pro evidenci místnosti se základními a doplňujícími údaji.}
+\UseCaseStep{uživatel}{Vyplní povinné základní údaje (název, podlaží), volitelně doplňující údaje (funkce místnosti z předdefinovaného číselníku, typická délka pobytu, kategorie zdrojů znečištění, podlahová plocha, světlá výška, způsob větrání) a formulář odešle.}
+\UseCaseStep{systém}{Ověří, že povinné údaje jsou vyplněny, všechny zadané údaje jsou v platném tvaru a hodnoty z číselníků odpovídají povoleným položkám.}
+\UseCaseStep{systém}{Uloží místnost do evidence pod zvolenou budovou a zobrazí potvrzení.}
+
+\UseCaseScenario{Alternativní scénář -- neplatné údaje}
+\UseCaseStepCustom{A1}{uživatel, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{A2}{systém}{Zjistí chybu ve vyplnění formuláře (chybí povinné pole, neplatný formát hodnoty, neznámá položka číselníku) a vyzve uživatele k její opravě.}
+\UseCaseStepCustom{A3}{uživatel}{Opraví zadané údaje.}
+\UseCaseStepCustom{A4}{systém}{Pokračuje krokem 4 základního scénáře.}
+
+\end{UseCaseTable}
