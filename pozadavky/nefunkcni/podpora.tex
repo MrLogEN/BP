@@ -1,1 +1,8 @@
 \subsection{Podpora}
+
+\begin{OstatniPozadavkyTabulka}{POD}{Požadavky na podporu}
+  \OstatniPozadavekRow{Verzované API se zpětnou kompatibilitou}{Veřejné čtecí API musí být verzované tak, aby existující konzumenti dat nebyli rozbiti zaváděnými změnami. Nezpětně kompatibilní změny (přejmenování či odstranění polí, změna sémantiky) mohou být zavedeny pouze v nové majoritní verzi API; předchozí majoritní verze musí zůstat dostupná po předem stanovenou dobu po vydání nové verze.}{1}
+  \OstatniPozadavekRow{Kontejnerizované nasazení}{Systém musí být distribuován jako sada kontejnerových obrazů s deklarativním předpisem nasazení (např. Docker Compose, Helm chart), aby provozovatel třetí strany dokázal spustit vlastní instanci aplikace bez ručního instalování závislostí. Tím je zároveň eliminována vázanost na konkrétního cloudového poskytovatele (\emph{vendor lock-in}), ke které by docházelo při použití proprietárních služeb typu AWS Lambda nebo Google Cloud Functions.}{2}
+  \OstatniPozadavekRow{Automatizovaná migrace databázového schématu}{Systém musí při aktualizaci verze obsahovat automatizovaný mechanismus migrace databázového schématu. Migrace musí proběhnout bez ruční intervence administrátora a bez ztráty dosud uložených dat. Postup migrace musí být verzovaný spolu se zdrojovým kódem.}{1}
+  \OstatniPozadavekRow{Rozšiřitelnost slovníků a číselníků}{Systém musí umožnit administrátorovi instance rozšířit číselníky kategorických hodnot (typ budovy, funkce místnosti, kategorie zdrojů znečištění) a seznam podporovaných veličin a jednotek bez nutnosti zásahu do zdrojového kódu. Rozšíření musí zachovat zpětnou kompatibilitu -- již publikovaná data zůstávají platná.}{2}
+\end{OstatniPozadavkyTabulka}
