@@ -1,0 +1,28 @@
+
+Sedmnáctý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC17}.
+
+\begin{UseCaseTable}
+  {Stažení archivu naměřených dat}
+  {UC17}
+  {F17}
+  {Získání periodicky aktualizovaného archivu všech dosud naměřených dat nebo jeho vymezené podmnožiny pro hromadné zpracování}
+  {Výzkumný pracovník}
+  {}
+  {Žádné -- archiv je veřejně dostupný}
+  {Konzument získal archiv naměřených dat v otevřeném formátu}
+
+\UseCaseScenario{Základní scénář -- stažení úplného archivu}
+\UseCaseStep{výzkumný pracovník}{Odešle systému HTTP požadavek na endpoint poskytující archiv všech dosud naměřených dat.}
+\UseCaseStep{systém}{Vrátí periodicky aktualizovaný archiv v otevřeném strojově čitelném formátu.}
+
+\UseCaseScenario{Alternativní scénář -- stažení vymezené podmnožiny archivu}
+\UseCaseStepCustom{A1}{výzkumný pracovník}{Odešle systému požadavek na archiv s parametry vymezujícími podmnožinu (časový interval, geografická oblast, identifikátory konkrétních entit).}
+\UseCaseStepCustom{A2}{systém}{Ověří, že zadané parametry jsou v očekávaném tvaru.}
+\UseCaseStepCustom{A3}{systém}{Vrátí archiv obsahující pouze data odpovídající zadané podmnožině.}
+
+\UseCaseScenario{Alternativní scénář -- neplatné parametry vymezení}
+\UseCaseStepCustom{B1}{výzkumný pracovník}{shodné s krokem A1 alternativního scénáře.}
+\UseCaseStepCustom{B2}{systém}{Zjistí, že některý z parametrů vymezení má neplatný formát nebo odkazuje na neexistující entitu.}
+\UseCaseStepCustom{B3}{systém}{Vrátí chybovou odpověď s odpovídajícím HTTP stavovým kódem a popisem problematického parametru.}
+
+\end{UseCaseTable}
