@@ -1,0 +1,30 @@
+
+Dvanáctý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC12}.
+
+\begin{UseCaseTable}
+  {Filtrování dotazů na čtecí API}
+  {UC12}
+  {F12}
+  {Získání pouze té podmnožiny pozorování a metadat, která odpovídá zadaným filtračním kritériím}
+  {Vývojář aplikací třetí strany}
+  {}
+  {Žádné -- API je veřejně dostupné}
+  {Konzument získal odfiltrovanou podmnožinu pozorování a metadat odpovídající zadaným kritériím}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{vývojář}{Odešle systému požadavek na čtecí API s parametry pro filtraci (časový interval, geografická oblast, identifikátor subjektu zájmu, senzoru či veličiny).}
+\UseCaseStep{systém}{Ověří, že zadané filtrační parametry jsou v očekávaném tvaru a hodnoty z číselníků odpovídají povoleným položkám.}
+\UseCaseStep{systém}{Aplikuje filtry na evidenci pozorování a metadat.}
+\UseCaseStep{systém}{Vrátí odpověď obsahující pouze záznamy odpovídající všem filtračním kritériím.}
+
+\UseCaseScenario{Alternativní scénář -- neplatný filtrační parametr}
+\UseCaseStepCustom{A1}{vývojář}{shodné s krokem 1 základního scénáře.}
+\UseCaseStepCustom{A2}{systém}{Zjistí, že některý z filtračních parametrů má neplatný formát nebo odkazuje na neexistující entitu.}
+\UseCaseStepCustom{A3}{systém}{Vrátí chybovou odpověď s odpovídajícím HTTP stavovým kódem a popisem problematického parametru.}
+
+\UseCaseScenario{Alternativní scénář -- prázdný výsledek}
+\UseCaseStepCustom{B1}{vývojář, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{B2}{systém}{Zjistí, že filtračním kritériím neodpovídá žádný záznam.}
+\UseCaseStepCustom{B3}{systém}{Vrátí prázdnou množinu výsledků v očekávané struktuře odpovědi.}
+
+\end{UseCaseTable}
