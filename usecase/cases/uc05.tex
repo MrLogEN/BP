@@ -1,0 +1,27 @@
+
+Pátý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC05}.
+
+\begin{UseCaseTable}
+  {Evidence budovy}
+  {UC05}
+  {F05}
+  {Zaregistrování budovy do evidence systému}
+  {Provozovatel monitorovaného prostoru}
+  {}
+  {Uživatel je přihlášen}
+  {Budova je v systému evidována}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{uživatel}{V administraci zvolí akci pro založení budovy.}
+\UseCaseStep{systém}{Vrátí formulář pro evidenci budovy se základními a doplňujícími údaji.}
+\UseCaseStep{uživatel}{Vyplní povinné základní údaje (název, adresa, typ), volitelně doplňující údaje (souřadnice, rok výstavby, rok poslední rekonstrukce, úroveň veřejného zobrazení polohy) a formulář odešle.}
+\UseCaseStep{systém}{Ověří, že povinné údaje jsou vyplněny a všechny zadané údaje jsou v platném tvaru.}
+\UseCaseStep{systém}{Uloží budovu do evidence a zobrazí potvrzení.}
+
+\UseCaseScenario{Alternativní scénář -- neplatné údaje}
+\UseCaseStepCustom{A1}{uživatel, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{A2}{systém}{Zjistí chybu ve vyplnění formuláře (chybí povinné pole, neplatný formát hodnoty) a vyzve uživatele k její opravě.}
+\UseCaseStepCustom{A3}{uživatel}{Opraví zadané údaje.}
+\UseCaseStepCustom{A4}{systém}{Pokračuje krokem 4 základního scénáře.}
+
+\end{UseCaseTable}
