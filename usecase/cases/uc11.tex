@@ -1,0 +1,30 @@
+
+Jedenáctý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC11}.
+
+\begin{UseCaseTable}
+  {Čtení dat přes veřejné API}
+  {UC11}
+  {F11}
+  {Získání aktuálních nebo historických pozorování a metadat o subjektech zájmu prostřednictvím veřejného čtecího API}
+  {Vývojář aplikací třetí strany}
+  {}
+  {Žádné -- API je veřejně dostupné}
+  {Konzument získal požadovaná pozorování a metadata}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{vývojář}{Odešle systému HTTP požadavek na endpoint čtecího API s identifikací požadované entity (subjektu zájmu, senzoru) nebo veličiny.}
+\UseCaseStep{systém}{Ověří, že požadavek je syntakticky správný.}
+\UseCaseStep{systém}{Vyhledá v evidenci odpovídající pozorování a metadata.}
+\UseCaseStep{systém}{Vrátí odpověď v otevřeném strojově čitelném formátu obsahující požadované hodnoty i metadata potřebná pro jejich interpretaci.}
+
+\UseCaseScenario{Alternativní scénář -- požadovaná entita neexistuje}
+\UseCaseStepCustom{A1}{vývojář, systém}{shodné s kroky 1--2 základního scénáře.}
+\UseCaseStepCustom{A2}{systém}{Zjistí, že požadovaný subjekt zájmu, senzor nebo veličina není v evidenci.}
+\UseCaseStepCustom{A3}{systém}{Vrátí chybovou odpověď s odpovídajícím HTTP stavovým kódem a popisem chyby.}
+
+\UseCaseScenario{Alternativní scénář -- syntakticky nesprávný požadavek}
+\UseCaseStepCustom{B1}{vývojář}{shodné s krokem 1 základního scénáře.}
+\UseCaseStepCustom{B2}{systém}{Zjistí, že požadavek je syntakticky nesprávný.}
+\UseCaseStepCustom{B3}{systém}{Vrátí chybovou odpověď s odpovídajícím HTTP stavovým kódem a popisem chyby.}
+
+\end{UseCaseTable}
