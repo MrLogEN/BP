@@ -1,5 +1,7 @@
 \subsection{Rozhraní na externí systémy nebo zařízení}
 
+Požadavky na rozhraní na externí systémy nebo zařízení se týkají schopnosti systému komunikovat a integrovat se s dalšími systémy, službami nebo zařízeními \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Požadavky, které byly identifikovány jsou uvedeny v tabulce \ref{tab:EXT-pozadavky}.
+
 \begin{OstatniPozadavkyTabulka}{EXT}{Požadavky na rozhraní na externí systémy nebo zařízení}
   \OstatniPozadavekRow{REST API přes HTTP}{Veřejné čtecí rozhraní systému musí být realizováno jako REST API nad protokolem HTTP. Identifikace zdrojů je řešena URI, operace standardními HTTP metodami (\texttt{GET}, \texttt{HEAD}), výběr formátu odpovědi vyjednáním obsahu (\emph{content negotiation}) přes hlavičku \texttt{Accept}. Výchozí formát odpovědi je JSON-LD; v souladu s OFN propojených dat lze požadovat alternativní serializace (např. Turtle).}{1}
   \OstatniPozadavekRow{Rozhraní pro příjem dat ze senzorů}{Systém musí poskytovat zápisové rozhraní, jehož prostřednictvím senzorová zařízení odesílají naměřené hodnoty. Rozhraní zajišťuje autentizaci zařízení vůči systému, aby byla zaručena vazba mezi přijatým měřením a registrovaným senzorem.}{1}

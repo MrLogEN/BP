@@ -1,5 +1,7 @@
 \subsection{Podpora}
 
+Požadavky na podporu se týkají aspektů vývoje a údržby systému \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Tyto požadavky jsou popsány v tabulce \ref{tab:POD-pozadavky}.
+
 \begin{OstatniPozadavkyTabulka}{POD}{Požadavky na podporu}
   \OstatniPozadavekRow{Verzované API se zpětnou kompatibilitou}{Veřejné čtecí API musí být verzované tak, aby existující konzumenti dat nebyli rozbiti zaváděnými změnami. Nezpětně kompatibilní změny (přejmenování či odstranění polí, změna sémantiky) mohou být zavedeny pouze v nové majoritní verzi API; předchozí majoritní verze musí zůstat dostupná po předem stanovenou dobu po vydání nové verze.}{1}
   \OstatniPozadavekRow{Kontejnerizované nasazení}{Systém musí být distribuován jako sada kontejnerových obrazů s deklarativním předpisem nasazení (např. Docker Compose, Helm chart), aby provozovatel třetí strany dokázal spustit vlastní instanci aplikace bez ručního instalování závislostí. Tím je zároveň eliminována vázanost na konkrétního cloudového poskytovatele (\emph{vendor lock-in}), ke které by docházelo při použití proprietárních služeb typu AWS Lambda nebo Google Cloud Functions.}{2}

@@ -1,9 +1,10 @@
 \section{Systemová omezení}
 
+Systémová omezení udávjí technická a jiná omezení, kterými je systém vázán \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. V případě této práce se jedná o požadavky uvedené v tabulce č. \ref{tab:SYS-pozadavky}.
+
 \begin{OstatniPozadavkyTabulka}{SYS}{Systémová omezení}
   \OstatniPozadavekRow{Šifrovaná komunikace přes HTTPS}{Veškerá komunikace s aplikací (čtecí API, archiv ke stažení, uživatelské rozhraní, příjem dat ze senzorů) musí probíhat výhradně přes HTTPS s veřejně důvěryhodným TLS certifikátem. Nezašifrované HTTP požadavky musí být přesměrovány na HTTPS.}{1}
   \OstatniPozadavekRow{Povolení CORS pro veřejné čtecí endpointy}{Systém musí na všech veřejných čtecích endpointech (API, archiv, katalogizační metadata) povolit mechanismus CORS (\emph{Cross-Origin Resource Sharing}) pro libovolný zdroj, aby konzumenti dat mohli volat API přímo z webových aplikací běžících na jiných doménách bez nutnosti proxy serveru.}{2}
-  \OstatniPozadavekRow{Aplikace publikována jako otevřený zdrojový kód}{Zdrojový kód aplikace (serverová část, klientské uživatelské rozhraní, případné nástroje pro příjem dat ze senzorů) musí být veřejně dostupný pod některou z otevřených licencí kompatibilních s definicí Open Source Initiative. To umožňuje provozování instance třetími stranami, kontrolu implementace a další rozvoj komunitou.}{1}
   \OstatniPozadavekRow{Trvalá dostupnost identifikátorů}{Veřejné URI použitá k identifikaci budov, místností, senzorů, pozorování, číselníkových položek a datových sad musí zůstat trvale dostupná. Po jednou publikovaném URI nesmí být zveřejněn jiný subjekt zájmu, ani po vyřazení původní entity. Strukturu URI nelze měnit zpětně bez ponechání přesměrování.}{1}
   \OstatniPozadavekRow{Předgenerovaný archiv ke stažení}{Pravidelně generovaný archiv všech naměřených dat musí být uživateli vydán přímo ze souborového úložiště, nikoliv generován za běhu při každém požadavku. Generování archivu probíhá v dávkách v předem stanoveném intervalu.}{2}
 \end{OstatniPozadavkyTabulka}
