@@ -1,0 +1,31 @@
+
+Druhý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC02}.
+
+\begin{UseCaseTable}
+  {Přihlášení do systému}
+  {UC02}
+  {F02}
+  {Zahájení přihlášené relace umožňující správu evidovaných subjektů zájmu}
+  {Provozovatel monitorovaného prostoru}
+  {}
+  {Uživatel je v systému evidován v aktivním stavu, není přihlášen}
+  {Uživatel je přihlášen}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{uživatel}{Otevře přihlašovací stránku.}
+\UseCaseStep{systém}{Vrátí přihlašovací formulář.}
+\UseCaseStep{uživatel}{Vyplní email a heslo použité při registraci a formulář odešle.}
+\UseCaseStep{systém}{Ověří, že zadané údaje odpovídají evidovanému uživateli v aktivním stavu.}
+\UseCaseStep{systém}{Zahájí přihlášenou relaci a přesměruje uživatele do administračního rozhraní.}
+
+\UseCaseScenario{Alternativní scénář -- neplatné údaje}
+\UseCaseStepCustom{A1}{uživatel, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{A2}{systém}{Zjistí, že zadané údaje neodpovídají žádnému evidovanému uživateli, a vyzve uživatele k jejich opětovnému zadání.}
+\UseCaseStepCustom{A3}{uživatel}{Zadá údaje znovu.}
+\UseCaseStepCustom{A4}{systém}{Pokračuje krokem 4 základního scénáře.}
+
+\UseCaseScenario{Alternativní scénář -- neaktivní účet}
+\UseCaseStepCustom{B1}{uživatel, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{B2}{systém}{Zjistí, že účet je evidován v neaktivním stavu, a vyzve uživatele k aktivaci účtu přes odkaz v potvrzovacím emailu.}
+
+\end{UseCaseTable}
