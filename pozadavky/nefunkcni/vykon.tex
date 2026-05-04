@@ -1,1 +1,7 @@
 \subsection{Výkon}
+
+\begin{OstatniPozadavkyTabulka}{VYK}{Požadavky na výkon}
+  \OstatniPozadavekRow{Doba odezvy čtecího API}{Čtecí API musí na požadavek vracející jednu stránku výsledků (do 100 záznamů) odpovědět ve většině případů (95. percentil) do 1~s; v 99. percentilu do 3~s. Měřeno na úrovni serveru, bez započtení síťové latence ke klientovi.}{2}
+  \OstatniPozadavekRow{Propustnost příjmu měření ze senzorů}{Systém musí zvládnout zpracovat a trvale uložit přijatá měření v souhrnné rychlosti minimálně 100 měření za sekundu, bez ztráty dat. Odpovídá například 6\,000 senzorů odesílajících jedno měření za minutu.}{2}
+  \OstatniPozadavekRow{Souběžné požadavky na čtecí API}{Systém musí současně obsloužit minimálně 50 souběžných požadavků na čtecí API bez degradace doby odezvy mimo limity stanovené v požadavku Doba odezvy čtecího API.}{2}
+\end{OstatniPozadavkyTabulka}
