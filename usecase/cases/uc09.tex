@@ -1,0 +1,26 @@
+
+Devátý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC09}.
+
+\begin{UseCaseTable}
+  {Správa životního cyklu senzoru}
+  {UC09}
+  {F09}
+  {Změna provozního stavu senzoru nebo jeho přemístění do jiné místnosti}
+  {Provozovatel monitorovaného prostoru}
+  {}
+  {Uživatel je přihlášen, senzor je v systému evidován}
+  {Senzor má nový stav nebo je přiřazen k jiné místnosti}
+
+\UseCaseScenario{Základní scénář -- změna stavu senzoru}
+\UseCaseStep{uživatel}{V detailu evidovaného senzoru zvolí akci pro změnu provozního stavu.}
+\UseCaseStep{systém}{Nabídne dostupné stavy (aktivní, pozastavený, vyřazený).}
+\UseCaseStep{uživatel}{Zvolí nový stav a volbu potvrdí.}
+\UseCaseStep{systém}{Aktualizuje stav senzoru a zobrazí potvrzení.}
+
+\UseCaseScenario{Alternativní scénář -- přemístění senzoru}
+\UseCaseStepCustom{A1}{uživatel}{V detailu evidovaného senzoru zvolí akci pro přemístění do jiné místnosti.}
+\UseCaseStepCustom{A2}{systém}{Vrátí formulář s výběrem cílové místnosti z místností evidovaných uživatelem.}
+\UseCaseStepCustom{A3}{uživatel}{Zvolí cílovou místnost a volbu potvrdí.}
+\UseCaseStepCustom{A4}{systém}{Aktualizuje přiřazení senzoru k místnosti a zobrazí potvrzení.}
+
+\end{UseCaseTable}
