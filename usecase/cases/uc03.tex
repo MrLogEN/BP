@@ -1,0 +1,19 @@
+
+Třetí případ užití je specifikován v tabulce č. \ref{tab:usecase:UC03}.
+
+\begin{UseCaseTable}
+  {Odhlášení ze systému}
+  {UC03}
+  {F03}
+  {Ukončení přihlášené relace přihlášeného uživatele}
+  {Provozovatel monitorovaného prostoru}
+  {}
+  {Uživatel je přihlášen}
+  {Uživatel není přihlášen, přihlášená relace byla ukončena}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{uživatel}{V administraci klikne na tlačítko pro odhlášení.}
+\UseCaseStep{systém}{Ukončí přihlášenou relaci a invaliduje její identifikátor.}
+\UseCaseStep{systém}{Přesměruje uživatele na domovskou stránku.}
+
+\end{UseCaseTable}
