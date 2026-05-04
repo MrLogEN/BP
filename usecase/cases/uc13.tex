@@ -1,0 +1,24 @@
+
+Třináctý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC13}.
+
+\begin{UseCaseTable}
+  {Procházení stránkovaných odpovědí API}
+  {UC13}
+  {F13}
+  {Získání rozsáhlé odpovědi po stránkách prostřednictvím odkazů na následující a předcházející stránku}
+  {Vývojář aplikací třetí strany}
+  {}
+  {Žádné -- API je veřejně dostupné}
+  {Konzument získal požadovanou stránku výsledků a může pokračovat na sousední stránky}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{vývojář}{Odešle systému požadavek na čtecí API, jehož výsledná množina obsahuje velké množství záznamů.}
+\UseCaseStep{systém}{Vrátí odpověď s první stránkou výsledků a v hlavičce nebo těle odpovědi uvede odkaz na následující stránku.}
+\UseCaseStep{vývojář}{Odešle požadavek na následující stránku prostřednictvím dodaného odkazu.}
+\UseCaseStep{systém}{Vrátí další stránku výsledků s odkazy na předcházející a následující stránku.}
+
+\UseCaseScenario{Alternativní scénář -- poslední stránka}
+\UseCaseStepCustom{A1}{vývojář, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{A2}{systém}{Vrátí poslední stránku výsledků pouze s odkazem na předcházející stránku, odkaz na následující stránku není uveden.}
+
+\end{UseCaseTable}
