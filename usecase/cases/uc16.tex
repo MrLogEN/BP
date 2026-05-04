@@ -1,0 +1,19 @@
+
+Šestnáctý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC16}.
+
+\begin{UseCaseTable}
+  {Harvestování katalogizačních metadat}
+  {UC16}
+  {F16}
+  {Získání strojově čitelných katalogizačních metadat o publikovaných datových sadách pro automatizované objevení dat}
+  {Datový katalog}
+  {}
+  {Žádné -- katalogizační metadata jsou veřejně dostupná}
+  {Datový katalog získal aktuální katalogizační metadata o publikovaných datových sadách}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{datový katalog}{Odešle systému HTTP požadavek na endpoint publikující katalogizační metadata.}
+\UseCaseStep{systém}{Vrátí strojově čitelná metadata o publikovaných datových sadách (název, popis, vydavatel, licence, klíčová slova, distribuce) ve formátu odpovídajícím standardu DCAT-AP.}
+\UseCaseStep{datový katalog}{Zpracuje získaná metadata a propojí publikované datové sady se svým katalogem.}
+
+\end{UseCaseTable}
