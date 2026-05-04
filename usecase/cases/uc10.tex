@@ -1,0 +1,36 @@
+
+Desátý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC10}.
+
+\begin{UseCaseTable}
+  {Příjem a validace pozorování}
+  {UC10}
+  {F10}
+  {Ověření a uložení pozorování pořízeného senzorem, případně odmítnutí neplatného pozorování}
+  {Senzor}
+  {}
+  {Senzor je v systému evidován v aktivním stavu}
+  {Pozorování je uloženo do evidence, případně bylo odmítnuto chybovou odpovědí}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{senzor}{Odešle systému pozorování (hodnotu, časové razítko a identifikátor veličiny) společně s identifikací zařízení.}
+\UseCaseStep{systém}{Ověří, že odesílatel je v systému evidovaným senzorem v aktivním stavu.}
+\UseCaseStep{systém}{Ověří, že veličina a jednotka pozorování odpovídají deklaracím v evidenci senzoru.}
+\UseCaseStep{systém}{Ověří, že hodnota leží v přípustném rozsahu pro danou veličinu.}
+\UseCaseStep{systém}{Uloží pozorování do evidence a vrátí potvrzení o přijetí.}
+
+\UseCaseScenario{Alternativní scénář -- neshoda veličiny nebo jednotky}
+\UseCaseStepCustom{A1}{senzor, systém}{shodné s kroky 1--2 základního scénáře.}
+\UseCaseStepCustom{A2}{systém}{Zjistí, že veličina nebo jednotka pozorování neodpovídá deklaraci senzoru v evidenci.}
+\UseCaseStepCustom{A3}{systém}{Odmítne pozorování chybovou odpovědí popisující povahu rozporu.}
+
+\UseCaseScenario{Alternativní scénář -- hodnota mimo přípustný rozsah}
+\UseCaseStepCustom{B1}{senzor, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{B2}{systém}{Zjistí, že hodnota leží mimo přípustný rozsah pro danou veličinu.}
+\UseCaseStepCustom{B3}{systém}{Odmítne pozorování chybovou odpovědí popisující povahu chyby.}
+
+\UseCaseScenario{Alternativní scénář -- senzor není v aktivním stavu}
+\UseCaseStepCustom{C1}{senzor}{shodné s krokem 1 základního scénáře.}
+\UseCaseStepCustom{C2}{systém}{Zjistí, že odesílající senzor není v evidenci nebo není v aktivním stavu.}
+\UseCaseStepCustom{C3}{systém}{Odmítne pozorování chybovou odpovědí.}
+
+\end{UseCaseTable}
