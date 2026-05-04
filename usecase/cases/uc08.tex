@@ -1,0 +1,33 @@
+
+Osmý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC08}.
+
+\begin{UseCaseTable}
+  {Evidence senzoru}
+  {UC08}
+  {F08}
+  {Zaregistrování senzoru u evidované místnosti spolu s deklarací měřených veličin a jednotek}
+  {Provozovatel monitorovaného prostoru}
+  {}
+  {Uživatel je přihlášen, evidovaná místnost existuje}
+  {Senzor je v systému evidován pod konkrétní místností v aktivním stavu}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{uživatel}{V detailu evidované místnosti zvolí akci pro registraci senzoru.}
+\UseCaseStep{systém}{Vrátí formulář pro registraci senzoru s povinnými a volitelnými údaji.}
+\UseCaseStep{uživatel}{Vyplní povinné údaje (výrobce, model, jednoznačný identifikátor zařízení, měřené veličiny a jednotky z předdefinovaného číselníku), volitelně doplňující údaje (poloha v místnosti, vzdálenost od oken, dveří a zdrojů, deklarovaná frekvence měření, datum instalace a poslední kalibrace) a formulář odešle.}
+\UseCaseStep{systém}{Ověří, že povinné údaje jsou vyplněny, identifikátor zařízení je v rámci systému jednoznačný a veličiny i jednotky odpovídají povoleným položkám číselníku.}
+\UseCaseStep{systém}{Uloží senzor do evidence v aktivním stavu pod zvolenou místností a zobrazí potvrzení.}
+
+\UseCaseScenario{Alternativní scénář -- duplicitní identifikátor}
+\UseCaseStepCustom{A1}{uživatel, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{A2}{systém}{Zjistí, že zadaný identifikátor zařízení je již v systému evidován u jiného senzoru, a vyzve uživatele k zadání jiného.}
+\UseCaseStepCustom{A3}{uživatel}{Zadá jiný identifikátor.}
+\UseCaseStepCustom{A4}{systém}{Pokračuje krokem 4 základního scénáře.}
+
+\UseCaseScenario{Alternativní scénář -- neplatné údaje}
+\UseCaseStepCustom{B1}{uživatel, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{B2}{systém}{Zjistí chybu ve vyplnění formuláře (chybí povinné pole, neplatný formát, neznámá veličina nebo jednotka) a vyzve uživatele k její opravě.}
+\UseCaseStepCustom{B3}{uživatel}{Opraví zadané údaje.}
+\UseCaseStepCustom{B4}{systém}{Pokračuje krokem 4 základního scénáře.}
+
+\end{UseCaseTable}
