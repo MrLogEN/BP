@@ -1,0 +1,27 @@
+
+Sedmý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC07}.
+
+\begin{UseCaseTable}
+  {Změna parametrů s časovou platností}
+  {UC07}
+  {F07}
+  {Aktualizace parametrů subjektu zájmu nebo senzoru s platností od zadaného data při zachování návaznosti starších měření na původní parametry}
+  {Provozovatel monitorovaného prostoru}
+  {}
+  {Uživatel je přihlášen, subjekt zájmu (budova, místnost) nebo senzor je v systému evidován}
+  {V evidenci je uložena nová verze parametrů s platností od zadaného data, předchozí verze parametrů zůstává platná pro období do tohoto data, historická měření zůstávají vázána na verzi parametrů platnou v době jejich pořízení}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{uživatel}{V detailu evidovaného subjektu zájmu nebo senzoru zvolí akci pro úpravu parametrů.}
+\UseCaseStep{systém}{Vrátí formulář s aktuálně platnými parametry a polem pro datum, od kdy mají nové hodnoty platit.}
+\UseCaseStep{uživatel}{Upraví hodnoty parametrů, zadá datum platnosti nových hodnot a formulář odešle.}
+\UseCaseStep{systém}{Ověří, že datum platnosti je zadáno a všechny zadané hodnoty jsou v platném tvaru.}
+\UseCaseStep{systém}{Uloží novou verzi parametrů jako platnou od zadaného data, předchozí verzi zachová pro období do tohoto data a zobrazí potvrzení.}
+
+\UseCaseScenario{Alternativní scénář -- neplatné údaje}
+\UseCaseStepCustom{A1}{uživatel, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{A2}{systém}{Zjistí chybu ve vyplnění formuláře (chybí datum platnosti, neplatný formát hodnoty) a vyzve uživatele k její opravě.}
+\UseCaseStepCustom{A3}{uživatel}{Opraví zadané údaje.}
+\UseCaseStepCustom{A4}{systém}{Pokračuje krokem 4 základního scénáře.}
+
+\end{UseCaseTable}
