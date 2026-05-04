@@ -1,0 +1,33 @@
+
+Čtvrtý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC04}.
+
+\begin{UseCaseTable}
+  {Změna přihlašovacích údajů}
+  {UC04}
+  {F04}
+  {Aktualizace emailu nebo hesla přihlášeného uživatele}
+  {Provozovatel monitorovaného prostoru}
+  {}
+  {Uživatel je přihlášen}
+  {Přihlašovací údaje uživatele jsou aktualizovány}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{uživatel}{V administraci otevře nastavení účtu.}
+\UseCaseStep{systém}{Vrátí formulář pro změnu emailu a hesla.}
+\UseCaseStep{uživatel}{Vyplní nový email či heslo, zadá pro potvrzení stávající heslo a formulář odešle.}
+\UseCaseStep{systém}{Ověří, že stávající heslo odpovídá uloženému heslu uživatele.}
+\UseCaseStep{systém}{Aktualizuje přihlašovací údaje uživatele a zobrazí potvrzení.}
+
+\UseCaseScenario{Alternativní scénář -- neplatné stávající heslo}
+\UseCaseStepCustom{A1}{uživatel, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{A2}{systém}{Zjistí, že zadané stávající heslo neodpovídá uloženému, a vyzve uživatele k jeho opětovnému zadání.}
+\UseCaseStepCustom{A3}{uživatel}{Zadá stávající heslo znovu.}
+\UseCaseStepCustom{A4}{systém}{Pokračuje krokem 4 základního scénáře.}
+
+\UseCaseScenario{Alternativní scénář -- email je již používán}
+\UseCaseStepCustom{B1}{uživatel, systém}{shodné s kroky 1--4 základního scénáře.}
+\UseCaseStepCustom{B2}{systém}{Zjistí, že nový email je již používán jiným účtem, a vyzve uživatele k zadání jiného.}
+\UseCaseStepCustom{B3}{uživatel}{Zadá jiný email.}
+\UseCaseStepCustom{B4}{systém}{Pokračuje krokem 5 základního scénáře.}
+
+\end{UseCaseTable}
