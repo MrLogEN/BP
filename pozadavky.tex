@@ -6,7 +6,7 @@
 % slovnik pojmů
 \[TODO: slovník pojmů\]
 
-\begin{longtable}{l p{0.7\textwidth}}
+\begin{longtable}{L{3.5cm} L{11cm}}
   \caption{Slovník pojmů}\label{tab:definice-pojmu}\\
   \toprule
   \textbf{Pojem} & \textbf{Definice} \\
@@ -22,26 +22,25 @@
   \endfoot
   \bottomrule
   \endlastfoot
-    musí & vyjadřuje závaznost něčeho\\
-    nesmí & vyjadřuje naprsotý zákaz něčeho \\
-    může & vyjadřuje volitelnost něčeho\\
-    smí & vyjadřuje oprávnění k něčemu \\
-    má / měl by / doporučuje se & vyjadřuje slabší závaznost \\
-    IEQ & zkratka anglického \emph{Indoor Environmental Quality}, tedy kvalita vnitřního prostředí. Jde o zastřešující pojem pokrývající čtyři kategorie, a~to kvalitu vnitřního ovzduší, tepelný komfort, vizuální komfort a~akustický komfort \\
-    IAQ & zkratka anglického \emph{Indoor Air Quality}, tedy kvalita vnitřního ovzduší. Jedná se o~podmnožinu IEQ zaměřenou na koncentrace plynů a~aerosolů (CO\textsubscript{2}, mikročástice, těkavé organické látky aj.) \\
-    VZT & vzduchotechnika, tedy soustava zařízení zajišťující řízenou výměnu vzduchu v~budově (přívod, odvod, filtraci, případně úpravu teploty a~vlhkosti) \\
-    rekuperace & zpětné získávání tepla z~odváděného vzduchu. Výměník v~jednotce VZT předává teplo (případně vlhkost) z~odpadního vzduchu do vzduchu přiváděného do budovy, čímž snižuje energetické nároky na vytápění \\
-    dlouhodobý / krátkodobý / průchozí pobyt & kategorizace místnosti podle typické doby, kterou v~ní osoby tráví. \emph{Dlouhodobý} odpovídá pobytovým místnostem (ložnice, kancelář, učebna), \emph{krátkodobý} prostorům s~opakovanou kratší přítomností (kuchyně, koupelna, jednací místnost) a~\emph{průchozí} místům občasného nebo přechodného užívání (chodba, schodiště, sklad) \\
-    dýchací zóna & výškové pásmo nad podlahou, ve kterém se obvykle nachází hlava člověka při běžných činnostech a~v~němž je proto měření kvality vnitřního prostředí nejreprezentativnější vůči expozici osob \\
-    subjekt zájmu & entita reálného světa, jejíž vlastnost je předmětem měření, v~kontextu této práce typicky místnost, případně venkovní stanoviště u~budovy. Odpovídá třídě \texttt{sosa:FeatureOfInterest} ontologie SSN/SOSA \\
-    veličina & pozorovatelná vlastnost subjektu zájmu, kterou senzor měří (např. teplota, koncentrace CO\textsubscript{2}, hladina akustického tlaku). Odpovídá třídám \texttt{sosa:ObservableProperty} v~SSN/SOSA a~\texttt{qudt:QuantityKind} ve slovníku QUDT \\
-    jednotka & standardizovaná měrná škála, v~níž je vyjádřena hodnota veličiny (např. $^{\circ}$C, ppm, $\mu$g/m\textsuperscript{3}). Odpovídá třídě \texttt{qudt:Unit} ve slovníku QUDT, který umožňuje strojový převod mezi ekvivalentními jednotkami \\
-    pozorování & akt pořízení jedné hodnoty určité veličiny senzorem v~daném okamžiku na konkrétním subjektu zájmu, v~práci synonymum pro \emph{měření}. Odpovídá třídě \texttt{sosa:Observation} ontologie SSN/SOSA \\
-    venkovní referenční stanoviště & bod přidružený k registrované budově sloužící k umístění senzorů měřících venkovní hodnoty veličin, který poskytuje výchozí hodnoty pro porovnání s prostředím uvnitř budovy \\
-    SSN/SOSA & doporučení W3C definující dvojici provázaných ontologií pro popis senzorů a~pozorování. \emph{SOSA} (Sensor, Observation, Sample, Actuator) je odlehčené jádro, \emph{SSN} (Semantic Sensor Network) přidává systémovou nadstavbu pro kompozici a~kapacity zařízení \\
-    QUDT & otevřený slovník publikovaný organizací QUDT.org popisující veličiny (\emph{Quantities}), jednotky (\emph{Units}), dimenze (\emph{Dimensions}) a~datové typy (\emph{Types}). Poskytuje URI identifikátory veličin a~jednotek a~koeficienty pro strojový převod mezi nimi \\
-    OFN & otevřené formální normy publikované Digitální a~informační agenturou (DIA) podle zákona č.\,106/1999\,Sb. Stanovují technické požadavky na publikaci otevřených dat orgány veřejné správy, mimo jiné na strukturu, formát, kódování, schéma a~katalogizační metadata \\
-    DCAT-AP-CZ & česká aplikační profilace evropského standardu DCAT-AP pro popis datových katalogů. Definuje strojově čitelná katalogizační metadata otevřených datových sad (název, popis, vydavatel, licence, klíčová slova, distribuce) ve formátu RDF \\
+    musí & Vyjadřuje závaznost něčeho. \\
+    nesmí & Vyjadřuje naprostý zákaz něčeho. \\
+    může & Vyjadřuje volitelnost něčeho. \\
+    smí & Vyjadřuje oprávnění k~něčemu. \\
+    má / měl by / doporučuje se & Vyjadřuje slabší závaznost. \\
+    IEQ & Zkratka anglického \emph{Indoor Environmental Quality}, tedy kvalita vnitřního prostředí. Jde o~zastřešující pojem pokrývající čtyři kategorie, a~to kvalitu vnitřního ovzduší, tepelný komfort, vizuální komfort a~akustický komfort. \\
+    IAQ & Zkratka anglického \emph{Indoor Air Quality}, tedy kvalita vnitřního ovzduší. Jedná se o~podmnožinu IEQ zaměřenou na koncentrace plynů a~aerosolů (CO\textsubscript{2}, mikročástice, těkavé organické látky aj.). \\
+    VZT & Vzduchotechnika, tedy soustava zařízení zajišťující řízenou výměnu vzduchu v~budově (přívod, odvod, filtraci, případně úpravu teploty a~vlhkosti). \\
+    rekuperace & Zpětné získávání tepla z~odváděného vzduchu. Výměník v~jednotce VZT předává teplo (případně vlhkost) z~odpadního vzduchu do vzduchu přiváděného do budovy, čímž snižuje energetické nároky na vytápění. \\
+    dlouhodobý / krátkodobý / průchozí pobyt & Kategorizace místnosti podle typické doby, kterou v~ní osoby tráví. \emph{Dlouhodobý} odpovídá pobytovým místnostem (ložnice, kancelář, učebna), \emph{krátkodobý} prostorům s~opakovanou kratší přítomností (kuchyně, koupelna, jednací místnost) a~\emph{průchozí} místům občasného nebo přechodného užívání (chodba, schodiště, sklad). \\
+    dýchací zóna & Výškové pásmo nad podlahou, ve kterém se obvykle nachází hlava člověka při běžných činnostech a~v~němž je proto měření kvality vnitřního prostředí nejreprezentativnější vůči expozici osob. \\
+    subjekt zájmu & Entita reálného světa, jejíž vlastnost je předmětem měření, v~kontextu této práce typicky místnost. Odpovídá třídě \texttt{sosa:FeatureOfInterest} ontologie SSN/SOSA. \\
+    veličina & Pozorovatelná vlastnost subjektu zájmu, kterou senzor měří (např. teplota, koncentrace CO\textsubscript{2}, hladina akustického tlaku). Odpovídá třídám \texttt{sosa:ObservableProperty} v~SSN/SOSA a~\texttt{qudt:QuantityKind} ve slovníku QUDT. \\
+    jednotka & Standardizovaná měrná škála, v~níž je vyjádřena hodnota veličiny (např. $^{\circ}$C, ppm, $\mu$g/m\textsuperscript{3}). Odpovídá třídě \texttt{qudt:Unit} ve slovníku QUDT, který umožňuje strojový převod mezi ekvivalentními jednotkami. \\
+    pozorování & Akt pořízení jedné hodnoty určité veličiny senzorem v~daném okamžiku na konkrétním subjektu zájmu, v~práci synonymum pro \emph{měření}. Odpovídá třídě \texttt{sosa:Observation} ontologie SSN/SOSA. \\
+    SSN/SOSA & Doporučení W3C definující dvojici provázaných ontologií pro popis senzorů a~pozorování. \emph{SOSA} (Sensor, Observation, Sample, Actuator) je odlehčené jádro, \emph{SSN} (Semantic Sensor Network) přidává systémovou nadstavbu pro kompozici a~kapacity zařízení. \\
+    QUDT & Otevřený slovník publikovaný organizací QUDT.org popisující veličiny (\emph{Quantities}), jednotky (\emph{Units}), dimenze (\emph{Dimensions}) a~datové typy (\emph{Types}). Poskytuje URI identifikátory veličin a~jednotek a~koeficienty pro strojový převod mezi nimi. \\
+    OFN & Otevřené formální normy publikované Digitální a~informační agenturou (DIA) podle zákona č.\,106/1999\,Sb. Stanovují technické požadavky na publikaci otevřených dat orgány veřejné správy, mimo jiné na strukturu, formát, kódování, schéma a~katalogizační metadata. \\
+    DCAT-AP-CZ & Česká aplikační profilace evropského standardu DCAT-AP pro popis datových katalogů. Definuje strojově čitelná katalogizační metadata otevřených datových sad (název, popis, vydavatel, licence, klíčová slova, distribuce) ve formátu RDF. \\
 \end{longtable}
 
 \input{pozadavky/funkcni}
