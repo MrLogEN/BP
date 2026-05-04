@@ -1,1 +1,8 @@
 \subsection{Rozhraní na externí systémy nebo zařízení}
+
+\begin{OstatniPozadavkyTabulka}{EXT}{Požadavky na rozhraní na externí systémy nebo zařízení}
+  \OstatniPozadavekRow{REST API přes HTTP}{Veřejné čtecí rozhraní systému musí být realizováno jako REST API nad protokolem HTTP. Identifikace zdrojů je řešena URI, operace standardními HTTP metodami (\texttt{GET}, \texttt{HEAD}), výběr formátu odpovědi vyjednáním obsahu (\emph{content negotiation}) přes hlavičku \texttt{Accept}. Výchozí formát odpovědi je JSON-LD; v souladu s OFN propojených dat lze požadovat alternativní serializace (např. Turtle).}{1}
+  \OstatniPozadavekRow{Rozhraní pro příjem dat ze senzorů}{Systém musí poskytovat zápisové rozhraní, jehož prostřednictvím senzorová zařízení odesílají naměřené hodnoty. Rozhraní zajišťuje autentizaci zařízení vůči systému, aby byla zaručena vazba mezi přijatým měřením a registrovaným senzorem.}{1}
+  \OstatniPozadavekRow{Geokódování adresy přes externí službu}{Systém musí pro převod adresy zadané při registraci budovy na zeměpisné souřadnice využít externí geokódovací službu. Systém se nesmí vázat na jednoho konkrétního poskytovatele -- výběr služby je věcí provozu instance a musí být konfigurovatelný.}{2}
+  \OstatniPozadavekRow{Mapový podklad přes externí službu}{Systém musí pro vizuální zobrazení polohy budov a senzorů využít externí službu poskytující mapové dlaždice nebo vektorové podklady. Systém se nesmí vázat na jednoho konkrétního poskytovatele -- výběr je věcí provozu instance a musí být konfigurovatelný.}{2}
+\end{OstatniPozadavkyTabulka}
