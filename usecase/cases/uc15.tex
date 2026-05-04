@@ -1,0 +1,18 @@
+
+Patnáctý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC15}.
+
+\begin{UseCaseTable}
+  {Získání strojově čitelného popisu API}
+  {UC15}
+  {F15}
+  {Získání strojově čitelného popisu čtecího API pro automatickou integraci klientské aplikace}
+  {Vývojář aplikací třetí strany}
+  {}
+  {Žádné -- popis API je veřejně dostupný}
+  {Konzument získal strojově čitelný popis čtecího API}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{vývojář}{Odešle systému HTTP požadavek na endpoint poskytující popis čtecího API.}
+\UseCaseStep{systém}{Vrátí strojově čitelný popis čtecího API obsahující dostupné koncové body, jejich parametry, struktury odpovědí a chybové stavy.}
+
+\end{UseCaseTable}
