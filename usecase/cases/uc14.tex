@@ -1,0 +1,30 @@
+
+Čtrnáctý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC14}.
+
+\begin{UseCaseTable}
+  {Vyhledávání entit dle parametrů}
+  {UC14}
+  {F14}
+  {Nalezení budov, místností a senzorů odpovídajících zadaným vlastnostem prostřednictvím veřejného čtecího API}
+  {Vývojář aplikací třetí strany}
+  {}
+  {Žádné -- API je veřejně dostupné}
+  {Konzument získal seznam entit odpovídajících kritériím}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{vývojář}{Odešle systému požadavek na vyhledávací endpoint čtecího API s parametry vyhledávání (typ budovy, funkce místnosti, typická délka pobytu, měřená veličina, geografická oblast).}
+\UseCaseStep{systém}{Ověří, že zadané parametry jsou v očekávaném tvaru a hodnoty z číselníků odpovídají povoleným položkám.}
+\UseCaseStep{systém}{Vyhledá v evidenci entity odpovídající všem zadaným kritériím.}
+\UseCaseStep{systém}{Vrátí seznam nalezených entit s identifikátory pro další volání čtecího API.}
+
+\UseCaseScenario{Alternativní scénář -- neplatný parametr}
+\UseCaseStepCustom{A1}{vývojář}{shodné s krokem 1 základního scénáře.}
+\UseCaseStepCustom{A2}{systém}{Zjistí, že některý z parametrů má neplatný formát nebo neznámou hodnotu z číselníku.}
+\UseCaseStepCustom{A3}{systém}{Vrátí chybovou odpověď s odpovídajícím HTTP stavovým kódem a popisem problematického parametru.}
+
+\UseCaseScenario{Alternativní scénář -- žádná odpovídající entita}
+\UseCaseStepCustom{B1}{vývojář, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{B2}{systém}{Zjistí, že zadaným kritériím neodpovídá žádná evidovaná entita.}
+\UseCaseStepCustom{B3}{systém}{Vrátí prázdný seznam v očekávané struktuře odpovědi.}
+
+\end{UseCaseTable}
