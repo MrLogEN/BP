@@ -5,29 +5,24 @@ První případ užití je specifikován v tabulce č. \ref{tab:usecase:UC01}.
   {Registrace do systému}
   {UC01}
   {F01}
-  {Registrace uživatele do systému za účelem publikování dat}
+  {Vytvoření účtu provozovatele monitorovaného prostoru za účelem evidence a publikace měření}
   {Provozovatel monitorovaného prostoru}
-  {}
-  {Uživatel není přihlášen}
-  {Uživatel byl vytvořen, uživatel je přihlášen, byl zaslán potvrzovací email}
+  {Emailová služba}
+  {Uživatel není v systému evidován}
+  {Uživatel je v systému evidován v neaktivním stavu, byl odeslán potvrzovací email s odkazem pro aktivaci účtu}
 
 \UseCaseScenario{Základní scénář}
-\UseCaseStep{uživatel}{Přijde na domovskou stránku a klikne na tlačítko pro registraci.}
+\UseCaseStep{uživatel}{Otevře domovskou stránku a klikne na tlačítko pro registraci.}
 \UseCaseStep{systém}{Vrátí registrační formulář.}
-\UseCaseStep{uživatel}{Vyplní ve formuláři email a heslo a odešle jej.}
-\UseCaseStep{systém}{Zkontroluje, zda email není již registrován a zjistí, že není.}
-\UseCaseStep{systém}{Vytvoří uživatele s neaktivním statusem}
-\UseCaseStep{systém}{Odešle potvrzovací email s odkazem pro aktivaci účtu.}
-\UseCaseStep{uživatel}{Uživatel klikne na odkaz v potvrzovacím emailu.}
-\UseCaseStep{systém}{Aktivuje uživatele a přihlásí ho do systému.}
+\UseCaseStep{uživatel}{Vyplní email a heslo a formulář odešle.}
+\UseCaseStep{systém}{Ověří, že zadaný email dosud není registrován.}
+\UseCaseStep{systém}{Vytvoří uživatelský účet v neaktivním stavu.}
+\UseCaseStep{systém}{Odešle na zadaný email zprávu s odkazem pro aktivaci účtu.}
 
-\UseCaseScenario{Alternativní scénář}
-\UseCaseStepCustom{A1}{uživatel, systém}{stejné jako kroky 1-3 základního scénáře}
-\UseCaseStepCustom{A2}{systém}{Zkontroluje email a zjistí, že email již je registrován.}
-\UseCaseStepCustom{A3}{systém}{Vyzve uživatele k zadání jiného emailu.}
-\UseCaseStepCustom{A4}{uživatel}{Vyplní jiný email.}
-\UseCaseStepCustom{A5}{systém}{Zjistí, že email není registrován a pokračuje krokem 5 základního scénáře.}
+\UseCaseScenario{Alternativní scénář -- email již registrován}
+\UseCaseStepCustom{A1}{uživatel, systém}{shodné s kroky 1--3 základního scénáře.}
+\UseCaseStepCustom{A2}{systém}{Zjistí, že zadaný email je již registrován, a vyzve uživatele k zadání jiného emailu.}
+\UseCaseStepCustom{A3}{uživatel}{Zadá jiný email.}
+\UseCaseStepCustom{A4}{systém}{Pokračuje krokem 4 základního scénáře.}
 
 \end{UseCaseTable}
-
-
