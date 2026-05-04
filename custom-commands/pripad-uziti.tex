@@ -29,14 +29,14 @@
 \setcounter{ucstep}{0}
 
 \begin{longtable}{p{4cm} p{2cm} p{3cm} p{5cm}}
-\caption{Případ užití: #1}\label{tab:usecase:#2}\tabularnewline
+\caption{Případ užití: #1}\label{tab:usecase:#2}\label{#2}\tabularnewline
 
 \toprule
 \textbf{Název případu užití} & \multicolumn{3}{l}{#1} \\
 \midrule
 
 \textbf{Identifikace případu užití} & \multicolumn{3}{l}{#2} \\
-\textbf{Identifikace funkčního požadavku} & \multicolumn{3}{l}{#3} \\
+\textbf{Identifikace funkčního požadavku} & \multicolumn{3}{l}{\hyperref[#3]{#3}} \\
 \textbf{Cíl případu užití} & \multicolumn{3}{l}{#4} \\
 \textbf{Primární aktér(ři)} & \multicolumn{3}{l}{#5} \\
 \textbf{Pomocný aktér(ři)} & \multicolumn{3}{l}{#6} \\

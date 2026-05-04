@@ -33,5 +33,5 @@
 
 \newcommand{\FunkcniPozadavekRow}[4]{%
 \stepcounter{fcreq}
-\thefcreq & #1 & #2 & #3 & #4 \\
+\thefcreq\label{\thefcreq} & #1 & #2 & #3 & \hyperref[tab:usecase:#4]{#4} \\
 }
