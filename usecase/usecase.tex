@@ -1,13 +1,13 @@
 \section{Případy užití}
 
-Pro ilustrování funkcionality navrhovaného systému a jeho iterakcí s entitami vnějšího světa byly stanoveny případy užití (viz tabulky č. \ref{tab:usecase:UC01}, \ref{tab:usecase:UC02}, \ref{tab:usecase:UC03}, \ref{tab:usecase:UC04}, \ref{tab:usecase:UC05}, \ref{tab:usecase:UC06}, \ref{tab:usecase:UC07}, \ref{tab:usecase:UC08}, \ref{tab:usecase:UC09}, \ref{tab:usecase:UC10}, \ref{tab:usecase:UC11}, \ref{tab:usecase:UC12}, \ref{tab:usecase:UC13}, \ref{tab:usecase:UC14}, \ref{tab:usecase:UC15}, \ref{tab:usecase:UC16}, \ref{tab:usecase:UC17}). Tyto případy užití jsou vizualizovány pomocí diagramu UML případů užití na obrázku č. \ref{obr:usecase}.
+Pro ilustrování funkcionality navrhovaného systému a jeho iterakcí s entitami vnějšího světa byly stanoveny případy užití (viz tabulky č. \ref{tab:usecase:UC01}, \ref{tab:usecase:UC02}, \ref{tab:usecase:UC03}, \ref{tab:usecase:UC04}, \ref{tab:usecase:UC05}, \ref{tab:usecase:UC06}, \ref{tab:usecase:UC07}, \ref{tab:usecase:UC08}, \ref{tab:usecase:UC09}, \ref{tab:usecase:UC10}, \ref{tab:usecase:UC11}, \ref{tab:usecase:UC12}, \ref{tab:usecase:UC13}, \ref{tab:usecase:UC14}, \ref{tab:usecase:UC15}, \ref{tab:usecase:UC16}, \ref{tab:usecase:UC17}, \ref{tab:usecase:UC18}). Tyto případy užití jsou vizualizovány pomocí diagramu UML případů užití na obrázku č. \ref{obr:usecase}.
 
 \begin{figure}[p]
     \centering
     \resizebox{0.96\textwidth}{!}{%
     \begin{tikzpicture}[
       uc/.style={ellipse, draw, align=center, minimum width=2.8cm, minimum height=1.0cm,
-                 font=\scriptsize, inner sep=2pt},
+                 font=\normalsize, inner sep=2pt},
       assoc/.style={draw},
       incl/.style={draw, dashed, -latex, font=\scriptsize},
     ]
@@ -15,96 +15,98 @@ Pro ilustrování funkcionality navrhovaného systému a jeho iterakcí s entita
     %--- HRANICE SYSTÉMŮ ---%
 
     % Hlavní systémová hranice
-    \draw[thick] (2.2, -0.5) rectangle (14.5, 15.5);
-    \node[anchor=north west, font=\normalsize\bfseries] at (2.2, 15.5)
+    \draw[thick] (2.0, 0) rectangle (22.0, 19.0);
+    \node[anchor=north west, font=\normalsize\bfseries] at (2.0, 19.0)
       {Aplikace pro sběr dat IEQ};
 
-    % Autentizační subsystém
-    \draw (7.0, 7.5) rectangle (14.2, 15.0);
-    \node[anchor=north east, font=\small] at (14.2, 15.0)
-      {Autentizační služba};
+
+    % Webové rozhraní
+    %\draw (2.5, 0.5) rectangle (7.5, 18.5);
+    \draw (2.5, 18.5) -- (21.5, 18.5) -- (21.5, 13.5) -- (15, 13.5) -- (15, 10.5) -- (8.3, 10.5) -- (8.3, 0.5) -- (2.5, 0.5) -- (2.5, 18.5);
+    \node[anchor=north west, font=\normalsize] at (2.5, 18.5)
+      {Webové rozhraní};
+
+    % Autentizace uživatele
+    \draw (3, 3.2) rectangle (7.8, 10.5);
+    \node[anchor=north west, font=\normalsize] at (3, 10.5)
+      {Autentizace uživatele};
+
+    % API
+    %\draw (8.8, 0.5) rectangle (19.5, 10);
+    \draw (8.8, 0.5) -- (8.8, 10) -- (15.5, 10) -- (15.5, 13) -- (21.5, 13) -- (21.5, 0.5) -- (8.8, 0.5);
+    \node[anchor=north west, font=\normalsize] at (8.8, 10)
+      {API};
+
+    % Správa
+    \draw (3, 11) rectangle (14.5, 18.0);
+    \node[anchor=north west, font=\normalsize] at (3, 18)
+      {Správa entit};
 
     %--- PŘÍPADY UŽITÍ: AUTENTIZACE ---%
 
-    \node[uc] (uc-auth)    at (8.7,  12.5) {Autentizace};
-    \node[uc] (uc-reg)     at (12.0, 14.0) {Registrace\\do systému};
-    \node[uc] (uc-login)   at (12.3, 12.5) {Přihlášení\\do systému};
-    \node[uc] (uc-logout)  at (12.0, 10.8) {Odhlášení\\ze systému};
-    \node[uc] (uc-chgcred) at (11.8,  9.1) {Změna\\přihlašovacích\\údajů};
+    \node[uc] (uc01) at (6.2, 9) {Registrace\\do systému};
+    \node[uc] (uc02) at (5.8, 7.4) {Přihlášení\\do systému};
+    \node[uc] (uc03) at (5.4, 5.8) {Odhlášení\\ze systému};
+    \node[uc] (uc04) at (5.0, 4.1) {Změna přihl.\\údajů};
 
     %--- PŘÍPADY UŽITÍ: SPRÁVA PROSTOR A SENZORŮ ---%
 
-    \node[uc] (uc-building) at (5.0, 13.5) {Evidence budovy};
-    \node[uc] (uc-room)     at (5.0, 11.8) {Evidence místnosti};
-    \node[uc] (uc-params)   at (5.0, 10.1) {Změna parametrů\\s čas. platností};
-    \node[uc] (uc-sens-reg) at (5.0,  8.4) {Registrace senzoru};
-    \node[uc] (uc-sens-lc)  at (5.0,  6.7) {Správa živ. cyklu\\senzoru};
+    \node[uc] (uc05) at (5.3, 16.7) {Evidence budovy};
+    \node[uc] (uc06) at (7, 15.7) {Evidence místnosti};
+    \node[uc] (uc07) at (8.7, 14.5) {Změna parametrů\\s čas. platností};
+    \node[uc] (uc08) at (10, 13.2) {Evidence senzoru};
+    \node[uc] (uc09) at (11.3, 11.9) {Správa živ. cyklu\\senzoru};
 
-    %--- PŘÍPADY UŽITÍ: POZOROVÁNÍ ---%
+    %--- PŘÍPADY UŽITÍ: DATA A MAPA ---%
 
-    \node[uc] (uc-obs)      at (7.3,  5.2) {Příjem a validace\\pozorování};
+    \node[uc] (uc17) at (5.3,  2) {Stažení archivu\\naměřených dat};
+    \node[uc] (uc18) at (18,  16) {Prohlížení měření\\na veřejné mapě};
 
-    %--- PŘÍPADY UŽITÍ: VEŘEJNÉ API ---%
+    %--- PŘÍPADY UŽITÍ: API ---%
 
-    \node[uc] (uc-api)      at (8.8,  3.8) {Čtení dat\\přes veřejné API};
-    \node[uc] (uc-filter)   at (10.0,  6.5) {Filtrování dotazů\\na čtecí API};
-    \node[uc] (uc-page)     at (12.8, 4.8) {Procházení str.\\odpovědí API};
-    \node[uc] (uc-search)   at (12.8, 3.0) {Vyhledání entit\\dle parametrů};
-    \node[uc] (uc-schema)   at (10, 1.7) {Získání str. čit.\\popisu API};
-
-    %--- PŘÍPADY UŽITÍ: DATA ---%
-
-    \node[uc] (uc-harvest)  at (5.0, 2.5) {Harvestování\\str. čit. metadat};
-    \node[uc] (uc-download) at (5.0, 0.9) {Stažení archivu\\naměřených dat};
+    \node[uc] (uc10) at (18.0,  12) {Příjem a validace\\pozorování};
+    \node[uc] (uc11) at (14.2,  7.0) {Čtení dat\\přes veřejné API};
+    \node[uc] (uc12) at (11.2,  3.0) {Filtrování dotazů\\na čtecí API};
+    \node[uc] (uc13) at (17.2,  3.0) {Procházení str.\\odpovědí API};
+    \node[uc] (uc14) at (14.2,  1.5) {Vyhledání entit\\dle parametrů};
+    \node[uc] (uc15) at (18,  8.0) {Získání str. čit.\\popisu API};
+    \node[uc] (uc16) at (18.0,  10) {Harvestování\\kat. metadat};
 
     %--- AKTÉŘI ---%
 
-    \ucactor{a-oper}      {0.7}{10.0}{Provozovatel\\monitorovaného\\prostoru}
-    \ucactor{a-sensor}    {1.2}{ 7.5}{Senzor}
-    \ucactor{a-dev}       {1.2}{ 5.5}{Vývojář aplikací\\třetí strany}
-    \ucactor{a-catalog}   {1.2}{ 3.2}{Datový katalog}
-    \ucactor{a-researcher}{1.2}{ 1.2}{Výzkumný\\pracovník}
-    \ucactor[2.2cm]{a-email}{16.0}{12.5}{«Service»\\Emailová služba}
+    \ucactor[2.8cm]{a-oper}      {0.1}{11}{Provozovatel\\monitorovaného\\prostoru}
+    \ucactor{a-sensor}           {23.5}{12}{Senzor}
+    \ucactor[2cm]{a-vyz}         {0.5}{3}{Výzkumný\\pracovník}
+    \ucactor[2cm]{a-navst}       {23.5}{16.5}{Návštěvník}
+    \ucactor{a-dev}              {23.5}{6.0}{Vývojář aplikací\\třetí strany}
+    \ucactor{a-catalog}          {23.5}{10}{Datový katalog}
 
     %--- ASOCIACE: AKTÉR → PŘÍPAD UŽITÍ ---%
 
-    \draw[assoc] (a-oper)       -- (uc-auth);
-    \draw[assoc] (a-oper)       -- (uc-building);
-    \draw[assoc] (a-oper)       -- (uc-room);
-    \draw[assoc] (a-oper)       -- (uc-params);
-    \draw[assoc] (a-oper)       -- (uc-sens-reg);
-    \draw[assoc] (a-oper)       -- (uc-sens-lc);
-    \draw[assoc] (a-sensor)     -- (uc-obs);
-    \draw[assoc] (a-dev)        -- (uc-api);
-    \draw[assoc] (a-catalog)    -- (uc-harvest);
-    \draw[assoc] (a-researcher) -- (uc-download);
-
-    %--- ASOCIACE: PŘÍPAD UŽITÍ → EMAILOVÁ SLUŽBA ---%
-
-    \draw[assoc] (uc-reg)     -- (a-email);
-    \draw[assoc] (uc-chgcred) -- (a-email);
-
-    %--- RELACE «INCLUDE»: AUTENTIZACE ---%
-
-    \draw[incl] (uc-reg)
-      -- node[above, sloped, font=\tiny] {«include»} (uc-auth);
-    \draw[incl] (uc-login)
-      -- node[above, font=\tiny]         {«include»} (uc-auth);
-    \draw[incl] (uc-logout)
-      -- node[above, sloped, font=\tiny] {«include»} (uc-auth);
-    \draw[incl] (uc-chgcred)
-      -- node[above, sloped, font=\tiny] {«include»} (uc-auth);
+    \draw[assoc] (a-oper)    -- (uc01);
+    \draw[assoc] (a-oper)    -- (uc02);
+    \draw[assoc] (a-oper)    -- (uc03);
+    \draw[assoc] (a-oper)    -- (uc04);
+    \draw[assoc] (a-oper)    -- (uc05);
+    \draw[assoc] (a-oper)    -- (uc06);
+    \draw[assoc] (a-oper)    -- (uc07);
+    \draw[assoc] (a-oper)    -- (uc08);
+    \draw[assoc] (a-oper)    -- (uc09);
+    \draw[assoc] (a-sensor)  -- (uc10);
+    \draw[assoc] (a-vyz)     -- (uc17);
+    \draw[assoc] (a-navst)   -- (uc18);
+    \draw[assoc] (a-dev)     -- (uc11);
+    \draw[assoc] (a-dev)     -- (uc15);
+    \draw[assoc] (a-catalog) -- (uc16);
 
     %--- RELACE «INCLUDE»: VEŘEJNÉ API ---%
 
-    \draw[incl] (uc-filter)
-      -- node[right, font=\tiny] {«include»} (uc-api);
-    \draw[incl] (uc-page)
-      -- node[above, sloped, font=\tiny] {«include»} (uc-api);
-    \draw[incl] (uc-search)
-      -- node[above, sloped, font=\tiny] {«include»} (uc-api);
-    \draw[incl] (uc-schema)
-      -- node[above, sloped, font=\tiny] {«include»} (uc-api);
+    \draw[incl] (uc12)
+      -- node[above, sloped, font=\normalsize] {«include»} (uc11);
+    \draw[incl] (uc13)
+      -- node[above, sloped, font=\normalsize] {«include»} (uc11);
+    \draw[incl] (uc14)
+      -- node[right, font=\normalsize]         {«include»} (uc11);
 
     \end{tikzpicture}
     }
@@ -149,3 +151,5 @@ Pro ilustrování funkcionality navrhovaného systému a jeho iterakcí s entita
 \input{usecase/cases/uc16}
 
 \input{usecase/cases/uc17}
+
+\input{usecase/cases/uc18}

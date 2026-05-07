@@ -1,0 +1,11 @@
+\usetikzlibrary{shapes.geometric}
+
+\newcommand{\ucactor}[5][1.6cm]{%
+  \node[minimum size=0pt, inner sep=0pt] (#2) at (#3, {#4-0.40}) {};%
+  \draw[fill=white] (#3, #4) circle (0.13cm);%
+  \draw (#3, {#4-0.13}) -- (#3, {#4-0.55});%
+  \draw ({#3-0.22}, {#4-0.34}) -- ({#3+0.22}, {#4-0.34});%
+  \draw (#3, {#4-0.55}) -- ({#3-0.18}, {#4-0.85});%
+  \draw (#3, {#4-0.55}) -- ({#3+0.18}, {#4-0.85});%
+  \node[below, align=center, font=\normalsize, text width=#1] at (#3, {#4-0.87}) {#5};%
+}
