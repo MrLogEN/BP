@@ -1,0 +1,30 @@
+Osmnáctý případ užití je specifikován v tabulce č. \ref{tab:usecase:UC18}.
+
+\begin{UseCaseTable}
+  {Prohlížení měření na veřejné mapě}
+  {UC18}
+  {F18}
+  {Zobrazení polohy registrovaných subjektů zájmu a jejich aktuálních naměřených hodnot na interaktivní mapě veřejně dostupného webového rozhraní}
+  {Návštěvník}
+  {}
+  {Žádné -- rozhraní je veřejně dostupné}
+  {Návštěvník získal přehled o~poloze subjektů zájmu a~jejich aktuálních naměřených hodnotách}
+
+\UseCaseScenario{Základní scénář}
+\UseCaseStep{návštěvník}{Otevře v~prohlížeči veřejnou stránku aplikace.}
+\UseCaseStep{systém}{Prostřednictvím veřejného čtecího API získá seznam registrovaných subjektů zájmu a~poslední naměřené hodnoty z~jejich senzorů.}
+\UseCaseStep{systém}{Zobrazí na interaktivní mapě polohu subjektů zájmu spolu s~ukazateli aktuálních naměřených hodnot.}
+\UseCaseStep{návštěvník}{Vybere konkrétní subjekt zájmu kliknutím na jeho ukazatel na mapě.}
+\UseCaseStep{systém}{Zobrazí detail vybrané entity včetně historie měření v~podobě časového grafu.}
+
+\UseCaseScenario{Alternativní scénář -- filtrování podle veličiny}
+\UseCaseStepCustom{A1}{návštěvník}{Zvolí v~rozhraní veličinu, podle které chce subjekty zájmu zobrazit.}
+\UseCaseStepCustom{A2}{systém}{Prostřednictvím veřejného čtecího API získá podmnožinu dat odpovídající zvolené veličině.}
+\UseCaseStepCustom{A3}{systém}{Aktualizuje zobrazení mapy tak, aby ukazatele odpovídaly zvolené veličině.}
+
+\UseCaseScenario{Alternativní scénář -- nedostupnost čtecího API}
+\UseCaseStepCustom{B1}{návštěvník}{shodné s~krokem 1 základního scénáře.}
+\UseCaseStepCustom{B2}{systém}{Zjistí, že veřejné čtecí API neodpovídá nebo vrací chybový stav.}
+\UseCaseStepCustom{B3}{systém}{Zobrazí návštěvníkovi informativní hlášení o~dočasné nedostupnosti dat a~mapu zobrazí bez ukazatelů aktuálních hodnot.}
+
+\end{UseCaseTable}
