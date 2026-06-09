@@ -1,8 +1,12 @@
-%Metodika
 \chapter{Metody}
+
+[TODO]
+
+Celé přepsat. Nejsem s tím spokojený.
 
 \section{Rešerše}
 
+\FloatBarrier
 \subsection{Kvalita vnitřního prostředí}
 
 Rešerše problematiky kvality vnitřního prostředí probíhala v období od října 2024 do dubna 2026 a byla realizována ve třech fázích: identifikace základních zdrojů o IEQ/IAQ, vyhledávání definic jednotlivých složek IEQ a vyhledávání standardů a norem.
@@ -13,6 +17,7 @@ V druhé fázi byly na základě rozpoznání složek IEQ a jejich významu pro 
 
 Ve třetí fázi zaměřené na hledání standardů, norem a doporučení pro IEQ bylo opět využito vyhledávače Google Scholar a právního informačního systému \href{https://www.aspi.cz/menu/search}{ASPI}. Byla také identifikována databáze \href{https://www.ieqguidelines.org/}{IEQ Guidelines}, která shromažďuje požadavky z celého světa. V těchto databázích byla použita klíčová slova v českém i anglickém jazyce týkající se vnitřního prostředí, kvality vzduchu, větrání, hygienických požadavků, tepelné pohody, osvětlení, denního osvětlení, hluku a dalších relevantních témat, konkrétně \textit{vnitřní prostředí}, \textit{kvalita vzduchu}, \textit{větrání}, \textit{hygienické požadavky}, \textit{tepelná pohoda}, \textit{osvětlení}, \textit{denní osvětlení}, \textit{hluk}, \textit{WHO guidelines indoor air quality}, \textit{indoor air quality health}, \textit{ventilation buildings} a \textit{environmental noise health}.
 
+\FloatBarrier
 \subsection{Otevřená data}
 
 Rešerše otevřených dat probíhala v období od října 2024 do dubna 2026. Jejím cílem bylo zjistit, co to otevřená data jsou, jak jsou vymezena českou legislativou a jakým způsobem jsou publikována.
@@ -27,6 +32,7 @@ Analogicky byl pomocí vyhledávače DuckDuckGo s anglickými vyhledávacími te
 
 Pro ověření relevance Národního katalogu otevřených dat a otevřených formálních norem pro soukromé subjekty byla realizována emailová konzultace s koordinátorem NKOD z Digitální a informační agentury. V rámci této konzultace byla položena otázka na možnost dobrovolné registrace soukromého subjektu do NKOD a na doporučení ohledně využití OFN při publikaci dat soukromým subjektem. Kompletní emailová korespondence je součástí příloh práce (viz příloha \ref{app:korespondence-dia}).
 
+\FloatBarrier
 \subsection{Open Source}
 
 Rešerše problematiky open source softwaru probíhala v období od října 2024 do dubna 2026. Jejím cílem bylo identifikovat oficiální definici open source a základní principy, které odlišují open source software od proprietárního softwaru.
@@ -36,6 +42,7 @@ Pro vyhledávání byla použita kombinace vyhledávačů \href{https://scholar.
 Doplňkově byly prostřednictvím Google Scholar identifikovány akademické zdroje zabývající se kvalitou open source projektů.
 
 
+\FloatBarrier
 \subsection{Existující aplikace pro sběr IEQ dat}
 
 Rešerše existujících aplikací pro sběr dat v oblasti IEQ probíhala v období dubna 2026. Cílem této rešerše bylo identifikovat a analyzovat existující aplikace v oblasti IEQ.
@@ -43,6 +50,7 @@ Rešerše existujících aplikací pro sběr dat v oblasti IEQ probíhala v obdo
 Pro rešerši existujících aplikací pro sběr dat v oblasti IEQ byla použita funkce \textit{Hluboký výzkum} umělé inteligence ChatGPT. Tato funkce umožňuje vícestupňový výzkum v rámci internetu. V rámci hlubokého výzkumu byl použit prompt anglickém jazyce: \textit{Find applications that collect Indoor Environment Quality (IEQ) data and publish the data as open data for everyone to use. Focus on finding applications that are open source (if you are not sure, it does not matter, list it anyways, I will confirm myself).}
 Tímto způsobem bylo identifikováno pět aplikací. Následně byla ověřena správnost těchto výsledků.
 
+\FloatBarrier
 \subsection{Používaná zařízení pro sběr dat}
 
 Rešerše zařízení pro sběr dat probíhala v~dubnu 2026. Jejím cílem bylo sestavit přehled senzorových modulů a~hotových zařízení relevantních pro monitorování IEQ, které se reálně vyskytují v~projektech sběru dat.
@@ -53,6 +61,7 @@ Ve druhé fázi byl proveden doplňující průzkum Zotero kolekcí \textit{senz
 
 Pro každý identifikovaný senzor nebo zařízení byl následně vyhledán příslušný technicky list nebo produktová stránka výrobce. Na základě těchto zdrojů byly zjištěny technické parametry: měřené veličiny IEQ, komunikační rozhraní, přesnost a~orientační cena. Zdroje byly přidány do bibliografické databáze a~využity pro zpracování přehledových tabulek.
 
+\FloatBarrier
 \subsection{Architektura aplikací pro sběr senzorických dat}
 
 \[PLAN\]
@@ -61,6 +70,7 @@ Zde bude následovat sekce o tom, jak jsem dělal rešerši o tom, jak se větš
 \section{Analýza datového zdroje}
 Při identifikaci měřených veličin projektu \textit{sensor.community} byly analyzovány datové zdroje dostupné ke stažení z \href{https://archive.sensor.community/}{archivu dat} a dále rozhraní API. Pro zjištění unikátních měřených veličin byla provedena automatizovaná extrakce jejich názvů z dat za měsíc březen 2026. Tento krok byl nezbytný, protože dokumentace projektu \textit{sensor.community} neuvádí úplný a jednoznačný seznam měřených veličin.
 
+\FloatBarrier
 \subsection{Validace souladu datových formátů s~otevřenými formálními normami}
 
 Empirická validace souladu datových formátů s~otevřenými formálními normami (OFN) probíhala v~dubnu 2026. Cílem bylo ověřit, do jaké míry datové archivy a~API rozhraní analyzovaných aplikací odpovídají doporučením OFN publikovaným v~katalogu špatné praxe na portálu data.gov.cz \parencite{PrikladySpatnePraxe2022}. Na základě detailního zadání autora práce byl k~provedení validace instruován asistent s~umělou inteligencí Claude Opus 4.6. Zadání obsahovalo seznam deseti kategorií špatné praxe z~portálu data.gov.cz, adresy datových archivů ke stažení a~URL adres API ke kontrole, sadu nástrojů příkazové řádky pro validaci (\texttt{curl}, \texttt{jq}, \texttt{file~-i}, \texttt{python3~-c~"json.load(...)"}) a~pokyny k~postupu analýzy v~jednotlivých fázích.
@@ -77,10 +87,12 @@ Pozorování bylo využito jako doplňková metoda pro rozšíření portfolia i
 
 \section{Komparace}
 
+\FloatBarrier
 \subsection{Komparace zákonných limitů pro IEQ}
 
 \[PLAN\]
 
+\FloatBarrier
 \subsection{Komparace aplikací pro sběr senzorických dat}
 
 Komparace aplikací pro sběr senzorických dat probíhala v~dubnu 2026. Jejím cílem bylo syntetizovat výsledky individuálních analýz čtyř aplikací (Sensor.Community, OpenAQ, openSenseMap a~IndoorCO2Map) a~identifikovat vzory, odlišnosti a~mezery, které by sloužily jako vstup pro analýzu požadavků vlastní aplikace.
@@ -89,6 +101,7 @@ Komparace proběhla v~několika dimenzích. První dimenzí bylo pokrytí velič
 
 Pátou dimenzí, přesahující rámec standardní komparace, bylo hodnocení souladu aplikací s~otevřenými formálními normami. Toto hodnocení bylo realizováno prostřednictvím empirické validace, jejíž metodologie je popsána v~sekci \textit{Validace souladu datových formátů s~otevřenými formálními normami}. Výsledky komparace ve všech pěti dimenzích jsou shrnuty v~sekci Srovnání aplikací v~rámci Rešerše.
 
+\FloatBarrier
 \subsection{Komparace zařízení pro sběr dat}
 
 Komparace zařízení pro sběr dat probíhala v~dubnu 2026 a~navazovala na rešerši popsanou v~předchozí podsekci. Jejím cílem bylo systematicky porovnat identifikovaná zařízení a~poskytnout čtenáři přehled relevantní pro volbu hardwaru při návrhu vlastní aplikace.
