@@ -30,7 +30,7 @@
 
 %%% Rok odevzdání a měsíc (slovně)
 %%% Year of submission and month (verbally) - month YYYY
-\def\DatumOdevzdani{květen 2026}
+\def\DatumOdevzdani{červen 2026}
 
 %%% Vedoucí práce: Jméno a příjmení s~tituly
 %%% Supervisor: First name and surname with titles
@@ -80,13 +80,11 @@ Abstract.
 %%% List of figures in the thesis
 \openright
 \listoffigures
-Poznámka: Seznam obrázků je vhodné použít, pokud počet obrázků v textu práce je větší než 20.
 
 %%% Seznam tabulek v práci (volitelně)
 %%% List of tables in the thesis (optionally)
 \clearpage
 \listoftables
-Poznámka: Seznam tabulek je vhodný použít, pokud počet tabulek v textu práce je větší než 20.
 
 %%% Seznam zdrojových kódů v práci (volitelně)
 %%% List of source listings in the thesis (optionally)
@@ -146,6 +144,15 @@ Poznámka: Seznam výpisů programového kódu je vhodné použít, pokud počet
 	\include{implementace}
 }
 
+{
+	\pagestyle{plain}
+	\include{testovani}
+}
+
+{
+	\pagestyle{plain}
+  \include{publikace}
+}
 
 {%
 \pagestyle{plain}
@@ -162,7 +169,7 @@ Poznámka: Seznam výpisů programového kódu je vhodné použít, pokud počet
 %%% least once in your own text. The appendices are numbered.
 \part*{\Prilohy\thispagestyle{empty}}
 \appendix
+\include{appendices/usecases}
 \include{appendices/prilohy_korespondence}
 \include{appendices/dotaznik}
-
 \end{document}

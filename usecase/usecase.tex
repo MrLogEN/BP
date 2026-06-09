@@ -1,8 +1,12 @@
 \section{Případy užití}
 
-Pro ilustrování funkcionality navrhovaného systému a jeho iterakcí s entitami vnějšího světa byly stanoveny případy užití (viz tabulky č. \ref{tab:usecase:UC01}, \ref{tab:usecase:UC02}, \ref{tab:usecase:UC03}, \ref{tab:usecase:UC04}, \ref{tab:usecase:UC05}, \ref{tab:usecase:UC06}, \ref{tab:usecase:UC07}, \ref{tab:usecase:UC08}, \ref{tab:usecase:UC09}, \ref{tab:usecase:UC10}, \ref{tab:usecase:UC11}, \ref{tab:usecase:UC12}, \ref{tab:usecase:UC13}, \ref{tab:usecase:UC14}, \ref{tab:usecase:UC15}, \ref{tab:usecase:UC16}, \ref{tab:usecase:UC17}, \ref{tab:usecase:UC18}). Tyto případy užití jsou vizualizovány pomocí diagramu UML případů užití na obrázku č. \ref{obr:usecase}.
+Pro ilustrování funkcionality navrhovaného systému a jeho interakcí s entitami vnějšího světa byly stanoveny případy užití, které jsou souhrnně zachyceny pomocí UML Use Case diagramu na obrázku č. \ref{obr:usecase}. Diagram zobrazuje hlavní systémovou hranici, vnitřní subsystémy a jednotlivé případy užití, které jsou s těmito subsystémy spojeny. Dále jsou zobrazeni aktéři, kteří se systémem interagují, a jejich asociace s případy užití. Některé případy užití jsou navíc propojeny vztahem «include», který indikuje, že jeden případ užití zahrnuje funkcionalitu jiného případu užití. 
 
-\begin{figure}[p]
+Jak je možné vidět na obrázku \ref{obr:usecase}, bylo identifikováno celkem pět aktérů. Těmi jsou \textit{Provozovatel monitorovaného prostoru}, \textit{Výzkumný pracovník}, \textit{Návštěvník}, \textit{Senzor}, \textit{Datový katalog} a \textit{Vývojář aplikací třetí strany}. Každý z těchto aktérů má přiřazený jeden či více případů užití. Ve větším detailu jsou jednotliví aktéři popsáni v tabulce č. \ref{tab:definice-akteru} v samstatné příloze \ref{appendix:usecases}. 
+
+\begin{figure}[htbp!]
+    \caption{Diagram případů užití}
+    \label{obr:usecase}
     \centering
     \resizebox{0.96\textwidth}{!}{%
     \begin{tikzpicture}[
@@ -110,46 +114,11 @@ Pro ilustrování funkcionality navrhovaného systému a jeho iterakcí s entita
 
     \end{tikzpicture}
     }
-    \caption{Diagram případů užití}
-    \label{obr:usecase}
 \end{figure}
+\FloatBarrier
 
-\input{usecase/akteri}
+Systém na diagramu případů užití (viz obr. č. \ref{obr:usecase}) je rozdělen do čtyř subsystémů.
+První z nich je \textit{Webové rozhraní}, které zahrnuje další dva subsystémy, \textit{Správa entit} a \textit{Autentizace uživatele}, a dva konkrétní případy užití \textit{Prohlížení měření na veřejné mapě} (detail viz tab. č. \ref{tab:usecase:UC18}) a \textit{Stažení archivu naměřených dat} (detail viz tab. č. \ref{tab:usecase:UC17}). 
 
-\subsection{Specifikace případů užití}
+%Druhým subsystémem je \textit{API}, které zahrnuje případy užití pro příjem měření, čtení dat přes veřejné API, filtrování dotazů, procházení stránek odpovědí, vyhledávání entit, získání popisu API a harvestování katalogizačních metadat. Třetím subsystémem je \textit{Správa entit}, která zahrnuje případy užití pro evidenci budovy, místnosti, senzoru a správu životního cyklu senzoru. Čtvrtým subsystémem je \textit{Autentizace uživatele}, která zahrnuje případy užití pro registraci, přihlášení, odhlášení a změnu přihlašovacích údajů.}
 
-\input{usecase/cases/uc01}
-
-\input{usecase/cases/uc02}
-
-\input{usecase/cases/uc03}
-
-\input{usecase/cases/uc04}
-
-\input{usecase/cases/uc05}
-
-\input{usecase/cases/uc06}
-
-\input{usecase/cases/uc07}
-
-\input{usecase/cases/uc08}
-
-\input{usecase/cases/uc09}
-
-\input{usecase/cases/uc10}
-
-\input{usecase/cases/uc11}
-
-\input{usecase/cases/uc12}
-
-\input{usecase/cases/uc13}
-
-\input{usecase/cases/uc14}
-
-\input{usecase/cases/uc15}
-
-\input{usecase/cases/uc16}
-
-\input{usecase/cases/uc17}
-
-\input{usecase/cases/uc18}
