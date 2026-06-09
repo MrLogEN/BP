@@ -28,3 +28,13 @@
 
 # ignore rubbish
 rubbish/
+# Added by code-review-graph
+.code-review-graph/
+
+.claude/
+.mcp.json
+
+.tldr/
+.tldrignore
+thoughts/
+
