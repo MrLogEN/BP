@@ -1,6 +1,58 @@
 \chapter{Implementace aplikace}
 
-[TODO]
+Tato kapitola popisuje proces realizace navrženého systému. Zaměřuje se na praktické aspekty implementace, od nastavení vývojového prostředí přes detaily datové perzistence až po konstrukci backendových služeb a webové aplikace. Text klade důraz na technická řešení konkrétních výzev, jako je zpracování velkého objemu dat nebo správa historických verzí záznamů.
 
-Výběr nástrojů pro implementaci. Zvolený postup implementace. Popis, co bylo implementováno. Závěr z implementace.
+\section{Vývojové prostředí a technologický stack}
 
+\textit{Obsah sekce:} Zdůvodnění výběru klíčových technologií a popis nástrojů usnadňujících vývoj.
+\textit{Logický tok:}
+\begin{itemize}
+    \item \textbf{Backend:} Volba .NET 10 a ASP.NET Core (Minimal APIs) pro vysoký výkon a moderní C\# syntaxi.
+    \item \textbf{Persistence:} Výběr PostgreSQL v kombinaci s TimescaleDB jako klíčového prvku pro efektivní ukládání časových řad IEQ dat.
+    \item \textbf{Frontend:} Volba Reactu a TypeScriptu s využitím design systému Chakra UI v3 pro konzistentní a přístupné uživatelské rozhraní.
+    \item \textbf{Infrastruktura:} Kontejnerizace lokálního prostředí pomocí Podman Compose (zajištění shodnosti prostředí s produkcí).
+    \item \textbf{Metodika:} Zmínka o využití AI (Claude) jako asistenta při generování schémat, refaktorování kódu a urychlení vývoje.
+\end{itemize}
+
+\section{Datová vrstva a perzistence}
+
+\textit{Obsah sekce:} Transformace konceptuálního modelu do fyzické databázové struktury.
+\textit{Logický tok:}
+\begin{itemize}
+    \item \textbf{Separace schémat:} Popis rozdělení do tří izolovaných schémat (Auth, Evidence, IEQ) podporujících autonomii mikroslužeb.
+    \item \textbf{TimescaleDB hypertables:} Technický detail implementace tabulky \texttt{measurements} a její optimalizace pro dotazy nad časovými řadami.
+    \item \textbf{Temporální verzování (AS OF):} Detailní popis realizace historie záznamů v evidenci pomocí časových razítek \texttt{ValidFrom} a \texttt{ValidTo}. Vysvětlení, jak systém rekonstruuje stav entity k libovolnému okamžiku v minulosti.
+\end{itemize}
+
+\section{Realizace backendových služeb}
+
+\textit{Obsah sekce:} Architektonické vzory a implementační detaily jednotlivých služeb.
+\textit{Logický tok:}
+\begin{itemize}
+    \item \textbf{Mikroslužbová architektura:} Popis struktury monorepozitáře a sdílené knihovny \texttt{Core}.
+    \item \textbf{Standardizace komunikace:} Využití OpenAPI/Scalar pro dokumentaci a RFC 9457 (ProblemDetails) pro unifikovanou reprezentaci chyb.
+\end{itemize}
+
+\subsection{Autentizace a identita (Auth.Api)}
+Implementace zabezpečení pomocí JWT tokenů, správa uživatelských účtů a refresh flow.
+
+\subsection{Katalog evidovaných entit (Evidence.Api)}
+Realizace správy budov, místností a senzorů. Integrace s externími službami pro geokódování a napojení na RÚIAN.
+
+\subsection{Potrubí pro sběr dat (Ingestion Pipeline)}
+Technický vrchol backendu: Oddělení příjmu dat od jejich zápisu pomocí Redis Streams. Popis interakce mezi \texttt{Ingestion.Api} (synchronní validace, návrat 202 Accepted) a \texttt{Ingestion.Worker} (asynchronní hromadný zápis).
+
+\subsection{Veřejné rozhraní a exporty (Public API \& Export Worker)}
+Realizace otevřených dat. Implementace katalogu podle standardu DCAT-AP 3.0 a proces periodického generování měsíčních archivů (JSON-LD, CSV) do objektového úložiště (S3).
+
+\section{Realizace webové aplikace (Frontend)}
+
+\textit{Obsah sekce:} Architektura SPA a integrace dat.
+\textit{Logický tok:}
+\begin{itemize}
+    \item \textbf{Správa stavu:} Využití TanStack Query pro efektivní asynchronní komunikaci s backendem, caching a stránkování.
+    \item \textbf{Vizualizace dat:} Integrace MapLibre GL pro interaktivní mapu a knihoven D3.js/Recharts pro vykreslování historických grafů parametrů vnitřního prostředí.
+    \item \textbf{Internacionalizace:} Implementace systému \texttt{i18next} pro podporu českého a anglického jazyka.
+\end{itemize}
+
+\textit{Závěr kapitoly:} Shrnutí, že implementovaný systém je připraven k ověření, což je předmětem následující kapitoly o testování (kapitola \ref{ch:testovani}).
