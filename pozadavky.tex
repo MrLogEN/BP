@@ -1,8 +1,8 @@
 \chapter{Případy užití a požadavky na aplikaci}
 
-Tato kapitola se zabýví specifikací požadavků na navrhovanou aplikaci a případy užití, které tyto požadavky ilustrují. Nejprve jsou definovány pojmy a terminologie (viz tabulka č. \ref{tab:definice-pojmu}) používané v kontextu požadavků a případů užití, aby bylo zajištěno jednoté porozumění mezi všemi zainteresovanými stranami\dots
+Tato kapitola se zabývá specifikací požadavků na navrhovanou aplikaci a případy užití, které tyto požadavky ilustrují. Nejprve jsou definovány pojmy a terminologie (viz tabulka č. \ref{tab:definice-pojmu}) používané v kontextu požadavků a případů užití, aby bylo zajištěno jednoté porozumění mezi všemi zainteresovanými stranami. Následuje sekce č. \ref{kap:usecase} zabývající se případy užití  a jejich aktéry. Předposlední sekce č. \ref{sekce:funkcni-pozadavky} a poslední sekce č. \ref{sekce:nefunkcni-pozadavky} jsou věnovány systémovým požadavkům, které jsou s případy užití úzce spjaty.
 
-Pro tuto kapitolu byla převzata struktura ze šablon metodiky MMSP\footnote{https://spicenter.vse.cz/wp-content/uploads/metodiky/publikovana\_MMSP/index.htm}, která je určena pro malé týmy a využívá metodiky FURPS+ pro stanovování požadavků \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Nutno podotknout, že šablony nebyly použity v zcela identické podobě. Byla vynechána verzovací část, která z hlediska rozsahu práce není relevantní. 
+Pro tuto kapitolu byla převzata struktura ze šablon metodiky MMSP\footnote{https://spicenter.vse.cz/wp-content/uploads/metodiky/publikovana\_MMSP/index.htm}, která je určena pro malé týmy a využívá metodiky FURPS+ pro stanovování požadavků \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Nutno podotknout, že šablony nebyly použity v zcela identické podobě. Napříč šablonami byla vynechána verzovací část, která z hlediska rozsahu práce není relevantní a šablony byly přeneseny z dokumentu ve formátu MS Word (.docx) do \LaTeX u, což vedlo k úpravě formátování a struktury některých částí. Nicméně, základní logika a obsah šablon zůstaly zachovány.
 
 \begin{longtable}{L{3.5cm} L{11cm}}
   \caption{Slovník pojmů}\label{tab:definice-pojmu}\\
@@ -43,43 +43,67 @@ Pro tuto kapitolu byla převzata struktura ze šablon metodiky MMSP\footnote{htt
     přihlášená relace & Stav navázaný úspěšným přihlášením uživatele, ve kterém systém přiřazuje příchozí požadavky konkrétnímu autentizovanému uživateli a zpřístupňuje mu funkce vyžadující autentizaci. Trvá do explicitního odhlášení, vypršení časového limitu nebo invalidace ze strany systému. \\
 \end{longtable}
 
-
 \input{usecase/usecase}
 
-\input{pozadavky/funkcni}
+\section{Požadavky} 
 
-\section{Nefunkční požadavky}
+Požadavky dle metodiky FURPS+ jsou strukturovanány tak, jak je vidět na obr. č. \ref{fig:pozadavky-diagram}. Z použité šablony byla vynechána \textit{Obchodní pravidla}, která v kontextu práce nedává smysl.
 
-Nefunkční požadavky jsou kvalitativními charakteristikami systému, které poskytují informace o omezeních a vlastnostech systému \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Nefunkční požadavky byly dle šablony MMSP rozděleny na \texttt{použitelnost}, \texttt{spolehlivost}, \texttt{výkon} a \texttt{podporu}.
-
-\input{pozadavky/nefunkcni/pouzitelnost}
-
-\input{pozadavky/nefunkcni/spolehlivost}
-
-\input{pozadavky/nefunkcni/vykon}
-
-\input{pozadavky/nefunkcni/podpora}
-
-\section{Požadavky na rozhraní}
+\begin{figure}[!htb]
+  \begin{center}
+    \caption{Struktura požadvků FURPS+ dle metodiky MMSP}\label{fig:pozadavky-diagram}
+    \includegraphics[width=0.95\textwidth]{img/pozadavky-diagram.pdf}
+    \footnotesize \textit{Zdroj:} Vlastní zpracování
+  \end{center}
+\end{figure}
 
 \FloatBarrier
-\subsection{Uživatelské rozhraní}
+\subsection{Funkční požadavky}\label{sekce:funkcni-pozadavky}
 
-\input{pozadavky/rozhrani/uzivatelske/vzhled}
+Funkční požadavky popisují konkrétní funkce, které musí systém poskytovat. Tedy určují, co by systém měl dělat \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Funkční požadavky jsou formulovány v tabulce č. \ref{tab:funkcni-pozadavky} v samostatné příloze \ref{appendix:pozadavky} . Požadavky v tabulce mají unikátní identifikátor, název, podrobný popis, prioritu, která určuje důležitost požadavku (na škále důležitosti od 1 = vysoká,...,5 = nízká) a odkaz na případ užití, který tento požadavek ilustruje.
 
-\input{pozadavky/rozhrani/uzivatelske/rozlozeni}
+\subsection{Nefunkční požadavky}\label{sekce:nefunkcni-pozadavky}
 
-\input{pozadavky/rozhrani/uzivatelske/konzistence}
+Nefunkční požadavky jsou kvalitativními charakteristikami systému, které poskytují informace o omezeních a vlastnostech systému \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Nefunkční požadavky byly dle šablony MMSP rozděleny na \textit{použitelnost}, \textit{spolehlivost}, \textit{výkon} a \textit{podporu}.
 
-\input{pozadavky/rozhrani/uzivatelske/personalizace}
+Požadavky na použitelnost aplikace jsou uvedeny v tabulce č. \ref{tab:POU-pozadavky}
+Požadavky na spolehlivost systému byly stanoveny v tabulce č. \ref{tab:SPO-pozadavky}.
+Požadavky na výkon systému byly stanoveny v tabulce č. \ref{tab:VYK-pozadavky}.
+Požadavky na podporu se týkají aspektů vývoje a údržby systému \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Tyto požadavky jsou popsány v tabulce \ref{tab:POD-pozadavky}.
 
-\input{pozadavky/rozhrani/externi}
+\subsection{Požadavky na rozhraní}
 
-\input{pozadavky/systemova-omezeni}
+\subsubsection{Uživatelské rozhraní}
 
-\input{pozadavky/standardy}
+Požadavky na uživatelské rozhraní jsou zaměřeny na to, jak by mělo vypadat a fungovat uživatelské rozhraní systému \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Tyto požadavky jsou rozděleny do čtyř kategorií, a to:
+\textit{vzhled},
+\textit{rozložení a navigace},
+\textit{konzistence},
+\textit{personalizace a customizace}.
 
-\input{pozadavky/dokumentace}
+Požadavky na vzhled mohou stanovit např. jaké barvy \parencite{rejnkovaLokalizacePrizpusobeniMetodiky} či jaký styl prvků budou použity. Vymezené požadavky na vzhled jsou uvedeny v tabulce č. \ref{tab:VZH-pozadavky}.
 
+Požadavky na rozložení a navigaci jsou zaměřeny na to, jak by se uživatel měl v systému orientovat \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Tyto požadavky jsou popsány v tabulce \ref{tab:ROZ-pozadavky}.
+
+Požadavky na konzistenci se zaměřují na to, aby uživatelské rozhraní bylo jednotné a předvídatelné jako jiné systémy, které již uživatelé používají \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Tyto požadavky jsou popsány v tabulce \ref{tab:KON-pozadavky}.
+
+Požadavky na personalizaci a customizaci se týkají schopnosti systému přizpůsobit se individuálním potřebám, preferencím a charakteristikám uživatelů \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}.
+Požadavky lze vidět v tabulce \ref{tab:PER-pozadavky}.
+
+\subsubsection{Rozhraní na externí systémy nebo zařízení}
+
+Požadavky na rozhraní na externí systémy nebo zařízení se týkají schopnosti systému komunikovat a integrovat se s dalšími systémy, službami nebo zařízeními \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Požadavky, které byly identifikovány jsou uvedeny v tabulce \ref{tab:EXT-pozadavky}.
+
+\subsection{Systemová omezení}
+
+Systémová omezení udávájí technická a jiná omezení, kterými je systém vázán \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. V případě této práce se jedná o požadavky uvedené v tabulce č. \ref{tab:SYS-pozadavky}.
+
+\subsection{Požadavky na respektované standardy}
+
+Tato sekce popisuje požadavky na respektované standardy, které musí systém dodržovat \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. Požadavky jsou uvedeny v tabulce č. \ref{tab:STA-pozadavky}. V případě této práce se jedná zejména o standardy vyplývající z OFN.
+
+\subsection{Požadavky na dokumentaci}
+
+Požadavky na dokumentaci říkají, co a jakým zposobem by mělo být dokumentováno a kdo za to odpovídá \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. V případě této práce se jedná o požadavky uvedené v tabulce č. \ref{tab:DOK-pozadavky}.
 
 

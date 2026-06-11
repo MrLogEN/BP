@@ -1,7 +1,5 @@
 \section{Systemová omezení}
 
-Systémová omezení udávjí technická a jiná omezení, kterými je systém vázán \parencite{rejnkovaLokalizacePrizpusobeniMetodiky}. V případě této práce se jedná o požadavky uvedené v tabulce č. \ref{tab:SYS-pozadavky}.
-
 \begin{OstatniPozadavkyTabulka}{SYS}{Systémová omezení}
   \OstatniPozadavekRow{Šifrovaná komunikace přes HTTPS}{Veškerá komunikace s aplikací (čtecí API, archiv ke stažení, uživatelské rozhraní, příjem dat ze senzorů) musí probíhat výhradně přes HTTPS s veřejně důvěryhodným TLS certifikátem. Nezašifrované HTTP požadavky musí být přesměrovány na HTTPS.}{1}
   \OstatniPozadavekRow{Povolení CORS pro veřejné čtecí endpointy}{Systém musí na všech veřejných čtecích endpointech (API, archiv, katalogizační metadata) povolit mechanismus CORS (\emph{Cross-Origin Resource Sharing}) pro libovolný zdroj, aby konzumenti dat mohli volat API přímo z webových aplikací běžících na jiných doménách bez nutnosti proxy serveru.}{2}

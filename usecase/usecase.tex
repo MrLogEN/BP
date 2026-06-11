@@ -1,4 +1,4 @@
-\section{Případy užití}
+\section{Případy užití}\label{kap:usecase}
 
 Pro ilustrování funkcionality navrhovaného systému a jeho interakcí s entitami vnějšího světa byly stanoveny případy užití, které jsou souhrnně zachyceny pomocí UML Use Case diagramu na obrázku č. \ref{obr:usecase}. Diagram zobrazuje hlavní systémovou hranici, vnitřní subsystémy a jednotlivé případy užití, které jsou s těmito subsystémy spojeny. Dále jsou zobrazeni aktéři, kteří se systémem interagují, a jejich asociace s případy užití. Některé případy užití jsou navíc propojeny vztahem «include», který indikuje, že jeden případ užití zahrnuje funkcionalitu jiného případu užití. 
 
@@ -118,7 +118,23 @@ Jak je možné vidět na obrázku \ref{obr:usecase}, bylo identifikováno celkem
 \FloatBarrier
 
 Systém na diagramu případů užití (viz obr. č. \ref{obr:usecase}) je rozdělen do čtyř subsystémů.
-První z nich je \textit{Webové rozhraní}, které zahrnuje další dva subsystémy, \textit{Správa entit} a \textit{Autentizace uživatele}, a dva konkrétní případy užití \textit{Prohlížení měření na veřejné mapě} (detail viz tab. č. \ref{tab:usecase:UC18}) a \textit{Stažení archivu naměřených dat} (detail viz tab. č. \ref{tab:usecase:UC17}). 
+První z nich je \textit{Webové rozhraní}, které zahrnuje další dva subsystémy, \textit{Správa entit} a \textit{Autentizace uživatele}, a dva konkrétní případy užití \textit{Prohlížení měření na veřejné mapě} (detail viz tab. č. \ref{tab:usecase:UC18}), který je prováděn aktérem \textit{Návštěvník} a \textit{Stažení archivu naměřených dat} (detail viz tab. č. \ref{tab:usecase:UC17}), který je prováděn aktérem \textit{Výzkumný pracovník}. 
 
-%Druhým subsystémem je \textit{API}, které zahrnuje případy užití pro příjem měření, čtení dat přes veřejné API, filtrování dotazů, procházení stránek odpovědí, vyhledávání entit, získání popisu API a harvestování katalogizačních metadat. Třetím subsystémem je \textit{Správa entit}, která zahrnuje případy užití pro evidenci budovy, místnosti, senzoru a správu životního cyklu senzoru. Čtvrtým subsystémem je \textit{Autentizace uživatele}, která zahrnuje případy užití pro registraci, přihlášení, odhlášení a změnu přihlašovacích údajů.}
+Subsytém \textit{Správa entit} zahrnuje případy užití \textit{Evidence budovy} (detail viz tab. č. \ref{tab:usecase:UC05}), \textit{Evidence místnosti} (detail viz tab. č. \ref{tab:usecase:UC06}), \textit{Změna parametrů s časovou platností} (detail viz tab. č. \ref{tab:usecase:UC07}), \textit{Evidence senzoru} (detail viz tab. č. \ref{tab:usecase:UC08}), \textit{Správa životního cyklu senzoru} (detail viz tab. č. \ref{tab:usecase:UC09}). 
 
+Subsystém \textit{Autentizace uživatele} obsahuje případy užití 
+\textit{Registrace do systému} (detail viz tab. č. \ref{tab:usecase:UC01}), 
+\textit{Přihlášení do systému} (detail viz tab. č. \ref{tab:usecase:UC02}), 
+\textit{Odhlášení ze systému} (detail viz tab. č. \ref{tab:usecase:UC03}) a 
+\textit{Změna přihlašovacích údajů} (detail viz tab. č. \ref{tab:usecase:UC04}).
+
+Všechny uvedené případy užití subsystémů \textit{Správa entit} a \textit{Auntentizace uživatele} jsou vykonávány aktérem \textit{Provozovatel monitorovaného prostoru}
+
+Posledním subsystémem je \textit{API}, které obsahuje případy užití 
+\textit{Příjem a validace pozorování} (detail viz tab. č. \ref{tab:usecase:UC10}), 
+\textit{Harvestování katalogizačních metadat} (detail viz tab. č. \ref{tab:usecase:UC16}), 
+\textit{Získání strojově čitelného popisu API} (detail viz tab. č. \ref{tab:usecase:UC15}), 
+\textit{Čtení dat přes veřejné API} (detail viz tab. č. \ref{tab:usecase:UC11}), 
+\textit{Filtrování dotazů na čtecí API} (detail viz tab. č. \ref{tab:usecase:UC12}), 
+\textit{Vyhledání entit dle parametrů} (detail viz tab. č. \ref{tab:usecase:UC14}) a 
+\textit{Procházení stránkovaných odpovědí API} (detail viz tab. č. \ref{tab:usecase:UC13}).
