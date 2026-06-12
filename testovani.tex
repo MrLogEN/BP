@@ -1,5 +1,59 @@
 \chapter{Testování aplikace}
 \label{ch:testovani}
 
-[TODO]
-Výběr nástrojů pro testování. Průběh testování. Výsledky testování. Závěr z testování.
+Tato kapitola popisuje ověření správnosti a výkonnosti implementovaného systému. Nejprve je představena celková strategie testování a výběr nástrojů, následně jednotlivé úrovně testů -- jednotkové a integrační testy služeb, end-to-end testy veřejného rozhraní API a výkonnostní testy ověřující nefunkční požadavky -- a nakonec souhrnné vyhodnocení. Vzhledem k tomu, že vývoj probíhal metodou TDD (viz kapitola~\ref{ch:implementace}), testy nevznikaly až dodatečně nad hotovým kódem, ale souběžně s ním a průběžně podmiňovaly začlenění každé změny.
+
+\section{Strategie testování}
+
+Strategie vychází z modelu testovací pyramidy: nejpočetnější a nejrychlejší jsou testy jednotkové a integrační, ověřující každou službu izolovaně; nad nimi stojí menší sada end-to-end testů, která prochází celý složený systém přes reverzní proxy stejně jako skutečný klient; špičku tvoří testy výkonnostní, jež se nespouštějí při každé změně, ale ověřují nefunkční požadavky definované v sekci~\ref{sekce:nefunkcni-pozadavky}. Všechny funkční úrovně jsou zapojeny do průběžné integrace (CI) na platformě GitHub Actions: každá žádost o začlenění do hlavní větve spouští kompletní sadu jednotkových a integračních testů a poté end-to-end sadu nad celým systémem sestaveným z kontejnerů, doplněnou krátkým funkčním během výkonnostních scénářů. Změnu tedy nelze začlenit, dokud všechny úrovně neprojdou.
+
+\section{Volba nástrojů}
+
+\textbf{xUnit}\footnote{\url{https://xunit.net}} je de facto standardní testovací framework platformy .NET; oproti alternativám NUnit a MSTest vynucuje izolaci testů (nová instance testovací třídy pro každý test) a je výchozí volbou šablon .NET. Integrační testy jej kombinují s knihovnou \texttt{Microsoft.AspNetCore.Mvc.Testing}, jejíž \texttt{WebApplicationFactory} hostuje testovanou službu v paměti včetně celého HTTP zřetězení, a s knihovnou \textbf{Testcontainers}\footnote{\url{https://dotnet.testcontainers.org}}, která pro každý testovací běh spouští skutečný PostgreSQL v kontejneru. Testy tak pracují s reálnou databází včetně specifik, na nichž systém stojí (vylučovací omezení \texttt{btree\_gist}, hypertabulky TimescaleDB), jež by paměťová náhrada databáze nepokryla.
+
+\textbf{Postman/Newman}\footnote{\url{https://www.postman.com}, \url{https://github.com/postmanlabs/newman}} pokrývá end-to-end úroveň. Kolekce požadavků je uložena přímo v repozitáři v textovém formátu YAML (jeden soubor na požadavek), takže je verzována spolu s kódem a změna API se projeví v témže commitu i změnou testů; nástroj Newman ji spouští z příkazové řádky, a tedy i v CI bez závislosti na cloudové službě Postman.
+
+\textbf{k6}\footnote{\url{https://k6.io}} byl zvolen pro výkonnostní testy. Oproti tradičnímu JMeteru se scénáře píší jako kód (JavaScript), což umožňuje jejich verzování a revize, a především nefunkční požadavky lze zapsat přímo jako prahové hodnoty (\emph{thresholds}) scénáře -- překročení prahu znamená neúspěšný běh. Výkonnostní požadavky práce tím získávají spustitelnou, opakovatelnou podobu.
+
+\section{Jednotkové a integrační testy}
+
+Každá ze sedmi komponent backendu (šest služeb a sdílená knihovna \texttt{Core}) má vlastní testovací projekt; dohromady obsahují 577 testů a všechny procházejí. Převažují integrační testy vedené přes HTTP rozhraní služby hostované ve \texttt{WebApplicationFactory} nad databází v kontejneru -- ověřují tedy chování viditelné zvenčí, nikoli vnitřní strukturu, a přežívají refaktoring implementace.
+
+Obsahově se testy soustředí na rozhodnutí popsaná v kapitole~\ref{ch:implementace}, jejichž selhání by bylo obtížně odhalitelné ručně: časové verzování atributů evidence (uzavírání polootevřených intervalů platnosti, zamítnutí překrývajících se období, rekonstrukce stavu k~okamžiku \texttt{asOf}), validaci příjmu měření (deklarované veličiny, kanonické jednotky, přípustné rozsahy, atomické odmítnutí celé dávky) a idempotentní zápis fronty -- opakované doručení téže zprávy z~fronty nesmí vytvořit duplicitní měření. Samostatně je testováno rozšiřování číselníků konfiguračním souborem, včetně pravidla, že rozšíření nesmí kolidovat s vestavěnými kódy.
+
+\section{End-to-end testy API}
+
+End-to-end sada obsahuje 75 požadavků se 113 kontrolami a prochází celým systémem -- reverzní proxy Caddy, všemi čtyřmi API a asynchronní cestou zápisu přes Redis a zapisovací službu. Jde o stavový scénář napodobující skutečného provozovatele: registrace uživatele, potvrzení e-mailu (odkaz se vyzvedává z testovacího SMTP serveru Mailpit, takže je pokryt i skutečný e-mailový tok), přihlášení, založení budovy, místnosti a senzoru, odeslání měření klíčem senzoru a nakonec čtení publikovaných dat veřejným API včetně obsahového vyjednávání (JSON, JSON-LD, CSV) a katalogu DCAT.
+
+Vedle úspěšných průchodů sada ověřuje i zamítavé odpovědi: příjem měření s neplatným klíčem senzoru, s nesouhlasící jednotkou a s hodnotou mimo přípustný rozsah, přístup k chráněným koncovým bodům bez tokenu (401), neexistující objekty (404) a doménově neplatné vstupy, například datum kalibrace senzoru předcházející datu instalace (400).
+
+\section{Výkonnostní testy}
+
+Výkonnostní testy ověřují dva nefunkční požadavky: čtecí API musí při nejméně 50~souběžných požadavcích a stránkách do 100~záznamů odpovídat s~latencí p95 do 1~s a p99 do 3~s; příjem měření musí trvale zvládat nejméně 100~měření za sekundu. Oba požadavky jsou zapsány jako prahové hodnoty scénářů k6, takže jejich ověření je otázkou jediného spuštění. Třetí, průzkumný scénář postupně zvyšuje zátěž nad rámec požadavků a hledá bod nasycení systému.
+
+Měření probíhalo na vývojovém stroji (CPU AMD Ryzen~7 5700U, 16~logických jader, 14~GB RAM, kontejnery Podman~5.8), na němž současně běžel celý systém včetně databáze -- jde tedy o konzervativní odhad, produkční nasazení na vyhrazeném serveru by dosáhlo hodnot lepších. Tabulka~\ref{tab:vykon} shrnuje výsledky.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Výsledky výkonnostních testů (k6) proti nefunkčním požadavkům}
+  \label{tab:vykon}
+  \begin{tabular}{lllll}
+    \hline
+    Scénář & Zátěž & Metrika & Požadavek & Naměřeno \\
+    \hline
+    Čtecí API     & 50 VU, 2~min        & latence p95     & $<$ 1~s   & 57~ms \\
+                  &                     & latence p99     & $<$ 3~s   & 76~ms \\
+                  &                     & chybovost       & --        & 0~\% (202\,287 pož.) \\
+    Příjem měření & 100~měření/s, 2~min & podíl 202       & 100~\%    & 100~\% (12\,000/12\,000) \\
+                  &                     & latence p95     & --        & 7~ms \\
+    \hline
+  \end{tabular}
+\end{table}
+
+Čtecí API obsloužilo při 50~souběžných virtuálních uživatelích průměrně přes 1\,600 požadavků za sekundu s rezervou více než jednoho řádu vůči oběma latenčním limitům; příjem měření udržel požadovaných 100~měření za sekundu po celou dobu běhu bez jediného odmítnutí, s mediánem latence kolem 6~ms. Průzkumný zátěžový scénář poté postupně zvyšoval intenzitu dotazů na nejvytíženější čtecí koncový bod (filtrovaný výpis měření) až na 400~požadavků za sekundu, tedy na osminásobek úrovně požadované souběžnosti; ani na této úrovni nedošlo k~degradaci (p99 = 7~ms, 0~chyb ze~77\,249 požadavků). Bod nasycení systému tedy leží až za hranicí testovaného rozsahu a rezerva vůči nefunkčním požadavkům je značná.
+
+\section{Závěr testování}
+
+Všechny úrovně testů procházejí: 577 jednotkových a integračních testů, 113 kontrol end-to-end sady a oba výkonnostní scénáře s prahy odvozenými přímo z nefunkčních požadavků. Požadavky na latenci čtecího API i na propustnost příjmu měření jsou splněny s výraznou rezervou, a to na vývojovém stroji sdíleném s celým systémem.
+
+Vyhodnocení má přirozená omezení. Výkonnostní čísla pocházejí z jediného stroje a lokální sítě, takže nezahrnují síťovou latenci skutečných klientů; databáze obsahovala desítky tisíc měření, nikoli objem odpovídající letům provozu -- chování na velkých datech bude třeba průběžně sledovat v~produkci. Požadavek dostupnosti (99~\% v~kalendářním měsíci) z~povahy věci nelze ověřit testem před nasazením, nýbrž až měřením skutečného provozu. Konečně end-to-end sada pokrývá zamítavé odpovědi výběrově, nikoli vyčerpávajícím výčtem všech chybových stavů; úplnost validace zajišťují testy integrační.
