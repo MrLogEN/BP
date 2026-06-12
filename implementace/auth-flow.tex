@@ -1,0 +1,32 @@
+\begin{figure}[htbp]
+\centering
+\caption{Registrace, přihlášení a obnova tokenu (zjednodušeno)}
+\label{fig:auth-seq}
+{\footnotesize
+\begin{sequencediagram}
+  \newthread{k}{Klient}{}
+  \newinst[3.4]{a}{Auth.Api}{}
+  \newinst[3]{d}{Databáze}{}
+  \newinst[1.6]{m}{SMTP server}{}
+  \begin{call}{k}{registrace (e-mail, heslo)}{a}{přijato}
+    \begin{call}{a}{uložení účtu a otisku tokenu}{d}{}
+    \end{call}
+    \begin{call}{a}{ověřovací odkaz}{m}{}
+    \end{call}
+  \end{call}
+  \begin{call}{k}{potvrzení e-mailu (token)}{a}{účet aktivován}
+    \begin{call}{a}{označení účtu za ověřený}{d}{}
+    \end{call}
+  \end{call}
+  \begin{call}{k}{přihlášení (e-mail, heslo)}{a}{JWT + obnovovací token}
+    \begin{call}{a}{ověření hesla, uložení otisku tokenu}{d}{}
+    \end{call}
+  \end{call}
+  \begin{call}{k}{obnova tokenu}{a}{nová dvojice tokenů}
+    \begin{call}{a}{rotace obnovovacího tokenu}{d}{}
+    \end{call}
+  \end{call}
+\end{sequencediagram}}
+
+{\footnotesize \textit{Zdroj:} Vlastní zpracování}
+\end{figure}

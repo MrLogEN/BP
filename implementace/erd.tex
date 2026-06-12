@@ -1,0 +1,88 @@
+\begin{figure}[!htb]
+\centering
+\caption{Konceptuální ER diagram jádra systému (Chenova notace, zjednodušeno)}
+\label{fig:er-diagram}
+\begin{tikzpicture}[
+    every entity/.style={draw, fill=blue!8, minimum height=7mm},
+    every relationship/.style={draw, fill=orange!12, aspect=1.6, inner sep=1pt},
+    every attribute/.style={draw, fill=gray!8, inner sep=2pt, font=\scriptsize},
+    card/.style={font=\scriptsize, fill=white, inner sep=1pt},
+    font=\small]
+
+  % páteř entit (svisle)
+  \node[entity] (uzivatel) at (0,10.5) {Uživatel};
+  \node[relationship] (vlastni) at (0,8.75) {vlastní};
+  \node[entity] (budova) at (0,7) {Budova};
+  \node[relationship] (obsahuje) at (0,5.25) {obsahuje};
+  \node[entity] (mistnost) at (0,3.5) {Místnost};
+  \node[relationship] (umisten) at (0,1.75) {umístěn\,*};
+  \node[entity] (senzor) at (0,0) {Senzor};
+
+  % pravá strana
+  \node[entity] (velicina) at (6.3,7) {Veličina};
+  \node[relationship] (sleduje) at (6.3,3.5) {vztahuje se k};
+  \node[entity] (mereni) at (6.3,0) {Měření};
+  \node[relationship] (porizuje) at (3.2,0) {pořizuje};
+  \node[relationship] (meri) at (3,4.4) {měří\,*};
+
+  % atributy
+  \node[key attribute] (u-id) [above=4mm of uzivatel] {\underline{id}};
+  \node[attribute] (u-mail) [left=10mm of uzivatel] {e-mail};
+
+  \node[attribute] (b-nazev) [left=10mm of budova] {název\,*};
+  \node[attribute] (b-adresa) [below left=4mm and 9mm of budova] {adresa\,*};
+  \node[attribute] (b-poloha) [above left=4mm and 9mm of budova] {poloha\,*};
+
+  \node[attribute] (m-nazev) [left=10mm of mistnost] {název\,*};
+  \node[attribute] (m-funkce) [below left=4mm and 9mm of mistnost] {funkce\,*};
+  \node[attribute] (m-geom) [above left=4mm and 9mm of mistnost] {geometrie\,*};
+
+  \node[attribute] (s-vyrobce) [left=10mm of senzor] {výrobce\,*};
+  \node[attribute] (s-stav) [below left=4mm and 9mm of senzor] {stav\,*};
+
+  \node[key attribute] (me-id) [below=4mm of mereni] {\underline{id, čas přijetí}};
+  \node[attribute] (me-hodnota) [right=8mm of mereni] {hodnota};
+  \node[attribute] (me-platnost) [above right=4mm and 7mm of mereni] {příznak neplatnosti};
+
+  \node[key attribute] (v-kod) [above=4mm of velicina] {\underline{kód}};
+  \node[attribute] (v-jednotka) [right=8mm of velicina] {jednotka};
+  \node[attribute] (v-rozsah) [above right=4mm and 7mm of velicina] {přípustný rozsah};
+
+  % vztahové hrany
+  \draw (uzivatel) -- node[card,right]{1} (vlastni);
+  \draw (vlastni) -- node[card,right]{N} (budova);
+  \draw (budova) -- node[card,right]{1} (obsahuje);
+  \draw (obsahuje) -- node[card,right]{N} (mistnost);
+  \draw (mistnost) -- node[card,right]{1} (umisten);
+  \draw (umisten) -- node[card,right]{N} (senzor);
+  \draw (senzor) -- node[card,above]{1} (porizuje);
+  \draw (porizuje) -- node[card,above]{N} (mereni);
+  \draw (mereni) -- node[card,right]{N} (sleduje);
+  \draw (sleduje) -- node[card,right]{1} (velicina);
+  \draw (senzor) -- node[card,above,pos=0.35]{M} (meri);
+  \draw (meri) -- node[card,above,pos=0.65]{N} (velicina);
+
+  % atributové hrany
+  \draw (uzivatel) -- (u-id);
+  \draw (uzivatel) -- (u-mail);
+  \draw (budova) -- (b-nazev);
+  \draw (budova) -- (b-adresa);
+  \draw (budova) -- (b-poloha);
+  \draw (mistnost) -- (m-nazev);
+  \draw (mistnost) -- (m-funkce);
+  \draw (mistnost) -- (m-geom);
+  \draw (senzor) -- (s-vyrobce);
+  \draw (senzor) -- (s-stav);
+  \draw (mereni) -- (me-id);
+  \draw (mereni) -- (me-hodnota);
+  \draw (mereni) -- (me-platnost);
+  \draw (velicina) -- (v-kod);
+  \draw (velicina) -- (v-jednotka);
+  \draw (velicina) -- (v-rozsah);
+\end{tikzpicture}
+
+Hvězdička označuje časově verzované atributy a vztahy. Identifikátory entit budova, místnost a senzor jsou pro přehlednost vynechány, stejně jako další verzované atributy (podlaží, expozice, větrání, zdroje znečištění, typ budovy, roky výstavby a rekonstrukce).
+
+\footnotesize  \textit{Zdroj:} Vlastní zpracování
+
+\end{figure}

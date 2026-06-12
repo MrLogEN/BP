@@ -1,58 +1,276 @@
 \chapter{Implementace aplikace}
+\label{ch:implementace}
 
-Tato kapitola popisuje proces realizace navrženého systému. Zaměřuje se na praktické aspekty implementace, od nastavení vývojového prostředí přes detaily datové perzistence až po konstrukci backendových služeb a webové aplikace. Text klade důraz na technická řešení konkrétních výzev, jako je zpracování velkého objemu dat nebo správa historických verzí záznamů.
+Tato kapitola popisuje realizaci navrženého systému. Nejprve je zdůvodněn výběr nástrojů a technologií, následně je představena datová vrstva včetně konceptuálního ER diagramu a časového verzování záznamů, dále konstrukce jednotlivých backendových služeb, naplnění požadavků otevřených formálních norem (OFN) a propojených dat a nakonec realizace webové aplikace. Důraz je kladen na řešení konkrétních technických problémů, jako je oddělení příjmu měření od jejich zápisu nebo rekonstrukce historického stavu evidence.
 
-\section{Vývojové prostředí a technologický stack}
+\section{Zvolené nástroje a technologie}
 
-\textit{Obsah sekce:} Zdůvodnění výběru klíčových technologií a popis nástrojů usnadňujících vývoj.
-\textit{Logický tok:}
-\begin{itemize}
-    \item \textbf{Backend:} Volba .NET 10 a ASP.NET Core (Minimal APIs) pro vysoký výkon a moderní C\# syntaxi.
-    \item \textbf{Persistence:} Výběr PostgreSQL v kombinaci s TimescaleDB jako klíčového prvku pro efektivní ukládání časových řad IEQ dat.
-    \item \textbf{Frontend:} Volba Reactu a TypeScriptu s využitím design systému Chakra UI v3 pro konzistentní a přístupné uživatelské rozhraní.
-    \item \textbf{Infrastruktura:} Kontejnerizace lokálního prostředí pomocí Podman Compose (zajištění shodnosti prostředí s produkcí).
-    \item \textbf{Metodika:} Zmínka o využití AI (Claude) jako asistenta při generování schémat, refaktorování kódu a urychlení vývoje.
-\end{itemize}
+Při výběru technologií byla vedle technických vlastností zohledněna i předchozí zkušenost autora, která snižuje implementační riziko práce.
+
+% TODO: odkazy v poznámkách pod čarou nahradit řádnými citacemi (biblatex)
+
+\subsection{Backend}
+
+Serverová část je realizována na platformě \textbf{.NET~10}\footnote{\url{https://dotnet.microsoft.com}} v jazyce C\# s využitím tzv. minimálních API (Minimal APIs) frameworku ASP.NET Core. C\# je staticky typovaný jazyk, což usnadňuje orientaci v datových strukturách, se kterými kód pracuje. V systému s řadou datových kontraktů (přenosové objekty, doménový model, zprávy fronty) jde o podstatnou vlastnost. Platforma .NET je dlouhodobě vyvíjena s důrazem na výkon a nasazení v kontejnerizovaném prostředí. Minimální API odstraňují režii klasických MVC kontrolerů. Koncový bod je zde prostou funkcí, což odpovídá charakteru mikroslužeb s úzkým rozhraním.
+
+\subsection{Perzistence}
+
+Jako databázový systém byl zvolen \textbf{PostgreSQL}\footnote{\url{https://www.postgresql.org}} s rozšířením \textbf{TimescaleDB}\footnote{\url{https://www.timescale.com}}, které doplňuje relační databázi o specializované uložení časových řad (podrobně v sekci~\ref{sec:datova-vrstva}). Při použití PostgreSQL jde o přirozenou volbu. Časové řady zůstávají v téže databázi jako evidenční data a provoz i zálohování se týkají jediného systému, zatímco zavedení vyhrazené databáze časových řad by znamenalo další technologii, jejíž správa by přesáhla rozumný rozsah bakalářské práce. Pro evidenční databázi je navíc využito rozšíření \texttt{btree\_gist}, jež umožňuje vynucovat integritu časově verzovaných záznamů přímo na úrovni databáze.
+
+\subsection{Fronta zpráv}
+
+Pro oddělení příjmu měření od jejich zápisu byly použity \textbf{Redis Streams}\footnote{\url{https://redis.io}}. Podstatnou vlastností je, že tentýž systém dokáže plnit roli vyrovnávací paměti i trvanlivé fronty zpráv. Skupiny konzumentů, potvrzování zpracování a opakované doručení poskytují potřebnou frontovou sémantiku a žurnál AOF zajišťuje trvalost zpráv na disku.
+
+\subsection{Infrastruktura}
+
+Všechny komponenty běží v kontejnerech spravovaných nástrojem \textbf{Podman}\footnote{\url{https://podman.io}}. Na rozdíl od nástroje Docker pracuje Podman bez centrálního démona a kontejnery spouští v uživatelském prostoru, což zvyšuje bezpečnost (mimo jiné neobchází pravidla firewallu hostitelského systému). Kontejnery odpovídají standardu OCI\footnote{Open Container Initiative, \url{https://github.com/opencontainers/runtime-spec}}, takže je lze v budoucnu bez úprav nasadit do orchestrátoru Kubernetes. Vývojové prostředí je definováno deklarativně (Podman Compose) a jediným příkazem lze spustit celý systém -- databázi, Redis, reverzní proxy, šest aplikačních služeb a migrační kontejnery -- čímž je zajištěna shoda prostředí mezi vývojem a produkcí. Roli reverzní proxy plní server \textbf{Caddy}\footnote{\url{https://caddyserver.com}}, zvolený pro deklarativní konfiguraci a automatickou správu certifikátů TLS. Požadavky směruje na jednotlivé služby podle prefixu cesty.
+
+\subsection{Frontend}
+
+Webová aplikace je napsána v jazyce \textbf{TypeScript}\footnote{\url{https://www.typescriptlang.org}} s knihovnou \textbf{React}\footnote{\url{https://react.dev}} a sestavována nástrojem \textbf{Vite}\footnote{\url{https://vite.dev}}. Statické typování umožňuje generovat typy klienta přímo ze specifikace OpenAPI backendu, takže rozpor mezi klientem a serverem se projeví již při překladu. Uživatelské rozhraní staví na designovém systému \textbf{Chakra UI}\footnote{\url{https://chakra-ui.com}}, vizualizace časových řad na knihovně \textbf{D3.js}\footnote{\url{https://d3js.org}} a interaktivní mapa na knihovně \textbf{MapLibre GL}\footnote{\url{https://maplibre.org}}. Podrobnosti uvádí sekce~\ref{sec:frontend}.
+
+\subsection{Dokumentace API}
+
+Všechny služby publikují specifikaci OpenAPI, nad kterou je provozováno rozhraní \textbf{Scalar}\footnote{\url{https://scalar.com}} -- prohlížeč specifikace umožňující mimo jiné generování klientských knihoven.
+
+\subsection{Správa verzí}
+
+Zdrojový kód je verzován systémem \textbf{Git} na platformě GitHub, a to ve dvou repozitářích: \texttt{ambiquality-backend} a \texttt{ambiquality-frontend}. Backend je vydáván jako celek a značen podle zásad sémantického verzování\footnote{\url{https://semver.org}}, takže z čísla verze je patrné, zda vydání mění veřejné rozhraní. Změny jsou do hlavní větve začleňovány prostřednictvím žádostí o začlenění (pull request), hlavní větev je chráněna proti přímému zápisu.
+
+\subsection{Metodika vývoje}
+
+Vývoj probíhal metodou řízenou testy (TDD, \emph{test-driven development}). Testy psané před implementací nutí promyslet hraniční scénáře předem a zároveň poskytují ověřitelné kritérium správnosti, čehož bylo využito i při asistovaném vývoji s nástrojem Claude -- vygenerovaný kód byl vždy konfrontován s předem připravenými testy. Konkrétní podoba a vyhodnocení testů jsou předmětem kapitoly~\ref{ch:testovani}.
 
 \section{Datová vrstva a perzistence}
+\label{sec:datova-vrstva}
 
-\textit{Obsah sekce:} Transformace konceptuálního modelu do fyzické databázové struktury.
-\textit{Logický tok:}
-\begin{itemize}
-    \item \textbf{Separace schémat:} Popis rozdělení do tří izolovaných schémat (Auth, Evidence, IEQ) podporujících autonomii mikroslužeb.
-    \item \textbf{TimescaleDB hypertables:} Technický detail implementace tabulky \texttt{measurements} a její optimalizace pro dotazy nad časovými řadami.
-    \item \textbf{Temporální verzování (AS OF):} Detailní popis realizace historie záznamů v evidenci pomocí časových razítek \texttt{ValidFrom} a \texttt{ValidTo}. Vysvětlení, jak systém rekonstruuje stav entity k libovolnému okamžiku v minulosti.
-\end{itemize}
+V této kapitole se nachází konceptuální datový model a jeho popis, popis oddělení logických databází, použití hypertabulky doplňku TimescaleDB, řešení časového verzování záznamů.   
+
+\subsection{Konceptuální datový model}
+
+Jádro datového modelu zachycuje obrázek~\ref{fig:er-diagram} v Chenově notaci. Entitami jsou \emph{uživatel}, \emph{budova}, \emph{místnost}, \emph{senzor}, \emph{veličina} (sledovaný parametr vnitřního prostředí, např. koncentrace CO\textsubscript{2}) a \emph{měření}. Uživatel vlastní budovy, budova obsahuje místnosti, v místnosti je umístěn senzor, senzor pořizuje měření a každé měření se vztahuje k jedné veličině. Vztah \emph{měří} mezi senzorem a veličinou zachycuje, které veličiny daný senzor sleduje.
+
+Hvězdičkou jsou v diagramu označeny atributy a vztahy, jejichž hodnota je \emph{časově verzována} (viz~\ref{subsec:temporal}). Nejde o jedinou aktuální hodnotu, ale o posloupnost hodnot s vymezenou dobou platnosti. Na fyzické úrovni se proto každý takový atribut materializuje jako samostatná historická tabulka a entita samotná je v databázi pouze tenkým záznamem s identifikátorem. Konceptuálně však historické tabulky nepředstavují samostatné entity -- jsou implementačním prostředkem verzování atributů, a proto jsou v ER diagramu zachyceny jako (verzované) atributy příslušné entity.
+
+\input{implementace/erd}
+
+\subsection{Oddělení databází}
+
+Data jsou rozdělena do tří samostatných databází: \texttt{auth} (uživatelé a jejich přihlašovací údaje), \texttt{evidence} (katalog budov, místností a senzorů) a \texttt{ieq} (naměřené hodnoty a přípustné rozsahy veličin). Ve vývojovém i současném produkčním prostředí sdílejí jednu instanci PostgreSQL, rozdělení však bylo zvoleno právě proto, aby bylo možné kteroukoli z nich v budoucnu přesunout na samostatnou instanci bez zásahu do aplikací. Každou databázi vlastní právě jedna služba prostřednictvím vyhrazené databázové role a ostatní služby k cizím datům přistupují nanejvýš pro čtení (např. role \texttt{public\_api} smí pouze číst z databází \texttt{ieq} a \texttt{evidence}).
+
+S tím souvisí i \textbf{absence cizích klíčů napříč databázemi}. Identita uživatele se mezi službami předává v JWT tokenu (claim \texttt{sub}) a evidenční služba si ji při prvním požadavku promítne do lokální projekce. Měření odkazuje na senzor pouze logicky hodnotou jeho identifikátoru. Každá služba tak zůstává nezávisle nasaditelná a její schéma lze migrovat bez koordinace s ostatními. Schémata jsou definována přístupem \emph{code-first} pomocí migrací EF~Core a migrace každé databáze provádí při startu systému vyhrazený kontejner.
+
+\subsection{Hypertabulka měření}
+
+Tabulka \texttt{measurements} je realizována jako tzv. hypertabulka (\emph{hypertable}) rozšíření TimescaleDB, dělená podle času přijetí měření. TimescaleDB data transparentně rozkládá do časových úseků, takže dotazy typu \uv{hodnoty veličiny v daném časovém okně} pracují pouze s relevantní částí dat. To je nezbytné pro splnění výkonnostních požadavků na trvalý příjem měření při zachování odezvy čtecího API (tabulka~\ref{tab:VYK-pozadavky}). Primární klíč je složený z identifikátoru měření a času přijetí, neboť dělení tabulky vyžaduje, aby čas byl součástí klíče.
+
+V souladu s požadavkem na neměnnost publikovaných dat nejsou naměřené hodnoty nikdy upravovány ani mazány. Chybná měření lze pouze explicitně zneplatnit nastavením příznaku \texttt{is\_invalid} s uvedením důvodu a zneplatněný záznam zůstává dohledatelný.
+
+\subsection{Časové verzování atributů evidence}
+\label{subsec:temporal}
+
+Otevřený katalog vyžaduje auditovatelný záznam toho, jak se evidované objekty v čase měnily -- například přemístění senzoru do jiné místnosti nesmí zpětně změnit interpretaci dříve naměřených dat. Atributy budov, místností a senzorů proto nejsou uloženy jako přepisovatelné sloupce, nýbrž jako \textbf{posloupnost historických záznamů}. Každý záznam nese zleva uzavřený a zprava otevřený interval platnosti $[\mathit{platnost\ od}, \mathit{platnost\ do})$ typu \texttt{tstzrange} a auditní údaje (kdy a kým byl pořízen).
+
+Změna atributu probíhá v jediné transakci. Otevřený záznam je uzavřen nastavením horní meze intervalu a současně je vložen nový záznam s otevřeným intervalem -- nic se nepřepisuje. Integritu vynucuje databáze vylučovacím omezením (\emph{exclusion constraint}) nad indexem \texttt{btree\_gist}, které zakazuje překryv intervalů platnosti téhož atributu. Omezení je deklarováno jako odložené (\texttt{DEFERRABLE INITIALLY DEFERRED}), protože EF~Core může v rámci transakce provést vložení nového záznamu dříve než uzavření starého, a kontrola proto smí proběhnout až při potvrzení transakce.
+
+Čtecí rozhraní přijímá volitelný parametr \texttt{asOf}. Stav entity k zadanému okamžiku je rekonstruován výběrem těch historických záznamů, jejichž interval platnosti daný okamžik obsahuje. Bez parametru je vrácen aktuální stav (záznamy s otevřeným intervalem).
 
 \section{Realizace backendových služeb}
 
-\textit{Obsah sekce:} Architektonické vzory a implementační detaily jednotlivých služeb.
-\textit{Logický tok:}
-\begin{itemize}
-    \item \textbf{Mikroslužbová architektura:} Popis struktury monorepozitáře a sdílené knihovny \texttt{Core}.
-    \item \textbf{Standardizace komunikace:} Využití OpenAPI/Scalar pro dokumentaci a RFC 9457 (ProblemDetails) pro unifikovanou reprezentaci chyb.
-\end{itemize}
+Backend tvoří šest samostatných služeb v jednom repozitáři a sdílená knihovna \texttt{Core} (datový kontext měření, model měření a kontrakt zpráv fronty). Strukturu repozitáře ukazuje obrázek~\ref{fig:dirtree}. Každá služba odpovídá jedné ohraničené doméně a uvnitř dodržuje vrstvení \texttt{Api} $\rightarrow$ \texttt{Application} $\rightarrow$ \texttt{Domain} $\leftarrow$ \texttt{Infrastructure}. Adresářová struktura projektu tak přímo zrcadlí architektonické vrstvy a jednotlivé části lze studovat nezávisle. Toto členění bylo zvoleno i na základě předchozí zkušenosti autora s rozsáhlou monolitickou aplikací, v níž byla orientace bez zřetelných hranic obtížná.
+
+\begin{figure}[htbp]
+\caption{Struktura repozitáře \texttt{ambiquality-backend} (zkráceno), s detailem služby Evidence.Api}
+\label{fig:dirtree}
+\medskip
+{\small
+\dirtree{%
+.1 ambiquality-backend/.
+.2 src/.
+.3 Ambiquality.Core/\DTcomment{sdílená knihovna (model měření, kontrakt fronty)}.
+.3 Ambiquality.Auth.Api/\DTcomment{\ldots}.
+.3 Ambiquality.Evidence.Api/.
+.4 Api/\DTcomment{koncové body a datové kontrakty}.
+.4 Application/\DTcomment{aplikační služby (Buildings, Rooms, Sensors)}.
+.4 Domain/\DTcomment{doménový model a časová platnost (Validity)}.
+.4 Infrastructure/\DTcomment{perzistence, migrace, zabezpečení, RÚIAN}.
+.4 Program.cs\DTcomment{kompozice služby}.
+.3 Ambiquality.Ingestion.Api/\DTcomment{\ldots}.
+.3 Ambiquality.Ingestion.Worker/\DTcomment{\ldots}.
+.3 Ambiquality.Public.Api/\DTcomment{\ldots}.
+.3 Ambiquality.Export.Worker/\DTcomment{\ldots}.
+.2 tests/\DTcomment{testovací projekty (kapitola~\ref{ch:testovani})}.
+.2 docs/\DTcomment{architektonická rozhodnutí, diagramy}.
+.2 conf/\DTcomment{konfigurace reverzní proxy}.
+.2 podman-compose.yml, Dockerfile*\DTcomment{definice kontejnerů}.
+.2 dev.sh, dev-build.sh\DTcomment{spuštění vývojového prostředí}.
+}}
+\medskip
+
+{\footnotesize \textit{Zdroj:} Vlastní zpracování}
+\end{figure}
+
+Komunikace je standardizována. Každá služba publikuje specifikaci OpenAPI a chybové stavy vrací jednotně ve formátu \emph{problem details} podle RFC~9457, takže klient zpracovává chyby všech služeb stejným způsobem. Veřejným vstupním bodem je reverzní proxy Caddy, jež požadavky směruje podle prefixu cesty (\texttt{/evidence}, \texttt{/ingestion}, \texttt{/public}, ostatní na autentizační službu).
 
 \subsection{Autentizace a identita (Auth.Api)}
-Implementace zabezpečení pomocí JWT tokenů, správa uživatelských účtů a refresh flow.
 
-\subsection{Katalog evidovaných entit (Evidence.Api)}
-Realizace správy budov, místností a senzorů. Integrace s externími službami pro geokódování a napojení na RÚIAN.
+Služba realizuje registraci s ověřením e-mailové adresy, přihlášení, obnovu a změnu přihlašovacích údajů (požadavky \hyperref[tab:funkcni-pozadavky]{F01--F04}). Průběh registrace a přihlášení znázorňuje obrázek~\ref{fig:auth-seq}. Přihlášenému uživateli je vydán krátkodobý přístupový token JWT a dlouhodobý obnovovací token. Obnovovací tokeny jsou v databázi uloženy pouze jako otisky (hash) a při použití jsou rotovány. Jednorázové ověřovací tokeny (potvrzení e-mailu, obnova hesla, změna e-mailu) jsou rovněž hashovány a mají omezenou platnost. Ochrana proti hádání hesel je řešena zpomalováním opakovaných neúspěšných pokusů, nikoli zamykáním účtu, neboť trvalé zamykání by útočníkovi umožnilo odepřít službu legitimnímu uživateli. Ostatní služby ověřují podpis tokenu lokálně, bez volání autentizační služby.
 
-\subsection{Potrubí pro sběr dat (Ingestion Pipeline)}
-Technický vrchol backendu: Oddělení příjmu dat od jejich zápisu pomocí Redis Streams. Popis interakce mezi \texttt{Ingestion.Api} (synchronní validace, návrat 202 Accepted) a \texttt{Ingestion.Worker} (asynchronní hromadný zápis).
+\input{implementace/auth-flow}
 
-\subsection{Veřejné rozhraní a exporty (Public API \& Export Worker)}
-Realizace otevřených dat. Implementace katalogu podle standardu DCAT-AP 3.0 a proces periodického generování měsíčních archivů (JSON-LD, CSV) do objektového úložiště (S3).
+\subsection{Katalog evidovaných objektů (Evidence.Api)}
 
-\section{Realizace webové aplikace (Frontend)}
+Evidenční služba spravuje budovy, místnosti a senzory (požadavky \hyperref[tab:funkcni-pozadavky]{F05--F09}) nad časově verzovaným modelem popsaným v~\ref{subsec:temporal}. Senzory zde tvoří kanonický registr zařízení. Každému senzoru je při registraci vydán klíč API (uložen jako otisk), kterým se zařízení prokazuje při odesílání měření, a evidována je historie jeho umístění, stavu (aktivní, v~údržbě, vyřazen) i seznamu měřených veličin. Zápisové operace vyžadují přihlášení, čtení katalogu je anonymní, neboť jde o otevřená data.
 
-\textit{Obsah sekce:} Architektura SPA a integrace dat.
-\textit{Logický tok:}
-\begin{itemize}
-    \item \textbf{Správa stavu:} Využití TanStack Query pro efektivní asynchronní komunikaci s backendem, caching a stránkování.
-    \item \textbf{Vizualizace dat:} Integrace MapLibre GL pro interaktivní mapu a knihoven D3.js/Recharts pro vykreslování historických grafů parametrů vnitřního prostředí.
-    \item \textbf{Internacionalizace:} Implementace systému \texttt{i18next} pro podporu českého a anglického jazyka.
-\end{itemize}
+Adresa budovy je modelována podle otevřené formální normy \emph{Adresy}. Kanonickou kotvou je kód adresního místa registru RÚIAN (Registr územní identifikace, adres a nemovitostí), vedle něhož jsou uloženy strukturované české komponenty adresy (ulice, číslo domovní a jeho typ, obec, PSČ apod.) včetně volitelných kódů územních prvků. Důsledky pro publikovaná propojená data popisuje sekce~\ref{sec:ofn}.
 
-\textit{Závěr kapitoly:} Shrnutí, že implementovaný systém je připraven k ověření, což je předmětem následující kapitoly o testování (kapitola \ref{ch:testovani}).
+\subsection{Příjem měření (Ingestion.Api a Ingestion.Worker)}
+
+Cesta zápisu měření je rozdělena na synchronní příjem a asynchronní zápis (obrázek~\ref{fig:ingestion-seq}), aby nápor zařízení neovlivňoval dobu odezvy a propustnost nebyla svázána s rychlostí databáze (požadavek \hyperref[tab:funkcni-pozadavky]{F10}).
+
+Služba \texttt{Ingestion.Api} přijímá dávku hodnot jednoho senzoru. Synchronně ji validuje: ověří klíč API a aktivní stav senzoru a pro každou hodnotu zkontroluje, že senzor danou veličinu deklaruje, že jednotka odpovídá kanonické jednotce veličiny a že hodnota leží v přípustném rozsahu. Dávka je zpracována jako celek -- jediná chybná hodnota vede k odmítnutí celého požadavku se stavem 422 a popisem problému. Platné dávce je přiřazen čas přijetí (jediné čtení hodin pro celou dávku) a dávka je atomicky připojena do proudu Redis Streams. Teprve poté služba vrací stav \textbf{202~Accepted}, jenž sémanticky přesně vyjadřuje \uv{přijato ke zpracování, dosud nezpracováno}. Databáze měření není v cestě požadavku vůbec dotčena.
+
+Nefunkční požadavek \uv{žádné potvrzení před trvalým zápisem} (tabulka~\ref{tab:SPO-pozadavky}) je v této architektuře naplněn na úrovni fronty. Redis je provozován s žurnálem AOF v režimu synchronizace po každém zápisu, takže zpráva je před odesláním odpovědi trvale uložena na disk. Proud zpráv tak plní roli předzápisového žurnálu (\emph{write-ahead log}) a zápis do databáze je jeho materializací. Selže-li zařazení do fronty, služba vrací stav \textbf{503} a nepotvrzuje nic.
+
+Služba \texttt{Ingestion.Worker} průběžně odebírá zprávy ze skupiny konzumentů proudu a hromadně je vkládá do hypertabulky. Zprávu potvrdí až po potvrzení databázové transakce, takže pád mezi zápisem a potvrzením vede pouze k opakovanému doručení. Fronta tedy doručuje \emph{nejméně jednou} a výsledného efektu \emph{právě jednou} je dosaženo idempotentním zápisem: identifikátor měření je generován již při příjmu a vkládání používá klauzuli \texttt{ON CONFLICT DO NOTHING}, takže opakovaně doručený záznam je tiše přeskočen. Nevyřízené zprávy konzumenta, který havaroval, přebírají ostatní konzumenti mechanismem \texttt{XAUTOCLAIM}. Protože čas přijetí razí přijímací služba ještě před zařazením do fronty, případné zpoždění zpracování nikdy neposune zaznamenaný okamžik přijetí měření.
+
+\begin{figure}[htbp]
+\centering
+\caption{Příjem dávky měření a její asynchronní zápis}
+\label{fig:ingestion-seq}
+{\footnotesize
+\begin{sequencediagram}
+  \newthread{s}{Senzor}{}
+  \newinst[1.6]{a}{Ingestion.Api}{}
+  \newinst[1.1]{r}{Redis Streams}{}
+  \newthread[gray!20]{w}{Ingestion.Worker}{}
+  \newinst[1.5]{db}{TimescaleDB}{}
+  \begin{call}{s}{dávka měření (klíč API)}{a}{202 Accepted}
+    \begin{callself}{a}{validace dávky}{}
+    \end{callself}
+    \begin{call}{a}{XADD}{r}{potvrzení}
+    \end{call}
+  \end{call}
+  \begin{call}{w}{XREADGROUP}{r}{dávka zpráv}
+  \end{call}
+  \begin{call}{w}{hromadný zápis dávky}{db}{potvrzení transakce}
+  \end{call}
+  \begin{call}{w}{XACK}{r}{}
+  \end{call}
+\end{sequencediagram}}
+
+\begin{minipage}{0.95\textwidth}
+\footnotesize Při neúspěšné validaci je vrácen stav 422, při selhání zápisu do fronty stav 503. Příkaz \texttt{XADD} je potvrzen až po trvalém uložení žurnálu na disk a hromadný zápis do databáze je idempotentní. Spodní část (Ingestion.Worker) probíhá asynchronně, nezávisle na obsluze požadavku. \textit{Zdroj:} Vlastní zpracování
+\end{minipage}
+\end{figure}
+
+\subsection{Veřejné rozhraní a exporty (Public.Api a Export.Worker)}
+
+Služba \texttt{Public.Api} zpřístupňuje data pouze pro čtení (požadavky \hyperref[tab:funkcni-pozadavky]{F11--F16}): naměřené hodnoty s filtrováním podle senzoru, veličiny a časového okna, katalog budov, místností a senzorů včetně historických stavů, číselníky a slovník veličin.
+
+Stránkování je realizováno metodou posledního klíče (\emph{keyset pagination}). Při klasickém stránkování posunem (\emph{offset}) musí databáze přeskočit všechny předcházející řádky, takže tisící stránka je řádově dražší než první. Při stránkování klíčem odpověď nese kurzor s hodnotou řadicího klíče posledního vráceného záznamu (zde čas přijetí a identifikátor měření) a další stránka se dotazuje podmínkou \uv{záznamy větší než kurzor}, kterou databáze vyhodnotí přímo indexem. Cena každé stránky je tak konstantní bez ohledu na hloubku procházení, což je u časové řady s miliony záznamů podstatné. Daní za to je nemožnost skočit na libovolnou stránku, což však u sekvenčního odebírání otevřených dat nepředstavuje omezení.
+
+Vyjednáváním obsahu (HTTP hlavička \texttt{Accept}) lze tutéž odpověď obdržet jako prostý JSON, JSON-LD s kontextem propojených dat, nebo CSV. K souborům CSV jsou publikována metadata podle doporučení CSVW.
+
+Služba \texttt{Export.Worker} periodicky sestavuje měsíční archivy naměřených dat (CSV a JSON-LD, komprimované) a ukládá je do objektového úložiště kompatibilního s rozhraním S3. Každý archiv je zaevidován v databázi a veřejné API jej následně publikuje v katalogu DCAT jako distribuci datové sady s odkazem ke stažení, velikostí a typem média (požadavek \hyperref[tab:funkcni-pozadavky]{F17}). Vedle přístupu přes API je tak naplněn i požadavek otevřených dat na hromadné stažení celé datové sady.
+
+\section{Soulad s otevřenými formálními normami a propojená data}
+\label{sec:ofn}
+
+Publikace otevřených dat se neomezuje na strojově čitelný formát. Cílem je, aby data byla samopopisná a propojitelná s existujícími datovými zdroji, čehož je dosaženo kombinací následujících prvků.
+
+\subsection{IRI jako identifikátory}
+
+Každý publikovaný zdroj -- budova, místnost, senzor, měření, veličina i položka číselníku -- má absolutní, dereferencovatelný identifikátor IRI (\emph{Internationalized Resource Identifier}) pod verzovaným kořenem \texttt{/v1} veřejného API. Za zmínku stojí implementační detail: protože reverzní proxy odstraňuje z cesty prefix \texttt{/public}, je základ IRI sestavován pro každý požadavek zvlášť s ohledem na hlavičky \texttt{X-Forwarded-*}, případně je pevně konfigurován. Bez tohoto opatření by odkazy v propojených datech ukazovaly na interní adresy služeb.
+
+\subsection{Externí ontologie}
+
+Odpovědi ve formátu JSON-LD mapují data na zavedené slovníky. Měření je vyjádřeno jako \texttt{sosa:Observation} ontologie SOSA/SSN (W3C \emph{Semantic Sensor Network}) s vazbami na senzor (\texttt{sosa:madeBySensor}), sledovanou veličinu (\texttt{sosa:observedProperty}), výsledek a čas. Objektem pozorování (\texttt{sosa:hasFeatureOfInterest}) je místnost, odvozená z časové historie umístění senzoru k okamžiku měření. Jednotky a druhy veličin odkazují na slovník QUDT. Vlastní číselníky (typ budovy, funkce místnosti, způsob větrání aj.) jsou publikovány jako schémata pojmů SKOS s vazbami \texttt{skos:exactMatch} na externí slovníky, kde byly nalezeny. Katalogizační metadata jsou vyjádřena podle standardu DCAT-AP~3.0: katalog, datová sada a její distribuce (API i archivy ke stažení) včetně časového a prostorového pokrytí, periodicity a licence.
+
+\subsection{Vlastní slovník}
+
+Pro pojmy, k nimž se v rozsahu autorovy rešerše nepodařilo dohledat vhodnou existující ontologii (zejména doménové atributy místností a některé veličiny vnitřního prostředí), definuje aplikace slovník vlastní. Nelze přitom vyloučit, že vhodný slovník existuje a rešerší zachycen nebyl -- vlastní pojmy jsou proto navrženy tak, aby je bylo možné na externí slovníky dodatečně navázat vazbami SKOS. Prvky vlastního slovníku jsou samy dereferencovatelné. Například IRI veličiny vrací její popis jako \texttt{sosa:ObservableProperty} s vazbami na QUDT, takže si klient význam pole může strojově dohledat.
+
+\subsection{Adresy podle OFN a RÚIAN}
+
+Adresa budovy je publikována podle otevřené formální normy \emph{Adresy}. Uzel adresy nese IRI adresního místa RÚIAN, strukturované komponenty a složený textový zápis, čímž je pokryto celé preferenční pořadí normy (IRI $\rightarrow$ struktura $\rightarrow$ text). Územní prvky (obec, část obce, okres, kraj, ulice) jsou odkazovány IRI odvozenými z kódů RÚIAN a jejich názvy jsou neseny jako jazykově označené řetězce. IRI registru RÚIAN zde slouží jako standardizované identifikátory a jejich případné rozvazování vůči službám ČÚZK je ponecháno na konzumentovi dat.
+
+\subsection{Sémantika HTTP}
+
+Rozhraní důsledně využívá významu stavových kódů HTTP: 202 pro přijetí k asynchronnímu zpracování, 503 při nemožnosti zaručit trvalé uložení, 422 pro validační chyby, 401 pro neplatnou autentizaci senzoru. Těla chyb mají jednotný formát podle RFC~9457. Formát reprezentace je volen vyjednáváním obsahu, nikoli zvláštními koncovými body.
+
+\section{Realizace webové aplikace}
+\label{sec:frontend}
+
+Webová aplikace je jednostránková (SPA, \emph{single-page application}) v Reactu s klientským směrováním (React Router). Zdrojový kód je členěn podle funkčních celků (mapa, katalog, detail objektu, správa evidence, uživatelský účet, archiv exportů), nikoli podle technických vrstev -- motivace je stejná jako u backendu: snadná orientace v kódu.
+
+Strukturu stránek a odkazů mezi nimi zachycuje obrázek~\ref{fig:page-tree}. Aplikace se dělí na veřejnou část a chráněnou část pro správce evidence. Veřejná část vychází z interaktivní mapy a nabízí procházení katalogu, detaily evidovaných objektů, katalog datových sad a archiv exportů. Adresy detailů používají trvalé identifikátory přidělené backendem, takže odkaz na detail lze sdílet a odpovídá IRI téhož objektu v propojených datech. Chráněná část (\texttt{/operator}) je dostupná až po přihlášení, které vynucuje obalová komponenta \texttt{ProtectedRoute}, a kopíruje hierarchii evidence: budova $\rightarrow$ místnost $\rightarrow$ senzor, vždy s podstránkami pro založení, úpravu a zobrazení historie.
+
+\begin{figure}[htbp]
+\centering
+\caption{Mapa stránek webové aplikace}
+\label{fig:page-tree}
+\begin{tikzpicture}[font=\footnotesize,
+    page/.style={draw, rounded corners=1pt, fill=blue!8, align=center, minimum height=7mm, inner sep=2.5pt},
+    sub/.style={draw, fill=gray!8, align=center, inner sep=2pt, font=\scriptsize}]
+
+  % veřejná část
+  \node[page] (mapa) at (6.4,0) {Interaktivní mapa\\\texttt{/}};
+  \node[page] (login) at (0.9,-2) {Přihlášení\\\texttt{/login}};
+  \node[page] (browse) at (3.9,-2) {Procházení\\\texttt{/browse}};
+  \node[page] (archive) at (6.5,-2) {Archiv exportů\\\texttt{/archive}};
+  \node[page] (about) at (9.2,-2) {O aplikaci\\\texttt{/about}};
+  \node[page] (catalog) at (12.0,-2) {Datové sady\\\texttt{/catalog}};
+  \node[page] (register) at (0.9,-3.9) {Registrace\\\texttt{/register}};
+  \node[page] (confirm) at (1.8,-5.5) {Potvrzení e-mailu\\\texttt{/confirm-email}};
+  \node[page] (detail) at (4.4,-3.9) {Detail objektu\\budova / místnost / senzor};
+  \node[page] (privacy) at (9.2,-3.9) {Ochrana soukromí\\\texttt{/privacy}};
+
+  % chráněná část
+  \draw[dashed, gray] (-0.8,-6.3) rectangle (13.75,-10.3);
+  \node[anchor=north east, gray, font=\scriptsize] at (13.65,-6.35) {chráněná část (po přihlášení)};
+  \node[page] (oplist) at (1.4,-7.4) {Přehled budov\\\texttt{/operator}};
+  \node[page] (account) at (1.4,-9.4) {Nastavení účtu\\\texttt{/operator/account}};
+  \node[page] (bdetail) at (5.2,-7.4) {Detail budovy};
+  \node[sub] (bsub) at (5.2,-9.4) {založení / úprava /\\historie};
+  \node[page] (rdetail) at (8.6,-7.4) {Detail místnosti};
+  \node[sub] (rsub) at (8.6,-9.4) {založení / úprava /\\historie};
+  \node[page] (sdetail) at (12,-7.4) {Detail senzoru};
+  \node[sub] (ssub) at (12,-9.4) {založení / úprava /\\historie};
+
+  % odkazy
+  \draw (mapa) -- (browse);
+  \draw (mapa) -- (catalog);
+  \draw (mapa) -- (archive);
+  \draw (mapa) -- (about);
+  \draw (mapa) -- (login);
+  \draw (mapa.south) .. controls (5.1,-1.1) and (4.7,-2.4) .. (detail);
+  \draw (browse) -- (detail);
+  \draw (about) -- (privacy);
+  \draw (login) -- (register);
+  \draw[dashed] (register) -- node[right, font=\scriptsize]{odkaz v e-mailu} (confirm);
+  \draw[dashed] (login.south west) .. controls (-0.7,-3.2) and (-0.7,-6.4) ..
+    node[font=\scriptsize, pos=0.5, rotate=90, anchor=north]{po přihlášení} (oplist.north west);
+  \draw (oplist) -- (account);
+  \draw (oplist) -- (bdetail);
+  \draw (bdetail) -- (rdetail);
+  \draw (rdetail) -- (sdetail);
+  \draw (bdetail) -- (bsub);
+  \draw (rdetail) -- (rsub);
+  \draw (sdetail) -- (ssub);
+\end{tikzpicture}
+
+\begin{minipage}{0.95\textwidth}
+\footnotesize Obdélníky představují stránky, čáry odkazy mezi nimi. Čárkované čáry označují přechody mimo běžnou navigaci (odkaz z~e-mailu, přesměrování po přihlášení). Detaily budovy, místnosti a senzoru ve veřejné i chráněné části na sebe navzájem odkazují podle hierarchie evidence. \textit{Zdroj:} Vlastní zpracování
+\end{minipage}
+\end{figure}
+
+Typy a klient API jsou generovány ze specifikací OpenAPI jednotlivých služeb (nástroje \texttt{openapi-typescript} a \texttt{openapi-fetch}), takže změna kontraktu na serveru se na klientu projeví chybou překladu, nikoli chybou za běhu. Asynchronní komunikaci se serverem zajišťuje knihovna TanStack Query, která poskytuje vyrovnávací paměť odpovědí, jejich zneplatňování a stránkování. Serverová data jsou jediným podstatným stavem aplikace, takže samostatný globální správce stavu nebyl potřeba.
+
+Interaktivní mapa budov (požadavek \hyperref[tab:funkcni-pozadavky]{F18}) je postavena na knihovně MapLibre GL. Grafy časových řad veličin vykresluje knihovna D3.js, zvolená pro plnou kontrolu nad osami, měřítky a výběrem časového okna. Rozhraní je dvojjazyčné (čeština a angličtina) prostřednictvím knihovny \texttt{i18next} s automatickou detekcí jazyka prohlížeče.
+
+\section{Shrnutí a škálovatelnost řešení}
+
+Zvolená architektura naplňuje nefunkční požadavky následovně. Čtecí a zápisová zátěž je oddělena do samostatných bezstavových služeb, které lze za reverzní proxy škálovat přidáváním replik nezávisle na sobě. Fronta zpráv tlumí špičky zápisu: nápor senzorů neprodlužuje odezvu HTTP a propustnost zápisu lze zvyšovat přidáváním konzumentů ve skupině i velikostí hromadných vkladů. Dělení hypertabulky udržuje dotazy nad časovými řadami lokální v čase a oddělené databáze umožňují budoucí rozdělení na samostatné instance či čtecí repliky. Kontejnerizace podle standardu OCI umožňuje pozdější přechod na orchestrátor Kubernetes bez zásahu do aplikací.
+
+Implementovaný systém pokrývá funkční požadavky \hyperref[tab:funkcni-pozadavky]{F01--F18} a je připraven k ověření, jež je předmětem následující kapitoly~\ref{ch:testovani}.
