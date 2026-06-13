@@ -1,5 +1,61 @@
 \chapter{Nasazení aplikace}
+\label{ch:nasazeni}
 
-[TODO]
+Tato kapitola popisuje uvedení systému do provozu. Nejprve je zdůvodněna volba hostitelské platformy a podpůrných služeb, následně je představena topologie nasazení na jediném serveru, postup sestavení a vydání kontejnerových obrazů i vlastní nasazení a nakonec opatření pro zabezpečení a zálohování. Cílem nasazení je jednoduchý, operátorem řízený provoz odpovídající rozsahu bakalářské práce, jenž zároveň zůstává škálovatelný.
 
-Výber platformy a podpůrných nástrojů pro publikaci. Postup publikace. Závěr z publikace.
+\section{Volba platformy a podpůrných služeb}
+\label{sec:nasazeni-platforma}
+
+Jako poskytovatel infrastruktury byl zvolen \textbf{Hetzner} \parencite{hetznerCloud}, a to ze dvou důvodů: autor u něj již provozuje vlastní služby, takže odpadá seznamování s novým prostředím, a jeho ceny patří mezi nejnižší na evropském trhu. Místo platformy s automatickým škálováním, jejíž správa by přesáhla rozumný rozsah práce, byl zvolen jediný virtuální server (VPS), který lze podle potřeby rozšířit (viz~\ref{sec:nasazeni-shrnuti}).
+
+Celé řešení tvoří jeden virtuální server řady CX (2~virtuální jádra, 4~GB paměti, 40~GB systémového disku) doplněný o samostatný blokový svazek pro perzistentní data a o objektové úložiště kompatibilní s rozhraním S3 pro zálohy a archivy exportů. Správu domény a autoritativní DNS zajišťuje \textbf{Cloudflare} \parencite{cloudflareDNS}. Orientační měsíční náklady shrnuje tabulka~\ref{tab:naklady}.
+
+\begin{table}[htbp]
+\caption{Orientační provozní náklady infrastruktury}
+\label{tab:naklady}
+\centering
+\medskip
+{\footnotesize
+\begin{tabular}{@{}l p{5.2cm} r@{}}
+\hline
+\textbf{Položka} & \textbf{Konfigurace} & \textbf{Cena} \\
+\hline
+Virtuální server (CX) & 2 vCPU, 4 GB RAM, 40 GB SSD, 20 TB přenosu & 4,84\,€/měs. \\
+Blokový svazek & 10 GB, škálovatelný až 10 TB & 0,69\,€/měs. \\
+Objektové úložiště (S3) & zálohy a archivy exportů & do 7,85\,€/měs. \\
+Doména a DNS (Cloudflare) & registrace, resp. obnova domény \texttt{.org} & 11,20\,USD/rok \\
+\hline
+\end{tabular}}
+
+{\footnotesize \textit{Zdroj:} Vlastní zpracování dle ceníku poskytovatelů (k~červnu 2026)}
+\end{table}
+
+\section{Topologie nasazení}
+\label{sec:nasazeni-topologie}
+
+Celý systém běží na jednom serveru pod nástrojem Podman v \textbf{bezkořenovém režimu} (rootless), tedy v uživatelském prostoru bez oprávnění správce, což omezuje dopad případného kompromitování kontejneru. Nasazení je popsáno týmž souborem Podman Compose jako vývojové prostředí (kapitola~\ref{ch:implementace}), liší se pouze zdrojem obrazů a konfigurací; shoda prostředí mezi vývojem a produkcí je tak zachována.
+
+Jediným kontejnerem publikujícím porty navenek je reverzní proxy Caddy (porty 80 a~443); databáze PostgreSQL i Redis jsou dostupné výhradně na interních sítích Podmanu. Caddy směruje provoz podle domény: apex \texttt{ambiquality.org} obsluhuje webovou aplikaci, subdoména \texttt{api.ambiquality.org} backendové služby (podle prefixu cesty \texttt{/auth}, \texttt{/evidence}, \texttt{/ingestion}, \texttt{/public}). Certifikáty TLS získává Caddy automaticky od autority \textbf{Let's Encrypt} \parencite{letsEncrypt} protokolem ACME. Záznamy DNS jsou proto vedeny v režimu \uv{pouze DNS} (bez proxy Cloudflare), aby ověřovací výzva ACME dosáhla přímo na server.
+
+Veškerá perzistentní data (obrazy kontejnerů i svazky databáze a Redisu) jsou uložena na připojeném blokovém svazku, nikoli na malém systémovém disku; cesta k úložišti je nastavena na jediném místě, takže svazek lze v případě potřeby přesunout či zvětšit. Objektové úložiště S3 slouží odděleně k zálohám databáze a měsíčním archivům exportů (sekce~\ref{sec:ofn}).
+
+\section{Sestavení obrazů a postup nasazení}
+\label{sec:nasazeni-postup}
+
+Kontejnerové obrazy sestavuje při vydání nové verze automatizace \textbf{GitHub Actions} \parencite{githubActions} a ukládá je do registru obrazů GitHub Container Registry. Sestavení spouští výhradně označení revize verzí podle sémantického značení (\texttt{v*}); běžný zápis do hlavní větve nic nepublikuje, takže obsah produkce je vždy svázán s konkrétní vydanou verzí. Backend i webová aplikace mají samostatné repozitáře a vydávají se nezávisle.
+
+Vlastní nasazení není součástí automatizace, nýbrž je \textbf{řízeno operátorem}: spuštěním skriptu (\texttt{deploy.sh}) z lokálního počítače s parametrem cílové verze. Skript přenese na server konfigurační soubory (definici kontejnerů, konfiguraci proxy, inicializační skripty databáze; nikdy nikoli soubor s tajnými údaji), stáhne obrazy odpovídající zvolené verzi, nahradí běžící kontejnery jejich novou podobou a nakonec ověří dostupnost veřejného rozhraní kontrolním požadavkem. Vědomé rozhodnutí ponechat nasazení v rukou operátora odpovídá rozsahu provozu a zjednodušuje řízení změn.
+
+\textbf{Vrácení změny} (rollback) se provede opětovným spuštěním skriptu se starším číslem verze. Protože databázové migrace jsou výhradně dopředné, nelze se vracet přes změnu schématu; vrácení samotných obrazů aplikace je však bezpečné.
+
+\section{Zabezpečení a zálohování}
+\label{sec:nasazeni-bezpecnost}
+
+Server je zabezpečen podle zásady minimálního povrchu. Přihlášení správce (root) je zakázáno a přístup přes SSH je možný pouze klíčem, nikoli heslem. Stack neběží pod administrátorským účtem, nýbrž pod vyhrazeným neprivilegovaným uživatelem, jehož kombinace s bezkořenovým Podmanem brání eskalaci oprávnění z kontejneru na hostitele. Firewall (na úrovni operačního systému i cloudové platformy) propouští pouze SSH a webové porty. Tajné údaje (podpisový klíč JWT, hesla databázových rolí, přístupové klíče S3 a SMTP) jsou uloženy výhradně v souboru s omezeným přístupem na serveru a nejsou součástí žádného repozitáře ani obrazu.
+
+Zálohování zajišťuje vyhrazený kontejner, který v pravidelném intervalu pořizuje logickou zálohu (\texttt{pg\_dump}) všech tří databází, uchovává ji po stanovenou dobu lokálně a zároveň ji kopíruje do objektového úložiště S3. Záloha tak leží na úložišti nezávislém na datovém svazku databáze, čímž je dosaženo doby obnovy (RPO) nejvýše 24~hodin. Spolu s požadavkem na neměnnost publikovaných měření (sekce~\ref{sec:datova-vrstva}) je tím chráněna trvalost a integrita dat.
+
+\section{Shrnutí a škálovatelnost}
+\label{sec:nasazeni-shrnuti}
+
+Zvolené nasazení naplňuje nefunkční požadavek na dostupnost veřejného rozhraní (tabulka~\ref{tab:SPO-pozadavky}) při nízkých provozních nákladech a ponechává otevřenou cestu k růstu: server lze za provozu vertikálně posílit i zvětšit jeho blokový svazek, bezstavové služby horizontálně škálovat přidáváním replik za reverzní proxy (sekce~\ref{sec:datova-vrstva}) a díky souladu kontejnerů se standardem OCI je možný i pozdější přechod na orchestrátor Kubernetes bez zásahu do aplikací. Pro rozsah bakalářské práce však jediný server představuje přiměřené a snadno spravovatelné řešení.
