@@ -1,8 +1,8 @@
 \chapter{Jazyk ArchiMate}
 
-Jazyk ArchiMate je jazykem pro modelování podnikové architektury. Jazyk je vyvíjen organizací The Open Group a je navržen tak, aby poskytoval jednotný jazkyk pro popis podnikové architektury. V práci je použita verze jazyka ArchiMate 3.2. Tento modelovcí jazyk byl zvolen na základě konzultace s vedoucím práce.
+Jazyk ArchiMate je jazykem pro modelování podnikové architektury. Jazyk je vyvíjen organizací The Open Group a je navržen tak, aby poskytoval jednotný jazyk pro popis podnikové architektury. V práci je použita verze jazyka ArchiMate 3.2. Tento modelovací jazyk byl zvolen na základě konzultace s vedoucím práce. Pro české názvy elementů a vztahů je v této kapitole použita oficiální překladová terminologie z dokumentu \textit{ArchiMate 3.2 Translation Glossary: English -- Czech} \parencite{OpenGroupStandard}.
 
-Jazyk je rozdělen na tři vrstvy, které je možné vidět na obrázku č. \ref{fig:archimate-core-framework} . První vrstvou je vrstva Obchodní, která zachycuje obchodní služby nabízené zákazníkům, které jsou v organizaci realizovány obchodními procesy vykonávannými obchoními aktéry. Druhou vrstvou je vrstva Aplikační, která popisuje aplikační služby, které podporují obchod, a aplikace, které je realizují. Třetí vrstvou je dvojvrstva Technologická \& fyzická, která zachycuje technologické služby, jako jsou služby zpracovávání, ukládání a komunikační služby potřebné ke spuštění aplikací, počítačový a komunikační hardware a systémový software, které tyto služby realizují. Součástí jsou fyzické prvky pro modelování fyzického vybavení, materiálů a distribučních sítí. \parencite{LanguageStructureArchiMate, OpenGroupStandard}
+Jazyk je rozdělen na tři vrstvy, které je možné vidět na obrázku č. \ref{fig:archimate-core-framework} . První vrstvou je vrstva Obchodní, která zachycuje obchodní služby nabízené zákazníkům, které jsou v organizaci realizovány obchodními procesy vykonávanými obchodními aktéry. Druhou vrstvou je vrstva Aplikační, která popisuje aplikační služby, které podporují obchod, a aplikace, které je realizují. Třetí vrstvou je dvojvrstva Technologická \& fyzická, která zachycuje technologické služby, jako jsou služby zpracovávání, ukládání a komunikační služby potřebné ke spuštění aplikací, počítačový a komunikační hardware a systémový software, které tyto služby realizují. Součástí jsou fyzické prvky pro modelování fyzického vybavení, materiálů a distribučních sítí. \parencite{LanguageStructureArchiMate, OpenGroupStandard}
 
 \begin{figure}[hbtp!]
   \centering
@@ -13,10 +13,59 @@ Jazyk je rozdělen na tři vrstvy, které je možné vidět na obrázku č. \ref
   \scriptsize \textit{Zdroj:} Specifikace jazyka ArchiMate 3.2 \parencite{LanguageStructureArchiMate}
 \end{figure}
 
-\[TODO\]
-Doplnit použité elementy
+\section{Použité elementy}
 
-Elementy v jazyce ArchiMate jsou propojeny různými typy vztahů. Vztahy, které byly použity v této práci v kapitole č. \ref{chap:architektura} je možné vidět na obrázku č. \ref{fig:archimate-relationships}. 
+Model architektury využívá podmnožinu elementů ze tří základních vrstev jazyka. Jejich grafickou podobu shrnuje obrázek č.~\ref{fig:archimate-elements}, následující přehled vychází z definic překladového glosáře \parencite{OpenGroupStandard}.
+
+Z \textbf{obchodní vrstvy} jsou použity tyto elementy:
+\begin{itemize}
+  \item \textit{Obchodní role} (\textit{business role}) -- vyjadřuje zodpovědnost za vykonávání dané činnosti, ke které může být přiřazen aktér.
+  \item \textit{Obchodní rozhraní} (\textit{business interface}) -- přístupový bod, na kterém jsou obchodní služby zpřístupněny svému okolí.
+  \item \textit{Obchodní proces} (\textit{business process}) -- posloupnost obchodního chování, která má specifický výstup.
+  \item \textit{Obchodní služba} (\textit{business service}) -- jasně definované chování, které obchodní role nebo aktér nabízí svému prostředí.
+  \item \textit{Obchodní objekt} (\textit{business object}) -- pojem používaný v určité obchodní doméně.
+\end{itemize}
+
+Z \textbf{aplikační vrstvy} jsou použity tyto elementy:
+\begin{itemize}
+  \item \textit{Aplikační komponenta} (\textit{application component}) -- zapouzdření aplikační funkcionality v souladu s implementační strukturou, která je modulární a nahraditelná.
+  \item \textit{Aplikační rozhraní} (\textit{application interface}) -- přístupový bod, na kterém jsou aplikační služby zpřístupněny uživateli, jiné komponentě nebo uzlu.
+  \item \textit{Aplikační funkce} (\textit{application function}) -- automatizované chování, které může být vykonáváno aplikační komponentou.
+  \item \textit{Aplikační služba} (\textit{application service}) -- explicitně definované a vystavené aplikační chování.
+  \item \textit{Datový objekt} (\textit{data object}) -- data strukturovaná pro automatizované zpracování.
+\end{itemize}
+
+Z \textbf{technologické vrstvy} jsou použity tyto elementy:
+\begin{itemize}
+  \item \textit{Uzel} (\textit{node}) -- výpočetní nebo fyzický prostředek, který poskytuje prostor a interaguje s dalšími prostředky.
+  \item \textit{Systémový software} (\textit{system software}) -- software sloužící k ukládání, vykonávání nebo použití jiného softwaru či dat.
+  \item \textit{Technologická služba} (\textit{technology service}) -- explicitně definované a vystavené technologické chování.
+  \item \textit{Artefakt} (\textit{artifact}) -- data používaná či produkovaná během vývoje, nasazení a provozu IT systému.
+\end{itemize}
+
+\begin{figure}[hbtp!]
+  \centering
+  \caption{Elementy jazyka ArchiMate použité v modelu}
+  \label{fig:archimate-elements}
+  \includegraphics[width=0.8\textwidth]{img/archimate-elements}
+  
+  \scriptsize \textit{Zdroj:} Vlastní zpracování na základě specifikace jazyka ArchiMate 3.2 \parencite{LanguageStructureArchiMate}
+\end{figure}
+
+\section{Použité vztahy}
+
+Elementy v jazyce ArchiMate jsou propojeny různými typy vztahů. Vztahy, které byly použity v modelu v kapitole č.~\ref{chap:architektura}, je možné vidět na obrázku č.~\ref{fig:archimate-relationships}. Jejich význam podle překladového glosáře \parencite{OpenGroupStandard} je následující:
+\begin{itemize}
+  \item \textit{Kompozice} (\textit{composition}) -- vyjadřuje, že jeden prvek se skládá z jednoho nebo více konceptů.
+  \item \textit{Přiřazení} (\textit{assignment}) -- vyjadřuje přidělení zodpovědnosti, vykonání nebo provedení činnosti.
+  \item \textit{Realizace} (\textit{realization}) -- vyjadřuje, že nějaký prvek hraje zásadní roli při vytváření nebo provozu jiného, abstraktnějšího prvku.
+  \item \textit{Podpora} (\textit{serving}) -- vyjadřuje, že prvek poskytuje svoji funkčnost jinému prvku.
+  \item \textit{Přístup} (\textit{access}) -- vyjadřuje schopnost prvku chování sledovat nebo manipulovat s pasivními prvky (datovými a obchodními objekty).
+  \item \textit{Tok} (\textit{flow}) -- vyjadřuje přenos (např. informací) z jednoho prvku do druhého.
+  \item \textit{Specializace} (\textit{specialization}) -- vyjadřuje, že jeden prvek je specifickým typem jiného prvku.
+  \item \textit{Asociace} (\textit{association}) -- vyjadřuje blíže neupřesněný vztah, pro který nelze použít jiný vztah definovaný v jazyce ArchiMate.
+\end{itemize}
+
 \begin{figure}[hbtp!]
   \centering
   \caption{Vztahy v jazyce ArchiMate}

@@ -2,58 +2,58 @@
 
 Tato kapitola se zabývá návrhem architektury systému aplikace pro sběr dat o IEQ. Návrh vychází z identifikovaných požadavků a případů užití vymezených v předchozích kapitolách.  
 
-Na obrázku č. \ref{fig:archimate-model} lze vidět celkový pohled na model. Model je však rozsáhlý a pro nejlepší zážitek z prohlížení byla vytvořena webová stránka \href{archimate.ambiquality.org}{archimate.ambiqulity.org}, kde lze model podrobně prohlížet. Stránka byla vygenerována pomocí funkce \textit{Report -> HTML} v aplikaci \textit{Archi}, která byla pro modelování použita.
+Na obrázku č. \ref{fig:archimate-model} lze vidět celkový pohled na model. Model je však rozsáhlý a pro nejlepší zážitek z prohlížení byla vytvořena webová stránka \href{https://archimate.ambiquality.org}{archimate.ambiquality.org}, kde lze model podrobně prohlížet. Stránka byla vygenerována pomocí funkce \textit{Report -> HTML} v aplikaci \textit{Archi}, která byla pro modelování použita. Zdrojový kód stránky i exportovaný model jsou dostupné v repozitáři uvedeném v příloze~\ref{app:archimate-repo}.
 
 \begin{figure}[hbtp!]
   \centering
   \caption{Celkový model architektury}
   \label{fig:archimate-model}
-  \includegraphics[width=0.9\textwidth]{img/model}
+  \includegraphics[width=1\textwidth]{img/model}
 
   \scriptsize \textit{Zdroj:} Vlastní zpracování
 \end{figure}
 
 \section{Business vrstva}
 
-Business vrstva, zachycená na obrázku č.~\ref{fig:archimate-business-layer}, popisuje organizační kontext systému prostřednictvím aktérů, rolí, služeb a procesů. Aktéři jsou hierarchicky uspořádáni: kořenový aktér \textit{Uživatel aplikace} se větví na \textit{Producenta dat} a \textit{Spotřebitele dat}, přičemž každý z nich má lidskou a strojovou variantu (tzn. senzor jako strojový producent). Listoví aktéři jsou přiřazeni k odpovídajícím rolím – \textit{Provozovatel monitorovaného prostoru}, \textit{Návštěvník}, \textit{Výzkumný pracovník} a \textit{Vývojář aplikací třetí strany} – které nesou odpovědnosti za konkrétní chování v systému.
+Business vrstva, zachycená na obrázku č.~\ref{fig:archimate-business-layer}, popisuje organizační kontext systému prostřednictvím rolí, rozhraní, služeb a procesů. Aktéři systému jsou modelováni jako obchodní role: \textit{Provozovatel monitorovaného prostoru}, \textit{Návštěvník}, \textit{Výzkumný pracovník} a \textit{Vývojář aplikací třetí strany} jako lidské role, \textit{Senzor} jako strojová role v pozici producenta měření a \textit{Datový katalog} jako role konzumující strojově čitelná metadata. Každá role nese odpovědnost za konkrétní chování v systému.
 
-Klíčové byznys služby zahrnují správu evidence prostoru a senzorů, příjem měření, veřejnou mapu měření, veřejné čtecí API a poskytování datového archivu. Tyto služby jsou realizovány byznys procesy jako \textit{Přihlášení}, \textit{Registrace}, \textit{Příjem měření} nebo \textit{Prohlížení měření}. Jako sdílené byznys objekty vystupují zejména \textit{Měření}, \textit{Data budovy}, \textit{Data místnosti} a \textit{Data senzoru}.
+Klíčové byznys služby zahrnují \textit{Autentizační službu}, \textit{Správu evidence}, \textit{Příjem měření}, \textit{Veřejné čtecí API}, \textit{Strojově čitelný popis API}, \textit{Veřejnou mapu měření}, \textit{Poskytování archivu měření} a \textit{Publikaci datových sad}. Tyto služby jsou realizovány byznys procesy, jako jsou \textit{Registrace}, \textit{Změna přihlašovacích údajů}, \textit{Evidence budovy}, \textit{Evidence místnosti}, \textit{Evidence senzoru}, \textit{Validace přijatých měření}, \textit{Prohlížení měření} nebo \textit{Stažení datového archivu}. Role přistupují ke službám prostřednictvím dvou obchodních rozhraní -- \textit{Rozhraní provozovatele} a \textit{Veřejného webového rozhraní}. Podrobné pohledy na jednotlivé byznys objekty (např. \textit{Měření}, \textit{Data budovy}, \textit{Data místnosti} a \textit{Data senzoru}) jsou kvůli přehlednosti přesunuty do dílčích pohledů dostupných v~online verzi modelu.
 
-\begin{figure}[hbtp!]
+\begin{figure}
   \centering
   \caption{Model obchodní vrstvy}
   \label{fig:archimate-business-layer}
-  \includegraphics[width=0.9\textwidth]{img/business-layer}
+  \includegraphics[width=0.95\textwidth]{img/business-layer}
 
   \scriptsize \textit{Zdroj:} Vlastní zpracování
 \end{figure}
 
 \section{Aplikační vrstva}
 
-Aplikační vrstva, zobrazená na obrázku č.~\ref{fig:archimate-app-layer}, modeluje softwarové komponenty a jejich vzájemné vztahy. Centrálním prvkem je komponenta \textit{IEQ API}, která zastřešuje šest specializovaných modulů: \textit{Autentizační}, \textit{Evidenční}, \textit{Sběrný}, \textit{Čtecí}, \textit{Katalogizační} a \textit{Archivační}. Každý modul realizuje skupinu aplikačních služeb odpovídající příslušným funkčním požadavkům – například Sběrný modul poskytuje služby příjmu a validace příchozích měření, Čtecí modul zajišťuje stránkování a filtrování dotazů.
+Aplikační vrstva, zobrazená na obrázku č.~\ref{fig:archimate-app-layer}, modeluje softwarové komponenty a jejich vzájemné vztahy. Namísto jediné monolitické komponenty je systém rozdělen na samostatné aplikační komponenty, které odpovídají skutečnému členění implementace: \textit{Auth.Api} zajišťuje autentizaci, \textit{Evidence.Api} správu evidence prostorů a senzorů, \textit{Ingestion.Api} příjem příchozích měření, \textit{Public.Api} veřejné čtení dat, poskytování specifikace API a katalogizačních metadat. Dvojici asynchronních komponent tvoří \textit{Ingestion.Worker}, který provádí validaci a zpracování měření, a \textit{Export.Worker}, který obstarává správu datového archivu. Každá komponenta realizuje skupinu aplikačních služeb odpovídající příslušným funkčním požadavkům -- například \textit{Ingestion.Api} poskytuje službu příjmu měření, zatímco \textit{Public.Api} zajišťuje čtení dat a mapové zobrazení.
 
-Druhou hlavní komponentou je \textit{Webová aplikace}, která agreguje dvě aplikační rozhraní: \textit{We-bo-vé rozhraní provozovatele} a \textit{Webové rozhraní návštěvníka}. Obě rozhraní jsou vystavena jedinou single-page aplikací a realizují odpovídající byznys rozhraní z vrstvy níže. Datové objekty (např. \textit{Specifikace API}, \textit{Token relace} nebo \textit{Parametry dotazu}) dokumentují klíčové informační artefakty procházející vrstvou.
+Komponenty \textit{Ingestion.Api} a \textit{Ingestion.Worker} jsou propojeny vztahem toku, který reprezentuje předávání přijatých měření k asynchronnímu zpracování. Druhou hlavní komponentou je \textit{Webová aplikace}, která vystavuje dvě aplikační rozhraní: \textit{Webové rozhraní provozovatele} a \textit{Webové rozhraní návštěvníka}. Obě rozhraní jsou realizována jedinou single-page aplikací a podporují odpovídající obchodní rozhraní z~vrstvy výše. Datové objekty procházející vrstvou jsou kvůli přehlednosti zobrazeny až v~dílčích pohledech online verze modelu.
 
 \begin{figure}[hbtp!]
   \centering
   \caption{Model aplikační vrstvy}
   \label{fig:archimate-app-layer}
-  \includegraphics[width=0.9\textwidth]{img/app-layer}
+  \includegraphics[width=1\textwidth]{img/app-layer}
 
   \scriptsize \textit{Zdroj:} Vlastní zpracování
 \end{figure}
 
 \section{Technologická vrstva}
 
-Technologická vrstva, zachycená na obrázku č.~\ref{fig:archimate-tech-layer}, popisuje nasazení systému na infrastrukturní úrovni. Veškeré komponenty jsou provozovány na jediném \textit{Hostitelském serveru}, který obsahuje kontejnerový engine \textit{Podman}. Pod ním jsou kompozičně zanořeny kontejnerové uzly odpovídající jednotlivým službám: \textit{auth-api}, \textit{ingestion-api}, \textit{public-api}, \textit{catalog-api} a \textit{webapp} pro aplikační složky, dále \textit{postgres-container}, \textit{redis-container} a \textit{caddy-container} pro podpůrnou infrastrukturu.
+Technologická vrstva, zachycená na obrázku č.~\ref{fig:archimate-tech-layer}, popisuje nasazení systému na infrastrukturní úrovni. Veškeré uzly jsou kompozičně zanořeny pod jediným \textit{Hostitelským serverem}, na němž běží kontejnerový engine \textit{Podman}. Aplikačním komponentám odpovídají kontejnerové uzly \textit{auth-api}, \textit{evidence-api}, \textit{ingestion-api}, \textit{ingestion-worker}, \textit{public-api}, \textit{export-worker} a \textit{webapp}, podpůrnou infrastrukturu tvoří uzly \textit{postgres-container}, \textit{redis-container} a \textit{caddy-container}.
 
-Systémový software zahrnuje \textit{PostgreSQL} s rozšířením \textit{TimescaleDB} pro časové řady měření, \textit{Redis} jako cache vrstvu a \textit{Caddy} jako HTTP proxy zajišťující ingress. Technologické služby (\textit{Databázová služba}, \textit{Cache služba}, \textit{Souborová služba}) abstrahují přístup k persistentním uložištím. Artefakty jako \textit{Frontend sestava} nebo \textit{CSV archiv} reprezentují nasaditelné výstupy sestavení.
+Systémový software je kompozičně přiřazen příslušným kontejnerům: \textit{PostgreSQL} s rozšířením \textit{TimescaleDB} pro časové řady měření běží v~\textit{postgres-container}, \textit{Redis} v~\textit{redis-container} a \textit{Caddy} v~\textit{caddy-container}. Technologické služby abstrahují přístup k~infrastruktuře -- \textit{Databázová služba} a \textit{Cache služba} zpřístupňují persistentní úložiště, \textit{Měřicí fronta (Redis Stream)} zprostředkovává asynchronní předávání měření, \textit{HTTP proxy} zajišťuje ingress příchozího provozu a \textit{Souborová služba} přístup k~souborovému úložišti. Nasaditelné výstupy sestavení (artefakty) jsou kvůli přehlednosti zobrazeny až v~dílčích pohledech online verze modelu.
 
 \begin{figure}[hbtp!]
   \centering
   \caption{Model technologické vrstvy}
   \label{fig:archimate-tech-layer}
-  \includegraphics[width=0.9\textwidth]{img/tech-layer}
+  \includegraphics[width=1\textwidth]{img/tech-layer}
 
   \scriptsize \textit{Zdroj:} Vlastní zpracování
 \end{figure}
