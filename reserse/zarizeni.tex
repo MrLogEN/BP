@@ -1,12 +1,9 @@
-\section{Zařízení pro sběr dat}
-\label{sec:zarizeni}
+Předchozí kapitola vymezila pojem IEQ a jeho kategorie (IAQ, tepelný komfort, vizuální komfort, akustický komfort), problematiku otevřených dat a open-source licencí. Aby bylo možné tyto veličiny skutečně měřit a~získaná data zpřístupnit prostřednictvím otevřené aplikace, je nezbytné porozumět také hardwarové stránce --- tedy zařízením, která data o~kvalitě vnitřního prostředí sbírají. Tato kapitola proto poskytuje přehled senzorových modulů a~hotových zařízení dostupných na trhu, které jsou relevantní pro monitorování IEQ. Přehled vychází z~analýzy platforem popsaných v~následující kapitole (sensor.community, OpenAQ, openSenseMap, IndoorCO2Map) a~z~doplňujícího průzkumu technických specifikací výrobců.
 
-Předchozí sekce vymezily pojem IEQ a jeho kategorie (IAQ, tepelný komfort, vizuální komfort, akustický komfort), problematiku otevřených dat a open-source licencí. Aby bylo možné tyto veličiny skutečně měřit a~získaná data zpřístupnit prostřednictvím otevřené aplikace, je nezbytné porozumět také hardwarové stránce --- tedy zařízením, která data o~kvalitě vnitřního prostředí sbírají. Tato sekce proto poskytuje přehled senzorových modulů a~hotových zařízení dostupných na trhu, které jsou relevantní pro monitorování IEQ. Přehled vychází z~analýzy platforem popsaných v~následující sekci (sensor.community, OpenAQ, openSenseMap, IndoorCO2Map) a~z~doplňujícího průzkumu technických specifikací výrobců.
-
-Sekce je rozdělena na dvě části. První se věnuje senzorovým modulům, které vyžadují integraci s~mikrokontrolérem a~tvoří stavební kameny nízkonákladových měřicích stanic. Druhá část popisuje hotová zařízení připravena k~okamžitému nasazení, a~to jak spotřebitelská, tak průmyslová.
+Kapitola je rozdělena na dvě části. První se věnuje senzorovým modulům, které vyžadují integraci s~mikrokontrolérem a~tvoří stavební kameny nízkonákladových měřicích stanic. Druhá část popisuje hotová zařízení připravena k~okamžitému nasazení, a~to jak spotřebitelská, tak průmyslová.
 
 \FloatBarrier
-\subsection{Senzorové moduly}
+\section{Senzorové moduly}
 \label{subsec:senzorove-moduly}
 
 Senzorové moduly jsou elektronické součástky určené k~měření jedné či více fyzikálních veličin. Na rozdíl od hotových zařízení nemají vlastní síťovou konektivitu ani uživatelské rozhraní --- pro jejich provoz je nutná integrace s~mikrokontrolérem, například ESP32 nebo Arduino, který zajistí sběr dat, jejich zpracování a~případné odeslání do sítě. Právě tato otevřenost je klíčová pro oblast občanské vědy (\textit{citizen science}) a~nízkonákladového monitorování, kde si uživatelé sestavují vlastní měřicí stanice z~dostupných komponent. Platforma sensor.community je příkladem tohoto přístupu --- poskytuje firmware a~návody pro sestavení stanic z~podporovaných senzorů \parencite{sensor.communitySensorCommunityBuildYour2025}.
@@ -85,7 +82,7 @@ Cenové rozpětí senzorových modulů se pohybuje přibližně od 3\,€ (DS18B
 Za pozornost stojí, že akustický komfort je zastoupen pouze jedním senzorem --- komunitně vyvíjeným modulem DNMS (\textit{Digital Noise Measurement Sensor}), který vznikl v~rámci projektu sensor.community. Vizuální komfort (osvětlení) není zastoupen žádným identifikovaným modulem. Tato nerovnováha naznačuje, že nízkonákladové senzorové řešení pokrývají především oblast IAQ a~tepelného komfortu, zatímco akustická a~vizuální složka IEQ zůstává nedostatečně pokryta.
 
 \FloatBarrier
-\subsection{Hotová zařízení}
+\section{Hotová zařízení}
 \label{subsec:hotova-zarizeni}
 
 Hotová zařízení představují druhou kategorii hardwaru pro monitorování IEQ. Na rozdíl od senzorových modulů jsou připravena k~okamžitému nasazení --- disponují vlastní síťovou konektivitou, napájením, a~často také displejem nebo mobilní aplikací. Lze je rozdělit na dvě skupiny: spotřebitelská zařízení určená pro koncové uživatele a~průmyslová zařízení navržená pro integraci do systémů řízení budov (BMS --- \textit{Building Management System}).

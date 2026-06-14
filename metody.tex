@@ -55,7 +55,7 @@ Tímto způsobem bylo identifikováno pět aplikací. Následně byla ověřena 
 
 Rešerše zařízení pro sběr dat probíhala v~dubnu 2026. Jejím cílem bylo sestavit přehled senzorových modulů a~hotových zařízení relevantních pro monitorování IEQ, které se reálně vyskytují v~projektech sběru dat.
 
-Identifikace zařízení probíhala ve třech fázích. V~první, primární fázi bylo využito výsledků analýzy existujících aplikací popsaných v~sekci Rešerše. Projekt sensor.community zveřejňuje seznam podporovaných senzorů \parencite{SensorCommunityDevices}, který posloužil jako základní podklad. Analogicky byly ze zdrojů aplikací OpenAQ, openSenseMap a~IndoorCO2Map extrahovány senzory a~zařízení, pro která tyto platformy poskytují firmware, návody nebo přímou integraci. Tímto způsobem byla identifikována naprostá většina senzorových modulů a~spotřebitelských zařízení zařazených do výsledného přehledu.
+Identifikace zařízení probíhala ve třech fázích. V~první, primární fázi bylo využito výsledků analýzy existujících aplikací popsaných v~kapitole~\ref{ch:aplikace-analyza}. Projekt sensor.community zveřejňuje seznam podporovaných senzorů \parencite{SensorCommunityDevices}, který posloužil jako základní podklad. Analogicky byly ze zdrojů aplikací OpenAQ, openSenseMap a~IndoorCO2Map extrahovány senzory a~zařízení, pro která tyto platformy poskytují firmware, návody nebo přímou integraci. Tímto způsobem byla identifikována naprostá většina senzorových modulů a~spotřebitelských zařízení zařazených do výsledného přehledu.
 
 Ve druhé fázi byl proveden doplňující průzkum Zotero kolekcí \textit{senzory} a~\textit{Podporovane sensor.community}, které obsahovaly technické listy a~produktové stránky dalších relevantních senzorů.
 
@@ -72,6 +72,7 @@ Při identifikaci měřených veličin projektu \textit{sensor.community} byly a
 
 \FloatBarrier
 \subsection{Validace souladu datových formátů s~otevřenými formálními normami}
+\label{subsec:validace-ofn}
 
 Empirická validace souladu datových formátů s~otevřenými formálními normami (OFN) probíhala v~dubnu 2026. Cílem bylo ověřit, do jaké míry datové archivy a~API rozhraní analyzovaných aplikací odpovídají doporučením OFN publikovaným v~katalogu špatné praxe na portálu data.gov.cz \parencite{PrikladySpatnePraxe2022}. Na základě detailního zadání autora práce byl k~provedení validace instruován asistent s~umělou inteligencí Claude Opus 4.6. Zadání obsahovalo seznam deseti kategorií špatné praxe z~portálu data.gov.cz, adresy datových archivů ke stažení a~URL adres API ke kontrole, sadu nástrojů příkazové řádky pro validaci (\texttt{curl}, \texttt{jq}, \texttt{file~-i}, \texttt{python3~-c~"json.load(...)"}) a~pokyny k~postupu analýzy v~jednotlivých fázích.
 
@@ -79,11 +80,11 @@ V~první fázi byl asistent instruován k~přečtení portálu data.gov.cz v~sek
 
 Ve druhé fázi byly staženy vzorky datových archivů všech čtyř aplikací pomocí příkazu \texttt{curl}: archiv IndoorCO2Map (formát ZIP/JSON), vzorový soubor Sensor.Community (CSV), vzorový soubor OpenAQ (CSV komprimovaný metodou gzip). Formát a~kódování každého souboru byly ověřeny nástrojem \texttt{file~-i}, struktura a~oddělovač pomocí příkazu \texttt{head}, validita JSON formátu pomocí \texttt{python3}. U~datových archivů IndoorCO2Map byla navíc provedena analýza celistvosti dat (počty chybějících hodnot, validita kódů zemí a~NUTS~3) pomocí nástroje \texttt{jq}.
 
-Ve třetí fázi byla ověřena API rozhraní všech čtyř aplikací. Pomocí příkazu \texttt{curl~-I} byly zkontrolovány HTTP hlavičky (přítomnost HTTPS, hlavička \texttt{Strict-Transport-Security} a~správnost \texttt{Content-Type}). Byl také ověřen způsob autentizace a~stažen vzorový JSON response pro posouzení reprezentace numerických hodnot, formátu časových razítek a~způsobu kódování prostorových souřadnic. Zjištění ze všech tří fází byla porovnána se sestavenými kritérii OFN a~výsledky byly zapracovány do podsekce \textit{Soulad s~otevřenými formálními normami} v~komparativní části Rešerše.
+Ve třetí fázi byla ověřena API rozhraní všech čtyř aplikací. Pomocí příkazu \texttt{curl~-I} byly zkontrolovány HTTP hlavičky (přítomnost HTTPS, hlavička \texttt{Strict-Transport-Security} a~správnost \texttt{Content-Type}). Byl také ověřen způsob autentizace a~stažen vzorový JSON response pro posouzení reprezentace numerických hodnot, formátu časových razítek a~způsobu kódování prostorových souřadnic. Zjištění ze všech tří fází byla porovnána se sestavenými kritérii OFN a~výsledky byly zapracovány do sekce~\ref{subsec:soulad-ofn}.
 
 \section{Pozorování}
 
-Pozorování bylo využito jako doplňková metoda pro rozšíření portfolia identifikovaných zařízení. Průmyslová zařízení Elvaco Sense 100W a~Sense 300W byla do přehledu zařízení pro sběr dat (sekce~\ref{sec:zarizeni}) zařazena na základě přímé znalosti těchto produktů z~předchozího zaměstnání autora, který se podílel na vývoji aplikace, která tyto senzory využívala.
+Pozorování bylo využito jako doplňková metoda pro rozšíření portfolia identifikovaných zařízení. Průmyslová zařízení Elvaco Sense 100W a~Sense 300W byla do přehledu zařízení pro sběr dat (kapitola~\ref{sec:zarizeni}) zařazena na základě přímé znalosti těchto produktů z~předchozího zaměstnání autora, který se podílel na vývoji aplikace, která tyto senzory využívala.
 
 \section{Komparace}
 
@@ -99,7 +100,7 @@ Komparace aplikací pro sběr senzorických dat probíhala v~dubnu 2026. Jejím 
 
 Komparace proběhla v~několika dimenzích. První dimenzí bylo pokrytí veličin relevantních pro IEQ: výsledky individuálních analýz byly systematizovány do tabulky~\ref{tab:aplikace-srovnani-data}, která umožňuje přímé porovnání podporovaných veličin napříč kategoriemi IEQ (kvalita vnitřního ovzduší, tepelný, vizuální a~akustický komfort). Druhou dimenzí bylo porovnání technických parametrů: komunikačního modelu, formátu API a~archivu, způsobu autentizace, přístupu k~definici veličin a~závislosti na hardwaru, přehledně zachycené v~tabulce~\ref{tab:aplikace-srovnani-technicke}. Třetí dimenzí bylo porovnání webových rozhraní na základě vlastního pozorování, zaměřené na způsob vizualizace dat a~dostupné filtry a~analytické funkce. Čtvrtou dimenzí byl přístup k~hardwarové podpoře, hodnocený z~hlediska škálovatelnosti a~konzistence sbíraných dat.
 
-Pátou dimenzí, přesahující rámec standardní komparace, bylo hodnocení souladu aplikací s~otevřenými formálními normami. Toto hodnocení bylo realizováno prostřednictvím empirické validace, jejíž metodologie je popsána v~sekci \textit{Validace souladu datových formátů s~otevřenými formálními normami}. Výsledky komparace ve všech pěti dimenzích jsou shrnuty v~sekci Srovnání aplikací v~rámci Rešerše.
+Pátou dimenzí, přesahující rámec standardní komparace, bylo hodnocení souladu aplikací s~otevřenými formálními normami. Toto hodnocení bylo realizováno prostřednictvím empirické validace, jejíž metodologie je popsána v~sekci~\ref{subsec:validace-ofn}. Výsledky komparace ve všech pěti dimenzích jsou shrnuty v~sekci~\ref{sec:srovnani-aplikaci}.
 
 \FloatBarrier
 \subsection{Komparace zařízení pro sběr dat}
@@ -108,4 +109,4 @@ Komparace zařízení pro sběr dat probíhala v~dubnu 2026 a~navazovala na reš
 
 Zařízení byla rozdělena do dvou kategorií: senzorové moduly a~hotová zařízení. Toto rozdělení bylo zvoleno proto, že obě skupiny se zásadně liší z~hlediska způsobu nasazení, ceny i~míry otevřenosti. Hotová zařízení byla dále členěna na spotřebitelský a~průmyslový segment, neboť tyto podkategorie vykazují odlišné komunikační protokoly a~přístupy k~otevřenosti dat.
 
-Pro každou kategorii byla sestavena přehledová tabulka zahrnující následující kritéria: výrobce, měřené veličiny IEQ, komunikační rozhraní, deklarovaná přesnost a~orientační cena. U~hotových zařízení byl navíc hodnocen přístup k~otevřenému API. Výsledné tabulky jsou součástí sekce \ref{sec:zarizeni} a~slouží jako podklad pro formulaci požadavků na vlastní aplikaci v~návrhové části práce.
+Pro každou kategorii byla sestavena přehledová tabulka zahrnující následující kritéria: výrobce, měřené veličiny IEQ, komunikační rozhraní, deklarovaná přesnost a~orientační cena. U~hotových zařízení byl navíc hodnocen přístup k~otevřenému API. Výsledné tabulky jsou součástí kapitoly \ref{sec:zarizeni} a~slouží jako podklad pro formulaci požadavků na vlastní aplikaci v~návrhové části práce.
