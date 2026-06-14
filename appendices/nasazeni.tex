@@ -1,0 +1,16 @@
+\chapter{Přístup k nasazené aplikaci}
+\label{app:nasazeni}
+
+Popsaný systém je nasazen a veřejně dostupný v produkčním provozu. Webová aplikace je přístupná na adrese:
+
+\begin{center}
+\href{https://ambiquality.org}{ambiquality.org}
+\end{center}
+
+Veřejné aplikační rozhraní (API) je dostupné na subdoméně:
+
+\begin{center}
+\href{https://api.ambiquality.org}{api.ambiquality.org}
+\end{center}
+
+Konfigurace nasazení -- definice kontejnerů (Podman Compose), konfigurace reverzní proxy Caddy, inicializační skripty databáze i obslužný skript \texttt{deploy.sh} -- je součástí zdrojového kódu odevzdaného jako samostatná příloha a zveřejněného v repozitářích uvedených v příloze~\ref{app:implementace-repo}. Soubory s tajnými údaji nejsou z bezpečnostních důvodů zahrnuty (viz sekce~\ref{sec:nasazeni-bezpecnost}).
