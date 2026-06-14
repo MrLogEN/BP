@@ -3,9 +3,9 @@
 
 První aplikací je německá aplikace \textit{sensor.community} ze Stuttgartu. Aplikace je založena na komunitě dobrovolníků, kteří instalují senzory pro měření různých veličin a sdílejí je ve veřejné databázi. \parencite{SensorCommunityBuildYour}
 
-Zaměření aplikace je především na měření kvality vnějšího prostředá, ale má možnost měřit i prostředí vnitřní.  
+Zaměření aplikace je především na měření kvality vnějšího prostředí, ale má možnost měřit i prostředí vnitřní.
 
-Ze zledovaných veličin uvedených v tabulce č. \ref{tab:sensor-community-veliciny} je zřejmé, že aplikace se zaměřuje především na sledování kvality vzduchu a to zejména z pohledu mikročástic PM a CO\textsubscript{2}, akustického komfortu a tepelného komfortu. Světelný komfort není v API/CSV exportech zastoupen.
+Ze sledovaných veličin uvedených v tabulce č. \ref{tab:sensor-community-veliciny} je zřejmé, že aplikace se zaměřuje především na sledování kvality vzduchu a to zejména z pohledu mikročástic PM a CO\textsubscript{2}, akustického komfortu a tepelného komfortu. Světelný komfort není v API/CSV exportech zastoupen.
 
 \begin{table}[!tbp]
   \centering
@@ -51,15 +51,15 @@ Ze zledovaných veličin uvedených v tabulce č. \ref{tab:sensor-community-veli
 
 V rámci funkcionalit webového rozhraní aplikace nabízí zobrazení dat na světové mapě. Uživatelé mohou zobrazení výsledků filtrovat podle (viz č. 2 na obrázku č. \ref{obr:sensor-community-filter}):
 \begin{itemize}
-  \item sledované veličiny; a to:
+  \item sledované veličiny, a to:
     \begin{itemize}
       \item NO$_{2}$,
       \item sensory na referenčních stanicích,
-      \item rel. vlhokost,
+      \item rel. vlhkost,
       \item teplota,
       \item tlak,
       \item hluk,
-      \item AQI US\footnote{\textit{Přeloženo z angličtiny pomocí DeepL: Index kvality ovzduší (AQI) se používá k informování o denní kvalitě ovzduší. Uvádí, jak čistý nebo znečištěný je vzduch ve vašem okolí a jaké související zdravotní dopady by pro vás mohly být důvodem k obavám. AQI se zaměřuje na zdravotní dopady, které se u vás mohou projevit během několika hodin nebo dnů po vdechnutí znečištěného vzduchu. EPA vypočítává AQI pro pět hlavních látek znečišťujících ovzduší, které jsou regulovány zákonem o čistém ovzduší: přízemní ozon, znečištění částicemi (známé také jako částicová hmota), oxid uhelnatý, oxid siřičitý a oxid dusičitý. Pro každou z těchto látek stanovila EPA národní normy kvality ovzduší s cílem chránit veřejné zdraví. Přízemní ozon a částice v ovzduší jsou dvě látky, které představují největší hrozbu pro lidské zdraví v této zemi.} \parencite{usdepartmentofcommerceAirQualityIndex}},
+      \item AQI US\footnote{Index kvality ovzduší (AQI) je souhrnný ukazatel agentury EPA informující o~denní kvalitě ovzduší. Vychází z~pěti hlavních znečišťujících látek regulovaných zákonem o~čistém ovzduší: přízemního ozonu, prachových částic, oxidu uhelnatého, oxidu siřičitého a~oxidu dusičitého. \parencite{usdepartmentofcommerceAirQualityIndex}},
       \item PM$_{2.5}$,
       \item PM$_{10}$,
     \end{itemize}
@@ -69,7 +69,7 @@ V rámci funkcionalit webového rozhraní aplikace nabízí zobrazení dat na sv
   \item vnitřních senzorů.
 \end{itemize}
 
-Na rozhraní můžeme také vidět barevnou škálu pro právě vybranou veličinu (viz č. 1 na obrázku č. \ref{obr:sensor-community-filter}). Po vybrání veličiny je možné vybrat jeden či více zobrazovaných senzorů a získat tak konkrétní naměřenou hodnotu (viz obrázke č. \ref{obr:sensor-community-sensor-reading}). 
+Na rozhraní můžeme také vidět barevnou škálu pro právě vybranou veličinu (viz č. 1 na obrázku č. \ref{obr:sensor-community-filter}). Po vybrání veličiny je možné vybrat jeden či více zobrazovaných senzorů a získat tak konkrétní naměřenou hodnotu (viz obrázek č. \ref{obr:sensor-community-sensor-reading}).
 
 \begin{figure}[htbp!]\centering
 \caption{Filtry a barevná škála pro zobrazení dat na mapě v aplikaci \textit{sensor.community}}

@@ -1,10 +1,10 @@
 \FloatBarrier
 \subsection{Aplikace OpenAQ}
 
-Druhou aplikací je americká aplikace \textit{OpenAQ} z New Yorku. Tato aplikace se, jak je uvedeno v dokumentaci API, zaměřuje především na měření kvality vnějšiho ovzduší. Podporovné veličiny jsou uvedeny v tabulce č. \ref{tab:open-aq-veliciny} \parencite{API}. Z té je zřejmé, že aplikace vůbec nemyslí na měření veličin akustického či světelného komfortu. 
+Druhou aplikací je americká aplikace \textit{OpenAQ} z New Yorku. Tato aplikace se, jak je uvedeno v dokumentaci API, zaměřuje především na měření kvality vnějšího ovzduší. Podporované veličiny jsou uvedeny v tabulce č. \ref{tab:open-aq-veliciny} \parencite{API}. Z té je zřejmé, že aplikace vůbec nemyslí na měření veličin akustického či světelného komfortu. 
 
 Data v aplikaci OpenAQ jsou poskytována dvěma způsoby. 
-Prvním z nich je přístup přes REST API, který umožňuje získat data ve formátu JSON. Tento přistup je vhodné pro programatické zpracování dat. Pro používání API jsou dostupné sady vývojových nástrojů (SDK) pro skriptovací jazyky Python a R. \parencite{API}  
+Prvním z nich je přístup přes REST API, který umožňuje získat data ve formátu JSON. Tento přístup je vhodný pro programatické zpracování dat. Pro používání API jsou dostupné sady vývojových nástrojů (SDK) pro skriptovací jazyky Python a R. \parencite{API}  
 
 Druhým způsobem je pravidelný archiv dat, který je dostupný na platformě AWS v S3 bucketu. Data jsou zde sdílena měsíčně ve formátu komprimovaných CSV souborů pomocí gzip. \parencite{zotero-item-552}
 
@@ -49,9 +49,9 @@ Druhým způsobem je pravidelný archiv dat, který je dostupný na platformě A
   \footnotesize \textit{Zdroj:} Vlastní zpracování na základě dat z \parencite{API, zotero-item-549, UltrajemneCastice2025, CernyUhlik2025}. 
 \end{table}
 
-Za pomocí API byly identifikovány senzory, které jsou na plarformě OpenAQ použávány. Jejich shrnutí je uvedeno v tabulce č. \ref{tab:openaq-supported-sensors}. V tabulce jsou uvedeny pouze veličiny, které jsou relevantní pro IEQ a byly v rámci rešerše autorem identifikovány. Je nutné poznamenat, že aplikace není závislá na konkrétním hardwaru. Uvedené senzory jsou pouze příklady, kdy autoři dat publikovali, jaký konkrétní hardware používají. To umožňuje uživatelům dat lépe porozumět, s jakou spolehlivostí a přesností data interpretovat. \parencite{API}
+Za pomocí API byly identifikovány senzory, které jsou na platformě OpenAQ používány. Jejich shrnutí je uvedeno v tabulce č. \ref{tab:openaq-supported-sensors}. V tabulce jsou uvedeny pouze veličiny, které jsou relevantní pro IEQ a byly v rámci rešerše autorem identifikovány. Je nutné poznamenat, že aplikace není závislá na konkrétním hardwaru. Uvedené senzory jsou pouze příklady, kdy autoři dat publikovali, jaký konkrétní hardware používají. To umožňuje uživatelům dat lépe porozumět, s jakou spolehlivostí a přesností data interpretovat. \parencite{API}
 
-Praxe, kdy aplikace není závislá na konkrétním hardwaru je výhodná z pohledu udržitelnosti aplikace, kdy není potřeba implementovat podporu pro každý nový senzor. Tímto způsobem je břemeno napojení přeneseno na uživatele, který se rozhodne data publikovat. Tím se může vstupní bariéra pro publikování dat zvýšit, ale zároveň se zvyšuje flexibilita a škálovatelnost platformy.
+Nezávislost na konkrétním hardwaru je výhodná z pohledu udržitelnosti, neboť není nutné implementovat podporu pro každý nový senzor. Břemeno napojení se tím přenáší na publikujícího uživatele, což sice může zvýšit vstupní bariéru, ale zároveň zvyšuje flexibilitu a škálovatelnost platformy.
 
 {
   \footnotesize
@@ -122,9 +122,9 @@ Miri Air (Miri Africa) & \cmark & \cmark & & & & & \cmark & & \cmark & \cmark & 
   \footnotesize \textit{Poznámka:} Seznam instrumentů OpenAQ obsahuje 27 položek. V tabulce jsou uvedeny jednotlivé instrumenty (bez slučování do rodin). Položky \textit{N/A} a \textit{Unknown AirGradient Sensor} nejsou uvedeny, protože nejde o konkrétní dohledatelná zařízení. Veličiny Black Carbon (např. \textit{MA350}, \textit{ABCD}) nejsou vyznačeny, protože nejsou samostatným sloupcem v použité IEQ matici.
 }
 
-Webové rozhraní aplikace je pro zobrazování dat na světové mapě podobné jako u aplikace Sensor.Community (viz obrázek č. \ref{obr:openaq-map}). Uživatelské rozrhraní je pro zobrazování dat přístupné bez předchozí regitrace. Uživatelé mohou zobrazení výsledků filtrovat podle: 
+Webové rozhraní aplikace je pro zobrazování dat na světové mapě podobné jako u aplikace Sensor.Community (viz obrázek č. \ref{obr:openaq-map}). Uživatelské rozhraní je pro zobrazování dat přístupné bez předchozí registrace. Uživatelé mohou zobrazení výsledků filtrovat podle: 
 \begin{itemize}
-  \item sledované znečisťující látky; a to:
+  \item sledované znečisťující látky, a to:
     \begin{itemize}
       \item jakékoliv znečišťující látky (bez omezení),
       \item PM$_{2.5}$,
@@ -134,7 +134,7 @@ Webové rozhraní aplikace je pro zobrazování dat na světové mapě podobné 
       \item SO$_{2}$,
       \item CO,
     \end{itemize}
-  \item typu sledované lokality; těmi jsou:
+  \item typu sledované lokality, těmi jsou:
     \begin{itemize}
       \item referenční stanice,
       \item lokace senzoru vzduchu,
@@ -187,7 +187,7 @@ Tyto filtry jsou zobrazeny na obrázku č. \ref{obr:openaq-map-filters}. Po klik
 \end{figure}
 
 \begin{figure}[htbp!]\centering
-\caption{Naměřené hodnoty konkrétního senzory v aplikaci OpenAQ}
+\caption{Naměřené hodnoty konkrétního senzoru v aplikaci OpenAQ}
 \label{obr:openaq-sensor-detail-reading}
 \includegraphics[width=.90\textwidth]{img/openaq-sensor-detail-reading}
 
